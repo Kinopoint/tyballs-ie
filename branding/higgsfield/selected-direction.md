@@ -18,4 +18,4 @@ Exclude gradients, metallic effects, neon, confetti, disco imagery, alcohol, sch
 
 ## Production rule
 
-The Higgsfield image at `output/logo-concepts/TYB-LOGO-A-editorial-rhythm.svg` remains source concept material. The website wordmark is implemented as accessible HTML/SVG styling until final deterministic SVG lockups are approved and redrawn.
+The Higgsfield image at `output/logo-concepts/TYB-LOGO-A-editorial-rhythm.svg` and the reviewed Batch 02 SVG reference frames in `output/final-lockups/` remain source concept material. The website wordmark is implemented as accessible HTML/SVG styling until final deterministic SVG lockups are redrawn, optically adjusted for small sizes, and approved.
