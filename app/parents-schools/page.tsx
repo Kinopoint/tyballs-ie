@@ -20,15 +20,11 @@ const topics = [
 export default function ParentsSchoolsPage() {
   return (
     <main id="main-content">
-      <section className="page-hero shell"><p className="eyebrow">For parents and schools</p><h1>Questions to ask before a TY Ball is booked</h1><p>Arrangements vary by venue and proposal. Parents, schools and committees should confirm the relevant details in writing.</p></section>
-      <figure className="editorial-visual shell">
-        <EditorialImage
-          alt="A calm venue entrance prepared before an event"
-          height={768}
-          name="venue-arrival"
-          width={1376}
-        />
-      </figure>
+      <section className="page-hero page-hero-with-media shell">
+        <div className="page-hero-title"><p className="eyebrow">For parents and schools</p><h1>Questions to ask before a TY Ball is booked</h1></div>
+        <p className="page-hero-description">Arrangements vary by venue and proposal. Parents, schools and committees should confirm the relevant details in writing.</p>
+        <figure className="page-hero-media"><EditorialImage alt="Adults discussing arrangements at a venue entrance" height={768} name="venue-arrival" width={1376} /></figure>
+      </section>
       <section className="editorial-page shell">
         <div className="editorial-intro"><p className="eyebrow">Before confirmation</p><h2>Check the arrangements for the actual venue</h2><p>Final arrangements and booking terms are supplied when the date, venue and proposal are confirmed. These are the main subjects to check.</p></div>
         <div className="topic-grid">{topics.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>

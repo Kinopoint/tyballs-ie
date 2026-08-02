@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EditorialImage } from "@/components/editorial-image";
+import { HomeHero } from "@/components/home-hero";
 
 const services = [
   ["Venue options", "The team checks venues that suit your county, date and expected attendance."],
@@ -25,44 +25,7 @@ const questions = [
 export default function Home() {
   return (
     <main id="main-content">
-      <section className="home-hero">
-        <EditorialImage
-          alt="An event hall prepared before guests arrive"
-          className="home-hero-image"
-          height={768}
-          name="event-hall"
-          priority
-          width={1376}
-        />
-        <div className="home-hero-scrim" aria-hidden="true" />
-        <div className="home-hero-grid shell">
-          <div className="home-hero-copy">
-            <p className="eyebrow">TY Ball planning in Ireland</p>
-            <h1>Planning a TY Ball?</h1>
-            <p className="hero-lead">
-              Send us your school, preferred date, county and estimated
-              attendance. DebsGuru will check the suitable options and contact
-              your committee.
-            </p>
-            <div className="hero-actions">
-              <Link className="button" href="/enquire">Check your date</Link>
-              <Link className="text-link" href="/how-it-works">How enquiries work</Link>
-            </div>
-            <p className="hero-note">Submitting the form does not reserve a date or create a booking.</p>
-          </div>
-
-          <aside className="enquiry-summary" aria-label="Information needed for an enquiry">
-            <p>What to send</p>
-            <dl>
-              <div><dt>School</dt><dd>Name and county</dd></div>
-              <div><dt>Date</dt><dd>Preferred date or flexibility</dd></div>
-              <div><dt>Attendance</dt><dd>Your current estimate</dd></div>
-              <div><dt>Contact</dt><dd>One committee representative</dd></div>
-            </dl>
-            <Link href="/enquire">Open the enquiry form <span aria-hidden="true">→</span></Link>
-          </aside>
-        </div>
-      </section>
+      <HomeHero />
 
       <div className="company-line">
         <div className="shell">

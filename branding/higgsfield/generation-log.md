@@ -179,3 +179,59 @@ Parameters: paid generation; `resolution=1k` (model default); `count=1`; aspect 
 - Parameters: `aspect_ratio=16:9`; `1376x768`.
 - Prompt: “Cinematic editorial photograph of a professional event technician completing a quiet pre-event lighting check in an empty contemporary Irish hall. Show only an adult figure from behind at a distance, dressed neutrally, beside a clean compact lighting console with no readable labels. A soft warm wash illuminates architectural curtains and an empty floor; deep navy shadows and one restrained coral light accent. Cables are safely concealed. Calm preparation rather than performance energy. No minors, crowd, alcohol, stage logos, screens with text, disco ball, laser beams, smoke, nightclub atmosphere or identifiable venue branding. Realistic low-light photography, controlled highlights, subtle film grain, premium documentary composition.”
 - Review: accepted. Adult technician is non-identifiable; lighting and room geometry are coherent; the control surface has no readable copy or logo; no prohibited nightlife cues.
+
+## Batch 05 — people-led event photography
+
+Date: 2026-08-02
+Requested model: `nano_banana_pro`
+Higgsfield canonical job model: `nano_banana_2`
+Parameters: paid generation; `resolution=1k`; `count=1`; aspect ratio recorded per asset. Originals are retained in [output/photo-people-originals](output/photo-people-originals/).
+
+### TYB-PEOPLE-A — guest arrival hero
+
+- Job ID: `fc5b83d1-f649-476c-8c78-ccb2803974ba`
+- Original: [TYB-PEOPLE-A-hero.png](output/photo-people-originals/TYB-PEOPLE-A-hero.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_144439_fc5b83d1-f649-476c-8c78-ccb2803974ba.png>
+- Parameters: `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Wide cinematic editorial photograph of a professionally organised formal youth celebration in a sophisticated contemporary Irish event venue. Clearly adult young guests aged 18 to 21 are arriving, greeting friends and moving toward the ballroom in elegant formalwear; a mixed group of men and women, natural candid interaction, warm anticipation and real event energy. An adult event coordinator is discreetly visible helping guests near the entrance. Keep the left third darker and visually calm for an HTML headline while the human activity gathers through the centre and right side. Warm architectural light, deep navy evening tones, cream linens and restrained coral floral accents. No minors, school uniforms, alcohol, bottles, bar, smoking, nightclub lasers, disco ball, confetti, wedding couple, logos, signs or readable text. Premium Irish event-planning campaign photography, realistic faces and hands, believable crowd spacing, rich 35mm editorial texture, no stock-photo posing and no CGI look.”
+- Review: accepted. Event business and guest experience are immediately clear; people read as young adults; faces, hands and architecture are plausible; no alcohol, text or brand marks.
+
+### TYB-PEOPLE-B — venue walkthrough
+
+- Job ID: `59c3a816-9a31-4b28-bb7e-9dfc03ea458d`
+- Original: [TYB-PEOPLE-B-venue-walkthrough.png](output/photo-people-originals/TYB-PEOPLE-B-venue-walkthrough.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_144849_59c3a816-9a31-4b28-bb7e-9dfc03ea458d.png>
+- Parameters: `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Wide candid editorial photograph of a practical venue walkthrough for a professionally organised formal youth celebration in Ireland. One experienced adult event coordinator stands inside an empty prepared ballroom with three clearly adult young committee representatives aged 18 to 21. They are discussing the room in real space: the coordinator gestures toward the table layout and dance floor while the young adults listen, ask questions and respond naturally. Human connection, decision-making and event expertise are the focus. One person may hold a completely closed unbranded navy notebook. No papers, floor plans, laptops, phones, screens, signs, badges, readable text, logos, school uniforms, minors, alcohol or posed corporate handshake. Warm architectural light, cream linens, deep navy details and restrained coral flowers. Premium Irish event-planning documentary photography, realistic faces and hands, believable proportions, subtle 35mm film texture.”
+- Review: accepted. Clear coordinator/committee relationship, credible formal venue and people; notebook has no readable content; no alcohol or branding.
+
+### TYB-PEOPLE-C — managed table service
+
+- Job ID: `de6401f3-3eae-4802-a2df-cc2939caf382`
+- Original: [TYB-PEOPLE-C-service.png](output/photo-people-originals/TYB-PEOPLE-C-service.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_144437_de6401f3-3eae-4802-a2df-cc2939caf382.png>
+- Parameters: `aspect_ratio=4:3`; `1200x896`.
+- Prompt: “Refined editorial photograph inside a professionally managed formal youth event in an Irish venue. In the foreground an adult venue service coordinator makes a final adjustment to an elegant cream linen place setting while, in the softly focused background, clearly adult young guests aged 18 to 21 in formalwear sit together, smile and talk naturally at prepared tables. The scene must communicate hospitality, organisation and a memorable social evening. Deep navy fabric, warm architectural light and restrained coral flowers; realistic ceramic plates, water glasses and matte cutlery. No minors, alcohol, wine glasses, bottles, bar, menus, place cards, readable text, logos, wedding styling or stock-photo posing. Premium documentary photography, plausible hands and faces, layered 50mm depth, subtle film texture.”
+- Review: accepted. Service and guest experience are visible together; glassware contains water only; no menus, alcohol, logos or text artefacts.
+
+### TYB-PEOPLE-D — adult venue arrangements
+
+- Job ID: `b8c2a4ed-6250-486f-a1e2-179a80aac7a9`
+- Original: [TYB-PEOPLE-D-arrival.png](output/photo-people-originals/TYB-PEOPLE-D-arrival.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_144440_b8c2a4ed-6250-486f-a1e2-179a80aac7a9.png>
+- Parameters: `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Sophisticated editorial photograph of an organised pre-event venue walkthrough in Ireland. An adult event coordinator is welcoming and speaking with two adult parents or school representatives at a calm contemporary venue entrance while another adult staff member prepares the reception position in the background. The people should look engaged, reassured and professional, with natural gestures and believable eye contact. Warm plaster architecture, generous timber doorway, deep navy runner and one restrained coral floral detail. The image communicates clear arrangements, adult oversight and a well-run event business. No minors, security theatre, alcohol, barriers, school logos, signs, posters, name badges with text, nightclub lighting or luxury-advertising poses. Premium candid editorial photography, realistic adult faces and hands, natural evening atmosphere.”
+- Review: accepted. Adult oversight and venue readiness are clear; faces and gestures are plausible; no text, badges, alcohol or school branding.
+
+### TYB-PEOPLE-E — live event operations
+
+- Job ID: `e5a3994f-f0de-4822-904d-377ccf7fff62`
+- Original: [TYB-PEOPLE-E-production.png](output/photo-people-originals/TYB-PEOPLE-E-production.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_144538_e5a3994f-f0de-4822-904d-377ccf7fff62.png>
+- Parameters: `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Cinematic editorial photograph showing the people behind a professionally organised formal youth event in Ireland. In the foreground an adult event producer and an adult lighting technician review the room together beside a compact unbranded control console; in the background, clearly adult young guests aged 18 to 21 in formalwear are beginning to dance and socialise naturally on the prepared floor. The scene communicates active event management, human energy and a memorable evening rather than an empty technical setup. Warm architectural light, deep navy shadows and restrained coral illumination, realistic spacing and candid gestures. No minors, alcohol, bottles, bar, school uniforms, logos, readable screens, disco ball, lasers, smoke, nightclub crowd crush or wedding couple. Premium documentary campaign photography, realistic adult faces and hands, controlled highlights and subtle film grain.”
+- Review: accepted. Operations team and formal event are visible in one frame; no readable console text, alcohol, brand marks or prohibited nightclub effects.
+
+### Rejected Batch 05 test
+
+- `804a041e-16f3-41fb-809c-7eb07d62eaf7` — [original](output/photo-people-originals/TYB-PEOPLE-B-planning.png), [job asset](https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_144438_804a041e-16f3-41fb-809c-7eb07d62eaf7.png); `aspect_ratio=16:9`; `1376x768`. Prompt: “Editorial documentary photograph of a real event-planning meeting for a formal youth celebration in Ireland. One experienced adult event coordinator is seated with three clearly adult young committee representatives aged 18 to 21 around a large warm timber table. They are engaged, pointing at an abstract venue floor plan and discussing deep navy and coral material swatches; expressions are focused, collaborative and optimistic. Show believable business activity and human connection, not a stationery still life. Papers contain only abstract lines with no readable writing, names or numbers. No minors, school uniforms, logos, school branding, alcohol, phones facing camera or staged corporate handshakes. Natural side light, warm-paper palette, premium candid editorial photography, realistic faces, fingers and body proportions, subtle film grain.” Rejected because it introduced a visible laptop screen and text-like document marks.

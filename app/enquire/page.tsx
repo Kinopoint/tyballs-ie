@@ -11,19 +11,11 @@ export const metadata: Metadata = {
 export default function EnquirePage() {
   return (
     <main id="main-content">
-      <section className="page-hero shell form-page-hero">
-        <p className="eyebrow">Contact DebsGuru</p>
-        <h1>TY Ball enquiry</h1>
-        <p>Send the school, county, preferred date and estimated attendance. DebsGuru will use these details to check the relevant options.</p>
+      <section className="page-hero page-hero-with-media shell form-page-hero">
+        <div className="page-hero-title"><p className="eyebrow">Contact DebsGuru</p><h1>TY Ball enquiry</h1></div>
+        <p className="page-hero-description">Send the school, county, preferred date and estimated attendance. DebsGuru will use these details to check the relevant options.</p>
+        <figure className="page-hero-media"><EditorialImage alt="An event team managing a formal evening" height={768} name="production-check" width={1376} /></figure>
       </section>
-      <figure className="editorial-visual shell form-visual">
-        <EditorialImage
-          alt="An adult technician checking event lighting in an empty hall"
-          height={768}
-          name="production-check"
-          width={1376}
-        />
-      </figure>
       <div className="form-shell shell">
         <aside className="form-guide">
           <p className="eyebrow">Information needed</p>

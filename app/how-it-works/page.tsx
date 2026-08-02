@@ -30,19 +30,11 @@ const stages = [
 export default function HowItWorksPage() {
   return (
     <main id="main-content">
-      <section className="page-hero shell">
-        <p className="eyebrow">Enquiry process</p>
-        <h1>What happens after you enquire</h1>
-        <p>The website form sends your details to DebsGuru for review. It does not make a booking or reserve a date.</p>
+      <section className="page-hero page-hero-with-media shell">
+        <div className="page-hero-title"><p className="eyebrow">Enquiry process</p><h1>What happens after you enquire</h1></div>
+        <p className="page-hero-description">The website form sends your details to DebsGuru for review. It does not make a booking or reserve a date.</p>
+        <figure className="page-hero-media"><EditorialImage alt="Adult event coordinators reviewing a venue plan" height={768} name="planning-session" width={1376} /></figure>
       </section>
-      <figure className="editorial-visual shell">
-        <EditorialImage
-          alt="Adult event coordinators reviewing a venue plan"
-          height={768}
-          name="planning-session"
-          width={1376}
-        />
-      </figure>
       <section className="stage-list shell">
         {stages.map((stage) => (
           <article key={stage.title}>
