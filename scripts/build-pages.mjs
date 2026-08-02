@@ -8,6 +8,7 @@ const apiDirectory = join(root, "app/api");
 const holdingDirectory = join(root, ".pages-build/server-api");
 
 await rm(join(root, ".pages-build"), { recursive: true, force: true });
+await rm(join(root, "out"), { recursive: true, force: true });
 await mkdir(dirname(holdingDirectory), { recursive: true });
 await rename(apiDirectory, holdingDirectory);
 
