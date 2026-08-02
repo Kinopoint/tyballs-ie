@@ -4,6 +4,8 @@ Status: approved by the project owner on 2026-08-02; implementation is in progre
 
 Content expansion approved on 2026-08-02: add specific event options, TY safety, venue-selection criteria, verified DebsGuru experience and a fuller FAQ. Do not introduce packages, starting prices, budget examples or tier comparisons at this stage.
 
+Visual-density revision approved on 2026-08-02: keep the verified information but move it out of dense homepage prose. The home page becomes a photo-led route with short captions, custom line icons, repeated enquiry buttons and one silent Higgsfield hero loop. Longer explanations remain on focused inner pages and inside closed FAQ items.
+
 ## Goal
 
 Complete the Editorial Rhythm A system across the production site without making unverified claims, showing identifiable minors, or weakening the enquiry flow. The site should feel like a calm, well-prepared invitation rather than an event directory or nightclub campaign.

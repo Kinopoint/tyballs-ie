@@ -235,3 +235,18 @@ Parameters: paid generation; `resolution=1k`; `count=1`; aspect ratio recorded p
 ### Rejected Batch 05 test
 
 - `804a041e-16f3-41fb-809c-7eb07d62eaf7` — [original](output/photo-people-originals/TYB-PEOPLE-B-planning.png), [job asset](https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_144438_804a041e-16f3-41fb-809c-7eb07d62eaf7.png); `aspect_ratio=16:9`; `1376x768`. Prompt: “Editorial documentary photograph of a real event-planning meeting for a formal youth celebration in Ireland. One experienced adult event coordinator is seated with three clearly adult young committee representatives aged 18 to 21 around a large warm timber table. They are engaged, pointing at an abstract venue floor plan and discussing deep navy and coral material swatches; expressions are focused, collaborative and optimistic. Show believable business activity and human connection, not a stationery still life. Papers contain only abstract lines with no readable writing, names or numbers. No minors, school uniforms, logos, school branding, alcohol, phones facing camera or staged corporate handshakes. Natural side light, warm-paper palette, premium candid editorial photography, realistic faces, fingers and body proportions, subtle film grain.” Rejected because it introduced a visible laptop screen and text-like document marks.
+
+## Batch 06 — cinematic website motion
+
+Date: 2026-08-02
+
+### TYB-VIDEO-A — arrival hero loop
+
+- Job ID: `6ab08fb6-3aff-4ef2-9df1-1eaf1ddca60d`
+- Model: `seedance_2_0` (Seedance 2.0)
+- Source media ID: `9905a727-8cf1-4e3e-afa4-995429f98d48`; source image `TYB-PEOPLE-A-hero`
+- Original: [TYB-VIDEO-A-arrival-loop.mp4](output/video-originals/TYB-VIDEO-A-arrival-loop.mp4)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_172450_6ab08fb6-3aff-4ef2-9df1-1eaf1ddca60d.mp4>
+- Parameters: paid generation; `aspect_ratio=16:9`; `duration=6`; `resolution=720p`; `1280x720`; `mode=std`; `bitrate_mode=high`; `genre=auto`; `generate_audio=false`; `count=1`.
+- Prompt: “Premium photorealistic cinematic website hero loop for an Irish TY Ball event-planning business. Start exactly from the supplied frame: clearly adult 18–21 formal guests arriving at an elegant venue with an adult event coordinator. Very slow controlled camera push-in, restrained natural guest movement, subtle fabric movement and warm ambient practical lights. Preserve every face, hand, garment and architectural line with high geometry stability. No speaking, no exaggerated dancing, no camera shake, no scene cut, no alcohol, no drinks, no nightclub excess, no text, no lettering, no logos, no watermarks. End on a calm frame that can crossfade back to the beginning.”
+- Review: accepted after full-resolution inspection of frames near 0.5, 3.0 and 5.5 seconds. Slow push-in remains coherent; people, hands, formalwear, entrance architecture and coordinator stay readable; no text, logo, alcohol or new prohibited object appears. The web copy uses a navy scrim and the original still as poster; `prefers-reduced-motion` disables playback visually.
