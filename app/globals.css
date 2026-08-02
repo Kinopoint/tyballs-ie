@@ -425,7 +425,6 @@ summary:focus-visible {
   align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
-  justify-content: space-between;
   min-height: 74px;
 }
 
@@ -447,13 +446,6 @@ summary:focus-visible {
 .scene-switcher button[aria-pressed="true"] {
   border-bottom-color: var(--coral);
   color: var(--white);
-}
-
-.home-hero-controls > p {
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  margin: 0;
 }
 
 .company-line {
@@ -1964,10 +1956,6 @@ summary:focus-visible {
 
   .scene-switcher button {
     flex: 0 0 auto;
-  }
-
-  .home-hero-controls > p {
-    display: none;
   }
 
   .company-line .shell {

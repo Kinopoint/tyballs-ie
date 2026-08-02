@@ -11,14 +11,16 @@ const scenes = [
   { label: "Production", name: "production-check", width: 1376, height: 768 },
 ] as const;
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function HomeHero() {
   const [activeScene, setActiveScene] = useState(0);
 
   return (
     <section className="home-hero" aria-labelledby="home-hero-title">
       <div className="home-hero-media" aria-hidden="true">
-        <video autoPlay className={`home-hero-video${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster="/images/event-hall.jpg">
-          <source src="/video/tyball-arrival-loop.mp4" type="video/mp4" />
+        <video autoPlay className={`home-hero-video${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster={`${basePath}/images/event-hall.jpg`} preload="auto">
+          <source src={`${basePath}/video/tyball-arrival-loop.mp4`} type="video/mp4" />
         </video>
         {scenes.map((scene, index) => (
           <EditorialImage
@@ -53,7 +55,6 @@ export function HomeHero() {
             <button aria-pressed={activeScene === index} key={scene.label} onClick={() => setActiveScene(index)} type="button">{scene.label}</button>
           ))}
         </div>
-        <p>Venue · Dinner · Music · Memories</p>
       </div>
     </section>
   );
