@@ -110,7 +110,7 @@ export function EnquiryForm() {
       {!previewMode ? <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={renderTurnstile} /> : null}
       <form className="enquiry-form" onSubmit={submit} onFocusCapture={() => { if (!formStarted.current) { formStarted.current = true; trackEvent("form_start", { form_name: "tyballs_enquiry" }); } }}>
         <div className="form-section">
-          <div className="form-section-heading"><span>01</span><div><h2>About your TY Ball</h2><p>An honest estimate is all we need at this stage.</p></div></div>
+          <div className="form-section-heading"><div><h2>About your TY Ball</h2><p>An honest estimate is all we need at this stage.</p></div></div>
           <div className="field-grid">
             <label className="field field-wide"><span>School name</span><input name="school" autoComplete="organization" required maxLength={160} /></label>
             <label className="field"><span>County</span><input name="county" autoComplete="address-level1" required maxLength={80} /></label>
@@ -121,14 +121,14 @@ export function EnquiryForm() {
         </div>
 
         <fieldset className="form-section">
-          <legend className="form-section-heading"><span>02</span><div><h2>What matters most?</h2><p>Select any priorities. Nothing here commits you to a package.</p></div></legend>
+          <legend className="form-section-heading"><div><h2>What matters most?</h2><p>Select any priorities. Your choices simply help the team understand the event.</p></div></legend>
           <div className="choice-grid">
             {priorities.map(([value, label]) => <label className="choice" key={value}><input type="checkbox" name="priorities" value={value} /><span>{label}</span></label>)}
           </div>
         </fieldset>
 
         <div className="form-section">
-          <div className="form-section-heading"><span>03</span><div><h2>Your committee contact</h2><p>We will use these details to discuss the enquiry.</p></div></div>
+          <div className="form-section-heading"><div><h2>Your committee contact</h2><p>We will use these details to discuss the enquiry.</p></div></div>
           <div className="field-grid">
             <label className="field"><span>Your name</span><input name="contactName" autoComplete="name" required maxLength={120} /></label>
             <label className="field"><span>Phone</span><input name="phone" type="tel" autoComplete="tel" required maxLength={30} /></label>

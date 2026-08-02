@@ -2,6 +2,8 @@
 
 Status: approved by the project owner on 2026-08-02; implementation is in progress.
 
+Content expansion approved on 2026-08-02: add specific event options, TY safety, venue-selection criteria, verified DebsGuru experience and a fuller FAQ. Do not introduce packages, starting prices, budget examples or tier comparisons at this stage.
+
 ## Goal
 
 Complete the Editorial Rhythm A system across the production site without making unverified claims, showing identifiable minors, or weakening the enquiry flow. The site should feel like a calm, well-prepared invitation rather than an event directory or nightclub campaign.

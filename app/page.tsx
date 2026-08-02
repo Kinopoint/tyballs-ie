@@ -1,11 +1,36 @@
 import Link from "next/link";
+import { EditorialImage } from "@/components/editorial-image";
 import { HomeHero } from "@/components/home-hero";
 
 const services = [
-  ["Venue options", "The team checks venues that suit your county, date and expected attendance."],
-  ["Food and service", "Menu and service options are discussed once the venue and group requirements are known."],
-  ["Music and production", "DJ, sound, lighting and timings can be included in the proposal."],
-  ["Photography and extras", "Photography, photobooths and other additions are considered with the committee."],
+  ["Venue search", "DebsGuru checks venue options against your county, preferred date, attendance and practical travel requirements."],
+  ["Food and hospitality", "The committee can discuss the meal, dietary requirements, table service and the flow of the evening."],
+  ["DJ and production", "Sound, lighting, DJ arrangements and the running order can be coordinated as part of the event plan."],
+  ["Photography", "Professional photography and photobooth options can be considered, with image arrangements agreed before the event."],
+  ["Awards and atmosphere", "An awards moment, room styling and selected entertainment can be shaped around the year group."],
+  ["On-the-night coordination", "A DebsGuru coordinator manages the agreed schedule and works with the venue and event suppliers."],
+] as const;
+
+const safetyPoints = [
+  ["Alcohol-free TY event", "The TY Ball itself is planned as an alcohol-free student event. Entry rules and venue arrangements are confirmed before booking."],
+  ["Named event contacts", "The committee receives the relevant coordinator, venue and transport contacts for the confirmed event."],
+  ["Security and first aid", "The applicable security, first-aid and incident arrangements are confirmed for the selected venue."],
+  ["Dietary and access needs", "Allergies, dietary requirements and accessibility needs should be supplied early enough for the venue to plan correctly."],
+] as const;
+
+const venueChecks = [
+  "County and realistic travel time",
+  "Capacity for the expected attendance",
+  "Dining, dancing and arrival spaces",
+  "Accessibility and dietary capability",
+  "Transport and collection arrangements",
+] as const;
+
+const reasons = [
+  ["10+ years of experience", "DebsGuru has more than a decade of experience working with school event committees."],
+  ["One dedicated coordinator", "A single DebsGuru contact guides the committee from the first conversation through the agreed event plan."],
+  ["Venue and supplier coordination", "The team brings the venue, hospitality, production and selected event services into one workable schedule."],
+  ["Focused event support", "DebsGuru states that it commits to one Debs or TY Ball per day so the booked event receives the team’s attention."],
 ] as const;
 
 const steps = [
@@ -16,8 +41,13 @@ const steps = [
 ] as const;
 
 const questions = [
-  ["Why is there no fixed price?", "Venue and supplier costs depend on the location, date, attendance and services required. DebsGuru checks those details before preparing a proposal."],
   ["Do we need final attendance numbers?", "No. Give the most realistic estimate your committee has. Final numbers can be dealt with later in the planning process."],
+  ["Is a TY Ball alcohol-free?", "Yes. The TY Ball is planned as an alcohol-free student event. The confirmed proposal sets out the venue’s entry rules and event arrangements."],
+  ["How are security and first aid handled?", "Requirements depend on the venue and attendance. The responsible contacts and applicable security and first-aid arrangements are confirmed for the booked event."],
+  ["Can dietary and accessibility needs be accommodated?", "They should be raised as early as possible. DebsGuru checks the relevant venue arrangements and explains how confirmed requirements must be submitted."],
+  ["Can transport be arranged?", "Transport can be discussed when DebsGuru knows the county, likely attendance and collection requirements. Any included or separate transport arrangement is confirmed in writing."],
+  ["Is there a minimum attendance?", "Minimum numbers can vary by venue and event arrangement. DebsGuru will explain the applicable requirement before a committee confirms a booking."],
+  ["Who can submit the enquiry?", "A committee contact can send the first details. DebsGuru works directly with the committee account holder when discussing a specific event."],
   ["Does the enquiry form reserve a date?", "No. The form sends the details to DebsGuru for review. A date is not reserved until availability and booking terms are confirmed."],
   ["Who operates TYBalls.ie?", "TYBalls.ie is operated by DebsGuru Ltd, the team behind DebsGuru.ie."],
 ] as const;
@@ -52,8 +82,9 @@ export default function Home() {
 
       <section className="services" id="experience">
         <div className="shell services-heading">
-          <p className="eyebrow light">What can be discussed</p>
-          <h2>Venue, food, entertainment and event requirements.</h2>
+          <p className="eyebrow light">What your TY Ball can include</p>
+          <h2>The practical parts of the night, brought together.</h2>
+          <p className="section-lead-light">The final event plan is based on the selected venue, date, attendance and the committee’s priorities.</p>
         </div>
         <div className="shell service-list">
           {services.map(([title, text]) => (
@@ -62,6 +93,45 @@ export default function Home() {
               <p>{text}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="safety-feature shell" aria-labelledby="safety-title">
+        <figure>
+          <EditorialImage alt="Adult production staff managing a formal event" height={768} name="production-check" width={1376} />
+        </figure>
+        <div className="safety-copy">
+          <p className="eyebrow">For a TY audience</p>
+          <h2 id="safety-title">A celebration with clear adult management.</h2>
+          <p className="lead">A TY Ball should feel special to the guests and properly prepared to the adults responsible for them.</p>
+          <div className="safety-list">
+            {safetyPoints.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+          <Link className="text-link" href="/parents-schools">Information for parents and schools</Link>
+        </div>
+      </section>
+
+      <section className="venue-feature">
+        <div className="shell venue-grid">
+          <div>
+            <p className="eyebrow light">Venue options across Ireland</p>
+            <h2>Venue choice starts with fit, not a long generic list.</h2>
+          </div>
+          <div>
+            <p>DebsGuru has access to TY Ball venue options across Ireland. The useful shortlist depends on where the group is travelling from, the date, attendance and the spaces the event needs.</p>
+            <ul>{venueChecks.map((item) => <li key={item}>{item}</li>)}</ul>
+            <Link className="text-link text-link-light" href="/enquire">Send your county and preferred date</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="trust-feature shell" aria-labelledby="trust-title">
+        <div className="section-heading">
+          <p className="eyebrow">Why DebsGuru</p>
+          <h2 id="trust-title">An experienced team behind the event.</h2>
+        </div>
+        <div className="trust-grid">
+          {reasons.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}
         </div>
       </section>
 
@@ -118,7 +188,7 @@ export default function Home() {
         <div className="shell faq-grid">
           <div className="section-heading">
             <p className="eyebrow light">Common questions</p>
-            <h2>Before submitting an enquiry</h2>
+            <h2>Before your committee confirms anything</h2>
           </div>
           <div className="faq-list">
             {questions.map(([question, answer]) => (

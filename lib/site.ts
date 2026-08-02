@@ -20,5 +20,5 @@ export const navigation = [
   { href: "/#experience", label: "What can be included" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/cost-guide", label: "Cost guide" },
-  { href: "/parents-schools", label: "Parents & schools" },
+  { href: "/parents-schools", label: "Parents & safety" },
 ] as const;

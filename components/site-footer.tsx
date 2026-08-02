@@ -20,7 +20,7 @@ export function SiteFooter() {
             <Link href="/#experience">What can be included</Link>
             <Link href="/how-it-works">How it works</Link>
             <Link href="/for-committees">For committees</Link>
-            <Link href="/parents-schools">For parents &amp; schools</Link>
+            <Link href="/parents-schools">Parents, schools &amp; safety</Link>
             <Link href="/cost-guide">Cost guide</Link>
             <Link href="/enquire">Make an enquiry</Link>
           </div>

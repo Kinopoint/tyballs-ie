@@ -483,6 +483,14 @@ summary:focus-visible {
   max-width: 900px;
 }
 
+.section-lead-light {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 28px 0 0;
+  max-width: 700px;
+}
+
 .service-list {
   margin-top: 64px;
 }
@@ -511,6 +519,138 @@ summary:focus-visible {
   color: rgba(255, 255, 255, 0.68);
   line-height: 1.65;
   margin-bottom: 0;
+}
+
+.safety-feature {
+  align-items: start;
+  display: grid;
+  gap: clamp(48px, 8vw, 110px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  padding-bottom: 120px;
+  padding-top: 120px;
+}
+
+.safety-feature figure {
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  position: sticky;
+  top: 104px;
+}
+
+.safety-feature figure picture,
+.safety-feature figure img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.safety-copy > h2,
+.venue-grid h2,
+.trust-feature .section-heading h2 {
+  font-size: clamp(42px, 5vw, 64px);
+  margin-bottom: 28px;
+}
+
+.safety-list {
+  margin: 48px 0 32px;
+}
+
+.safety-list article {
+  border-top: 1px solid var(--line);
+  padding: 24px 0 26px;
+}
+
+.safety-list article:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.safety-list h3,
+.trust-grid h3 {
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 400;
+  margin-bottom: 9px;
+}
+
+.safety-list p,
+.trust-grid p {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.venue-feature {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.venue-grid {
+  display: grid;
+  gap: clamp(48px, 9vw, 120px);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  padding-bottom: 110px;
+  padding-top: 110px;
+}
+
+.venue-grid > div:last-child {
+  align-self: end;
+}
+
+.venue-grid > div:last-child > p {
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.7;
+}
+
+.venue-grid ul {
+  list-style: none;
+  margin: 30px 0 32px;
+  padding: 0;
+}
+
+.venue-grid li {
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 13px 0;
+}
+
+.venue-grid li:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.text-link-light {
+  color: var(--white);
+}
+
+.text-link-light::after {
+  background: #ff978e;
+}
+
+.trust-feature {
+  display: grid;
+  gap: clamp(48px, 9vw, 120px);
+  grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
+  padding-bottom: 120px;
+  padding-top: 120px;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.trust-grid article {
+  border-top: 1px solid var(--line);
+  min-height: 190px;
+  padding: 28px 28px 32px 0;
+}
+
+.trust-grid article:nth-child(even) {
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+}
+
+.trust-grid article:nth-last-child(-n + 2) {
+  border-bottom: 1px solid var(--line);
 }
 
 .pricing-note {
@@ -1001,19 +1141,9 @@ summary:focus-visible {
 }
 
 .form-section-heading {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: 34px 1fr;
   margin-bottom: 30px;
   padding: 0;
   width: 100%;
-}
-
-.form-section-heading > span {
-  color: var(--coral-dark);
-  font-size: 12px;
-  font-weight: 700;
-  padding-top: 5px;
 }
 
 .form-section-heading h2 {
@@ -1367,6 +1497,9 @@ summary:focus-visible {
   .pricing-note,
   .process,
   .audience-paths,
+  .safety-feature,
+  .venue-grid,
+  .trust-feature,
   .faq-grid,
   .final-cta,
   .editorial-page,
@@ -1392,6 +1525,11 @@ summary:focus-visible {
 
   .hero-glass {
     max-width: 620px;
+  }
+
+  .safety-feature figure {
+    aspect-ratio: 16 / 9;
+    position: static;
   }
 
   .form-guide {
@@ -1492,7 +1630,9 @@ summary:focus-visible {
 
   .intro,
   .process,
-  .audience-paths {
+  .audience-paths,
+  .safety-feature,
+  .trust-feature {
     padding-bottom: 80px;
     padding-top: 80px;
   }
@@ -1507,6 +1647,26 @@ summary:focus-visible {
   .process-list li,
   .stage-list article {
     grid-template-columns: 1fr;
+  }
+
+  .venue-grid {
+    padding-bottom: 80px;
+    padding-top: 80px;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-grid article,
+  .trust-grid article:nth-child(even) {
+    border-left: 0;
+    min-height: 0;
+    padding: 24px 0 26px;
+  }
+
+  .trust-grid article:nth-last-child(2) {
+    border-bottom: 0;
   }
 
   .final-cta {
@@ -1568,10 +1728,6 @@ summary:focus-visible {
 
   .form-section {
     padding: 32px 22px;
-  }
-
-  .form-section-heading {
-    grid-template-columns: 28px 1fr;
   }
 
   .form-finish {
