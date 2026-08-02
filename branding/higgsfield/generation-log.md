@@ -106,7 +106,7 @@ Parameters for every job: `resolution=2k`; `count=1`; the job inspector does not
 - Original: [TYB-PHOTO-02-planning-table-refinement.png](output/photo-originals/TYB-PHOTO-02-planning-table-refinement.png)
 - Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_131911_2f552eaf-f7a3-44dc-b689-d52981913311.png>
 - Prompt: “Top-down editorial still-life photograph of simple anonymous planning tools on a plain warm wooden table: one completely blank closed navy notebook with no lettering, one unmarked cream envelope face-down, a natural wooden pencil, a short measuring tape with no legible markings, and one small coral flower stem. No paper sheets, no cards, no tickets, no calendars, no writing, no text, no logos, no names, no hands, no people, no minors, no alcohol. Soft window daylight, realistic shadows, carefully spaced quiet composition.”
-- Review: accepted only after a safe crop removes the measuring tape. The published `planning-table.webp` and JPEG fallback contain no text, people, alcohol, logo, minors or visible AI artefacts.
+- Review: accepted only after a safe crop removes the measuring tape. Published temporarily, then withdrawn on 2026-08-02 because the art direction felt too generic and inexpensive.
 
 #### TYB-PHOTO-04 — place setting refinement
 
@@ -114,7 +114,7 @@ Parameters for every job: `resolution=2k`; `count=1`; the job inspector does not
 - Original: [TYB-PHOTO-04-place-settings-refinement.png](output/photo-originals/TYB-PHOTO-04-place-settings-refinement.png)
 - Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_131910_29bd0c66-6e18-4ad1-a1cd-bacf619d4a3d.png>
 - Prompt: “Close editorial photograph of one completely unbranded place setting prepared in an empty venue: a blank cream linen cloth, a plain white ceramic plate, a folded unmarked cream napkin, one empty clear water glass and a small coral flower in an opaque cream vase. No menus, no cards, no paper, no readable text, no logos, no bottles, no alcohol, no guests, hands, faces or minors. Natural soft daylight, physically plausible glass reflections, restrained and calm service-planning mood.”
-- Review: accepted after a safe crop excludes upper-frame bottles. The published `place-setting.webp` and JPEG fallback contain a blank setting only; no text, people, alcohol, logo, minors or visible AI artefacts.
+- Review: accepted after a safe crop excludes upper-frame bottles. Published temporarily, then withdrawn on 2026-08-02 because the art direction felt too generic and inexpensive.
 
 ### Rejected originals — retained for audit, never published
 
@@ -127,3 +127,55 @@ Parameters for every job: `resolution=2k`; `count=1`; the job inspector does not
 - `TYB-PHOTO-03-venue-foyer-refinement.png` — job `a726237b-bcd4-4c2f-b374-a6a44a460f0d`, [asset](https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_131910_a726237b-bcd4-4c2f-b374-a6a44a460f0d.png). Prompt: “Editorial architectural photograph of an empty quiet Irish venue passageway before an event: only warm plaster walls, a timber floor, one large plain arched opening, subtle indirect wall light and a glimpse of unadorned empty room beyond. No reception desk, no doors with signs, no exit signs, no logos, no typography, no posters, no printed objects, no people, no minors, no alcohol. Physically plausible, calm warm-paper and soft-cream palette with deep navy shadows, credible and understated.” Rejected: exit signs and posters.
 - `TYB-PHOTO-01-hero-ballroom-minimal.png` — job `3133dc9d-3a7a-45cb-b85b-29d2a383083b`, [asset](https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_132127_3133dc9d-3a7a-45cb-b85b-29d2a383083b.png). Prompt: “Minimal architectural editorial photograph of an empty large community hall interior, tightly framed: smooth warm ivory plaster wall, one plain unadorned tall window with daylight, and a clean polished timber floor. The room is completely empty and undecorated. No people, no minors, no furniture, no tables, no chairs, no bar, no food, no bottles, no stage, no equipment, no disco ball, no lights, no signage, no exit signs, no screens, no wall art, no posters, no text, no logos, no printed objects. Physically plausible camera photograph, calm deep-navy shadows and warm-paper surfaces.” Rejected: visual signs/posters and equipment-like artefacts.
 - `TYB-PHOTO-03-venue-foyer-minimal.png` — job `0e0457ab-9f42-4378-bfbf-cc8b771be46e`, [asset](https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_132127_0e0457ab-9f42-4378-bfbf-cc8b771be46e.png). Prompt: “Minimal architectural editorial photograph of a quiet empty warm-plaster arched passage in a contemporary venue. Tight composition showing only a plain curved arch, warm matte walls, a clean timber floor and soft daylight entering from an unseen opening. No people, no minors, no door hardware, no doors, no reception desk, no furniture, no signs, no exit signs, no posters, no wall art, no text, no logos, no printed objects, no alcohol. Physically plausible, restrained warm-paper and soft-cream palette with deep navy shadows.” Rejected: exit-sign/poster-like artefacts.
+
+## Batch 04 — premium editorial photography replacement
+
+Date: 2026-08-02
+Requested model: `nano_banana_pro`
+Higgsfield canonical job model: `nano_banana_2`
+Parameters: paid generation; `resolution=1k` (model default); `count=1`; aspect ratio recorded per asset. Higgsfield accepted the requested `nano_banana_pro` identifier and returned `nano_banana_2` as the canonical model on every created job. All originals are retained in [output/photo-premium-originals](output/photo-premium-originals/).
+
+### TYB-PREMIUM-A — event hall hero
+
+- Job ID: `42317d22-22c5-4dc7-b2f4-7d8f5f971606`
+- Original: [TYB-PREMIUM-A-hero.png](output/photo-premium-originals/TYB-PREMIUM-A-hero.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_143406_42317d22-22c5-4dc7-b2f4-7d8f5f971606.png>
+- Parameters: `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Wide cinematic editorial photograph of a sophisticated contemporary event hall in Ireland, prepared moments before doors open. A polished dark timber floor, sculptural warm wall lighting, elegant cream table linens, deep navy details and a few restrained coral floral accents. The composition feels anticipatory, calm and premium, like a modern printed invitation brought to life. Keep the entire left third visually quiet and darker for an HTML headline. No people, minors, alcohol, bottles, bar, disco ball, nightclub beams, smoke, confetti, wedding styling, stage branding, signs, logos or readable text. Physically believable Irish venue architecture, natural early-evening light, refined editorial photography, rich tonal depth, subtle 35mm film texture, realistic materials, no CGI appearance.”
+- Review: accepted. Clear left copy space; credible architecture and table geometry; no text, people, alcohol, logos or prohibited nightclub cues.
+
+### TYB-PREMIUM-B — planning session
+
+- Job ID: `fee78c8e-3012-46f1-87e1-91c464e2f2d8`
+- Original: [TYB-PREMIUM-B-planning.png](output/photo-premium-originals/TYB-PREMIUM-B-planning.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_143405_fee78c8e-3012-46f1-87e1-91c464e2f2d8.png>
+- Parameters: `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Overhead editorial photograph of two adult event coordinators actively planning a formal youth event at a large warm timber table. Only their hands and forearms are visible. They are arranging an unbranded venue floor-plan diagram with abstract lines only, blank cream cards, material swatches in deep navy and warm coral, a calculator with its display turned away, a wooden pencil and a small architectural venue photograph with no signage. The scene should feel purposeful, experienced and collaborative rather than staged. No readable writing, numbers, names, logos, school branding, phones, laptops, minors, alcohol or decorative stationery clichés. Natural side light, restrained Irish editorial aesthetic, premium documentary photography, physically plausible hands and objects, subtle film grain.”
+- Review: accepted. Adult hands and objects are anatomically plausible; papers remain blank; no identifiable people, school data, alcohol or logos.
+
+### TYB-PREMIUM-C — table service
+
+- Job ID: `1b828b1f-eb84-414d-b12b-ae5fedc814c0`
+- Original: [TYB-PREMIUM-C-service.png](output/photo-premium-originals/TYB-PREMIUM-C-service.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_143407_1b828b1f-eb84-414d-b12b-ae5fedc814c0.png>
+- Parameters: `aspect_ratio=4:3`; `1200x896`.
+- Prompt: “Refined close editorial photograph of an adult venue coordinator making the final adjustment to an elegant event table before guests arrive. Show one natural adult hand aligning a folded cream linen napkin beside a simple ceramic place setting, clear water glass, matte silver cutlery and a restrained coral floral detail. Deep navy fabric appears subtly in the background. Layered depth of field, believable premium Irish venue, warm natural window light, tactile materials and quiet professional care. No faces, minors, guests, alcohol, wine bottles, menus, place cards, readable text, logos, gold glamour, wedding styling or stock-photo posing. Sophisticated documentary photography with a 50mm lens feel and subtle film texture.”
+- Review: accepted. Hands, glassware and cutlery are plausible; no menu, alcohol, text, face or logo.
+
+### TYB-PREMIUM-D — venue arrival
+
+- Job ID: `621123dd-61b6-4159-92c6-c2f549b00e17`
+- Original: [TYB-PREMIUM-D-arrival.png](output/photo-premium-originals/TYB-PREMIUM-D-arrival.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_143408_621123dd-61b6-4159-92c6-c2f549b00e17.png>
+- Parameters: `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Architectural editorial photograph of a calm contemporary Irish venue entrance prepared for an organised evening event. Warm plaster walls, a generous timber doorway, soft indirect lighting, a neat staffed reception position visible in the distance but with no identifiable person, and a clear uncluttered arrival route. The mood communicates care, organisation and adult oversight without looking institutional. Warm paper, cream and deep navy palette with one subtle coral detail. No minors, crowds, security theatre, barriers, alcohol, signs, exit lettering, posters, logos, readable text, nightclub lighting or luxury-hotel advertising style. Physically accurate architecture, natural evening atmosphere, sophisticated editorial photography.”
+- Review: accepted. Distant adults are non-identifiable; architecture is coherent; no signage, text, minor, alcohol or branding.
+
+### TYB-PREMIUM-E — production check
+
+- Job ID: `5299e933-52c8-43df-9264-76f5b6e2fc77`
+- Original: [TYB-PREMIUM-E-production.png](output/photo-premium-originals/TYB-PREMIUM-E-production.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_143507_5299e933-52c8-43df-9264-76f5b6e2fc77.png>
+- Parameters: `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Cinematic editorial photograph of a professional event technician completing a quiet pre-event lighting check in an empty contemporary Irish hall. Show only an adult figure from behind at a distance, dressed neutrally, beside a clean compact lighting console with no readable labels. A soft warm wash illuminates architectural curtains and an empty floor; deep navy shadows and one restrained coral light accent. Cables are safely concealed. Calm preparation rather than performance energy. No minors, crowd, alcohol, stage logos, screens with text, disco ball, laser beams, smoke, nightclub atmosphere or identifiable venue branding. Realistic low-light photography, controlled highlights, subtle film grain, premium documentary composition.”
+- Review: accepted. Adult technician is non-identifiable; lighting and room geometry are coherent; the control surface has no readable copy or logo; no prohibited nightlife cues.

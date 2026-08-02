@@ -22,10 +22,10 @@ export default function CommitteesPage() {
       <section className="page-hero shell"><p className="eyebrow">For TY committees</p><h1>Information to gather before you enquire</h1><p>The committee only needs a few basic details for DebsGuru to begin checking suitable options.</p></section>
       <figure className="editorial-visual shell">
         <EditorialImage
-          alt="A blank navy notebook, envelope and pencil prepared for committee planning"
-          height={800}
-          name="planning-table"
-          width={1800}
+          alt="Adult event coordinators reviewing a venue plan"
+          height={768}
+          name="planning-session"
+          width={1376}
         />
       </figure>
       <section className="editorial-page shell">

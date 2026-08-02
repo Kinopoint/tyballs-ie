@@ -17,16 +17,19 @@ Complete the Editorial Rhythm A system across the production site without making
 
 | Asset | Placement | Required composition | Alt text |
 | --- | --- | --- | --- |
-| `place-setting` | Home hero and cost guide | One plain, unbranded place setting, no menu or bottle; home receives a high-contrast paper scrim | “A simple TY Ball place setting with a plain napkin and coral flower” |
-| `planning-table` | How it works and committee page | Top-down committee planning materials with no readable names or school branding | “Event planning materials laid out on a table” |
+| `event-hall` | Home hero | Prepared event hall with dark copy space and no guests, alcohol, text or branding | “An event hall prepared before guests arrive” |
+| `planning-session` | How it works and committee page | Adult coordinators working with an abstract venue plan; no personal or school data | “Adult event coordinators reviewing a venue plan” |
+| `table-service` | Cost guide | Adult venue coordinator preparing an unbranded place setting | “An adult venue coordinator preparing a place setting” |
+| `venue-arrival` | Parents and schools | Calm organised venue entrance with non-identifiable adult staff | “A calm venue entrance prepared before an event” |
+| `production-check` | Enquiry page | Non-identifiable adult technician checking an empty hall | “An adult technician checking event lighting in an empty hall” |
 
-The attempted ballroom, foyer and production photographs were rejected after review because they introduced prohibited signage, generated text, alcohol-like props, nightlife cues or unsafe equipment. Parents/schools and enquiry remain intentionally text-first rather than presenting a misleading visual. Only the two accepted source photographs above are published.
+The earlier Soul 2.0 still-life photographs were withdrawn after art-direction review. The five paid premium replacements above were requested as `nano_banana_pro`; Higgsfield recorded the completed jobs under its canonical `nano_banana_2` model name.
 
 Every photo is generated through Higgsfield, inspected at full resolution, downloaded as its original, then converted to responsive WebP assets with a static `img` fallback. Images are decorative where HTML already communicates the critical fact; meaningful imagery receives specific alt text.
 
 ## Implementation sequence
 
-1. Generate and review the five paid Soul 2.0 photographs above. Reject visible minors, alcohol, logos, text artefacts, impossible architecture, unsafe equipment, or misleading documentary cues.
+1. Generate and review the five paid premium photographs above. Reject visible minors, alcohol, logos, text artefacts, impossible architecture, unsafe equipment, or misleading documentary cues.
 2. Store originals and generation metadata under `branding/higgsfield/`; convert approved originals into local optimized web assets.
 3. Apply the approved editorial visuals to their mapped sections without changing form submission, API, analytics or static-preview behaviour.
 4. Add responsive desktop/mobile composition, `prefers-reduced-motion` safe static behaviour, dimensions to prevent layout shift, and `sizes` hints.
@@ -36,6 +39,6 @@ Every photo is generated through Higgsfield, inspected at full resolution, downl
 ## Constraints and risks
 
 - Generated photographs are illustrative, not evidence of actual TYBalls.ie clients, venues, suppliers or policies. No captions imply otherwise.
-- `Soul 2.0` can introduce visual artefacts; every image requires acceptance review before site use.
+- Generative photography can introduce visual artefacts; every image requires acceptance review before site use.
 - GitHub Pages has no enquiry API. The existing preview notice stays enabled and the form remains non-submitting in static export.
 - The visible image system must not use image-only text or reduce legibility of the headline, form labels or legal content.

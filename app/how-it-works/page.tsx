@@ -37,10 +37,10 @@ export default function HowItWorksPage() {
       </section>
       <figure className="editorial-visual shell">
         <EditorialImage
-          alt="A blank navy notebook, envelope and pencil prepared for event planning"
-          height={800}
-          name="planning-table"
-          width={1800}
+          alt="Adult event coordinators reviewing a venue plan"
+          height={768}
+          name="planning-session"
+          width={1376}
         />
       </figure>
       <section className="stage-list shell">

@@ -23,10 +23,10 @@ export default function CostGuidePage() {
       <section className="page-hero shell"><p className="eyebrow">TY Ball cost guide</p><h1>What affects the price of a TY Ball?</h1><p>The venue, date, attendance and requested services determine the cost. DebsGuru prepares a proposal after reviewing those details.</p></section>
       <figure className="editorial-visual shell">
         <EditorialImage
-          alt="A simple TY Ball place setting with a plain napkin and coral flower"
-          height={900}
-          name="place-setting"
-          width={1800}
+          alt="An adult venue coordinator preparing a place setting"
+          height={896}
+          name="table-service"
+          width={1200}
         />
       </figure>
       <section className="editorial-page shell">

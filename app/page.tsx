@@ -27,12 +27,12 @@ export default function Home() {
     <main id="main-content">
       <section className="home-hero">
         <EditorialImage
-          alt="A simple TY Ball place setting with a plain napkin and coral flower"
+          alt="An event hall prepared before guests arrive"
           className="home-hero-image"
-          height={900}
-          name="place-setting"
+          height={768}
+          name="event-hall"
           priority
-          width={1800}
+          width={1376}
         />
         <div className="home-hero-scrim" aria-hidden="true" />
         <div className="home-hero-grid shell">

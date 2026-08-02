@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EditorialImage } from "@/components/editorial-image";
 import { EnquiryForm } from "./enquiry-form";
 
 export const metadata: Metadata = {
@@ -15,6 +16,14 @@ export default function EnquirePage() {
         <h1>TY Ball enquiry</h1>
         <p>Send the school, county, preferred date and estimated attendance. DebsGuru will use these details to check the relevant options.</p>
       </section>
+      <figure className="editorial-visual shell form-visual">
+        <EditorialImage
+          alt="An adult technician checking event lighting in an empty hall"
+          height={768}
+          name="production-check"
+          width={1376}
+        />
+      </figure>
       <div className="form-shell shell">
         <aside className="form-guide">
           <p className="eyebrow">Information needed</p>

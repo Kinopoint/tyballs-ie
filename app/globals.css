@@ -258,7 +258,7 @@ summary:focus-visible {
 }
 
 .home-hero-scrim {
-  background: rgba(240, 236, 227, 0.78);
+  background: rgba(16, 29, 50, 0.38);
   inset: 0;
   position: absolute;
   z-index: 1;
@@ -277,14 +277,14 @@ summary:focus-visible {
 }
 
 .home-hero-copy h1 {
-  color: var(--navy);
+  color: var(--white);
   font-size: clamp(58px, 8vw, 104px);
   margin-bottom: 28px;
   max-width: 780px;
 }
 
 .hero-lead {
-  color: var(--navy-soft);
+  color: rgba(255, 255, 255, 0.86);
   font-size: clamp(17px, 2vw, 21px);
   line-height: 1.55;
   margin-bottom: 30px;
@@ -299,10 +299,18 @@ summary:focus-visible {
 }
 
 .hero-note {
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.72);
   font-size: 12px;
   line-height: 1.5;
   margin: 22px 0 0;
+}
+
+.home-hero-copy .eyebrow {
+  color: #ff978e;
+}
+
+.home-hero-copy .text-link {
+  color: var(--white);
 }
 
 .enquiry-summary {
@@ -672,7 +680,14 @@ summary:focus-visible {
   padding-top: 92px;
 }
 
-.page-hero h1,
+.page-hero h1 {
+  color: var(--navy);
+  font-size: clamp(42px, 4.1vw, 56px);
+  margin-bottom: 0;
+  max-width: none;
+  white-space: nowrap;
+}
+
 .legal-page h1 {
   color: var(--navy);
   font-size: clamp(52px, 7vw, 88px);
@@ -707,6 +722,10 @@ summary:focus-visible {
 .editorial-visual > picture {
   display: block;
   height: 100%;
+}
+
+.form-visual {
+  margin-bottom: 0;
 }
 
 .stage-list {
@@ -1282,6 +1301,10 @@ summary:focus-visible {
   .editorial-page,
   .form-shell {
     grid-template-columns: 1fr;
+  }
+
+  .page-hero h1 {
+    white-space: normal;
   }
 
   .home-hero-grid {
