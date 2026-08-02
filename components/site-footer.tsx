@@ -6,6 +6,10 @@ import { site } from "@/lib/site";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
+      <div className="footer-statement">
+        <p>Your night.</p>
+        <p><em>Properly planned.</em></p>
+      </div>
       <div className="footer-top">
         <div>
           <Brand />
@@ -44,7 +48,8 @@ export function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} DebsGuru Ltd</span>
-        <span>Ballybunion, Co Kerry, Ireland</span>
+        <span>Built for TY committees across Ireland</span>
+        <span>Ballybunion, Co Kerry</span>
       </div>
     </footer>
   );

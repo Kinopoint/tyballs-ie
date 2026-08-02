@@ -20,6 +20,20 @@ export const metadata: Metadata = {
     siteName: site.domain,
     locale: "en_IE",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1672,
+        height: 941,
+        alt: "TY Balls — Your night. Properly planned.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TY Balls Ireland | Your Night, Properly Planned",
+    description: site.description,
+    images: ["/og.png"],
   },
   alternates: { canonical: "/" },
 };

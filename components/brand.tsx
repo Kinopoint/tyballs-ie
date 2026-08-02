@@ -4,7 +4,7 @@ export function Brand() {
   return (
     <Link className="brand" href="/" aria-label="TY Balls home">
       <span className="brand-mark" aria-hidden="true">
-        TY
+        <span>TY</span>
       </span>
       <span className="brand-name">
         TY <strong>Balls</strong>
