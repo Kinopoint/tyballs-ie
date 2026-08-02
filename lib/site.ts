@@ -1,5 +1,5 @@
 export const site = {
-  name: "TY Balls",
+  name: "TYBalls.ie",
   domain: "TYBalls.ie",
   description:
     "TY Ball venue and event planning enquiries in Ireland, operated by DebsGuru Ltd.",

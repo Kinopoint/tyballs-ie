@@ -36,6 +36,18 @@ npm run test:integration
 
 The integration test creates an isolated temporary PostgreSQL database, starts the production Next.js server and a real local SMTP listener, verifies a Cloudflare Turnstile test token, submits the HTTP form, checks the persisted lead and delivered email, checks duplicate suppression, and removes the temporary database.
 
+## GitHub Pages preview
+
+The static preview is published from the existing `gh-pages` branch at `https://kinopoint.github.io/tyballs-ie/`. The repository’s **Settings → Pages** must keep that branch as its publishing source.
+
+`npm run build:pages` exports the site to `out/` at the repository base path `/tyballs-ie`. It temporarily excludes the server-only enquiry API from the export. Consequently, the Pages preview never loads Turnstile, does not submit enquiries, and displays a clear preview-only notice on the form. Real enquiries remain available only from the secure server deployment.
+
+To reproduce the preview build locally:
+
+```bash
+npm run build:pages
+```
+
 ## Production deployment
 
 1. Create a dedicated Contabo VPS and restrict SSH to keys.

@@ -9,7 +9,7 @@
   --text: #17243a;
   --muted: #687385;
   --line: #d8d5cd;
-  --serif: Georgia, "Times New Roman", serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: Inter, "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -94,23 +94,46 @@ h2 {
   justify-self: start;
 }
 
-.brand-name {
+.brand-wordmark {
+  align-items: baseline;
   color: var(--navy);
-  font-size: 24px;
+  display: inline-flex;
+  font-family: var(--serif);
+  font-size: 28px;
   font-weight: 700;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.075em;
+  line-height: 0.9;
+  padding-block: 8px 10px;
+  position: relative;
   white-space: nowrap;
 }
 
-.brand-name strong {
+.brand-ie {
+  align-self: center;
   color: var(--coral-dark);
-  font-weight: 700;
+  font-family: var(--sans);
+  font-size: 0.54em;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  margin-left: 0.04em;
 }
 
-.brand-name small {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0;
+.brand-rhythm {
+  bottom: 0;
+  color: var(--coral);
+  height: 9px;
+  left: 20%;
+  overflow: visible;
+  position: absolute;
+  transform: rotate(-2deg);
+  width: 48%;
+}
+
+.brand-rhythm path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2.3;
 }
 
 .site-header nav {
@@ -566,8 +589,13 @@ summary:focus-visible {
   grid-template-columns: 0.7fr 1.3fr;
 }
 
-.site-footer .brand-name {
+.site-footer .brand-wordmark {
   color: var(--white);
+}
+
+.site-footer .brand-ie,
+.site-footer .brand-rhythm {
+  color: #ff978e;
 }
 
 .footer-top > div:first-child > p {
@@ -1284,7 +1312,7 @@ summary:focus-visible {
     display: none;
   }
 
-  .brand-name {
+  .brand-wordmark {
     font-size: 21px;
   }
 

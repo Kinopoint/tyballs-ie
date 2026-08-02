@@ -9,12 +9,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://tyballs.ie"),
   title: {
-    default: "TY Balls Ireland | Event Planning by DebsGuru",
+    default: "TYBalls.ie | Event Planning by DebsGuru",
     template: "%s | TYBalls.ie",
   },
   description: site.description,
   openGraph: {
-    title: "TY Balls Ireland | Event Planning by DebsGuru",
+    title: "TYBalls.ie | Event Planning by DebsGuru",
     description: site.description,
     url: "https://tyballs.ie",
     siteName: site.domain,
