@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EditorialImage } from "@/components/editorial-image";
 
 export const metadata: Metadata = {
   title: "How Much Does a TY Ball Cost in Ireland?",
@@ -20,9 +21,17 @@ export default function CostGuidePage() {
   return (
     <main id="main-content">
       <section className="page-hero shell"><p className="eyebrow">TY Ball cost guide</p><h1>What affects the price of a TY Ball?</h1><p>The venue, date, attendance and requested services determine the cost. DebsGuru prepares a proposal after reviewing those details.</p></section>
+      <figure className="editorial-visual shell">
+        <EditorialImage
+          alt="A simple TY Ball place setting with a plain napkin and coral flower"
+          height={900}
+          name="place-setting"
+          width={1800}
+        />
+      </figure>
       <section className="editorial-page shell">
         <div className="editorial-intro"><p className="eyebrow">Pricing factors</p><h2>Six details used to prepare a proposal</h2><p>DebsGuru does not publish a fixed TY Ball price because venue and supplier costs change. The committee receives relevant pricing after the main event details are known.</p></div>
-        <div className="topic-grid cost-topics">{factors.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+        <div className="topic-grid cost-topics">{factors.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
         <aside className="clarity-note"><strong>What to send for an accurate starting conversation</strong><p>School, county, preferred date or date flexibility, realistic estimated attendance and the parts of the night that matter most to your committee.</p></aside>
       </section>
       <section className="page-cta shell"><div><p className="eyebrow">Request pricing</p><h2>Send your date and attendance estimate</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>

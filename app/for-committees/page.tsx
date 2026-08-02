@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EditorialImage } from "@/components/editorial-image";
 
 export const metadata: Metadata = {
   title: "TY Ball Planning for School Committees",
@@ -19,9 +20,17 @@ export default function CommitteesPage() {
   return (
     <main id="main-content">
       <section className="page-hero shell"><p className="eyebrow">For TY committees</p><h1>Information to gather before you enquire</h1><p>The committee only needs a few basic details for DebsGuru to begin checking suitable options.</p></section>
+      <figure className="editorial-visual shell">
+        <EditorialImage
+          alt="A blank navy notebook, envelope and pencil prepared for committee planning"
+          height={800}
+          name="planning-table"
+          width={1800}
+        />
+      </figure>
       <section className="editorial-page shell">
         <div className="editorial-intro"><p className="eyebrow">Committee checklist</p><h2>Five details for the first conversation</h2><p>Prices and availability depend on the actual date, venue and attendance. These details allow DebsGuru to start with relevant options.</p></div>
-        <div className="editorial-list">{checklist.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+        <div className="editorial-list">{checklist.map(([title, text]) => <article key={title}><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </section>
       <section className="page-cta shell"><div><p className="eyebrow">Committee enquiry</p><h2>Send the details to DebsGuru</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>
     </main>

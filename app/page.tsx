@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EditorialImage } from "@/components/editorial-image";
 
 const services = [
   ["Venue options", "The team checks venues that suit your county, date and expected attendance."],
@@ -25,6 +26,15 @@ export default function Home() {
   return (
     <main id="main-content">
       <section className="home-hero">
+        <EditorialImage
+          alt="A simple TY Ball place setting with a plain napkin and coral flower"
+          className="home-hero-image"
+          height={900}
+          name="place-setting"
+          priority
+          width={1800}
+        />
+        <div className="home-hero-scrim" aria-hidden="true" />
         <div className="home-hero-grid shell">
           <div className="home-hero-copy">
             <p className="eyebrow">TY Ball planning in Ireland</p>

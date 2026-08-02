@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EditorialImage } from "@/components/editorial-image";
 
 export const metadata: Metadata = {
   title: "How a TY Ball Enquiry Works",
@@ -34,6 +35,14 @@ export default function HowItWorksPage() {
         <h1>What happens after you enquire</h1>
         <p>The website form sends your details to DebsGuru for review. It does not make a booking or reserve a date.</p>
       </section>
+      <figure className="editorial-visual shell">
+        <EditorialImage
+          alt="A blank navy notebook, envelope and pencil prepared for event planning"
+          height={800}
+          name="planning-table"
+          width={1800}
+        />
+      </figure>
       <section className="stage-list shell">
         {stages.map((stage) => (
           <article key={stage.title}>

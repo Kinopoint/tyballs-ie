@@ -236,6 +236,32 @@ summary:focus-visible {
 .home-hero {
   background: var(--cream);
   border-bottom: 1px solid var(--line);
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-hero-image {
+  display: block;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  z-index: 0;
+}
+
+.home-hero-image img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.home-hero-scrim {
+  background: rgba(240, 236, 227, 0.78);
+  inset: 0;
+  position: absolute;
+  z-index: 1;
 }
 
 .home-hero-grid {
@@ -246,6 +272,8 @@ summary:focus-visible {
   min-height: 670px;
   padding-bottom: 80px;
   padding-top: 80px;
+  position: relative;
+  z-index: 2;
 }
 
 .home-hero-copy h1 {
@@ -660,6 +688,27 @@ summary:focus-visible {
   max-width: 720px;
 }
 
+.editorial-visual {
+  aspect-ratio: 2.35 / 1;
+  border-bottom: 1px solid var(--line);
+  margin-top: 56px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+.editorial-visual img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.editorial-visual > picture {
+  display: block;
+  height: 100%;
+}
+
 .stage-list {
   padding-bottom: 110px;
   padding-top: 70px;
@@ -726,21 +775,11 @@ summary:focus-visible {
 
 .editorial-list article {
   border-top: 1px solid var(--line);
-  display: grid;
-  gap: 18px;
-  grid-template-columns: 34px 1fr;
   padding: 22px 0 28px;
 }
 
 .editorial-list article:last-child {
   border-bottom: 1px solid var(--line);
-}
-
-.editorial-list article > span,
-.cost-topics article > span {
-  color: var(--coral-dark);
-  font-size: 12px;
-  font-weight: 700;
 }
 
 .editorial-list h3,
@@ -773,11 +812,6 @@ summary:focus-visible {
 .topic-grid article:nth-child(odd) {
   border-right: 1px solid var(--line);
   padding-left: 0;
-}
-
-.cost-topics article > span {
-  display: block;
-  margin-bottom: 36px;
 }
 
 .clarity-note {
@@ -1266,6 +1300,10 @@ summary:focus-visible {
     grid-template-columns: minmax(200px, 0.9fr) minmax(240px, 1.1fr);
   }
 
+  .editorial-visual {
+    margin-top: 40px;
+  }
+
   .clarity-note {
     grid-column: 1;
   }
@@ -1371,6 +1409,11 @@ summary:focus-visible {
   .page-hero h1,
   .legal-page h1 {
     font-size: clamp(46px, 13vw, 64px);
+  }
+
+  .editorial-visual {
+    aspect-ratio: 1.55 / 1;
+    margin-top: 28px;
   }
 
   .page-cta {
