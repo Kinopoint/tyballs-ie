@@ -1,44 +1,68 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EditorialImage } from "@/components/editorial-image";
+import { EventIcon } from "@/components/event-icon";
 
 export const metadata: Metadata = {
   title: "TY Ball Information for Parents and Schools",
-  description: "Understand what should be confirmed before a TY Ball booking, including venue rules, timings, transport, accessibility and event terms.",
+  description: "A clear view of TY Ball venue rules, timings, transport, accessibility and responsible event contacts.",
   alternates: { canonical: "/parents-schools" },
 };
 
-const topics = [
-  ["Guest list and entry plan", "Confirm how the guest list, check-in and venue entry rules will be communicated before the event."],
-  ["Event format", "Whether the event is private to one school or involves other groups, and which spaces are shared."],
-  ["Venue rules and timings", "Arrival, finish time, entry requirements and the venue’s policy on leaving or re-entering."],
-  ["Supervision and support", "The responsible event contacts and the security, first-aid or medical arrangements applicable to that venue."],
-  ["Transport", "Whether transport is included, optional or organised separately, with collection points and responsible contacts confirmed in writing."],
-  ["Food and accessibility", "How dietary needs, allergies and accessibility requirements should be communicated before the event."],
-  ["Booking conditions", "What happens if the date, venue or attendance changes, and which cancellation terms apply to the confirmed proposal."],
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+const confirmations = [
+  ["shield", "Guest list and entry", "Check-in, venue rules and re-entry."],
+  ["guests", "Event format", "Who attends and which spaces are shared."],
+  ["calendar", "Venue timings", "Arrival, finish and collection windows."],
+  ["contact", "Named contacts", "Coordinator, venue and responsible adults."],
+  ["route", "Transport home", "Collection points and contact details."],
+  ["dining", "Food and access", "Dietary, allergy and accessibility needs."],
 ] as const;
 
-const beforeTheNight = [
-  ["Responsible contacts", "Keep the DebsGuru coordinator, venue contact and any transport contact available to the responsible adults and committee."],
-  ["Guest information", "Share confirmed arrival times, collection arrangements, entry rules and prohibited items clearly before the event."],
-  ["Requirements deadline", "Provide allergies, dietary needs and accessibility requirements by the deadline stated for the selected venue."],
-  ["Photo arrangements", "Understand how event photography operates and how a guest can raise an image-use concern before the event."],
+const beforeEvent = [
+  ["contact", "Save the contacts", "Keep the coordinator and venue details close."],
+  ["route", "Share the route", "Send arrival and collection details to guests."],
+  ["dining", "Confirm requirements", "Submit dietary and access needs on time."],
+  ["camera", "Check photography", "Know how event images will be handled."],
 ] as const;
 
 export default function ParentsSchoolsPage() {
   return (
     <main id="main-content">
-      <section className="page-hero page-hero-with-media shell">
-        <div className="page-hero-title"><p className="eyebrow">For parents and schools</p><h1>TY Ball guidance</h1></div>
-        <p className="page-hero-description">Arrangements vary by venue and proposal. Parents, schools and committees should confirm the relevant details in writing.</p>
-        <figure className="page-hero-media"><EditorialImage alt="Adults discussing arrangements at a venue entrance" height={768} name="venue-arrival" width={1376} /></figure>
+      <section className="guidance-hero shell">
+        <div className="guidance-hero-copy">
+          <p className="eyebrow">For parents and schools</p>
+          <h1>TY Ball guidance</h1>
+          <p>See the key arrangements at a glance, then confirm the details for the selected venue.</p>
+          <Link className="button button-dark" href="/enquire">Ask DebsGuru</Link>
+        </div>
+        <figure>
+          <video aria-label="Students arriving for a supervised TY Ball check-in" autoPlay loop muted playsInline poster={`${basePath}/images/school-arrival.jpg`} preload="metadata">
+            <source src={`${basePath}/video/tyball-school-arrival-loop.mp4`} type="video/mp4" />
+          </video>
+        </figure>
       </section>
-      <section className="editorial-page shell">
-        <div className="editorial-intro"><p className="eyebrow">Before confirmation</p><h2>Confirm the venue plan</h2><p>Final arrangements and booking terms are supplied when the date, venue and proposal are confirmed. These are the main subjects to check.</p></div>
-        <div className="topic-grid">{topics.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
-        <div className="editorial-intro parent-prep"><p className="eyebrow">Before the event</p><h2>Share the event plan</h2><p>The committee should circulate the arrangements supplied for its actual event rather than relying on general website information.</p></div>
-        <div className="topic-grid">{beforeTheNight.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
+
+      <section className="guidance-confirm shell">
+        <div className="guidance-heading"><p className="eyebrow">Before confirmation</p><h2>What to confirm</h2></div>
+        <div className="guidance-card-grid">
+          {confirmations.map(([icon, title, text]) => (
+            <article key={title}><EventIcon name={icon} /><h3>{title}</h3><p>{text}</p></article>
+          ))}
+        </div>
       </section>
+
+      <section className="guidance-before">
+        <div className="shell guidance-before-grid">
+          <div className="guidance-before-copy"><p className="eyebrow light">Before the event</p><h2>Keep it handy</h2><p>Share the confirmed information for the actual venue with guests and responsible contacts.</p></div>
+          <div className="guidance-action-grid">
+            {beforeEvent.map(([icon, title, text]) => (
+              <article key={title}><EventIcon name={icon} /><div><h3>{title}</h3><p>{text}</p></div></article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="page-cta shell"><div><p className="eyebrow">Questions about an event</p><h2>Ask DebsGuru</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>
     </main>
   );
