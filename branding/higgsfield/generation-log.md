@@ -321,3 +321,32 @@ Parameters: paid Higgsfield generation; `aspect_ratio=16:9`; `resolution=2k`; `c
 - Parameters: `2752x1536`.
 - Prompt: “RAW CINEMATIC EVENT PHOTOGRAPH ONLY — NO AD LAYOUT OR GRAPHICS. Wide editorial hero image for TYBalls.ie in Ireland. A confident adult female event coordinator leads three Irish Transition Year committee representatives aged 16–17 through a beautifully prepared contemporary hotel ballroom during a real venue walkthrough. They are STANDING and MOVING naturally on the RIGHT HALF of the frame; the coordinator gestures toward the dinner tables and dancefloor while the students respond with engaged, excited expressions. The scene feels like the promising moment when a TY Ball plan becomes real — youthful event energy, human connection and professional organisation, not a corporate meeting and not a staged stock photo. Elegant cream table linens, warm architectural evening lights, deep navy details and one restrained coral floral accent. The LEFT 45 PERCENT is a dark, calm, uncluttered architectural wall or softly shadowed curtain with natural texture, deliberately empty for website HTML headline. Subjects must remain right of centre. 35mm documentary lens, subtle motion, rich depth, premium Irish hospitality photography, natural skin and realistic hands. ABSOLUTELY NO embedded text, words, letters, numbers, signs, logos, headline, caption, button, price, currency, watermark, poster, frame, UI or graphic overlay. NO alcohol, bottles, drinking glasses, bar, nightclub lasers, smoke, school uniforms, wedding styling, duplicated people, distorted faces or extra fingers.”
 - Review: accepted. Four distinct people read naturally as one adult coordinator and a TY committee; faces, hands, clothing, tables and room geometry are coherent. The left side is clean enough for live HTML, and there is no embedded text, logo, alcohol, drinkware, wedding styling or nightclub artefact. Applied to the Cost Guide hero.
+
+### TYB-COST-HERO-C-CUTOUT — Motion foreground layer
+
+- Job ID: `c5b83e84-1e71-4ea6-b26d-78ec904eb53e`
+- Model/tool: `image_background_remover`
+- Source generation: `da1aee8b-c50d-4a69-b3aa-3981846b5e33`
+- Original: [TYB-COST-HERO-C-cutout.png](output/photo-originals/TYB-COST-HERO-C-cutout.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_212225_c5b83e84-1e71-4ea6-b26d-78ec904eb53e.png>
+- Parameters: paid background removal; source `2752x1536`; transparent RGBA output.
+- Review: accepted. The adult coordinator and three TY committee members remain geometrically coherent after removal; the alpha edge is clean at website scale. Used as the large Motion foreground layer that overlaps the hero and lower panel strip.
+
+### TYB-COST-BACKGROUND-D — empty ballroom test
+
+- Job ID: `e586aebe-0050-4963-be64-1c7279e4b187`
+- Requested model: `nano_banana_2`; Higgsfield canonical job model: `nano_banana_flash`.
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_212625_e586aebe-0050-4963-be64-1c7279e4b187.png>
+- Parameters: paid generation; `aspect_ratio=16:9`; `resolution=2k`; `2752x1536`; `count=1`.
+- Prompt: “RAW CINEMATIC ARCHITECTURAL PHOTOGRAPH ONLY — NO PEOPLE AND NO GRAPHIC DESIGN. Wide 16:9 empty contemporary Irish hotel ballroom prepared for a professionally organised TY Ball venue walkthrough. This is the BACKGROUND PLATE for a layered website hero: a calm dark navy architectural wall or softly shadowed curtain fills the LEFT 45 PERCENT with subtle natural texture and generous clean negative space; the RIGHT half opens into an elegant prepared event room with cream table linens, warm ceiling lights, a clear dancefloor and one restrained coral floral accent. Premium but believable Irish hospitality, deep perspective, 35mm documentary lens, evening atmosphere, navy cream and restrained coral palette. ABSOLUTELY NO people, silhouettes, faces, bodies, mannequins, embedded text, words, letters, numbers, signs, logos, headline, button, price, watermark, poster, UI or frame. NO alcohol, bottles, drinking glasses, bar, nightclub lasers, smoke, wedding styling, duplicated furniture, warped tables or impossible architecture.”
+- Review: rejected. Composition and architecture were strong, but the model introduced stemmed glassware despite the prohibition. It was not used on the site.
+
+### TYB-COST-BACKGROUND-E — clean Motion background plate
+
+- Job ID: `06a60318-e2bf-46f8-830c-b91942848153`
+- Requested model: `nano_banana_2`; Higgsfield canonical job model: `nano_banana_flash`.
+- Original: [TYB-COST-BACKGROUND-E.png](output/photo-originals/TYB-COST-BACKGROUND-E.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_212744_06a60318-e2bf-46f8-830c-b91942848153.png>
+- Parameters: paid generation; `aspect_ratio=16:9`; `resolution=2k`; `2752x1536`; `count=1`.
+- Prompt: “RAW CINEMATIC ARCHITECTURAL PHOTOGRAPH ONLY — NO PEOPLE AND NO GRAPHIC DESIGN. Wide 16:9 empty contemporary Irish event hall prepared for a supervised Transition Year school ball venue walkthrough. BACKGROUND PLATE for a layered website hero. LEFT 48 PERCENT: uninterrupted deep navy fabric curtain or matte acoustic wall, dark, calm, clean negative space. RIGHT half: warm modern ballroom architecture, subtle ceiling lights, a clear dancefloor, simple cream-covered tables seen at a distance and one restrained coral floral accent. Tables are intentionally NOT set for dining: completely bare cream linen surfaces with NO glassware, NO drinking vessels, NO plates, NO cutlery and NO bottles. Premium but believable Irish hospitality, deep perspective, 35mm documentary lens, evening atmosphere, navy cream and restrained coral palette. ABSOLUTELY NO people, silhouettes, faces, mannequins, text, letters, numbers, signs, logos, headline, price, watermark, UI or poster. ZERO alcohol cues: no glassware of any kind, no stemware, no cups, no bottles, no bar, no drinks. No nightclub lasers, smoke, wedding styling, duplicated furniture, warped tables or impossible architecture.”
+- Review: accepted. Empty architecture is coherent, the left side is clean, tables are bare, and there are no people, text, logos, alcohol, glassware or nightclub artefacts. Used as the separate background plate behind the transparent people layer.

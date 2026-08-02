@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-type EventIconName = "calendar" | "camera" | "contact" | "dining" | "guests" | "music" | "route" | "shield" | "spark" | "venue";
+export type EventIconName = "calendar" | "camera" | "contact" | "dining" | "guests" | "music" | "route" | "shield" | "spark" | "venue";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 

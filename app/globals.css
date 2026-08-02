@@ -2496,10 +2496,15 @@ body:has(.cost-landing) .site-header nav a {
   position: relative;
 }
 
+.cost-hero-media {
+  inset: -5%;
+  position: absolute;
+  z-index: -2;
+}
+
 .cost-hero-image {
   object-fit: cover;
   object-position: center;
-  z-index: -2;
 }
 
 .cost-hero-scrim {
@@ -2518,6 +2523,23 @@ body:has(.cost-landing) .site-header nav a {
   padding-bottom: 84px;
   padding-top: 84px;
   width: 100%;
+  z-index: 1;
+}
+
+.cost-hero-people {
+  bottom: 120px;
+  pointer-events: none;
+  position: absolute;
+  right: clamp(-70px, -2vw, -20px);
+  width: clamp(520px, 49vw, 760px);
+  z-index: 0;
+}
+
+.cost-hero-people img {
+  display: block;
+  filter: drop-shadow(0 24px 32px rgba(5, 12, 23, 0.2));
+  height: auto;
+  width: 100%;
 }
 
 .cost-hero-content h1 {
@@ -2535,13 +2557,7 @@ body:has(.cost-landing) .site-header nav a {
 }
 
 .cost-word > span {
-  animation: cost-word-reveal 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
   display: block;
-}
-
-@keyframes cost-word-reveal {
-  from { opacity: 0; transform: translateY(110%); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .cost-hero-action {
@@ -2822,6 +2838,16 @@ body:has(.cost-landing) .site-header nav a {
     min-height: 560px;
   }
 
+  .cost-hero-people {
+    align-self: flex-end;
+    bottom: auto;
+    margin-bottom: -255px;
+    margin-top: -275px;
+    position: relative;
+    right: -18%;
+    width: min(760px, 112%);
+  }
+
   .cost-hero-content h1 {
     font-size: clamp(54px, 9.6vw, 90px);
   }
@@ -2856,7 +2882,7 @@ body:has(.cost-landing) .site-header nav a {
   }
 
   .cost-hero-image {
-    object-position: 62% center;
+    object-position: 24% center;
   }
 
   .cost-hero-scrim {
@@ -2867,6 +2893,13 @@ body:has(.cost-landing) .site-header nav a {
     min-height: 540px;
     padding-bottom: 56px;
     padding-top: 56px;
+  }
+
+  .cost-hero-people {
+    margin-bottom: -225px;
+    margin-top: -190px;
+    right: -46%;
+    width: 158%;
   }
 
   .cost-hero-content h1 {
@@ -2955,10 +2988,6 @@ body:has(.cost-landing) .site-header nav a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cost-word > span {
-    animation: none;
-  }
-
   .cost-rotator-card,
   .cost-factor-grid article {
     transition: none;

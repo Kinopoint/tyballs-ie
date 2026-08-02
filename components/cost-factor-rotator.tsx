@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { EventIcon } from "@/components/event-icon";
 
 const cards = [
@@ -12,6 +13,7 @@ const cards = [
 
 export function CostFactorRotator() {
   const [active, setActive] = useState(0);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -22,12 +24,12 @@ export function CostFactorRotator() {
   return (
     <div className="cost-rotator">
       <div className="cost-rotator-cards" aria-live="polite">
-        {cards.map(([icon, text], index) => (
-          <div aria-hidden={active !== index} className={`cost-rotator-card${active === index ? " is-active" : ""}`} key={text}>
-            <EventIcon name={icon} />
-            <p>{text}</p>
-          </div>
-        ))}
+        <AnimatePresence initial={false} mode="sync">
+          <motion.div animate={{ opacity: 1, y: 0 }} className="cost-rotator-card is-active" exit={reduceMotion ? undefined : { opacity: 0, y: -10 }} initial={reduceMotion ? false : { opacity: 0, y: 12 }} key={cards[active][1]} transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}>
+            <EventIcon name={cards[active][0]} />
+            <p>{cards[active][1]}</p>
+          </motion.div>
+        </AnimatePresence>
       </div>
       <div className="cost-rotator-dots" aria-label="Pricing factors">
         {cards.map(([, text], index) => (
