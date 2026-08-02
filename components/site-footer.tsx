@@ -6,22 +6,18 @@ import { site } from "@/lib/site";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="footer-statement">
-        <p>Your night.</p>
-        <p><em>Properly planned.</em></p>
-      </div>
       <div className="footer-top">
         <div>
           <Brand />
           <p>
-            From the makers of DebsGuru.ie — Ireland&apos;s leading Debs &amp; TY
-            Ball organisers.
+            TYBalls.ie is operated by DebsGuru Ltd. Enquiries are reviewed by
+            the DebsGuru team before any date or venue is confirmed.
           </p>
         </div>
         <div className="footer-links">
           <div>
             <strong>Explore</strong>
-            <Link href="/#experience">The experience</Link>
+            <Link href="/#experience">What can be included</Link>
             <Link href="/how-it-works">How it works</Link>
             <Link href="/for-committees">For committees</Link>
             <Link href="/parents-schools">For parents &amp; schools</Link>
@@ -48,8 +44,7 @@ export function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} DebsGuru Ltd</span>
-        <span>Built for TY committees across Ireland</span>
-        <span>Ballybunion, Co Kerry</span>
+        <span>St Brendans, East End, Ballybunion, Co Kerry</span>
       </div>
     </footer>
   );

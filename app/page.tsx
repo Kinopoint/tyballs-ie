@@ -1,178 +1,122 @@
-import Image from "next/image";
 import Link from "next/link";
 
-const experience = [
-  {
-    number: "01",
-    title: "The right venue",
-    text: "Options matched to your preferred date, location, group and the kind of night your committee wants.",
-  },
-  {
-    number: "02",
-    title: "A plan that fits",
-    text: "Food, entertainment and extras are brought together around your priorities — not a fixed one-size-fits-all package.",
-  },
-  {
-    number: "03",
-    title: "One point of contact",
-    text: "Clear communication with an experienced event team from the first enquiry through to the final arrangements.",
-  },
-  {
-    number: "04",
-    title: "A night to remember",
-    text: "A well-paced event with the atmosphere, photo moments and dance floor your year can look forward to.",
-  },
+const services = [
+  ["Venue options", "The team checks venues that suit your county, date and expected attendance."],
+  ["Food and service", "Menu and service options are discussed once the venue and group requirements are known."],
+  ["Music and production", "DJ, sound, lighting and timings can be included in the proposal."],
+  ["Photography and extras", "Photography, photobooths and other additions are considered with the committee."],
 ] as const;
 
 const steps = [
-  ["Tell us the essentials", "Share your school, preferred date, county and honest estimate of attendance."],
-  ["We check the options", "The team reviews suitable venues and availability before discussing a tailored proposal."],
-  ["Shape your night", "Your committee agrees the venue, entertainment and extras with a dedicated contact."],
-  ["Confirm and plan", "A date is secured only after availability, details and the booking terms are confirmed."],
+  ["Send an enquiry", "Provide the school, county, preferred date and an estimate of attendance."],
+  ["Availability is checked", "DebsGuru reviews suitable venue and supplier options for those details."],
+  ["Discuss the proposal", "The committee reviews the available options, costs and practical requirements."],
+  ["Confirm the booking", "The date is secured only after the proposal and booking terms are agreed."],
 ] as const;
 
 const questions = [
-  ["Why are prices not shown?", "Venue and supplier costs vary by date, location and group. We speak with your committee first, then prepare an accurate proposal rather than publishing a price that may no longer apply."],
-  ["Is there a minimum group size?", "There is no single number that applies to every venue or date. Tell us your honest attendance estimate and we will check the suitable options."],
-  ["Does the form reserve our date?", "No. It starts the conversation. Your date is only secured after availability and the booking details have been confirmed with DebsGuru."],
-  ["Who organises TYBalls.ie events?", "TYBalls.ie is from the team behind DebsGuru.ie, bringing established event-planning experience to a dedicated Transition Year service."],
+  ["Why is there no fixed price?", "Venue and supplier costs depend on the location, date, attendance and services required. DebsGuru checks those details before preparing a proposal."],
+  ["Do we need final attendance numbers?", "No. Give the most realistic estimate your committee has. Final numbers can be dealt with later in the planning process."],
+  ["Does the enquiry form reserve a date?", "No. The form sends the details to DebsGuru for review. A date is not reserved until availability and booking terms are confirmed."],
+  ["Who operates TYBalls.ie?", "TYBalls.ie is operated by DebsGuru Ltd, the team behind DebsGuru.ie."],
 ] as const;
 
 export default function Home() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
   return (
     <main id="main-content">
-      <section className="hero">
-        <Image
-          alt="An elegant ballroom prepared for a TY Ball"
-          className="hero-image"
-          fill
-          priority
-          sizes="100vw"
-          src={`${basePath}/media/tyballs-ballroom-hero-v1.png`}
-        />
-        <div className="hero-overlay" />
-        <div className="hero-grain" aria-hidden="true" />
-        <div className="hero-content shell">
-          <div className="hero-copy">
-            <p className="eyebrow light">Transition Year balls, thoughtfully planned</p>
-            <h1>
-              Your night.
-              <br />
-              <em>Properly planned.</em>
-            </h1>
+      <section className="home-hero">
+        <div className="home-hero-grid shell">
+          <div className="home-hero-copy">
+            <p className="eyebrow">TY Ball planning in Ireland</p>
+            <h1>Planning a TY Ball?</h1>
             <p className="hero-lead">
-              The right venue, the right atmosphere and one experienced team
-              bringing every detail together for your committee.
+              Send us your school, preferred date, county and estimated
+              attendance. DebsGuru will check the suitable options and contact
+              your committee.
             </p>
             <div className="hero-actions">
-              <Link className="button" href="/enquire">
-                Check your date <span aria-hidden="true">↗</span>
-              </Link>
-              <Link className="quiet-link" href="/#experience">
-                Explore the night <span aria-hidden="true">↓</span>
-              </Link>
+              <Link className="button" href="/enquire">Check your date</Link>
+              <Link className="text-link" href="/how-it-works">How enquiries work</Link>
             </div>
+            <p className="hero-note">Submitting the form does not reserve a date or create a booking.</p>
           </div>
-          <div className="hero-side-note" aria-label="Planning promise">
-            <span>One team</span>
-            <strong>Every detail</strong>
-            <span>Your night</span>
-          </div>
-        </div>
-        <div className="hero-trust shell">
-          <p><span>From the team behind</span><strong>DebsGuru.ie</strong></p>
-          <p><span>Built around</span><strong>Your date &amp; group</strong></p>
-          <p><span>First step</span><strong>A real conversation</strong></p>
+
+          <aside className="enquiry-summary" aria-label="Information needed for an enquiry">
+            <p>What to send</p>
+            <dl>
+              <div><dt>School</dt><dd>Name and county</dd></div>
+              <div><dt>Date</dt><dd>Preferred date or flexibility</dd></div>
+              <div><dt>Attendance</dt><dd>Your current estimate</dd></div>
+              <div><dt>Contact</dt><dd>One committee representative</dd></div>
+            </dl>
+            <Link href="/enquire">Open the enquiry form <span aria-hidden="true">→</span></Link>
+          </aside>
         </div>
       </section>
 
-      <div className="event-ribbon" aria-hidden="true">
-        <div><span>VENUE</span><b>✦</b><span>FOOD</span><b>✦</b><span>DJ</span><b>✦</b><span>PHOTOGRAPHY</span><b>✦</b><span>ATMOSPHERE</span><b>✦</b><span>YOUR NIGHT</span></div>
+      <div className="company-line">
+        <div className="shell">
+          <span>TYBalls.ie is operated by</span>
+          <strong>DebsGuru Ltd</strong>
+          <span>Based in Ballybunion, Co Kerry</span>
+        </div>
       </div>
 
       <section className="intro shell">
-        <div className="section-index"><span>01</span><span>Built for TY committees</span></div>
+        <p className="eyebrow">Before you enquire</p>
         <div className="intro-grid">
-          <h2>
-            Big-night energy.
-            <br />
-            <em>Calm, clear planning.</em>
-          </h2>
+          <h2>Start with the details you have.</h2>
           <div>
             <p className="lead">
-              No two schools, dates or venues are the same. That is why every
-              TY Ball starts with a real conversation rather than a generic
-              package or an out-of-date price list.
+              Your committee does not need a final guest list or a complete
+              event plan. A realistic attendance estimate and some flexibility
+              on dates are enough for the first check.
             </p>
-            <Link className="text-link" href="/how-it-works">
-              See how the process works <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </div>
-        <div className="intro-principles" aria-label="How TYBalls.ie works">
-          <p><strong>Tailored</strong><span>A proposal shaped around the actual night</span></p>
-          <p><strong>Clear</strong><span>One point of contact from the start</span></p>
-          <p><strong>Practical</strong><span>No booking is made by submitting the form</span></p>
-        </div>
-      </section>
-
-      <section className="experience" id="experience">
-        <div className="shell">
-          <div className="section-heading">
-            <div className="section-index light"><span>02</span><span>The experience</span></div>
-            <h2>
-              Your committee brings the ideas.
-              <br />
-              <em>We bring them together.</em>
-            </h2>
-          </div>
-          <div className="experience-grid">
-            {experience.map((item) => (
-              <article key={item.number}>
-                <div className="experience-number">{item.number}</div>
-                <div className="experience-copy"><h3>{item.title}</h3><p>{item.text}</p></div>
-                <span className="experience-arrow" aria-hidden="true">↗</span>
-              </article>
-            ))}
+            <Link className="text-link" href="/for-committees">Committee information checklist</Link>
           </div>
         </div>
       </section>
 
-      <section className="tailored shell">
-        <div className="tailored-card">
-          <span className="tailored-kicker" aria-hidden="true">Made to fit</span>
-          <p className="eyebrow">One-size-fits-all? Not here.</p>
-          <h2>A proposal shaped around your date, venue and numbers.</h2>
+      <section className="services" id="experience">
+        <div className="shell services-heading">
+          <p className="eyebrow light">What can be discussed</p>
+          <h2>Venue, food, entertainment and event requirements.</h2>
+        </div>
+        <div className="shell service-list">
+          {services.map(([title, text], index) => (
+            <article key={title}>
+              <span>{index + 1}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="pricing-note shell">
+        <div>
+          <p className="eyebrow">Pricing</p>
+          <h2>Each proposal is based on the actual event details.</h2>
+        </div>
+        <div>
           <p>
-            Prices change with venue availability and supplier costs. Share the
-            essentials and the team will talk you through the suitable options.
+            Costs change with the venue, date, attendance, food and suppliers.
+            Publishing one standard price would not give committees an accurate
+            figure.
           </p>
-          <Link className="button button-dark" href="/enquire">
-            Start your enquiry <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
-        <div className="tailored-note">
-          <span aria-hidden="true">!</span>
-          <strong>Good to know</strong>
-          <p>An enquiry does not reserve a date or create a booking.</p>
+          <Link className="text-link" href="/cost-guide">Read the TY Ball cost guide</Link>
         </div>
       </section>
 
       <section className="process shell" aria-labelledby="process-title">
-        <div className="section-heading dark-heading">
-          <div className="section-index"><span>03</span><span>From enquiry to event</span></div>
-          <h2 id="process-title">
-            A simple process.
-            <br />
-            <em>No guesswork.</em>
-          </h2>
+        <div className="section-heading">
+          <p className="eyebrow">Enquiry process</p>
+          <h2 id="process-title">What happens after you contact us</h2>
         </div>
         <ol className="process-list">
           {steps.map(([title, text], index) => (
             <li key={title}>
-              <span>0{index + 1}</span>
+              <span>{index + 1}</span>
               <h3>{title}</h3>
               <p>{text}</p>
             </li>
@@ -181,22 +125,29 @@ export default function Home() {
       </section>
 
       <section className="audience-paths shell" aria-labelledby="audience-title">
-        <div className="section-heading dark-heading"><div className="section-index"><span>04</span><span>The right information</span></div><h2 id="audience-title">Different questions.<br /><em>One clear plan.</em></h2></div>
+        <div className="section-heading">
+          <p className="eyebrow">More information</p>
+          <h2 id="audience-title">Information for committees and adults</h2>
+        </div>
         <div className="audience-grid">
-          <article><span>For committees</span><h3>Turn the group chat into a practical starting point.</h3><p>See what information is useful now, what can wait and how an honest attendance estimate helps.</p><Link className="text-link" href="/for-committees">Committee planning guide <span aria-hidden="true">→</span></Link></article>
-          <article><span>For parents &amp; schools</span><h3>Understand what should be confirmed before booking.</h3><p>Venue rules, timings, transport, support arrangements and booking conditions depend on the actual proposal.</p><Link className="text-link" href="/parents-schools">Information for adults <span aria-hidden="true">→</span></Link></article>
+          <article>
+            <p>For committees</p>
+            <h3>What to agree before sending an enquiry</h3>
+            <Link className="text-link" href="/for-committees">View the committee guide</Link>
+          </article>
+          <article>
+            <p>For parents and schools</p>
+            <h3>Questions to ask about the venue and arrangements</h3>
+            <Link className="text-link" href="/parents-schools">View the information page</Link>
+          </article>
         </div>
       </section>
 
       <section className="faq" id="questions">
         <div className="shell faq-grid">
           <div className="section-heading">
-            <div className="section-index light"><span>05</span><span>Straight answers</span></div>
-            <h2>
-              Before you
-              <br />
-              <em>get started.</em>
-            </h2>
+            <p className="eyebrow light">Common questions</p>
+            <h2>Before submitting an enquiry</h2>
           </div>
           <div className="faq-list">
             {questions.map(([question, answer]) => (
@@ -210,8 +161,14 @@ export default function Home() {
       </section>
 
       <section className="final-cta shell">
-        <div className="final-cta-copy"><p className="eyebrow">Have a date in mind?</p><h2>Let&apos;s see what<br /><em>is possible.</em></h2></div>
-        <div className="final-cta-action"><p>Tell us the essentials. The DebsGuru team will take it from there.</p><Link className="button button-dark" href="/enquire">Check your date <span aria-hidden="true">↗</span></Link></div>
+        <div>
+          <p className="eyebrow">Make an enquiry</p>
+          <h2>Send the details to DebsGuru.</h2>
+        </div>
+        <div>
+          <p>The team will review the information and contact your committee about availability and next steps.</p>
+          <Link className="button button-dark" href="/enquire">Open the enquiry form</Link>
+        </div>
       </section>
     </main>
   );

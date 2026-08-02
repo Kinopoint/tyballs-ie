@@ -22,7 +22,7 @@ export function SiteHeader() {
           </Link>
         ))}
         <Link className="mobile-nav-cta" href="/enquire" onClick={closeMenu}>
-          Start an enquiry <span aria-hidden="true">↗</span>
+          Start an enquiry
         </Link>
       </nav>
       <Link className="button button-compact header-cta" href="/enquire">

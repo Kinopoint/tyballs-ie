@@ -2,30 +2,30 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How TY Ball Planning Works",
-  description: "A clear, committee-friendly process from the first TY Ball enquiry to confirmed event planning.",
+  title: "How a TY Ball Enquiry Works",
+  description: "What happens after a TY Ball committee sends an enquiry to DebsGuru.",
   alternates: { canonical: "/how-it-works" },
 };
 
 const stages = [
   {
-    label: "Enquire",
-    title: "Start with what you know",
-    text: "Tell us your school, county, preferred date and a realistic attendance estimate. You do not need a final guest list or a complete plan.",
+    label: "Step 1",
+    title: "Send the main details",
+    text: "Provide the school, county, preferred date and a realistic attendance estimate. A final guest list is not required at this stage.",
   },
   {
-    label: "Explore",
-    title: "Review the suitable options",
-    text: "The team checks availability and discusses venues and event options that fit your date, location and priorities.",
+    label: "Step 2",
+    title: "DebsGuru checks availability",
+    text: "The team reviews venues and event options that may suit the date, location and expected attendance.",
   },
   {
-    label: "Shape",
-    title: "Build the right experience",
-    text: "Your committee works through the details with one point of contact. The proposal is tailored because venue and supplier costs can change.",
+    label: "Step 3",
+    title: "The committee reviews a proposal",
+    text: "DebsGuru discusses the available venue, services, costs and practical requirements with the committee contact.",
   },
   {
-    label: "Confirm",
-    title: "Secure the arrangements",
+    label: "Step 4",
+    title: "The booking is confirmed",
     text: "A date is not reserved by the website form. It is confirmed only after availability, pricing and the booking terms have been agreed with DebsGuru.",
   },
 ] as const;
@@ -34,9 +34,9 @@ export default function HowItWorksPage() {
   return (
     <main id="main-content">
       <section className="page-hero shell">
-        <p className="eyebrow">How it works</p>
-        <h1>Clear from the first message.</h1>
-        <p>A practical process designed for busy TY committees — with no need to pretend every detail is final on day one.</p>
+        <p className="eyebrow">Enquiry process</p>
+        <h1>What happens after you enquire</h1>
+        <p>The website form sends your details to DebsGuru for review. It does not make a booking or reserve a date.</p>
       </section>
       <section className="stage-list shell">
         {stages.map((stage, index) => (
@@ -49,8 +49,8 @@ export default function HowItWorksPage() {
         ))}
       </section>
       <section className="page-cta shell">
-        <div><p className="eyebrow">Ready when you are</p><h2>Have a date in mind?</h2></div>
-        <Link className="button button-dark" href="/enquire">Check your date <span aria-hidden="true">↗</span></Link>
+        <div><p className="eyebrow">Contact DebsGuru</p><h2>Send your school and date details</h2></div>
+        <Link className="button button-dark" href="/enquire">Open the enquiry form</Link>
       </section>
     </main>
   );

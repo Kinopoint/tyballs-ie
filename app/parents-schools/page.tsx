@@ -19,12 +19,12 @@ const topics = [
 export default function ParentsSchoolsPage() {
   return (
     <main id="main-content">
-      <section className="page-hero shell"><p className="eyebrow">For parents and schools</p><h1>Clear information before commitment.</h1><p>Every venue and event is different. The important details should be confirmed for the actual proposal rather than assumed from a generic package.</p></section>
+      <section className="page-hero shell"><p className="eyebrow">For parents and schools</p><h1>Questions to ask before a TY Ball is booked</h1><p>Arrangements vary by venue and proposal. Parents, schools and committees should confirm the relevant details in writing.</p></section>
       <section className="editorial-page shell">
-        <div className="editorial-intro"><p className="eyebrow">What should be clarified</p><h2>Practical questions deserve specific answers.</h2><p>The final arrangements and booking terms are supplied when the date, venue and proposal are confirmed. These are the areas a committee, parent or school should expect to understand.</p></div>
+        <div className="editorial-intro"><p className="eyebrow">Before confirmation</p><h2>Check the arrangements for the actual venue</h2><p>Final arrangements and booking terms are supplied when the date, venue and proposal are confirmed. These are the main subjects to check.</p></div>
         <div className="topic-grid">{topics.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
-      <section className="page-cta shell"><div><p className="eyebrow">Planning a TY Ball?</p><h2>Ask the team directly.</h2></div><Link className="button button-dark" href="/enquire">Make an enquiry <span aria-hidden="true">↗</span></Link></section>
+      <section className="page-cta shell"><div><p className="eyebrow">Questions about an event</p><h2>Contact DebsGuru through the enquiry form</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>
     </main>
   );
 }

@@ -142,7 +142,7 @@ export function EnquiryForm() {
           <label className="consent"><input type="checkbox" name="privacyConsent" value="yes" required /><span>I have read the <Link href="/privacy" target="_blank">Privacy Policy</Link> and agree that DebsGuru Ltd may use these details to respond to this enquiry.</span></label>
           <label className="consent"><input type="checkbox" name="marketingConsent" value="yes" /><span>I would also like to receive occasional TY Ball updates. <em>Optional.</em></span></label>
           {previewMode ? <p className="preview-notice">Preview website: enquiry sending will be enabled on the secure TYBalls.ie server.</p> : siteKey ? <div className="turnstile" ref={widgetRef} /> : <p className="configuration-error">The enquiry form security key is not configured.</p>}
-          <button className="button button-dark form-button" disabled={previewMode || state.kind === "submitting" || state.kind === "success"} type="submit">{previewMode ? "Preview only" : state.kind === "submitting" ? "Sending…" : "Send enquiry"}<span aria-hidden="true">↗</span></button>
+          <button className="button button-dark form-button" disabled={previewMode || state.kind === "submitting" || state.kind === "success"} type="submit">{previewMode ? "Preview only" : state.kind === "submitting" ? "Sending…" : "Send enquiry"}</button>
           <p className={`form-response ${state.kind}`} aria-live="polite">{state.message}</p>
           <p className="form-disclaimer">Submitting this form does not reserve a date or create a booking.</p>
         </div>
