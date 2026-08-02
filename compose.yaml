@@ -1,0 +1,38 @@
+services:
+  database:
+    image: postgres:18.4-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tyballs
+      POSTGRES_USER: tyballs
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tyballs -d tyballs"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - tyballs_database:/var/lib/postgresql
+    networks: [internal]
+
+  website:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://tyballs:${POSTGRES_PASSWORD}@database:5432/tyballs
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks: [internal]
+
+volumes:
+  tyballs_database:
+
+networks:
+  internal:
+    driver: bridge

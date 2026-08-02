@@ -1,0 +1,42 @@
+{
+  "name": "tyballs-ie",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:pages": "node scripts/build-pages.mjs",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "node scripts/migrate.mjs",
+    "test:integration": "node tests/enquiry.integration.mjs"
+  },
+  "dependencies": {
+    "next": "16.2.12",
+    "nodemailer": "9.0.3",
+    "pg": "8.16.3",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "@types/nodemailer": "7.0.4",
+    "@types/pg": "8.15.6",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@types/smtp-server": "^3.5.13",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.12",
+    "smtp-server": "^3.19.2",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "postcss": "8.5.24",
+    "sharp": "0.35.3"
+  }
+}
