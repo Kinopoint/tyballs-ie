@@ -305,6 +305,7 @@ summary:focus-visible {
   font-size: clamp(62px, 8.4vw, 112px);
   margin-bottom: 24px;
   max-width: 820px;
+  white-space: nowrap;
 }
 
 .hero-lead {
@@ -485,16 +486,17 @@ summary:focus-visible {
   width: 52px;
 }
 
-.event-icon svg {
-  height: 24px;
-  width: 24px;
+.event-icon img {
+  height: 44px;
+  object-fit: contain;
+  width: 44px;
 }
 
 .visual-highlights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding-bottom: 48px;
-  padding-top: 48px;
+  padding-bottom: 36px;
+  padding-top: 36px;
 }
 
 .visual-highlights article {
@@ -530,15 +532,15 @@ summary:focus-visible {
 .visual-experience,
 .visual-process,
 .visual-safety {
-  padding-bottom: 112px;
-  padding-top: 112px;
+  padding-bottom: 78px;
+  padding-top: 78px;
 }
 
 .visual-section-heading {
   align-items: end;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 48px;
+  margin-bottom: 34px;
 }
 
 .visual-section-heading h2,
@@ -547,11 +549,12 @@ summary:focus-visible {
 .visual-final-cta h2 {
   font-size: clamp(44px, 6vw, 76px);
   margin: 0;
+  white-space: nowrap;
 }
 
 .experience-gallery {
   display: grid;
-  gap: 22px;
+  gap: 16px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -606,8 +609,8 @@ summary:focus-visible {
 .visual-story {
   background: var(--navy);
   color: var(--white);
-  padding-bottom: 96px;
-  padding-top: 96px;
+  padding-bottom: 72px;
+  padding-top: 72px;
 }
 
 .visual-story-grid {
@@ -630,7 +633,8 @@ summary:focus-visible {
 .visual-story figure picture,
 .visual-story figure img,
 .visual-safety figure picture,
-.visual-safety figure img {
+.visual-safety figure img,
+.visual-safety figure video {
   height: 100%;
   object-fit: cover;
   width: 100%;
@@ -729,16 +733,16 @@ summary:focus-visible {
   width: 40px;
 }
 
-.safety-icon-list .event-icon svg {
-  height: 20px;
-  width: 20px;
+.safety-icon-list .event-icon img {
+  height: 34px;
+  width: 34px;
 }
 
 .visual-faq {
   background: var(--navy);
   color: var(--white);
-  padding-bottom: 96px;
-  padding-top: 96px;
+  padding-bottom: 72px;
+  padding-top: 72px;
 }
 
 .visual-final-cta {
@@ -746,8 +750,8 @@ summary:focus-visible {
   display: grid;
   gap: 28px;
   grid-template-columns: auto 1fr auto;
-  margin-bottom: 72px;
-  margin-top: 72px;
+  margin-bottom: 52px;
+  margin-top: 52px;
   padding-bottom: 40px;
   padding-top: 40px;
 }
@@ -1300,6 +1304,7 @@ summary:focus-visible {
 .page-cta h2 {
   font-size: clamp(38px, 5vw, 58px);
   margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .editorial-page {
@@ -1312,6 +1317,7 @@ summary:focus-visible {
 
 .editorial-intro h2 {
   font-size: clamp(38px, 4.5vw, 56px);
+  white-space: nowrap;
 }
 
 .editorial-intro > p:last-child {
@@ -1848,10 +1854,6 @@ summary:focus-visible {
     min-height: 460px;
   }
 
-  .page-hero h1 {
-    white-space: normal;
-  }
-
   .page-hero-with-media {
     grid-template-columns: 1fr;
   }
@@ -1919,7 +1921,7 @@ summary:focus-visible {
   }
 
   .home-hero-copy h1 {
-    font-size: clamp(48px, 14vw, 68px);
+    font-size: clamp(36px, 10vw, 50px);
   }
 
   .hero-proof {
@@ -1988,8 +1990,8 @@ summary:focus-visible {
   .visual-experience,
   .visual-process,
   .visual-safety {
-    padding-bottom: 80px;
-    padding-top: 80px;
+    padding-bottom: 56px;
+    padding-top: 56px;
   }
 
   .visual-section-heading {
@@ -2069,7 +2071,19 @@ summary:focus-visible {
 
   .page-hero h1,
   .legal-page h1 {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+
+  .legal-page h1 {
     font-size: clamp(46px, 13vw, 64px);
+  }
+
+  .visual-section-heading h2,
+  .visual-story-copy h2,
+  .visual-safety h2,
+  .visual-final-cta h2,
+  .editorial-intro h2 {
+    font-size: clamp(30px, 8vw, 44px);
   }
 
   .page-hero-media {

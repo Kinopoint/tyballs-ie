@@ -3,6 +3,8 @@ import { EditorialImage } from "@/components/editorial-image";
 import { EventIcon } from "@/components/event-icon";
 import { HomeHero } from "@/components/home-hero";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const highlights = [
   ["venue", "Venue search", "Matched to your county and numbers"],
   ["contact", "One coordinator", "From first chat to the event"],
@@ -23,14 +25,14 @@ const steps = [
 ] as const;
 
 const safety = [
-  ["shield", "Alcohol-free TY event"],
+  ["shield", "Guest list and venue entry plan"],
   ["contact", "Named adult contacts"],
   ["route", "Clear arrival and collection"],
 ] as const;
 
 const questions = [
   ["Do we need final guest numbers?", "No. A realistic estimate is enough to begin."],
-  ["Is the TY Ball alcohol-free?", "Yes. The TY Ball is planned as an alcohol-free student event."],
+  ["Who supports the event on the night?", "A named coordinator works with the venue and responsible adult contacts."],
   ["Can dietary and access needs be included?", "Yes. Tell the team early so the venue can confirm arrangements."],
   ["Does an enquiry reserve the date?", "No. The date is secured only when the booking terms are agreed."],
 ] as const;
@@ -46,7 +48,7 @@ export default function Home() {
 
       <section className="visual-experience shell" id="experience">
         <div className="visual-section-heading">
-          <div><p className="eyebrow">Your night</p><h2>All the parts.<br />One clear plan.</h2></div>
+          <div><p className="eyebrow">Your night</p><h2>One clear plan.</h2></div>
           <Link className="button button-dark" href="/enquire">Check your date</Link>
         </div>
         <div className="experience-gallery">
@@ -64,7 +66,7 @@ export default function Home() {
           <figure><EditorialImage alt="An adult event coordinator guiding committee representatives through a venue" height={768} name="planning-session" width={1376} /></figure>
           <div className="visual-story-copy">
             <p className="eyebrow light">DebsGuru</p>
-            <h2>One person keeps it moving.</h2>
+            <h2>One coordinator.</h2>
             <p>Your dedicated coordinator connects the committee, venue and event team.</p>
             <div className="visual-facts"><strong>10+ years</strong><span>Across Ireland</span></div>
             <Link className="button" href="/how-it-works">How it works</Link>
@@ -83,11 +85,11 @@ export default function Home() {
       <section className="visual-safety shell">
         <div className="visual-safety-copy">
           <p className="eyebrow">For parents and schools</p>
-          <h2>Special for guests.<br />Clear for adults.</h2>
+          <h2>A clear event plan.</h2>
           <div className="safety-icon-list">{safety.map(([icon, title]) => <div key={title}><EventIcon name={icon} /><strong>{title}</strong></div>)}</div>
           <Link className="button button-dark" href="/parents-schools">See safety information</Link>
         </div>
-        <figure><EditorialImage alt="Adults reviewing event arrangements at a venue" height={768} name="venue-arrival" width={1376} /></figure>
+        <figure><video aria-label="Students arriving for a supervised TY Ball check-in" autoPlay loop muted playsInline poster={`${basePath}/images/school-arrival.jpg`} preload="metadata"><source src={`${basePath}/video/tyball-school-arrival-loop.mp4`} type="video/mp4" /></video></figure>
       </section>
 
       <section className="visual-faq">
@@ -99,7 +101,7 @@ export default function Home() {
 
       <section className="visual-final-cta shell">
         <EventIcon name="calendar" />
-        <div><p className="eyebrow">Ready when you are</p><h2>Check your TY Ball date.</h2></div>
+        <div><p className="eyebrow">Ready when you are</p><h2>Check your date.</h2></div>
         <Link className="button button-dark" href="/enquire">Open the form</Link>
       </section>
     </main>

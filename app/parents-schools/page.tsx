@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const topics = [
-  ["Alcohol-free event", "The TY Ball itself is planned as an alcohol-free student event. Confirm the applicable venue entry rules and how they will be communicated to guests."],
+  ["Guest list and entry plan", "Confirm how the guest list, check-in and venue entry rules will be communicated before the event."],
   ["Event format", "Whether the event is private to one school or involves other groups, and which spaces are shared."],
   ["Venue rules and timings", "Arrival, finish time, entry requirements and the venue’s policy on leaving or re-entering."],
   ["Supervision and support", "The responsible event contacts and the security, first-aid or medical arrangements applicable to that venue."],
@@ -29,17 +29,17 @@ export default function ParentsSchoolsPage() {
   return (
     <main id="main-content">
       <section className="page-hero page-hero-with-media shell">
-        <div className="page-hero-title"><p className="eyebrow">For parents and schools</p><h1>Questions to ask before a TY Ball is booked</h1></div>
+        <div className="page-hero-title"><p className="eyebrow">For parents and schools</p><h1>TY Ball guidance</h1></div>
         <p className="page-hero-description">Arrangements vary by venue and proposal. Parents, schools and committees should confirm the relevant details in writing.</p>
         <figure className="page-hero-media"><EditorialImage alt="Adults discussing arrangements at a venue entrance" height={768} name="venue-arrival" width={1376} /></figure>
       </section>
       <section className="editorial-page shell">
-        <div className="editorial-intro"><p className="eyebrow">Before confirmation</p><h2>Check the arrangements for the actual venue</h2><p>Final arrangements and booking terms are supplied when the date, venue and proposal are confirmed. These are the main subjects to check.</p></div>
+        <div className="editorial-intro"><p className="eyebrow">Before confirmation</p><h2>Confirm the venue plan</h2><p>Final arrangements and booking terms are supplied when the date, venue and proposal are confirmed. These are the main subjects to check.</p></div>
         <div className="topic-grid">{topics.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
-        <div className="editorial-intro parent-prep"><p className="eyebrow">Before the event</p><h2>Make the confirmed information easy to find</h2><p>The committee should circulate the arrangements supplied for its actual event rather than relying on general website information.</p></div>
+        <div className="editorial-intro parent-prep"><p className="eyebrow">Before the event</p><h2>Share the event plan</h2><p>The committee should circulate the arrangements supplied for its actual event rather than relying on general website information.</p></div>
         <div className="topic-grid">{beforeTheNight.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
-      <section className="page-cta shell"><div><p className="eyebrow">Questions about an event</p><h2>Contact DebsGuru through the enquiry form</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>
+      <section className="page-cta shell"><div><p className="eyebrow">Questions about an event</p><h2>Ask DebsGuru</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>
     </main>
   );
 }

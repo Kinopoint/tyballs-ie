@@ -18,7 +18,7 @@ const stages = [
     text: "The team reviews venues and event options that may suit the date, location and expected attendance.",
   },
   {
-    title: "The committee reviews a proposal",
+    title: "Review the proposal",
     text: "DebsGuru discusses the available venue, services, costs and practical requirements with the committee contact.",
   },
   {
@@ -31,7 +31,7 @@ export default function HowItWorksPage() {
   return (
     <main id="main-content">
       <section className="page-hero page-hero-with-media shell">
-        <div className="page-hero-title"><p className="eyebrow">Enquiry process</p><h1>What happens after you enquire</h1></div>
+        <div className="page-hero-title"><p className="eyebrow">Enquiry process</p><h1>After your enquiry</h1></div>
         <p className="page-hero-description">The website form sends your details to DebsGuru for review. It does not make a booking or reserve a date.</p>
         <figure className="page-hero-media"><EditorialImage alt="Adult event coordinators reviewing a venue plan" height={768} name="planning-session" width={1376} /></figure>
       </section>
@@ -44,7 +44,7 @@ export default function HowItWorksPage() {
         ))}
       </section>
       <section className="page-cta shell">
-        <div><p className="eyebrow">Contact DebsGuru</p><h2>Send your school and date details</h2></div>
+        <div><p className="eyebrow">Contact DebsGuru</p><h2>Start your enquiry</h2></div>
         <Link className="button button-dark" href="/enquire">Open the enquiry form</Link>
       </section>
     </main>

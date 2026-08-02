@@ -128,7 +128,7 @@ export function EnquiryForm() {
         </fieldset>
 
         <div className="form-section">
-          <div className="form-section-heading"><div><h2>Your committee contact</h2><p>We will use these details to discuss the enquiry.</p></div></div>
+          <div className="form-section-heading"><div><h2>Committee contact</h2><p>We will use these details to discuss the enquiry.</p></div></div>
           <div className="field-grid">
             <label className="field"><span>Your name</span><input name="contactName" autoComplete="name" required maxLength={120} /></label>
             <label className="field"><span>Phone</span><input name="phone" type="tel" autoComplete="tel" required maxLength={30} /></label>

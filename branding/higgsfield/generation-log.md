@@ -249,4 +249,41 @@ Date: 2026-08-02
 - Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_172450_6ab08fb6-3aff-4ef2-9df1-1eaf1ddca60d.mp4>
 - Parameters: paid generation; `aspect_ratio=16:9`; `duration=6`; `resolution=720p`; `1280x720`; `mode=std`; `bitrate_mode=high`; `genre=auto`; `generate_audio=false`; `count=1`.
 - Prompt: “Premium photorealistic cinematic website hero loop for an Irish TY Ball event-planning business. Start exactly from the supplied frame: clearly adult 18–21 formal guests arriving at an elegant venue with an adult event coordinator. Very slow controlled camera push-in, restrained natural guest movement, subtle fabric movement and warm ambient practical lights. Preserve every face, hand, garment and architectural line with high geometry stability. No speaking, no exaggerated dancing, no camera shake, no scene cut, no alcohol, no drinks, no nightclub excess, no text, no lettering, no logos, no watermarks. End on a calm frame that can crossfade back to the beginning.”
-- Review: accepted after full-resolution inspection of frames near 0.5, 3.0 and 5.5 seconds. Slow push-in remains coherent; people, hands, formalwear, entrance architecture and coordinator stay readable; no text, logo, alcohol or new prohibited object appears. The web copy uses a navy scrim and the original still as poster; `prefers-reduced-motion` disables playback visually.
+- Review: accepted after full-resolution inspection of frames near 0.5, 3.0 and 5.5 seconds. Slow push-in remains coherent; people, hands, formalwear, entrance architecture and coordinator stay readable; no text, logo, alcohol or new prohibited object appears. The web copy uses a navy scrim and the original still as poster; playback remains active while reduced-motion mode removes decorative transitions.
+
+## Batch 07 — supervised TY arrival study
+
+Date: 2026-08-02
+
+### TYB-PEOPLE-F — school arrival and check-in
+
+- Job ID: `f8182f94-39c6-4d56-a994-f1d5ee80b020`
+- Requested model: `nano_banana_pro`
+- Higgsfield canonical job model: `nano_banana_2`
+- Original: [TYB-PEOPLE-F-school-arrival.png](output/photo-people-originals/TYB-PEOPLE-F-school-arrival.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_181404_f8182f94-39c6-4d56-a994-f1d5ee80b020.png>
+- Parameters: paid generation; `resolution=1k`; `count=1`; `aspect_ratio=16:9`; `1376x768`.
+- Prompt: “Premium photorealistic cinematic website hero photograph for TYBalls.ie, an Irish Transition Year school ball planning service. A diverse group of Irish secondary-school Transition Year students aged 15–16 arriving together at a professionally organised school formal event in a modern Irish hotel venue. Students wear age-appropriate, modest formal dresses and suits, smiling naturally with excited but well-behaved school-event energy. One clearly adult event coordinator in professional navy attire stands near a discreet check-in desk, welcoming the group; venue staff are visible in the background. Strong sense of safeguarding, organisation and supervision. Elegant navy, warm cream and subtle coral visual palette, warm practical venue lights, editorial documentary photography, believable Irish setting, wide 16:9 composition with generous dark negative space on the left for website headline, people grouped mainly to the right, natural faces and hands, realistic fabric and architecture. STRICTLY alcohol-free: no alcohol, no cocktails, no champagne, no wine, no beer, no drinking, no glasses, no cups, no bottles, no bar, no nightclub atmosphere. No suggestive posing, no revealing clothing, no text, no lettering, no signage, no logos, no watermarks.”
+- Review: accepted for the parent-and-school section. Students read as school-age and wear restrained formal clothing; the adult coordinator and check-in position are clear; faces, hands, legs, clothing and corridor geometry are coherent. No alcohol, drinkware, bar, readable text, logos or watermarks are present.
+
+### TYB-VIDEO-B — supervised school arrival
+
+- Job ID: `8d525a42-7ebc-46ca-9639-cfa0c3d0c93d`
+- Model: `seedance_2_0` (Seedance 2.0)
+- Source generation: `f8182f94-39c6-4d56-a994-f1d5ee80b020`; `TYB-PEOPLE-F-school-arrival`
+- Original: [TYB-VIDEO-B-school-arrival.mp4](output/video-originals/TYB-VIDEO-B-school-arrival.mp4)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_181612_8d525a42-7ebc-46ca-9639-cfa0c3d0c93d.mp4>
+- Parameters: paid generation; `aspect_ratio=16:9`; `duration=6`; `resolution=720p`; `1280x720`; `mode=std`; `bitrate_mode=high`; `generate_audio=false`; `count=1`.
+- Prompt: “Animate the supplied Irish Transition Year school-ball arrival photograph as a premium, natural documentary moment. The group of 15–16-year-old students walks forward slowly together toward check-in, smiling and talking naturally; the adult coordinator gives a small welcoming gesture and venue staff remain attentive. Very subtle controlled camera drift to the right, gentle realistic fabric and hair movement, warm venue lights, stable architecture. Preserve every student’s age-appropriate formal clothing, face, hands and body proportions. Keep the left side dark and calm for website layout. STRICTLY no alcohol, no drinking, no glasses, no cups, no bottles, no bar, no nightclub behaviour, no suggestive movement, no text, no lettering, no logos, no watermarks. One continuous calm shot, no cuts, no camera shake, no morphing, no duplicated people, no new objects, no audio.”
+- Review: accepted after inspection near the beginning, middle and end. The group advances naturally while the coordinator remains stable; faces, hands, clothing and corridor geometry remain coherent; no new object, drinkware, text or logo appears. Applied to the homepage parent-and-school block; the existing main hero loop remains unchanged.
+
+### TYB-ICONS-A — editorial event icon system
+
+- Job ID: `c862d469-3b02-4431-8def-e3c3fbe10acd`
+- Requested model: `nano_banana_pro`
+- Higgsfield canonical job model: `nano_banana_2`
+- Original: [TYB-ICONS-A-brand-sheet.png](output/photo-originals/TYB-ICONS-A-brand-sheet.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260802_181725_c862d469-3b02-4431-8def-e3c3fbe10acd.png>
+- Parameters: paid generation; `resolution=1k`; `count=1`; `aspect_ratio=4:3`; `1200x896`.
+- Prompt: “Create a premium editorial icon contact sheet for the Irish TYBalls.ie brand. Ten distinct pictograms arranged in an exact clean 5-column by 2-row grid with equal generous spacing: elegant Irish hotel venue facade, calendar date, dedicated event coordinator person with small check mark, safeguarding shield with check, arrival-and-collection route, formal dinner plate with cutlery, music note with subtle rhythm line, event camera, celebration sparkle, small group of students. Every icon uses the exact same refined hand-drawn monoline system: deep navy #101D32 primary strokes with one restrained coral #E9685D accent stroke, warm cream #FAF8F3 background, softly imperfect editorial line character inspired by the curved rhythm underline of the TYBalls.ie logo, balanced geometry, rounded line endings, sophisticated rather than playful, no filled circles behind icons, no shadows, no gradients, no 3D, no stock clip-art look. STRICT: no words, no letters, no numbers, no labels, no logos, no alcohol, no glasses, no bottles, no watermarks. Keep every icon fully separated with no touching lines and consistent optical size.”
+- Adjustments and review: Higgsfield returned a coherent `4x3` sheet with 12 cells rather than the requested `5x2` arrangement. Ten usable pictograms were selected and cropped into transparent PNG assets. Stroke weight, navy/coral palette and rounded geometry are consistent; there is no text, logo, alcohol reference or watermark. Applied as the site event-icon system.

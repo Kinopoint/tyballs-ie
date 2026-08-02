@@ -20,15 +20,15 @@ export default function CommitteesPage() {
   return (
     <main id="main-content">
       <section className="page-hero page-hero-with-media shell">
-        <div className="page-hero-title"><p className="eyebrow">For TY committees</p><h1>Information to gather before you enquire</h1></div>
+        <div className="page-hero-title"><p className="eyebrow">For TY committees</p><h1>Before you enquire</h1></div>
         <p className="page-hero-description">The committee only needs a few basic details for DebsGuru to begin checking suitable options.</p>
         <figure className="page-hero-media"><EditorialImage alt="Adult event coordinators reviewing a venue plan" height={768} name="planning-session" width={1376} /></figure>
       </section>
       <section className="editorial-page shell">
-        <div className="editorial-intro"><p className="eyebrow">Committee checklist</p><h2>Five details for the first conversation</h2><p>Prices and availability depend on the actual date, venue and attendance. These details allow DebsGuru to start with relevant options.</p></div>
+        <div className="editorial-intro"><p className="eyebrow">Committee checklist</p><h2>Your first five details</h2><p>Prices and availability depend on the actual date, venue and attendance. These details allow DebsGuru to start with relevant options.</p></div>
         <div className="editorial-list">{checklist.map(([title, text]) => <article key={title}><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </section>
-      <section className="page-cta shell"><div><p className="eyebrow">Committee enquiry</p><h2>Send the details to DebsGuru</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>
+      <section className="page-cta shell"><div><p className="eyebrow">Committee enquiry</p><h2>Send your details</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>
     </main>
   );
 }
