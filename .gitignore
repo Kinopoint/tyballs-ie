@@ -1,0 +1,11 @@
+.env
+.env.local
+.next/
+.pages-build/
+out/
+node_modules/
+npm-debug.log*
+coverage/
+backups/
+*.pem
+*.tsbuildinfo

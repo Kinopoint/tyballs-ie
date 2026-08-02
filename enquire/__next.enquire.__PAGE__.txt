@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[41519,["/tyballs-ie/_next/static/chunks/361m5sg3dyzb6.js","/tyballs-ie/_next/static/chunks/14mrh2-p_w84d.js","/tyballs-ie/_next/static/chunks/09b72v_b2dlkp.js"],"EnquiryForm"]
+3:I[97367,["/tyballs-ie/_next/static/chunks/361m5sg3dyzb6.js","/tyballs-ie/_next/static/chunks/14mrh2-p_w84d.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"id":"main-content","children":[["$","section",null,{"className":"page-hero shell form-page-hero","children":[["$","p",null,{"className":"eyebrow","children":"Start the conversation"}],["$","h1",null,{"children":"Tell us about your night."}],["$","p",null,{"children":"There is no fixed package and you do not need every answer yet. Share what you know and the team will check the suitable options."}]]}],["$","div",null,{"className":"form-shell shell","children":["$","$L2",null,{}]}]]}],[["$","script","script-0",{"src":"/tyballs-ie/_next/static/chunks/09b72v_b2dlkp.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"wG_w1tTqLHLo4eP7HU_GN"}
+5:null
