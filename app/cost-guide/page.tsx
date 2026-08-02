@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { EditorialImage } from "@/components/editorial-image";
+import Image from "next/image";
+import { CostFactorRotator } from "@/components/cost-factor-rotator";
+import { EventIcon } from "@/components/event-icon";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
@@ -7,18 +9,20 @@ export const metadata = createPageMetadata({
   title: "TY Ball Cost Guide Ireland",
   description: "Understand what affects TY Ball costs in Ireland, including the venue, date, attendance, dinner, entertainment, transport and event requirements.",
   path: "/cost-guide",
-  image: "/images/table-service.jpg",
-  imageAlt: "A venue coordinator preparing dinner tables for a TY Ball",
+  image: "/images/cost-guide-hero.webp",
+  imageAlt: "A TY Ball committee reviewing a prepared venue with an event coordinator",
 });
 
 const factors = [
-  ["Venue and date", "Location, availability, day of the week and time of year all influence the venue cost."],
-  ["Guest estimate", "A realistic number helps the venue and suppliers calculate the right capacity and per-person cost."],
-  ["Dinner and service", "The menu, service style and dietary arrangements form part of the proposal."],
-  ["Entertainment", "DJ, lighting, photography, photobooth and other additions are shaped around the committee’s priorities."],
-  ["Transport", "Routes, collection points and passenger numbers determine any transport included in the plan."],
-  ["Event requirements", "Staffing, access, timings and venue procedures differ from one location to another."],
+  ["venue", "Venue and date", "Location, availability and time of year influence the starting cost."],
+  ["guests", "Guest estimate", "A realistic number sets the capacity and helps suppliers price accurately."],
+  ["dining", "Dinner and service", "Menu, service style and dietary needs become part of the proposal."],
+  ["music", "Entertainment", "DJ, lighting, photography and extras follow the committee’s priorities."],
+  ["route", "Transport", "Routes, collection points and passenger numbers shape any travel included."],
+  ["contact", "Event requirements", "Staffing, access, timings and procedures differ between venues."],
 ] as const;
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const costGuideSchema = [
   breadcrumbSchema("Cost guide", "/cost-guide"),
@@ -35,19 +39,46 @@ const costGuideSchema = [
 
 export default function CostGuidePage() {
   return (
-    <main id="main-content">
+    <main className="cost-landing" id="main-content">
       <StructuredData data={costGuideSchema} />
-      <section className="page-hero page-hero-with-media shell">
-        <div className="page-hero-title"><p className="eyebrow">TY Ball cost guide</p><h1>What shapes the cost?</h1></div>
-        <p className="page-hero-description">Every proposal is built around the actual event: its venue, date, guest estimate and chosen inclusions.</p>
-        <figure className="page-hero-media"><EditorialImage alt="An adult venue coordinator preparing a place setting" height={896} name="table-service" width={1200} /></figure>
+      <section className="cost-cinematic-hero" aria-labelledby="cost-hero-title">
+        <Image alt="A TY Ball committee taking part in a venue walkthrough with an adult event coordinator" className="cost-hero-image" fill priority sizes="100vw" src={`${basePath}/images/cost-guide-hero.webp`} unoptimized />
+        <div className="cost-hero-scrim" aria-hidden="true" />
+        <div className="cost-hero-content shell">
+          <p className="eyebrow light">TY Ball cost guide</p>
+          <h1 id="cost-hero-title">
+            {"What shapes the cost?".split(" ").map((word, index) => <span className="cost-word" key={word}><span style={{ animationDelay: `${300 + index * 110}ms` }}>{word}&nbsp;</span></span>)}
+          </h1>
+          <div className="cost-hero-action">
+            <Link className="button" href="/enquire">Start your enquiry <span aria-hidden="true">↗</span></Link>
+            <p>Your proposal follows the venue, date, guest estimate and the parts of the night your committee chooses.</p>
+          </div>
+        </div>
+        <div className="cost-hero-panels">
+          <article className="cost-panel cost-panel-intro">
+            <div><p className="eyebrow">Built for your event</p><h2>Built around your night.</h2></div>
+            <a href="#cost-factors">See the factors</a>
+          </article>
+          <article className="cost-panel cost-panel-rotator"><CostFactorRotator /></article>
+          <article className="cost-panel cost-panel-proof">
+            <EventIcon name="calendar" />
+            <div><strong>10+ years</strong><p>DebsGuru event experience across Ireland.</p></div>
+          </article>
+        </div>
       </section>
-      <section className="editorial-page shell">
-        <div className="editorial-intro"><p className="eyebrow">Pricing factors</p><h2>How pricing comes together</h2><p>DebsGuru checks current venue and supplier costs against the committee’s priorities, then presents the relevant inclusions and pricing in one proposal.</p></div>
-        <div className="topic-grid cost-topics">{factors.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
-        <aside className="clarity-note"><strong>Send five useful details</strong><p>The school, county, preferred date or flexibility, realistic guest estimate and the parts of the night that matter most to the committee.</p></aside>
+
+      <section className="cost-factor-section shell" id="cost-factors">
+        <div className="cost-factor-heading"><div><p className="eyebrow">Pricing factors</p><h2>Every part counts.</h2></div><p>DebsGuru checks current venue and supplier costs, then brings the relevant inclusions and pricing into one proposal.</p></div>
+        <div className="cost-factor-grid">
+          {factors.map(([icon, title, text]) => <article key={title}><EventIcon name={icon} /><h3>{title}</h3><p>{text}</p></article>)}
+        </div>
       </section>
-      <section className="page-cta shell"><div><p className="eyebrow">Pricing for your event</p><h2>Request a proposal</h2></div><Link className="button button-dark" href="/enquire">Start your enquiry</Link></section>
+
+      <section className="cost-request-band shell">
+        <div><p className="eyebrow light">Send the starting point</p><h2>Ready for a real proposal?</h2></div>
+        <p>Share the school, county, date or flexibility, guest estimate and the parts of the night that matter most.</p>
+        <Link className="button" href="/enquire">Check your date</Link>
+      </section>
     </main>
   );
 }
