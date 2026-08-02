@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAnimate, useReducedMotion } from "motion/react";
+import { useAnimate } from "motion/react";
 import { useEffect, useState } from "react";
 import { Brand } from "@/components/brand";
 import { navigation } from "@/lib/site";
@@ -10,16 +10,15 @@ import { navigation } from "@/lib/site";
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const reduceMotion = useReducedMotion();
   const [headerScope, animate] = useAnimate();
 
   useEffect(() => {
-    if (!pathname.endsWith("/cost-guide") || reduceMotion) return;
+    if (!pathname.endsWith("/cost-guide")) return;
     animate(headerScope.current, { opacity: [0, 1] }, { duration: 0.7, ease: [0.16, 1, 0.3, 1] });
     animate(".brand", { opacity: [0, 1], x: [-40, 0] }, { delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] });
     animate("nav", { opacity: [0, 1] }, { delay: 0.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] });
     animate(".header-cta, .menu-toggle", { opacity: [0, 1], x: [40, 0] }, { delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] });
-  }, [animate, headerScope, pathname, reduceMotion]);
+  }, [animate, headerScope, pathname]);
 
   function closeMenu() {
     setMenuOpen(false);
