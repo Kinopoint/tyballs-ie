@@ -2,26 +2,27 @@ import Link from "next/link";
 import { EditorialImage } from "@/components/editorial-image";
 import { EventIcon } from "@/components/event-icon";
 import { HomeHero } from "@/components/home-hero";
+import { StructuredData } from "@/components/structured-data";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const highlights = [
-  ["venue", "Venue search", "Matched to your county and numbers"],
-  ["contact", "One coordinator", "From first chat to the event"],
-  ["shield", "Managed TY event", "Clear adult support on the night"],
+  ["venue", "Venue search", "Matched to your county, date and guest estimate"],
+  ["contact", "One coordinator", "One contact from first conversation to the night"],
+  ["shield", "A managed event", "Arrival, timings and key contacts clearly planned"],
 ] as const;
 
 const experiences = [
-  ["planning-session", "venue", "The right setting", "Venue, date and travel checked together."],
-  ["table-service", "dining", "Dinner made social", "Food, service and dietary needs coordinated."],
-  ["production-check", "music", "A proper dancefloor", "DJ, lighting and the running order handled."],
-  ["event-hall", "camera", "Moments worth keeping", "Photography, photobooth and awards options."],
+  ["planning-session", "venue", "A venue that fits", "Date, location, capacity and travel considered together."],
+  ["table-service", "dining", "Dinner planned", "Menu, service and dietary requirements coordinated."],
+  ["production-check", "music", "A dancefloor ready", "DJ, lighting and the running order brought together."],
+  ["event-hall", "camera", "Moments to keep", "Photography, photobooth and awards can be included."],
 ] as const;
 
 const steps = [
-  ["calendar", "Send your date", "School, county and guest estimate."],
-  ["venue", "See the options", "DebsGuru checks what fits."],
-  ["spark", "Enjoy the night", "Your coordinator runs the plan."],
+  ["calendar", "Share the basics", "School, county, date and estimated attendance."],
+  ["venue", "Review the plan", "See the venue, inclusions and pricing together."],
+  ["spark", "Enjoy the night", "Your coordinator keeps the agreed plan moving."],
 ] as const;
 
 const safety = [
@@ -31,15 +32,38 @@ const safety = [
 ] as const;
 
 const questions = [
-  ["Do we need final guest numbers?", "No. A realistic estimate is enough to begin."],
-  ["Who supports the event on the night?", "A named coordinator works with the venue and responsible adult contacts."],
-  ["Can dietary and access needs be included?", "Yes. Tell the team early so the venue can confirm arrangements."],
-  ["Does an enquiry reserve the date?", "No. The date is secured only when the booking terms are agreed."],
+  ["Do we need final guest numbers?", "No. Start with a realistic estimate and confirm the final number later."],
+  ["Who coordinates the event?", "A named DebsGuru coordinator works with the committee, venue and event team."],
+  ["Can dietary and access needs be planned?", "Yes. Share them early so the selected venue can confirm the arrangements."],
+  ["Does an enquiry reserve the date?", "No. A date is secured only after availability, pricing and booking terms are agreed."],
 ] as const;
+
+const homeSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "TY Ball planning in Ireland",
+    description: "Venue, food, entertainment and event coordination for Transition Year balls across Ireland.",
+    provider: { "@id": "https://tyballs.ie/#organisation" },
+    areaServed: { "@type": "Country", name: "Ireland" },
+    serviceType: "TY Ball event planning",
+    url: "https://tyballs.ie/",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: questions.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  },
+];
 
 export default function Home() {
   return (
     <main id="main-content">
+      <StructuredData data={homeSchema} />
       <HomeHero />
 
       <section className="visual-highlights shell" aria-label="Why plan with DebsGuru">
@@ -48,7 +72,7 @@ export default function Home() {
 
       <section className="visual-experience shell" id="experience">
         <div className="visual-section-heading">
-          <div><p className="eyebrow">Your night</p><h2>One clear plan.</h2></div>
+          <div><p className="eyebrow">Your night</p><h2>Everything in its place.</h2></div>
           <Link className="button button-dark" href="/enquire">Check your date</Link>
         </div>
         <div className="experience-gallery">
@@ -67,7 +91,7 @@ export default function Home() {
           <div className="visual-story-copy">
             <p className="eyebrow light">DebsGuru</p>
             <h2>One coordinator.</h2>
-            <p>Your dedicated coordinator connects the committee, venue and event team.</p>
+            <p>Your coordinator connects the committee, venue and event team, so decisions and updates stay in one place.</p>
             <div className="visual-facts"><strong>10+ years</strong><span>Across Ireland</span></div>
             <Link className="button" href="/how-it-works">How it works</Link>
           </div>
@@ -75,7 +99,7 @@ export default function Home() {
       </section>
 
       <section className="visual-process shell">
-        <div className="visual-section-heading"><div><p className="eyebrow">Three simple moves</p><h2>From idea to event.</h2></div></div>
+        <div className="visual-section-heading"><div><p className="eyebrow">A simple start</p><h2>Three steps. One plan.</h2></div></div>
         <div className="visual-step-grid">
           {steps.map(([icon, title, text]) => <article key={title}><EventIcon name={icon} /><h3>{title}</h3><p>{text}</p></article>)}
         </div>
@@ -85,9 +109,9 @@ export default function Home() {
       <section className="visual-safety shell">
         <div className="visual-safety-copy">
           <p className="eyebrow">For parents and schools</p>
-          <h2>A clear event plan.</h2>
+          <h2>Clear for everyone.</h2>
           <div className="safety-icon-list">{safety.map(([icon, title]) => <div key={title}><EventIcon name={icon} /><strong>{title}</strong></div>)}</div>
-          <Link className="button button-dark" href="/parents-schools">See safety information</Link>
+          <Link className="button button-dark" href="/parents-schools">See the event guidance</Link>
         </div>
         <figure><video aria-label="Students arriving for a supervised TY Ball check-in" autoPlay loop muted playsInline poster={`${basePath}/images/school-arrival.jpg`} preload="metadata"><source src={`${basePath}/video/tyball-school-arrival-loop.mp4`} type="video/mp4" /></video></figure>
       </section>
@@ -101,7 +125,7 @@ export default function Home() {
 
       <section className="visual-final-cta shell">
         <EventIcon name="calendar" />
-        <div><p className="eyebrow">Ready when you are</p><h2>Check your date.</h2></div>
+        <div><p className="eyebrow">Start with the basics</p><h2>Check your date.</h2></div>
         <Link className="button button-dark" href="/enquire">Open the form</Link>
       </section>
     </main>

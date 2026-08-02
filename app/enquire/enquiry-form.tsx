@@ -17,8 +17,8 @@ declare global {
 type State = { kind: "idle" | "submitting" | "success" | "error"; message: string };
 
 const priorities = [
-  ["venue", "Venue"],
-  ["food", "Food"],
+  ["venue", "Venue & location"],
+  ["food", "Dinner & service"],
   ["dj", "DJ & dance floor"],
   ["photography", "Photography"],
   ["entertainment", "Entertainment & extras"],
@@ -110,30 +110,30 @@ export function EnquiryForm() {
       {!previewMode ? <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={renderTurnstile} /> : null}
       <form className="enquiry-form" onSubmit={submit} onFocusCapture={() => { if (!formStarted.current) { formStarted.current = true; trackEvent("form_start", { form_name: "tyballs_enquiry" }); } }}>
         <div className="form-section">
-          <div className="form-section-heading"><div><h2>About your TY Ball</h2><p>An honest estimate is all we need at this stage.</p></div></div>
+          <div className="form-section-heading"><div><h2>Your TY Ball</h2><p>Best estimates are enough to start.</p></div></div>
           <div className="field-grid">
             <label className="field field-wide"><span>School name</span><input name="school" autoComplete="organization" required maxLength={160} /></label>
             <label className="field"><span>County</span><input name="county" autoComplete="address-level1" required maxLength={80} /></label>
-            <label className="field"><span>Estimated attendance</span><input name="estimatedAttendance" type="number" inputMode="numeric" min={10} max={2000} required placeholder="Your best estimate" /></label>
+            <label className="field"><span>Guest estimate</span><input name="estimatedAttendance" type="number" inputMode="numeric" min={10} max={2000} required placeholder="Your best estimate" /></label>
             <label className="field"><span>Preferred date <em>if known</em></span><input name="preferredDate" type="date" /></label>
             <label className="field"><span>How flexible is the date?</span><select name="dateFlexibility" required defaultValue=""><option value="" disabled>Select one</option><option value="exact">This exact date</option><option value="same_week">Other dates that week</option><option value="flexible">We are flexible</option><option value="not_sure">Not sure yet</option></select></label>
           </div>
         </div>
 
         <fieldset className="form-section">
-          <legend className="form-section-heading"><div><h2>What matters most?</h2><p>Select any priorities. Your choices simply help the team understand the event.</p></div></legend>
+          <legend className="form-section-heading"><div><h2>Your priorities</h2><p>Choose any parts of the night the committee already cares about.</p></div></legend>
           <div className="choice-grid">
             {priorities.map(([value, label]) => <label className="choice" key={value}><input type="checkbox" name="priorities" value={value} /><span>{label}</span></label>)}
           </div>
         </fieldset>
 
         <div className="form-section">
-          <div className="form-section-heading"><div><h2>Committee contact</h2><p>We will use these details to discuss the enquiry.</p></div></div>
+          <div className="form-section-heading"><div><h2>Your contact</h2><p>Your DebsGuru coordinator will use these details to continue the conversation.</p></div></div>
           <div className="field-grid">
             <label className="field"><span>Your name</span><input name="contactName" autoComplete="name" required maxLength={120} /></label>
             <label className="field"><span>Phone</span><input name="phone" type="tel" autoComplete="tel" required maxLength={30} /></label>
             <label className="field field-wide"><span>Email</span><input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
-            <label className="field field-wide"><span>Anything else we should know? <em>optional</em></span><textarea name="message" rows={5} maxLength={2000} placeholder="Location, venue ideas, timing or questions" /></label>
+            <label className="field field-wide"><span>Anything else? <em>optional</em></span><textarea name="message" rows={5} maxLength={2000} placeholder="Venue ideas, timing, travel or questions" /></label>
           </div>
         </div>
 
@@ -144,7 +144,7 @@ export function EnquiryForm() {
           {previewMode ? <p className="preview-notice">Preview website: enquiry sending will be enabled on the secure TYBalls.ie server.</p> : siteKey ? <div className="turnstile" ref={widgetRef} /> : <p className="configuration-error">The enquiry form security key is not configured.</p>}
           <button className="button button-dark form-button" disabled={previewMode || state.kind === "submitting" || state.kind === "success"} type="submit">{previewMode ? "Preview only" : state.kind === "submitting" ? "Sending…" : "Send enquiry"}</button>
           <p className={`form-response ${state.kind}`} aria-live="polite">{state.message}</p>
-          <p className="form-disclaimer">Submitting this form does not reserve a date or create a booking.</p>
+          <p className="form-disclaimer">Sending an enquiry does not reserve a date or create a booking.</p>
         </div>
       </form>
     </>

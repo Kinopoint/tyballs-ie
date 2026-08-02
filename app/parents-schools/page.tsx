@@ -1,40 +1,56 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { EventIcon } from "@/components/event-icon";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "TY Ball Information for Parents and Schools",
-  description: "A clear view of TY Ball venue rules, timings, transport, accessibility and responsible event contacts.",
-  alternates: { canonical: "/parents-schools" },
-};
+export const metadata = createPageMetadata({
+  title: "TY Ball Guidance for Parents & Schools",
+  description: "Clear TY Ball guidance for parents and schools covering venue entry, timings, named contacts, transport, dietary needs and accessibility.",
+  path: "/parents-schools",
+  image: "/images/school-arrival.jpg",
+  imageAlt: "Students arriving for a supervised TY Ball check-in",
+});
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const confirmations = [
-  ["shield", "Guest list and entry", "Check-in, venue rules and re-entry."],
-  ["guests", "Event format", "Who attends and which spaces are shared."],
-  ["calendar", "Venue timings", "Arrival, finish and collection windows."],
-  ["contact", "Named contacts", "Coordinator, venue and responsible adults."],
-  ["route", "Transport home", "Collection points and contact details."],
-  ["dining", "Food and access", "Dietary, allergy and accessibility needs."],
+  ["shield", "Guest list and entry", "How check-in, venue rules and re-entry will work."],
+  ["guests", "Event format", "Who attends, what is included and how spaces are used."],
+  ["calendar", "Venue timings", "The agreed arrival, finish and collection windows."],
+  ["contact", "Named contacts", "The DebsGuru coordinator, venue contact and responsible adults."],
+  ["route", "Transport home", "Travel arrangements, collection points and contact details."],
+  ["dining", "Food and access", "Dietary, allergy, mobility and accessibility requirements."],
 ] as const;
 
 const beforeEvent = [
-  ["contact", "Save the contacts", "Keep the coordinator and venue details close."],
-  ["route", "Share the route", "Send arrival and collection details to guests."],
-  ["dining", "Confirm requirements", "Submit dietary and access needs on time."],
-  ["camera", "Check photography", "Know how event images will be handled."],
+  ["contact", "Save the contacts", "Keep the coordinator, venue and responsible adult details close."],
+  ["route", "Share the journey", "Send the confirmed arrival and collection plan to guests."],
+  ["dining", "Confirm requirements", "Submit dietary, allergy and access needs by the stated date."],
+  ["camera", "Check photography", "Understand the photography arrangements for the selected event."],
 ] as const;
+
+const parentsSchema = [
+  breadcrumbSchema("Parents and schools", "/parents-schools"),
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "TY Ball event coordination",
+    description: "Coordinated venue entry, timings, contacts, transport information and event requirements for TY Balls in Ireland.",
+    provider: { "@id": "https://tyballs.ie/#organisation" },
+    areaServed: { "@type": "Country", name: "Ireland" },
+  },
+];
 
 export default function ParentsSchoolsPage() {
   return (
     <main id="main-content">
+      <StructuredData data={parentsSchema} />
       <section className="guidance-hero shell">
         <div className="guidance-hero-copy">
           <p className="eyebrow">For parents and schools</p>
-          <h1>TY Ball guidance</h1>
-          <p>See the key arrangements at a glance, then confirm the details for the selected venue.</p>
-          <Link className="button button-dark" href="/enquire">Ask DebsGuru</Link>
+          <h1>Know the plan</h1>
+          <p>See what should be clear before the event, then follow the confirmed information for the selected venue.</p>
+          <Link className="button button-dark" href="/enquire">Ask a question</Link>
         </div>
         <figure>
           <video aria-label="Students arriving for a supervised TY Ball check-in" autoPlay loop muted playsInline poster={`${basePath}/images/school-arrival.jpg`} preload="metadata">
@@ -44,7 +60,7 @@ export default function ParentsSchoolsPage() {
       </section>
 
       <section className="guidance-confirm shell">
-        <div className="guidance-heading"><p className="eyebrow">Before confirmation</p><h2>What to confirm</h2></div>
+        <div className="guidance-heading"><p className="eyebrow">For the selected venue</p><h2>What to confirm</h2></div>
         <div className="guidance-card-grid">
           {confirmations.map(([icon, title, text]) => (
             <article key={title}><EventIcon name={icon} /><h3>{title}</h3><p>{text}</p></article>
@@ -54,7 +70,7 @@ export default function ParentsSchoolsPage() {
 
       <section className="guidance-before">
         <div className="shell guidance-before-grid">
-          <div className="guidance-before-copy"><p className="eyebrow light">Before the event</p><h2>Keep it handy</h2><p>Share the confirmed information for the actual venue with guests and responsible contacts.</p></div>
+          <div className="guidance-before-copy"><p className="eyebrow light">Before the event</p><h2>Keep it close</h2><p>Share the confirmed venue information with guests and responsible contacts before the night.</p></div>
           <div className="guidance-action-grid">
             {beforeEvent.map(([icon, title, text]) => (
               <article key={title}><EventIcon name={icon} /><div><h3>{title}</h3><p>{text}</p></div></article>
@@ -63,7 +79,7 @@ export default function ParentsSchoolsPage() {
         </div>
       </section>
 
-      <section className="page-cta shell"><div><p className="eyebrow">Questions about an event</p><h2>Ask DebsGuru</h2></div><Link className="button button-dark" href="/enquire">Open the enquiry form</Link></section>
+      <section className="page-cta shell"><div><p className="eyebrow">Need something clarified</p><h2>Ask DebsGuru</h2></div><Link className="button button-dark" href="/enquire">Send your question</Link></section>
     </main>
   );
 }

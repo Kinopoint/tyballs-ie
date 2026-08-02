@@ -10,17 +10,17 @@ export function SiteFooter() {
         <div>
           <Brand />
           <p>
-            TYBalls.ie is operated by DebsGuru Ltd. Enquiries are reviewed by
-            the DebsGuru team before any date or venue is confirmed.
+            TYBalls.ie is the dedicated TY Ball planning service from DebsGuru Ltd.
+            Every enquiry is reviewed before a date or venue is confirmed.
           </p>
         </div>
         <div className="footer-links">
           <div>
             <strong>Explore</strong>
-            <Link href="/#experience">What can be included</Link>
+            <Link href="/#experience">What’s included</Link>
             <Link href="/how-it-works">How it works</Link>
             <Link href="/for-committees">For committees</Link>
-            <Link href="/parents-schools">Parents, schools &amp; safety</Link>
+            <Link href="/parents-schools">Parents &amp; schools</Link>
             <Link href="/cost-guide">Cost guide</Link>
             <Link href="/enquire">Make an enquiry</Link>
           </div>

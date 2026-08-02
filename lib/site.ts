@@ -2,7 +2,7 @@ export const site = {
   name: "TYBalls.ie",
   domain: "TYBalls.ie",
   description:
-    "TY Ball venue and event planning enquiries in Ireland, operated by DebsGuru Ltd.",
+    "Plan a memorable TY Ball with one experienced coordinator for the venue, food, entertainment and event details. Enquire with DebsGuru across Ireland.",
   email: "info@debsguru.ie",
   whatsappDisplay: "087 343 1732",
   whatsappHref: "https://wa.me/353873431732",
@@ -17,7 +17,7 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { href: "/#experience", label: "What can be included" },
+  { href: "/#experience", label: "What’s included" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/cost-guide", label: "Cost guide" },
   { href: "/parents-schools", label: "Parents & safety" },
