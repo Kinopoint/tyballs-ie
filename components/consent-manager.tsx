@@ -41,11 +41,8 @@ export function ConsentManager() {
     };
     const initialiseTimer = window.setTimeout(initialise, 0);
 
-    const show = () => setOpen(true);
-    window.addEventListener("tyballs:cookie-settings", show);
     return () => {
       window.clearTimeout(initialiseTimer);
-      window.removeEventListener("tyballs:cookie-settings", show);
     };
   }, []);
 
@@ -78,5 +75,5 @@ export function ConsentManager() {
 }
 
 export function CookieSettingsButton() {
-  return <button className="footer-cookie-button" type="button" onClick={() => window.dispatchEvent(new Event("tyballs:cookie-settings"))}>Cookie settings</button>;
+  return <button className="footer-cookie-button" type="button" onClick={() => { window.localStorage.removeItem(storageKey); window.location.reload(); }}>Cookie settings</button>;
 }
