@@ -38,3 +38,14 @@ Status: reviewed concept material — awaiting direction selection; do not use i
 ## Batch acceptance result
 
 All three originals are clean flat SVGs on warm-paper backgrounds, use the approved palette, contain only the requested wordmark and monogram, and pass the visible spelling and artefact review. They remain exploratory source material only: final lockups, monochrome forms, favicon sizing, and transparent-background exports follow after a direction is selected.
+
+## Batch 02 — Editorial Rhythm final lockup reference attempt
+
+Date: 2026-08-02
+Status: not generated — no credits charged.
+
+- Request ID: `6dbf6e73-b4d0-4cc0-b860-b45ef2c43d2a`
+- Model: `nano_banana_pro` (Nano Banana Pro)
+- Parameters: `resolution=2k`; `aspect_ratio=3:2`; `count=1`; `use_unlim=true`
+- Prompt: “TYBalls.ie brand system, Editorial Rhythm direction A. Create one clean, flat vector-like primary horizontal wordmark reference only, centered on a warm-paper #FAF8F3 background. Exact visible spelling must be TYBalls.ie, with capital T and Y, lowercase balls, a clearly visible dot before ie. Confident restrained editorial serif wordmark in deep navy #101D32, measured premium but approachable Irish event-planning tone. Add one small, purposeful warm-coral #E9685D curved rhythm stroke integrated under or through the TY/Balls transition. Use excellent kerning and generous negative space. No tagline, no other text, no monogram, no mockup, no stationery, no gradients, no shadows, no textures, no gold, no neon, no confetti, no disco-ball or music-note symbols, no crest or shamrock.”
+- Result: Higgsfield rejected the free/unlimited request because `nano_banana_pro` is not supported for unlimited generations on this account. No asset, task URL, or paid fallback was created.
