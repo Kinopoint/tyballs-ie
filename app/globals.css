@@ -389,18 +389,12 @@ summary:focus-visible {
   border-top: 1px solid rgba(255, 255, 255, 0.22);
   display: grid;
   gap: 28px;
-  grid-template-columns: 40px minmax(220px, 0.7fr) minmax(280px, 1.3fr);
+  grid-template-columns: minmax(220px, 0.7fr) minmax(280px, 1.3fr);
   padding: 28px 0;
 }
 
 .service-list article:last-child {
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-}
-
-.service-list span {
-  color: #ff978e;
-  font-size: 13px;
-  font-weight: 700;
 }
 
 .service-list h3 {
@@ -452,18 +446,12 @@ summary:focus-visible {
   border-top: 1px solid var(--line);
   display: grid;
   gap: 22px;
-  grid-template-columns: 36px minmax(170px, 0.8fr) minmax(220px, 1.2fr);
+  grid-template-columns: minmax(170px, 0.8fr) minmax(220px, 1.2fr);
   padding: 24px 0 34px;
 }
 
 .process-list li:last-child {
   border-bottom: 1px solid var(--line);
-}
-
-.process-list li > span {
-  color: var(--coral-dark);
-  font-size: 13px;
-  font-weight: 700;
 }
 
 .process-list h3 {
@@ -681,19 +669,12 @@ summary:focus-visible {
   border-top: 1px solid var(--line);
   display: grid;
   gap: 24px;
-  grid-template-columns: 42px 90px minmax(240px, 0.9fr) minmax(280px, 1.1fr);
+  grid-template-columns: minmax(240px, 0.9fr) minmax(280px, 1.1fr);
   padding: 28px 0 44px;
 }
 
 .stage-list article:last-child {
   border-bottom: 1px solid var(--line);
-}
-
-.stage-list article > span,
-.stage-label {
-  color: var(--coral-dark);
-  font-size: 12px;
-  font-weight: 700;
 }
 
 .stage-list h2 {
@@ -1282,11 +1263,7 @@ summary:focus-visible {
   }
 
   .stage-list article {
-    grid-template-columns: 36px 80px 1fr;
-  }
-
-  .stage-list article > p:last-child {
-    grid-column: 3;
+    grid-template-columns: minmax(200px, 0.9fr) minmax(240px, 1.1fr);
   }
 
   .clarity-note {
@@ -1366,13 +1343,9 @@ summary:focus-visible {
   }
 
   .service-list article,
-  .process-list li {
-    grid-template-columns: 28px 1fr;
-  }
-
-  .service-list article p,
-  .process-list li p {
-    grid-column: 2;
+  .process-list li,
+  .stage-list article {
+    grid-template-columns: 1fr;
   }
 
   .final-cta {
@@ -1398,16 +1371,6 @@ summary:focus-visible {
   .page-hero h1,
   .legal-page h1 {
     font-size: clamp(46px, 13vw, 64px);
-  }
-
-  .stage-list article {
-    grid-template-columns: 28px 1fr;
-  }
-
-  .stage-list .stage-label,
-  .stage-list h2,
-  .stage-list article > p:last-child {
-    grid-column: 2;
   }
 
   .page-cta {

@@ -83,9 +83,8 @@ export default function Home() {
           <h2>Venue, food, entertainment and event requirements.</h2>
         </div>
         <div className="shell service-list">
-          {services.map(([title, text], index) => (
+          {services.map(([title, text]) => (
             <article key={title}>
-              <span>{index + 1}</span>
               <h3>{title}</h3>
               <p>{text}</p>
             </article>
@@ -114,9 +113,8 @@ export default function Home() {
           <h2 id="process-title">What happens after you contact us</h2>
         </div>
         <ol className="process-list">
-          {steps.map(([title, text], index) => (
+          {steps.map(([title, text]) => (
             <li key={title}>
-              <span>{index + 1}</span>
               <h3>{title}</h3>
               <p>{text}</p>
             </li>
