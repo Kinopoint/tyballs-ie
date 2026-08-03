@@ -45,7 +45,7 @@ export function CostGuideMotion({ basePath }: { basePath: string }) {
             ))}
           </h1>
           <motion.div animate={{ opacity: 1, y: 0 }} className="cost-hero-action" initial={{ opacity: 0, y: 28 }} transition={{ delay: 0.68, duration: 0.8, ease }}>
-            <motion.div whileHover={reduceMotion ? undefined : { y: -3 }} whileTap={reduceMotion ? undefined : { scale: 0.98 }}><Link className="button" href="/enquire">Start your enquiry <span aria-hidden="true">↗</span></Link></motion.div>
+            <motion.div whileHover={reduceMotion ? undefined : { y: -3 }} whileTap={reduceMotion ? undefined : { scale: 0.98 }}><Link className="button" href="/enquire">Booking Enquiry Form <span aria-hidden="true">↗</span></Link></motion.div>
             <p>Your proposal follows the venue, date, guest estimate and the parts of the night your committee chooses.</p>
           </motion.div>
         </div>
@@ -82,7 +82,7 @@ export function CostGuideMotion({ basePath }: { basePath: string }) {
       <motion.section {...reveal} className="cost-request-band shell" transition={{ duration: 0.8, ease }} viewport={{ amount: 0.35, once: true }}>
         <div><p className="eyebrow light">Send the starting point</p><h2>Ready for a real proposal?</h2></div>
         <p>Share the school, county, date or flexibility, guest estimate and the parts of the night that matter most.</p>
-        <motion.div whileHover={reduceMotion ? undefined : { y: -3 }} whileTap={reduceMotion ? undefined : { scale: 0.98 }}><Link className="button" href="/enquire">Check your date</Link></motion.div>
+        <motion.div whileHover={reduceMotion ? undefined : { y: -3 }} whileTap={reduceMotion ? undefined : { scale: 0.98 }}><Link className="button" href="/enquire">Booking Enquiry Form</Link></motion.div>
       </motion.section>
     </>
   );

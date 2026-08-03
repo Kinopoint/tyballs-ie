@@ -13,10 +13,10 @@ const highlights = [
 ] as const;
 
 const experiences = [
-  ["planning-session", "venue", "A venue that fits", "Date, location, capacity and travel considered together."],
-  ["table-service", "dining", "Dinner planned", "Menu, service and dietary requirements coordinated."],
-  ["production-check", "music", "A dancefloor ready", "DJ, lighting and the running order brought together."],
-  ["event-hall", "camera", "Moments to keep", "Photography, photobooth and awards can be included."],
+  ["real-couple", "venue", "A venue that fits", "Date, location, capacity and travel considered together."],
+  ["real-dresses", "dining", "A proper occasion", "Dinner, service and dietary requirements coordinated."],
+  ["real-dancefloor", "music", "A dancefloor ready", "DJ, lighting and the running order brought together."],
+  ["real-friends", "camera", "Moments to keep", "Photography, photobooth and awards can be included."],
 ] as const;
 
 const steps = [
@@ -73,12 +73,12 @@ export default function Home() {
       <section className="visual-experience shell" id="experience">
         <div className="visual-section-heading">
           <div><p className="eyebrow">Your night</p><h2>Everything in its place.</h2></div>
-          <Link className="button button-dark" href="/enquire">Check your date</Link>
+          <Link className="button button-dark" href="/enquire">Booking Enquiry Form</Link>
         </div>
         <div className="experience-gallery">
           {experiences.map(([image, icon, title, text]) => (
             <article key={title}>
-              <EditorialImage alt="" height={768} name={image} width={1376} />
+              <EditorialImage alt={`Guests at a DebsGuru formal event: ${title.toLowerCase()}`} height={1000} name={image} width={667} />
               <div className="experience-caption"><EventIcon name={icon} /><div><h3>{title}</h3><p>{text}</p></div></div>
             </article>
           ))}
@@ -103,7 +103,7 @@ export default function Home() {
         <div className="visual-step-grid">
           {steps.map(([icon, title, text]) => <article key={title}><EventIcon name={icon} /><h3>{title}</h3><p>{text}</p></article>)}
         </div>
-        <Link className="button button-dark" href="/enquire">Start your enquiry</Link>
+        <Link className="button button-dark" href="/enquire">Booking Enquiry Form</Link>
       </section>
 
       <section className="visual-safety shell">
@@ -125,7 +125,7 @@ export default function Home() {
 
       <section className="visual-final-cta shell">
         <EventIcon name="calendar" />
-        <div><p className="eyebrow">Start with the basics</p><h2>Check your date.</h2></div>
+        <div><p className="eyebrow">Start with the basics</p><h2>Booking Enquiry Form</h2></div>
         <Link className="button button-dark" href="/enquire">Open the form</Link>
       </section>
     </main>

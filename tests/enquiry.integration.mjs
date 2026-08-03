@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { randomBytes } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { createServer } from "node:net";
 import { dirname, join } from "node:path";
 import { spawn } from "node:child_process";
@@ -56,8 +56,11 @@ try {
   await admin.query(`CREATE DATABASE ${databaseName}`);
   db = new pg.Client({ connectionString: databaseUrl });
   await db.connect();
-  const migration = await readFile(join(root, "db/migrations/001_initial.sql"), "utf8");
-  await db.query(migration);
+  const migrationDirectory = join(root, "db/migrations");
+  const migrationFiles = (await readdir(migrationDirectory)).filter((file) => file.endsWith(".sql")).sort();
+  for (const migrationFile of migrationFiles) {
+    await db.query(await readFile(join(migrationDirectory, migrationFile), "utf8"));
+  }
 
   smtp = new SMTPServer({
     authOptional: true,
@@ -106,17 +109,24 @@ try {
     body: JSON.stringify({ school: "" }),
   });
   assert.equal(invalid.status, 422);
+  const invalidBody = await invalid.json();
+  assert.ok(invalidBody.fields.yearSize);
 
   const payload = {
+    firstName: "Test",
+    lastName: "Committee Contact",
     school: "Integration Test School",
-    county: "Kerry",
-    contactName: "Test Committee Contact",
+    schoolLocation: "Kerry",
+    joiningSchools: "Partner School",
     email: "committee@example.ie",
     phone: "+353 87 123 4567",
-    estimatedAttendance: 96,
+    enquiryType: "ty_ball",
     preferredDate: "2027-03-19",
-    dateFlexibility: "same_week",
-    priorities: ["venue", "dj"],
+    preferredLocation: "Killarney",
+    yearSize: 120,
+    attendanceBand: "80_120",
+    referralSource: "friends_schools",
+    referralOther: "",
     message: "Integration test enquiry",
     privacyConsent: true,
     marketingConsent: false,
@@ -134,18 +144,30 @@ try {
   assert.equal(accepted.status, 201, JSON.stringify(acceptedBody));
   assert.equal(acceptedBody.accepted, true);
 
-  const stored = await db.query("SELECT school, estimated_attendance, notification_status, lead_status FROM enquiries");
+  const stored = await db.query("SELECT school, county, first_name, last_name, event_type, year_size, estimated_attendance, attendance_band, preferred_location, referral_source, joining_schools, notification_status, lead_status FROM enquiries");
   assert.equal(stored.rowCount, 1);
   assert.deepEqual(stored.rows[0], {
     school: "Integration Test School",
-    estimated_attendance: 96,
+    county: "Kerry",
+    first_name: "Test",
+    last_name: "Committee Contact",
+    event_type: "ty_ball",
+    year_size: 120,
+    estimated_attendance: 100,
+    attendance_band: "80_120",
+    preferred_location: "Killarney",
+    referral_source: "friends_schools",
+    joining_schools: "Partner School",
     notification_status: "sent",
     lead_status: "new",
   });
   assert.equal(messages.length, 1);
-  assert.match(messages[0], /New TYBalls\.ie enquiry/);
-  assert.match(messages[0], /Integration Test School/);
-  assert.match(messages[0], /No date has been reserved/);
+  const deliveredMessage = messages[0].replace(/=\r\n/g, "");
+  assert.match(deliveredMessage, /New TYBalls\.ie enquiry/);
+  assert.match(deliveredMessage, /Integration Test School/);
+  assert.match(deliveredMessage, /Partner School/);
+  assert.match(deliveredMessage, /Estimated total attendance: 80=E2=80=93120/);
+  assert.match(deliveredMessage, /No date has been reserved/);
 
   const duplicate = await fetch(endpoint, {
     method: "POST",

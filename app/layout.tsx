@@ -44,7 +44,8 @@ const organisationSchema = {
     postalCode: "V31 CF61",
     addressCountry: "IE",
   },
-  sameAs: [site.instagram, site.facebook],
+  sameAs: [site.debsGuru, site.instagram, site.facebook],
+  brand: { "@type": "Brand", name: "TYBalls.ie", url: "https://tyballs.ie/" },
 };
 
 const websiteSchema = {

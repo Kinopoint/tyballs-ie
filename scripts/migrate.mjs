@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import pg from "pg";
@@ -10,11 +10,15 @@ if (!databaseUrl) {
 }
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const sql = await readFile(join(root, "db/migrations/001_initial.sql"), "utf8");
+const migrationsDirectory = join(root, "db/migrations");
+const migrations = (await readdir(migrationsDirectory)).filter((name) => name.endsWith(".sql")).sort();
 const client = new pg.Client({ connectionString: databaseUrl });
 
 await client.connect();
-await client.query(sql);
+for (const migration of migrations) {
+  const sql = await readFile(join(migrationsDirectory, migration), "utf8");
+  await client.query(sql);
+}
 await client.end();
 
-console.info("Database migration completed.");
+console.info(`Database migrations completed: ${migrations.join(", ")}`);

@@ -8,6 +8,13 @@ import { verifyTurnstile } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
 
+const attendanceEstimate = {
+  "50_80": 65,
+  "80_120": 100,
+  "120_150": 135,
+  more_than_150: 151,
+} as const;
+
 function clientIp(request: NextRequest) {
   return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip") || "unknown";
 }
@@ -98,28 +105,37 @@ export async function POST(request: NextRequest) {
 
     await client.query(
       `INSERT INTO enquiries (
-        id, school, county, contact_name, email, phone, estimated_attendance,
-        preferred_date, date_flexibility, priorities, message, privacy_consent_at,
-        marketing_consent, landing_page, referrer, utm_source, utm_medium,
-        utm_campaign, utm_content, utm_term, gclid, fbclid, request_hash
+        id, school, county, contact_name, first_name, last_name, email, phone,
+        event_type, year_size, estimated_attendance, preferred_date, date_flexibility,
+        preferred_location, attendance_band, referral_source, referral_other,
+        joining_schools, priorities, message, privacy_consent_at, marketing_consent,
+        landing_page, referrer, utm_source, utm_medium, utm_campaign, utm_content,
+        utm_term, gclid, fbclid, request_hash
       ) VALUES (
-        $1, $2, $3, $4, $5, $6, $7, NULLIF($8, '')::date, $9, $10, NULLIF($11, ''),
-        now(), $12, NULLIF($13, ''), NULLIF($14, ''), NULLIF($15, ''), NULLIF($16, ''),
-        NULLIF($17, ''), NULLIF($18, ''), NULLIF($19, ''), NULLIF($20, ''), NULLIF($21, ''), $22
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12::date, 'not_sure',
+        $13, $14, $15, NULLIF($16, ''), NULLIF($17, ''), '{}', NULLIF($18, ''),
+        now(), false, NULLIF($19, ''), NULLIF($20, ''), NULLIF($21, ''), NULLIF($22, ''),
+        NULLIF($23, ''), NULLIF($24, ''), NULLIF($25, ''), NULLIF($26, ''), NULLIF($27, ''), $28
       )`,
       [
         id,
         enquiry.school,
-        enquiry.county,
-        enquiry.contactName,
+        enquiry.schoolLocation,
+        `${enquiry.firstName} ${enquiry.lastName}`,
+        enquiry.firstName,
+        enquiry.lastName,
         enquiry.email,
         enquiry.phone,
-        enquiry.estimatedAttendance,
+        enquiry.enquiryType,
+        enquiry.yearSize,
+        attendanceEstimate[enquiry.attendanceBand],
         enquiry.preferredDate,
-        enquiry.dateFlexibility,
-        enquiry.priorities,
+        enquiry.preferredLocation,
+        enquiry.attendanceBand,
+        enquiry.referralSource,
+        enquiry.referralOther,
+        enquiry.joiningSchools,
         enquiry.message,
-        enquiry.marketingConsent,
         enquiry.landingPage,
         enquiry.referrer,
         enquiry.utmSource,

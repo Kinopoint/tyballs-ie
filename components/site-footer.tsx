@@ -8,9 +8,9 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-top">
         <div>
-          <Brand />
+          <Brand full />
           <p>
-            TYBalls.ie is the dedicated TY Ball planning service from DebsGuru Ltd.
+            TYBalls.ie is brought to you by the team behind <a href={site.debsGuru} rel="noreferrer" target="_blank">DebsGuru.ie</a>.
             Every enquiry is reviewed before a date or venue is confirmed.
           </p>
         </div>
@@ -22,7 +22,7 @@ export function SiteFooter() {
             <Link href="/for-committees">For committees</Link>
             <Link href="/parents-schools">Parents &amp; schools</Link>
             <Link href="/cost-guide">Cost guide</Link>
-            <Link href="/enquire">Make an enquiry</Link>
+            <Link href="/enquire">Booking Enquiry Form</Link>
           </div>
           <div>
             <strong>Follow DebsGuru</strong>

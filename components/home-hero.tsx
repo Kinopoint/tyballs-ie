@@ -42,7 +42,7 @@ export function HomeHero() {
           <h1 id="home-hero-title">Planning a TY Ball?</h1>
           <p className="hero-lead">A memorable night for them. One clear plan for you.</p>
           <div className="hero-actions">
-            <Link className="button" href="/enquire">Check your date</Link>
+            <Link className="button" href="/enquire">Booking Enquiry Form</Link>
             <Link className="hero-secondary-link" href="/how-it-works">See how it works <span aria-hidden="true">→</span></Link>
           </div>
           <div className="hero-proof" aria-label="DebsGuru experience"><strong>10+ years</strong><span>One event coordinator</span><span>Across Ireland</span></div>

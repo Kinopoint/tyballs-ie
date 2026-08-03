@@ -94,6 +94,12 @@ h2 {
   justify-self: start;
 }
 
+.brand-sign {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+}
+
 .brand-wordmark {
   align-items: baseline;
   color: var(--navy);
@@ -136,6 +142,49 @@ h2 {
   stroke-width: 2.3;
 }
 
+.brand-origin {
+  color: currentColor;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  margin: -2px 9px 7px;
+  text-align: center;
+}
+
+.brand-full .brand-sign {
+  background-color: #070d20;
+  background-position: center;
+  background-size: cover;
+  border: 1px solid rgba(140, 106, 255, 0.45);
+  border-radius: 11px;
+  box-shadow: -5px 0 18px rgba(255, 36, 200, 0.3), 5px 0 18px rgba(53, 186, 255, 0.28);
+  color: #fff;
+  padding: 7px 16px 3px;
+}
+
+.brand-full .brand-wordmark {
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 31px;
+  font-weight: 800;
+  justify-content: center;
+  letter-spacing: -0.065em;
+  padding-bottom: 7px;
+}
+
+.brand-full .brand-ie {
+  color: #fff;
+  font-size: 1em;
+  font-weight: inherit;
+}
+
+.brand-full .brand-rhythm {
+  color: #6da9ff;
+  left: 18%;
+  width: 64%;
+}
+
 .site-header nav {
   align-items: center;
   display: flex;
@@ -158,6 +207,7 @@ h2 {
 
 .header-cta {
   justify-self: end;
+  white-space: nowrap;
 }
 
 .button {
@@ -1707,6 +1757,15 @@ summary:focus-visible {
   margin: 7px 0 0;
 }
 
+.form-page-hero h1 {
+  font-size: clamp(38px, 4.6vw, 66px);
+  white-space: nowrap;
+}
+
+.form-page-hero .page-hero-media img {
+  object-position: center 18%;
+}
+
 .field-grid,
 .choice-grid {
   display: grid;
@@ -1763,6 +1822,34 @@ summary:focus-visible {
 
 .choice-grid {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.form-choice-group {
+  margin-bottom: 26px;
+}
+
+.form-choice-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 9px 48px;
+}
+
+.choice-grid-compact {
+  grid-template-columns: repeat(2, minmax(0, 180px));
+}
+
+.choice-grid-attendance {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.form-conditional-field,
+.form-message-field {
+  margin-top: 22px;
 }
 
 .choice {
@@ -2421,8 +2508,21 @@ summary:focus-visible {
     margin-left: 0;
   }
 
+  .form-group-label {
+    margin-left: 0;
+  }
+
+  .choice-grid-compact,
+  .choice-grid-attendance {
+    grid-template-columns: 1fr;
+  }
+
   .form-section {
     padding: 32px 22px;
+  }
+
+  .form-page-hero h1 {
+    font-size: clamp(26px, 6.8vw, 30px);
   }
 
   .form-finish {

@@ -34,7 +34,7 @@ export default function CommitteesPage() {
         <div className="editorial-intro"><p className="eyebrow">Committee checklist</p><h2>Five things to share</h2><p>These basics keep the first conversation focused. DebsGuru can then check the venue, event arrangements and pricing that fit your group.</p></div>
         <div className="editorial-list">{checklist.map(([title, text]) => <article key={title}><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </section>
-      <section className="page-cta shell"><div><p className="eyebrow">Ready to begin</p><h2>Check your date</h2></div><Link className="button button-dark" href="/enquire">Start your enquiry</Link></section>
+      <section className="page-cta shell"><div><p className="eyebrow">Ready to begin</p><h2>Booking Enquiry Form</h2></div><Link className="button button-dark" href="/enquire">Open the form</Link></section>
     </main>
   );
 }

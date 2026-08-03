@@ -65,8 +65,8 @@ export default function HowItWorksPage() {
         ))}
       </section>
       <section className="page-cta shell">
-        <div><p className="eyebrow">Ready to begin</p><h2>Check your date</h2></div>
-        <Link className="button button-dark" href="/enquire">Start your enquiry</Link>
+        <div><p className="eyebrow">Ready to begin</p><h2>Booking Enquiry Form</h2></div>
+        <Link className="button button-dark" href="/enquire">Open the form</Link>
       </section>
     </main>
   );

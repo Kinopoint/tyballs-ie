@@ -2,7 +2,7 @@ type EditorialImageProps = {
   alt: string;
   className?: string;
   height: number;
-  name: "event-hall" | "planning-session" | "production-check" | "table-service" | "venue-arrival";
+  name: "event-hall" | "planning-session" | "production-check" | "table-service" | "venue-arrival" | "real-couple" | "real-dancefloor" | "real-dresses" | "real-friends";
   priority?: boolean;
   width: number;
 };

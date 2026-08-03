@@ -34,11 +34,11 @@ export function SiteHeader() {
           </Link>
         ))}
         <Link className="mobile-nav-cta" href="/enquire" onClick={closeMenu}>
-          Start an enquiry
+          Booking Enquiry Form
         </Link>
       </nav>
       <Link className="button button-compact header-cta" href="/enquire">
-        Check your date
+        Booking Enquiry Form
       </Link>
       <button
         aria-controls="main-navigation"

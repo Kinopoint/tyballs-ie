@@ -14,6 +14,7 @@ export const site = {
   ],
   instagram: "https://www.instagram.com/debsguru/",
   facebook: "https://www.facebook.com/DebsGuru",
+  debsGuru: "https://debsguru.ie/",
 } as const;
 
 export const navigation = [

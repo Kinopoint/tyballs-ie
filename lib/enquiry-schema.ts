@@ -3,18 +3,20 @@ import { z } from "zod";
 const optionalTrackingValue = z.string().trim().max(500).optional().default("");
 
 export const enquirySchema = z.object({
+  firstName: z.string().trim().min(2).max(80),
+  lastName: z.string().trim().min(2).max(80),
   school: z.string().trim().min(2).max(160),
-  county: z.string().trim().min(2).max(80),
-  contactName: z.string().trim().min(2).max(120),
+  schoolLocation: z.string().trim().min(2).max(120),
+  joiningSchools: z.string().trim().max(500).optional().default(""),
   email: z.string().trim().toLowerCase().email().max(254),
   phone: z.string().trim().min(7).max(30).regex(/^[+()\-\s\d]+$/),
-  estimatedAttendance: z.coerce.number().int().min(10).max(2_000),
-  preferredDate: z
-    .string()
-    .trim()
-    .refine((value) => value === "" || /^\d{4}-\d{2}-\d{2}$/.test(value), "Invalid date"),
-  dateFlexibility: z.enum(["exact", "same_week", "flexible", "not_sure"]),
-  priorities: z.array(z.enum(["venue", "food", "dj", "photography", "entertainment", "not_sure"])).max(6),
+  enquiryType: z.enum(["debs", "ty_ball"]),
+  preferredDate: z.string().trim().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date"),
+  preferredLocation: z.string().trim().min(2).max(160),
+  yearSize: z.coerce.number().int().min(10).max(2_000),
+  attendanceBand: z.enum(["50_80", "80_120", "120_150", "more_than_150"]),
+  referralSource: z.enum(["previous_year", "friends_schools", "instagram", "tiktok", "google", "other"]),
+  referralOther: z.string().trim().max(160).optional().default(""),
   message: z.string().trim().max(2_000).optional().default(""),
   privacyConsent: z.literal(true),
   marketingConsent: z.boolean().optional().default(false),
@@ -28,6 +30,10 @@ export const enquirySchema = z.object({
   utmTerm: optionalTrackingValue,
   gclid: optionalTrackingValue,
   fbclid: optionalTrackingValue,
+}).superRefine((value, context) => {
+  if (value.referralSource === "other" && value.referralOther.length < 2) {
+    context.addIssue({ code: "custom", message: "Please tell us how you heard about DebsGuru.", path: ["referralOther"] });
+  }
 });
 
 export type EnquiryInput = z.infer<typeof enquirySchema>;

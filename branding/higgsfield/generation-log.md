@@ -1,5 +1,19 @@
 # Higgsfield generation log
 
+## Batch 07 — client neon lockup backdrop
+
+Date: 2026-08-03
+Status: accepted as the visual backdrop for a deterministic website lockup. Exact `TYBalls.ie` and `From the team behind DebsGuru.ie` typography is rendered in HTML/CSS over this artwork so spelling and small-size readability remain reliable.
+
+- Job ID: `74670b8e-3b6a-4ece-a6ef-087b0cdcc535`
+- Uploaded reference media ID: `6820dc33-02b3-411f-9a90-f95b0928dfa7`
+- Original: [tyballs-neon-frame-seedream-v5-pro.png](output/logo-system/tyballs-neon-frame-seedream-v5-pro.png)
+- Higgsfield job asset: <https://d8j0ntlcm91z4.cloudfront.net/user_31s2jGsg5ICGJllgdfcW9G4TCBr/hf_20260803_103041_74670b8e-3b6a-4ece-a6ef-087b0cdcc535.png>
+- Model: `seedream_v5_pro` (Seedream 5.0 Pro)
+- Parameters: paid generation; `resolution=2k`; `aspect_ratio=16:9`; `count=1`; `2720x1536`; `seed=885943`; reference role `image_references`.
+- Prompt: “Rebuild the supplied TYBalls.ie neon-sign reference as a premium, production-ready website brand backdrop. Preserve the core identity: a slim rounded rectangular neon frame that transitions from vivid magenta on the left to electric blue on the right, on a deep midnight navy-black background, with subtle refined halftone dots and restrained event-light atmosphere. IMPORTANT: remove every letter, word, logo, symbol and readable text from the reference; the entire centre must remain clean and dark so exact typography can be overlaid in code. No X marks, no decorative letters, no fake text, no watermark. Perfectly straight geometry, symmetric frame, generous safe area, crisp edges, elegant Irish formal-event energy, premium rather than nightclub-cheap, no alcohol imagery. Wide 16:9 composition.”
+- Review: accepted. Frame is symmetric and clean; centre has sufficient contrast; no letters, fake text, logo, people, alcohol, watermark or visible AI geometry artefacts. The source has been retained unchanged and a separate optimised WebP is used by the site.
+
 ## Batch 01 — logo concepts
 
 Date: 2026-08-02
