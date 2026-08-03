@@ -3,7 +3,7 @@
 ## Batch 07 — client neon lockup backdrop
 
 Date: 2026-08-03
-Status: accepted as the visual backdrop for a deterministic website lockup. Exact `TYBalls.ie` and `From the team behind DebsGuru.ie` typography is rendered in HTML/CSS over this artwork so spelling and small-size readability remain reliable.
+Status: superseded on 2026-08-03 by the exact client-supplied logo artwork. Retained for generation audit only; not published or referenced by the website.
 
 - Job ID: `74670b8e-3b6a-4ece-a6ef-087b0cdcc535`
 - Uploaded reference media ID: `6820dc33-02b3-411f-9a90-f95b0928dfa7`

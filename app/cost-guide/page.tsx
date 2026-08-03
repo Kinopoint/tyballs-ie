@@ -6,8 +6,8 @@ export const metadata = createPageMetadata({
   title: "TY Ball Cost Guide Ireland",
   description: "Understand what affects TY Ball costs in Ireland, including the venue, date, attendance, dinner, entertainment, transport and event requirements.",
   path: "/cost-guide",
-  image: "/images/cost-guide-social.webp",
-  imageAlt: "A TY Ball committee reviewing a prepared venue with an event coordinator",
+  image: "/images/drive-garden.jpg",
+  imageAlt: "Guests together at a real DebsGuru event venue",
 });
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";

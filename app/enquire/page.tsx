@@ -7,8 +7,8 @@ export const metadata = createPageMetadata({
   title: "Booking Enquiry Form",
   description: "Send a TY Ball booking enquiry with your school, year size, preferred date, location and estimated attendance. The DebsGuru team will review the details.",
   path: "/enquire",
-  image: "/images/real-friends.jpg",
-  imageAlt: "Friends together at a DebsGuru formal event",
+  image: "/images/drive-arrival.jpg",
+  imageAlt: "Guests together at a real DebsGuru event",
 });
 
 const enquirySchema = [
@@ -30,7 +30,7 @@ export default function EnquirePage() {
       <section className="page-hero page-hero-with-media shell form-page-hero">
         <div className="page-hero-title"><p className="eyebrow">Your event starts here</p><h1>Booking Enquiry Form</h1></div>
         <p className="page-hero-description">Share the details your coordinator needs to review the date, venue area and likely attendance.</p>
-        <figure className="page-hero-media"><EditorialImage alt="Friends together at a DebsGuru formal event" height={1000} name="real-friends" width={667} /></figure>
+        <figure className="page-hero-media"><EditorialImage alt="Guests together at a real DebsGuru event" height={1500} name="drive-arrival" width={1000} /></figure>
       </section>
       <div className="form-shell shell">
         <aside className="form-guide">

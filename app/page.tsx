@@ -13,10 +13,10 @@ const highlights = [
 ] as const;
 
 const experiences = [
-  ["real-couple", "venue", "A venue that fits", "Date, location, capacity and travel considered together."],
-  ["real-dresses", "dining", "A proper occasion", "Dinner, service and dietary requirements coordinated."],
-  ["real-dancefloor", "music", "A dancefloor ready", "DJ, lighting and the running order brought together."],
-  ["real-friends", "camera", "Moments to keep", "Photography, photobooth and awards can be included."],
+  ["drive-garden", "venue", "A venue that fits", "Date, location, capacity and travel considered together."],
+  ["drive-dinner", "dining", "A proper occasion", "Dinner, service and dietary requirements coordinated."],
+  ["drive-dance", "music", "A dancefloor ready", "DJ, lighting and the running order brought together."],
+  ["drive-photobooth", "camera", "Moments to keep", "Photography, photobooth and awards can be included."],
 ] as const;
 
 const steps = [
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="experience-gallery">
           {experiences.map(([image, icon, title, text]) => (
             <article key={title}>
-              <EditorialImage alt={`Guests at a DebsGuru formal event: ${title.toLowerCase()}`} height={1000} name={image} width={667} />
+              <EditorialImage alt={`Guests at a real DebsGuru event: ${title.toLowerCase()}`} height={1500} name={image} priority width={1000} />
               <div className="experience-caption"><EventIcon name={icon} /><div><h3>{title}</h3><p>{text}</p></div></div>
             </article>
           ))}
@@ -87,7 +87,7 @@ export default function Home() {
 
       <section className="visual-story">
         <div className="shell visual-story-grid">
-          <figure><EditorialImage alt="An adult event coordinator guiding committee representatives through a venue" height={768} name="planning-session" width={1376} /></figure>
+          <figure><EditorialImage alt="Guests enjoying a real DebsGuru event at an Irish venue" height={1500} name="drive-arrival" width={1000} /></figure>
           <div className="visual-story-copy">
             <p className="eyebrow light">DebsGuru</p>
             <h2>One coordinator.</h2>
@@ -113,7 +113,7 @@ export default function Home() {
           <div className="safety-icon-list">{safety.map(([icon, title]) => <div key={title}><EventIcon name={icon} /><strong>{title}</strong></div>)}</div>
           <Link className="button button-dark" href="/parents-schools">See the event guidance</Link>
         </div>
-        <figure><video aria-label="Students arriving for a supervised TY Ball check-in" autoPlay loop muted playsInline poster={`${basePath}/images/school-arrival.jpg`} preload="metadata"><source src={`${basePath}/video/tyball-school-arrival-loop.mp4`} type="video/mp4" /></video></figure>
+        <figure className="vertical-event-video"><video aria-label="A real DebsGuru event and its guests" autoPlay loop muted playsInline poster={`${basePath}/images/tyballs-jenga-poster.jpg`} preload="metadata"><source src={`${basePath}/video/tyballs-jenga-vertical.mp4`} type="video/mp4" /></video></figure>
       </section>
 
       <section className="visual-faq">

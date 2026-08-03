@@ -12,7 +12,7 @@ export function createPageMetadata({
   title,
   description,
   path,
-  image = "/images/event-hall.jpg",
+  image = "/images/drive-arrival.jpg",
   imageAlt = "Guests arriving for a TY Ball in Ireland",
 }: PageMetadata): Metadata {
   const pageTitle = `${title} | TYBalls.ie`;

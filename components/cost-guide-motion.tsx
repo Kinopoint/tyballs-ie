@@ -24,7 +24,6 @@ export function CostGuideMotion({ basePath }: { basePath: string }) {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const imageY = useTransform(scrollYProgress, [0, 1], ["0%", reduceMotion ? "0%" : "9%"]);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.04, reduceMotion ? 1.04 : 1.1]);
-  const peopleY = useTransform(scrollYProgress, [0, 1], ["0%", reduceMotion ? "0%" : "12%"]);
 
   const reveal = { initial: { opacity: 0, y: 34 }, whileInView: { opacity: 1, y: 0 } };
 
@@ -32,7 +31,7 @@ export function CostGuideMotion({ basePath }: { basePath: string }) {
     <>
       <section className="cost-cinematic-hero" aria-labelledby="cost-hero-title" ref={heroRef}>
         <motion.div className="cost-hero-media" style={{ scale: imageScale, y: imageY }}>
-          <Image alt="A TY Ball committee taking part in a venue walkthrough with an adult event coordinator" className="cost-hero-image" fill priority sizes="100vw" src={`${basePath}/images/cost-guide-hero.webp`} unoptimized />
+          <Image alt="Guests together at a real DebsGuru event venue" className="cost-hero-image" fill priority sizes="100vw" src={`${basePath}/images/drive-garden.webp`} unoptimized />
         </motion.div>
         <div className="cost-hero-scrim" aria-hidden="true" />
         <div className="cost-hero-content shell">
@@ -49,9 +48,6 @@ export function CostGuideMotion({ basePath }: { basePath: string }) {
             <p>Your proposal follows the venue, date, guest estimate and the parts of the night your committee chooses.</p>
           </motion.div>
         </div>
-        <motion.div animate={{ opacity: 1, scale: 1, x: 0 }} className="cost-hero-people" initial={{ opacity: 0, scale: 0.9, x: 70 }} style={{ y: peopleY }} transition={{ delay: 0.7, duration: 1, ease }}>
-          <Image alt="" aria-hidden="true" height={1139} priority src={`${basePath}/images/cost-guide-people.webp`} unoptimized width={1060} />
-        </motion.div>
         <div className="cost-hero-panels">
           <motion.article animate={{ opacity: 1, y: 0 }} className="cost-panel cost-panel-intro" initial={{ opacity: 0, y: 46 }} transition={{ delay: 0.86, duration: 0.8, ease }}>
             <div><p className="eyebrow">Built for your event</p><h2>Built around your night.</h2></div>

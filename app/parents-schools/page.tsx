@@ -7,8 +7,8 @@ export const metadata = createPageMetadata({
   title: "TY Ball Guidance for Parents & Schools",
   description: "Clear TY Ball guidance for parents and schools covering venue entry, timings, named contacts, transport, dietary needs and accessibility.",
   path: "/parents-schools",
-  image: "/images/school-arrival.jpg",
-  imageAlt: "Students arriving for a supervised TY Ball check-in",
+  image: "/images/tyballs-real-event-poster.jpg",
+  imageAlt: "Guests arriving at a real DebsGuru event",
 });
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -53,8 +53,8 @@ export default function ParentsSchoolsPage() {
           <Link className="button button-dark" href="/enquire">Ask a question</Link>
         </div>
         <figure>
-          <video aria-label="Students arriving for a supervised TY Ball check-in" autoPlay loop muted playsInline poster={`${basePath}/images/school-arrival.jpg`} preload="metadata">
-            <source src={`${basePath}/video/tyball-school-arrival-loop.mp4`} type="video/mp4" />
+          <video aria-label="Guests arriving at a real DebsGuru event" autoPlay loop muted playsInline poster={`${basePath}/images/tyballs-real-event-poster.jpg`} preload="metadata">
+            <source src={`${basePath}/video/tyballs-real-event-vertical.mp4`} type="video/mp4" />
           </video>
         </figure>
       </section>

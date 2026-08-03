@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     siteName: site.domain,
     locale: "en_IE",
     type: "website",
-    images: [{ url: "/images/event-hall.jpg", width: 1376, height: 768, alt: "Guests arriving for a TY Ball in Ireland" }],
+    images: [{ url: "/images/drive-arrival.jpg", width: 1000, height: 1367, alt: "Guests at a real DebsGuru event in Ireland" }],
   },
-  twitter: { card: "summary_large_image", title: "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru", description: site.description, images: ["/images/event-hall.jpg"] },
+  twitter: { card: "summary_large_image", title: "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru", description: site.description, images: ["/images/drive-arrival.jpg"] },
   alternates: { canonical: "/" },
 };
 

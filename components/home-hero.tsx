@@ -5,10 +5,10 @@ import Link from "next/link";
 import { EditorialImage } from "@/components/editorial-image";
 
 const scenes = [
-  { label: "Arrival", name: "event-hall", width: 1376, height: 768 },
-  { label: "Planning", name: "planning-session", width: 1376, height: 768 },
-  { label: "Hospitality", name: "table-service", width: 1200, height: 896 },
-  { label: "Production", name: "production-check", width: 1376, height: 768 },
+  { label: "The night", name: "drive-arrival", width: 1000, height: 1367 },
+  { label: "Dinner", name: "drive-dinner", width: 1000, height: 1500 },
+  { label: "Photo booth", name: "drive-photobooth", width: 1000, height: 968 },
+  { label: "Together", name: "drive-group", width: 1000, height: 1460 },
 ] as const;
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -19,8 +19,11 @@ export function HomeHero() {
   return (
     <section className="home-hero" aria-labelledby="home-hero-title">
       <div className="home-hero-media" aria-hidden="true">
-        <video autoPlay className={`home-hero-video${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster={`${basePath}/images/event-hall.jpg`} preload="auto">
-          <source src={`${basePath}/video/tyball-arrival-loop.mp4`} type="video/mp4" />
+        <video autoPlay className={`home-hero-video home-hero-video-blur${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster={`${basePath}/images/tyballs-real-event-poster.jpg`} preload="metadata">
+          <source src={`${basePath}/video/tyballs-real-event-vertical.mp4`} type="video/mp4" />
+        </video>
+        <video autoPlay className={`home-hero-video home-hero-video-portrait${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster={`${basePath}/images/tyballs-real-event-poster.jpg`} preload="metadata">
+          <source src={`${basePath}/video/tyballs-real-event-vertical.mp4`} type="video/mp4" />
         </video>
         {scenes.map((scene, index) => (
           <EditorialImage

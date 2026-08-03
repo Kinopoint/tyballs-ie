@@ -7,8 +7,8 @@ export const metadata = createPageMetadata({
   title: "TY Ball Planning for School Committees",
   description: "A practical TY Ball planning checklist for school committees: the date, county, guest estimate, priorities and contact needed to start an enquiry.",
   path: "/for-committees",
-  image: "/images/planning-session.jpg",
-  imageAlt: "Event coordinators reviewing a TY Ball plan",
+  image: "/images/drive-garden.jpg",
+  imageAlt: "Guests talking together at a real DebsGuru event",
 });
 
 const checklist = [
@@ -28,7 +28,7 @@ export default function CommitteesPage() {
       <section className="page-hero page-hero-with-media shell">
         <div className="page-hero-title"><p className="eyebrow">For TY committees</p><h1>Start with the basics</h1></div>
         <p className="page-hero-description">You do not need every answer. Five useful details give DebsGuru enough to start shaping the event.</p>
-        <figure className="page-hero-media"><EditorialImage alt="Adult event coordinators reviewing a venue plan" height={768} name="planning-session" width={1376} /></figure>
+        <figure className="page-hero-media"><EditorialImage alt="Guests talking together at a real DebsGuru event" height={1500} name="drive-garden" width={1000} /></figure>
       </section>
       <section className="editorial-page shell">
         <div className="editorial-intro"><p className="eyebrow">Committee checklist</p><h2>Five things to share</h2><p>These basics keep the first conversation focused. DebsGuru can then check the venue, event arrangements and pricing that fit your group.</p></div>
