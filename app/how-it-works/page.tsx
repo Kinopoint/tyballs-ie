@@ -54,7 +54,7 @@ export default function HowItWorksPage() {
       <section className="page-hero page-hero-with-media shell">
         <div className="page-hero-title"><p className="eyebrow">How it works</p><h1>From enquiry to event</h1></div>
         <p className="page-hero-description">Start with a date, location and guest estimate. DebsGuru turns them into a plan the committee can review with confidence.</p>
-        <figure className="page-hero-media"><EditorialImage alt="Guests seated for dinner at a real DebsGuru event" height={1500} name="drive-dinner" width={1000} /></figure>
+        <figure className="page-hero-media"><EditorialImage alt="Guests seated for dinner at a real DebsGuru event" height={1500} name="drive-dinner" priority width={1000} /></figure>
       </section>
       <section className="stage-list shell">
         {stages.map((stage, index) => (

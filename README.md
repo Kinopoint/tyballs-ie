@@ -36,6 +36,15 @@ npm run test:integration
 
 The integration test creates an isolated temporary PostgreSQL database, starts the production Next.js server and a real local SMTP listener, verifies a Cloudflare Turnstile test token, submits the HTTP form, checks the persisted lead and delivered email, checks duplicate suppression, and removes the temporary database.
 
+## Visual rollback points
+
+Two annotated tags preserve the approved comparison states:
+
+- `archive/pre-client-logo` — commit `721b48c`, before the client-supplied logo was integrated;
+- `archive/pre-neon-redesign` — commit `81fdd78`, immediately before the site-wide neon design system.
+
+Revert the neon redesign commit to keep the current content, real event media and enquiry form while removing only the new theme. Check out either archive tag only when an exact historical build is required.
+
 ## GitHub Pages preview
 
 The static preview is published from the existing `gh-pages` branch at `https://kinopoint.github.io/tyballs-ie/`. The repository’s **Settings → Pages** must keep that branch as its publishing source.
