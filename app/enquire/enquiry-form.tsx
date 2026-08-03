@@ -123,8 +123,15 @@ export function EnquiryForm() {
     <>
       {!previewMode ? <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={renderTurnstile} /> : null}
       <form className="enquiry-form" onSubmit={submit} onFocusCapture={() => { if (!formStarted.current) { formStarted.current = true; trackEvent("form_start", { form_name: "tyballs_enquiry" }); } }}>
-        <div className="form-section">
-          <div className="form-section-heading"><div><h2>Your contact details</h2><p>These details allow a DebsGuru coordinator to respond to the committee.</p></div></div>
+        <nav className="form-section-nav" aria-label="Enquiry form sections">
+          <a href="#contact-details">Contact</a>
+          <a href="#school-details">School</a>
+          <a href="#event-details">Event</a>
+          <a href="#final-details">Final details</a>
+        </nav>
+
+        <div className="form-section" id="contact-details" aria-labelledby="contact-details-heading">
+          <div className="form-section-heading"><div><p className="form-section-label">Committee contact</p><h2 id="contact-details-heading">Your contact details</h2><p>So a DebsGuru coordinator can respond to your committee.</p></div></div>
           <div className="field-grid">
             <label className="field"><span>First name *</span><input name="firstName" autoComplete="given-name" required maxLength={80} /></label>
             <label className="field"><span>Last name *</span><input name="lastName" autoComplete="family-name" required maxLength={80} /></label>
@@ -133,8 +140,8 @@ export function EnquiryForm() {
           </div>
         </div>
 
-        <div className="form-section">
-          <div className="form-section-heading"><div><h2>Your school</h2><p>Your year size gives the team a stronger starting point for attendance planning.</p></div></div>
+        <div className="form-section" id="school-details" aria-labelledby="school-details-heading">
+          <div className="form-section-heading"><div><p className="form-section-label">School profile</p><h2 id="school-details-heading">Your school</h2><p>Your year size gives the team a stronger starting point for attendance planning.</p></div></div>
           <div className="field-grid">
             <label className="field field-wide"><span>School name *</span><input name="school" autoComplete="organization" required maxLength={160} /></label>
             <label className="field"><span>School location *</span><input name="schoolLocation" autoComplete="address-level1" required maxLength={120} placeholder="Town or county" /></label>
@@ -143,8 +150,8 @@ export function EnquiryForm() {
           </div>
         </div>
 
-        <fieldset className="form-section">
-          <legend className="form-section-heading"><div><h2>Event details</h2><p>All fields in this section are required, matching the DebsGuru booking enquiry.</p></div></legend>
+        <fieldset className="form-section" id="event-details" aria-labelledby="event-details-heading">
+          <legend className="form-section-heading"><div><p className="form-section-label">Your preferences</p><h2 id="event-details-heading">Event details</h2><p>Tell us what the committee is considering for the night.</p></div></legend>
           <div className="form-choice-group">
             <span className="form-group-label">Enquiring for *</span>
             <div className="choice-grid choice-grid-compact">
@@ -164,8 +171,8 @@ export function EnquiryForm() {
           </div>
         </fieldset>
 
-        <fieldset className="form-section">
-          <legend className="form-section-heading"><div><h2>One last detail</h2><p>Tell us how you found DebsGuru and include anything else the team should know.</p></div></legend>
+        <fieldset className="form-section" id="final-details" aria-labelledby="final-details-heading">
+          <legend className="form-section-heading"><div><p className="form-section-label">Almost there</p><h2 id="final-details-heading">One last detail</h2><p>Tell us how you found DebsGuru and add anything else the team should know.</p></div></legend>
           <div className="form-choice-group">
             <span className="form-group-label">How did you hear about DebsGuru? *</span>
             <div className="choice-grid">

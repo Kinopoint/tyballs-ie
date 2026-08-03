@@ -25,23 +25,36 @@ const enquirySchema = [
 
 export default function EnquirePage() {
   return (
-    <main id="main-content">
+    <main className="enquire-landing" id="main-content">
       <StructuredData data={enquirySchema} />
-      <section className="page-hero page-hero-with-media shell form-page-hero">
-        <div className="page-hero-title"><p className="eyebrow">Your event starts here</p><h1>Booking Enquiry Form</h1></div>
-        <p className="page-hero-description">Share the details your coordinator needs to review the date, venue area and likely attendance.</p>
-        <figure className="page-hero-media"><EditorialImage alt="Guests together at a real DebsGuru event" height={1500} name="drive-arrival" width={1000} /></figure>
+      <section className="enquire-hero">
+        <figure className="enquire-hero-media">
+          <EditorialImage alt="Guests together at a real DebsGuru event" height={1500} name="drive-arrival" priority width={1000} />
+        </figure>
+        <div className="enquire-hero-scrim" />
+        <div className="enquire-hero-content shell">
+          <p className="eyebrow">Your event starts here</p>
+          <h1>Booking Enquiry Form</h1>
+          <p>Tell us about your school, preferred date and likely attendance. A DebsGuru coordinator will review the details and come back to your committee.</p>
+          <div className="enquire-hero-points" aria-label="Details needed for your enquiry">
+            <span>Committee contact</span>
+            <span>School details</span>
+            <span>Event preferences</span>
+          </div>
+        </div>
       </section>
       <div className="form-shell shell">
         <aside className="form-guide">
-          <p className="eyebrow">Before you start</p>
-          <h2>Have these ready</h2>
+          <div className="form-guide-heading">
+            <p className="eyebrow">Before you start</p>
+            <h2>Have these ready</h2>
+          </div>
           <ul>
-            <li><span aria-hidden="true">•</span><p><strong>School and location</strong>Include another school if you are joining together.</p></li>
-            <li><span aria-hidden="true">•</span><p><strong>Year size</strong>This helps estimate likely attendance more accurately.</p></li>
-            <li><span aria-hidden="true">•</span><p><strong>Date and venue area</strong>Your preferences give the team a clear starting point.</p></li>
+            <li><span aria-hidden="true" /><p><strong>School and location</strong>Include another school if you are joining together.</p></li>
+            <li><span aria-hidden="true" /><p><strong>Year size</strong>This gives the team a better attendance estimate.</p></li>
+            <li><span aria-hidden="true" /><p><strong>Date and venue area</strong>Your preferences give the team a clear starting point.</p></li>
           </ul>
-          <p className="form-guide-note">This starts a conversation. It does not reserve a date or create a booking.</p>
+          <p className="form-guide-note"><strong>No commitment yet.</strong> This enquiry starts a conversation and does not reserve a date.</p>
         </aside>
         <EnquiryForm />
       </div>
