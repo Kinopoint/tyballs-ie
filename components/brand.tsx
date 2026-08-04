@@ -27,8 +27,8 @@ export function Brand({ full = false }: { full?: boolean }) {
           poster={`${basePath}/brand/${asset}.webp`}
           preload="metadata"
         >
-          <source src={`${basePath}/video/tyballs-logo-header.webm`} type="video/webm" />
-          <source src={`${basePath}/video/tyballs-logo-header.mp4`} type="video/mp4" />
+          <source src={`${basePath}/video/tyballs-logo-header-v2.webm`} type="video/webm" />
+          <source src={`${basePath}/video/tyballs-logo-header-v2.mp4`} type="video/mp4" />
         </video>
       )}
     </Link>

@@ -220,10 +220,14 @@ h4 {
 }
 
 .brand-motion {
-  background: var(--bg-deep);
+  background: transparent;
+  filter: saturate(1.08) contrast(1.04);
   height: 100%;
   inset: 0;
-  object-fit: cover;
+  mix-blend-mode: screen;
+  object-fit: contain;
+  opacity: 0.72;
+  pointer-events: none;
   position: absolute;
   width: 100%;
 }
@@ -2157,12 +2161,12 @@ h4 {
 
   .brand {
     height: 46px;
-    width: 118px;
+    width: 112px;
   }
 
   .brand-picture {
     height: 46px;
-    width: 118px;
+    width: 112px;
   }
 
   .header-cta {
