@@ -28,33 +28,45 @@ export default function EnquirePage() {
     <main className="enquire-landing" id="main-content">
       <StructuredData data={enquirySchema} />
       <section className="enquire-hero">
-        <figure className="enquire-hero-media">
-          <EditorialImage alt="Guests together at a real DebsGuru event" height={1500} name="drive-arrival" priority width={1000} />
-        </figure>
         <div className="enquire-hero-scrim" />
-        <div className="enquire-hero-content shell">
-          <p className="eyebrow">Your event starts here</p>
-          <h1>Booking Enquiry Form</h1>
-          <p>Tell us about your school, preferred date and likely attendance. A DebsGuru coordinator will review the details and come back to your committee.</p>
-          <div className="enquire-hero-points" aria-label="Details needed for your enquiry">
-            <span>Committee contact</span>
-            <span>School details</span>
-            <span>Event preferences</span>
+        <div className="enquire-hero-inner shell">
+          <div className="enquire-hero-content">
+            <p className="eyebrow">Your event starts here</p>
+            <h1>Booking Enquiry Form</h1>
+            <p>Tell us about your school, preferred date and likely attendance. A DebsGuru coordinator will review the details and come back to your committee.</p>
+            <div className="enquire-hero-points" aria-label="Details needed for your enquiry">
+              <span>Committee contact</span>
+              <span>School details</span>
+              <span>Event preferences</span>
+            </div>
           </div>
+          <figure className="enquire-hero-media">
+            <EditorialImage alt="Guests together at a real DebsGuru event" height={1500} name="drive-arrival" priority width={1000} />
+            <figcaption>Arrival · real event</figcaption>
+          </figure>
         </div>
       </section>
       <div className="form-shell shell">
-        <aside className="form-guide">
-          <div className="form-guide-heading">
-            <p className="eyebrow">Before you start</p>
-            <h2>Have these ready</h2>
+        <aside className="form-sidebar">
+          <nav className="form-section-nav" aria-label="Enquiry form sections">
+            <p>Form navigation</p>
+            <a href="#contact-details">Contact</a>
+            <a href="#school-details">School</a>
+            <a href="#event-details">Event</a>
+            <a href="#final-details">Final details</a>
+          </nav>
+          <div className="form-guide">
+            <div className="form-guide-heading">
+              <p className="eyebrow">Before you start</p>
+              <h2>Have these ready</h2>
+            </div>
+            <ul>
+              <li><span aria-hidden="true" /><p><strong>School and location</strong>Include another school if you are joining together.</p></li>
+              <li><span aria-hidden="true" /><p><strong>Year size</strong>This gives the team a better attendance estimate.</p></li>
+              <li><span aria-hidden="true" /><p><strong>Date and venue area</strong>Your preferences give the team a clear starting point.</p></li>
+            </ul>
+            <p className="form-guide-note"><strong>No commitment yet.</strong> This enquiry starts a conversation and does not reserve a date.</p>
           </div>
-          <ul>
-            <li><span aria-hidden="true" /><p><strong>School and location</strong>Include another school if you are joining together.</p></li>
-            <li><span aria-hidden="true" /><p><strong>Year size</strong>This gives the team a better attendance estimate.</p></li>
-            <li><span aria-hidden="true" /><p><strong>Date and venue area</strong>Your preferences give the team a clear starting point.</p></li>
-          </ul>
-          <p className="form-guide-note"><strong>No commitment yet.</strong> This enquiry starts a conversation and does not reserve a date.</p>
         </aside>
         <EnquiryForm />
       </div>

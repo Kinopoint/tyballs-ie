@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useAnimate } from "motion/react";
 import { useEffect, useState } from "react";
 import { Brand } from "@/components/brand";
-import { navigation } from "@/lib/site";
+import { navigation, site } from "@/lib/site";
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,6 +37,9 @@ export function SiteHeader() {
           Booking Enquiry Form
         </Link>
       </nav>
+      <a className="header-phone" href={`tel:${site.whatsappHref.replace("https://wa.me/", "+")}`}>
+        {site.whatsappDisplay}
+      </a>
       <Link className="button button-compact header-cta" href="/enquire">
         Booking Enquiry Form
       </Link>

@@ -22,4 +22,5 @@ export const navigation = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/cost-guide", label: "Cost guide" },
   { href: "/parents-schools", label: "Parents & safety" },
+  { href: "/for-committees", label: "For committees" },
 ] as const;

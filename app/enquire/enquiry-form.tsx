@@ -123,13 +123,6 @@ export function EnquiryForm() {
     <>
       {!previewMode ? <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={renderTurnstile} /> : null}
       <form className="enquiry-form" onSubmit={submit} onFocusCapture={() => { if (!formStarted.current) { formStarted.current = true; trackEvent("form_start", { form_name: "tyballs_enquiry" }); } }}>
-        <nav className="form-section-nav" aria-label="Enquiry form sections">
-          <a href="#contact-details">Contact</a>
-          <a href="#school-details">School</a>
-          <a href="#event-details">Event</a>
-          <a href="#final-details">Final details</a>
-        </nav>
-
         <div className="form-section" id="contact-details" aria-labelledby="contact-details-heading">
           <div className="form-section-heading"><div><p className="form-section-label">Committee contact</p><h2 id="contact-details-heading">Your contact details</h2><p>So a DebsGuru coordinator can respond to your committee.</p></div></div>
           <div className="field-grid">

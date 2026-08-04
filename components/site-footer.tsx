@@ -32,6 +32,8 @@ export function SiteFooter() {
             <a href={site.facebook} rel="noreferrer" target="_blank">
               Facebook
             </a>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+            <a href={`tel:${site.whatsappHref.replace("https://wa.me/", "+")}`}>{site.whatsappDisplay}</a>
           </div>
           <div>
             <strong>Legal</strong>

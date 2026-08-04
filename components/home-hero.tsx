@@ -18,28 +18,8 @@ export function HomeHero() {
 
   return (
     <section className="home-hero" aria-labelledby="home-hero-title">
-      <div className="home-hero-media" aria-hidden="true">
-        <video autoPlay className={`home-hero-video home-hero-video-blur${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster={`${basePath}/images/tyballs-real-event-poster.jpg`} preload="metadata">
-          <source src={`${basePath}/video/tyballs-real-event-vertical.mp4`} type="video/mp4" />
-        </video>
-        <video autoPlay className={`home-hero-video home-hero-video-portrait${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster={`${basePath}/images/tyballs-real-event-poster.jpg`} preload="metadata">
-          <source src={`${basePath}/video/tyballs-real-event-vertical.mp4`} type="video/mp4" />
-        </video>
-        {scenes.map((scene, index) => (
-          <EditorialImage
-            alt=""
-            className={`home-hero-image${activeScene === index && index !== 0 ? " is-active" : ""}`}
-            height={scene.height}
-            key={scene.label}
-            name={scene.name}
-            priority={index === 0}
-            width={scene.width}
-          />
-        ))}
-      </div>
       <div className="home-hero-scrim" aria-hidden="true" />
-
-      <div className="home-hero-content shell">
+      <div className="home-hero-stage shell">
         <div className="home-hero-copy">
           <p className="hero-badge">TY Ball organisers across Ireland</p>
           <h1 id="home-hero-title">Planning a TY Ball?</h1>
@@ -50,13 +30,29 @@ export function HomeHero() {
           </div>
           <div className="hero-proof" aria-label="DebsGuru experience"><strong>10+ years</strong><span>One event coordinator</span><span>Across Ireland</span></div>
         </div>
-      </div>
-
-      <div className="home-hero-controls shell">
-        <div className="scene-switcher" role="group" aria-label="Explore the event planning experience">
-          {scenes.map((scene, index) => (
-            <button aria-pressed={activeScene === index} key={scene.label} onClick={() => setActiveScene(index)} type="button">{scene.label}</button>
-          ))}
+        <div className="home-hero-visual">
+          <div className="home-hero-media">
+            <video aria-label="Guests arriving at a real DebsGuru event" autoPlay className={`home-hero-video home-hero-video-portrait${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster={`${basePath}/images/tyballs-real-event-poster.jpg`} preload="metadata">
+              <source src={`${basePath}/video/tyballs-real-event-vertical.mp4`} type="video/mp4" />
+            </video>
+            {scenes.map((scene, index) => (
+              <EditorialImage
+                alt={index === 0 ? "" : `Guests at a real DebsGuru event: ${scene.label.toLowerCase()}`}
+                className={`home-hero-image${activeScene === index && index !== 0 ? " is-active" : ""}`}
+                height={scene.height}
+                key={scene.label}
+                name={scene.name}
+                priority={index === 0}
+                width={scene.width}
+              />
+            ))}
+            <p className="home-hero-caption">{activeScene === 0 ? "Arrival, lit and calm" : scenes[activeScene].label}</p>
+          </div>
+          <div className="scene-switcher" role="group" aria-label="Explore the event planning experience">
+            {scenes.map((scene, index) => (
+              <button aria-pressed={activeScene === index} key={scene.label} onClick={() => setActiveScene(index)} type="button">{scene.label}</button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
