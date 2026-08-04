@@ -200,6 +200,10 @@ h4 {
 
 .brand {
   flex: 0 0 auto;
+  height: 52px;
+  overflow: hidden;
+  position: relative;
+  width: 126px;
 }
 
 .brand-picture {
@@ -213,6 +217,21 @@ h4 {
   height: 100%;
   object-fit: contain;
   width: 100%;
+}
+
+.brand-motion {
+  background: var(--bg-deep);
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.brand-full {
+  height: auto;
+  overflow: visible;
+  width: auto;
 }
 
 .site-header nav {
@@ -2136,6 +2155,11 @@ h4 {
     padding-inline: 20px;
   }
 
+  .brand {
+    height: 46px;
+    width: 118px;
+  }
+
   .brand-picture {
     height: 46px;
     width: 118px;
@@ -3660,6 +3684,7 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .brand-motion { display: none; }
   .zip-pill span { animation: none; }
   .zip-hero-track,
   .zip-cost-lines p,
