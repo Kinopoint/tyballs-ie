@@ -1,11 +1,33 @@
 import { spawn } from "node:child_process";
-import { mkdir, rename, rm } from "node:fs/promises";
+import { mkdir, readdir, rename, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const apiDirectory = join(root, "app/api");
 const holdingDirectory = join(root, ".pages-build/server-api");
+
+async function removeConflictCopies(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const names = new Set(entries.map((entry) => entry.name));
+
+  for (const entry of entries) {
+    const conflictCopy = entry.name.match(/^(.*) \d+(\.[^.]*)?$/);
+
+    if (conflictCopy) {
+      const canonicalName = `${conflictCopy[1]}${conflictCopy[2] ?? ""}`;
+
+      if (names.has(canonicalName)) {
+        await rm(join(directory, entry.name), { recursive: entry.isDirectory(), force: true });
+        continue;
+      }
+    }
+
+    if (entry.isDirectory()) {
+      await removeConflictCopies(join(directory, entry.name));
+    }
+  }
+}
 
 await rm(join(root, ".pages-build"), { recursive: true, force: true });
 await rm(join(root, "out"), { recursive: true, force: true });
@@ -31,6 +53,8 @@ try {
   if (exitCode !== 0) {
     throw new Error(`GitHub Pages build failed with exit code ${exitCode}.`);
   }
+
+  await removeConflictCopies(join(root, "out"));
 } finally {
   await rename(holdingDirectory, apiDirectory);
   await rm(join(root, ".pages-build"), { recursive: true, force: true });
