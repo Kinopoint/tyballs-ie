@@ -3684,7 +3684,6 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .brand-motion { display: none; }
   .zip-pill span { animation: none; }
   .zip-hero-track,
   .zip-cost-lines p,
