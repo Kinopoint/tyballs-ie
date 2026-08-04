@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DM_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -6,6 +7,18 @@ import { ConsentManager } from "@/components/consent-manager";
 import { StructuredData } from "@/components/structured-data";
 import { site } from "@/lib/site";
 import "./globals.css";
+
+const brandDisplay = Space_Grotesk({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-brand-display",
+});
+
+const brandBody = DM_Sans({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-brand-body",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tyballs.ie"),
@@ -60,7 +73,7 @@ const websiteSchema = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${brandDisplay.variable} ${brandBody.variable}`}>
         <StructuredData data={[organisationSchema, websiteSchema]} />
         <Script id="consent-default" strategy="beforeInteractive">
           {`window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});`}
