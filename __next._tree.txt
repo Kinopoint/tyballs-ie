@@ -1,2 +1,2 @@
-:HL["/tyballs-ie/_next/static/chunks/437_qxrg-9-m-.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"tJq20d558uFny6kAufOGA"}
+:HL["/tyballs-ie/_next/static/chunks/2wimnsbf9cm4p.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"ySbJujB99t7Lte9xdPyZo"}
