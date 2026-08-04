@@ -219,17 +219,78 @@ h4 {
   width: 100%;
 }
 
-.brand-motion {
-  background: transparent;
-  filter: saturate(1.08) contrast(1.04);
+.brand-lockup {
+  align-items: center;
+  background:
+    linear-gradient(110deg, rgba(231, 62, 179, 0.12), rgba(15, 18, 33, 0.88) 42%, rgba(69, 109, 245, 0.14)) padding-box,
+    linear-gradient(105deg, var(--magenta), rgba(145, 132, 217, 0.7), var(--blue)) border-box;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  box-shadow: 0 0 14px rgba(86, 74, 214, 0.18);
+  display: flex;
   height: 100%;
   inset: 0;
-  mix-blend-mode: screen;
-  object-fit: contain;
-  opacity: 0.72;
-  pointer-events: none;
+  justify-content: center;
+  overflow: hidden;
   position: absolute;
   width: 100%;
+}
+
+.brand-dotfield {
+  animation: brand-dots 6s ease-in-out infinite;
+  background-image: radial-gradient(circle, rgba(190, 153, 255, 0.62) 0 1px, transparent 1.4px);
+  background-size: 8px 8px;
+  inset: 2px 5px 12px;
+  mask-image: linear-gradient(to bottom, #000, transparent 92%);
+  opacity: 0.34;
+  position: absolute;
+}
+
+.brand-wordmark {
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  position: relative;
+  text-shadow: 0 0 9px rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.brand-wordmark strong {
+  font-weight: 750;
+  letter-spacing: -0.075em;
+}
+
+.brand-wordmark span {
+  color: #dcd8ff;
+}
+
+.brand-rhythm {
+  animation: brand-rhythm 6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  background: linear-gradient(90deg, var(--magenta), #b35cda 52%, var(--blue));
+  border-radius: 99px;
+  bottom: 8px;
+  box-shadow: 0 0 7px rgba(231, 62, 179, 0.7), 0 0 8px rgba(69, 109, 245, 0.55);
+  height: 1px;
+  left: 16px;
+  position: absolute;
+  transform-origin: left center;
+  width: calc(100% - 32px);
+}
+
+@keyframes brand-rhythm {
+  0%, 12% { opacity: 0.2; transform: scaleX(0); }
+  42%, 82% { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0.35; transform: scaleX(1); }
+}
+
+@keyframes brand-dots {
+  0%, 100% { opacity: 0.2; transform: translateY(0); }
+  45%, 75% { opacity: 0.5; transform: translateY(1px); }
 }
 
 .brand-full {
@@ -2168,6 +2229,9 @@ h4 {
     height: 46px;
     width: 112px;
   }
+
+  .brand-wordmark { font-size: 17px; }
+  .brand-rhythm { bottom: 7px; left: 14px; width: calc(100% - 28px); }
 
   .header-cta {
     font-size: 12px;
