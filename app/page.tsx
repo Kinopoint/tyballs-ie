@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { DesignPlaceholder } from "@/components/design-placeholder";
+import { EventIcon } from "@/components/event-icon";
 import { HomeHero } from "@/components/home-hero";
 import { StructuredData } from "@/components/structured-data";
 
 const highlights = [
-  ["◎", "Venue search", "Matched to your county, date and guest estimate"],
-  ["◍", "One coordinator", "One contact from first conversation to the night"],
-  ["◈", "A managed event", "Arrival, timings and key contacts clearly planned"],
+  ["venue", "Venue search", "Matched to your county, date and guest estimate"],
+  ["contact", "One coordinator", "One contact from first conversation to the night"],
+  ["shield", "A managed event", "Arrival, timings and key contacts clearly planned"],
 ] as const;
 
 const experiences = [
@@ -60,8 +61,8 @@ export default function Home() {
       <HomeHero />
 
       <section className="zip-section zip-highlights zip-shell" aria-label="Why plan with DebsGuru">
-        {highlights.map(([mark, title, text]) => (
-          <article key={title}><span className="zip-highlight-mark">{mark}</span><h2>{title}</h2><p>{text}</p></article>
+        {highlights.map(([icon, title, text]) => (
+          <article key={title}><span className="zip-highlight-mark" aria-hidden="true"><EventIcon name={icon} /></span><h2>{title}</h2><p>{text}</p></article>
         ))}
       </section>
 
@@ -70,7 +71,8 @@ export default function Home() {
           <div><p className="zip-eyebrow">Your night</p><h2>Everything in its place.</h2></div>
           <Link className="zip-button-outline" href="/enquire">Booking Enquiry Form</Link>
         </div>
-        <div className="zip-experience-grid">
+        <p className="zip-gallery-hint" aria-hidden="true">Swipe to explore <span>→</span></p>
+        <div className="zip-experience-grid" aria-label="TY Ball experience gallery">
           {experiences.map(([placeholder, title, text]) => (
             <figure key={title}>
               <div className="zip-experience-media"><DesignPlaceholder label={placeholder} /></div>

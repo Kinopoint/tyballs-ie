@@ -2960,13 +2960,28 @@ h4 {
 }
 
 .zip-highlight-mark {
-  border: 1px solid rgba(145, 132, 217, 0.5);
-  border-radius: 8px;
-  color: var(--accent-light);
+  align-items: center;
+  background: linear-gradient(145deg, rgba(145, 132, 217, 0.18), rgba(145, 132, 217, 0.05));
+  border: 1px solid rgba(145, 132, 217, 0.38);
+  border-radius: 11px;
   display: grid;
-  font-size: 14px;
+  height: 48px;
+  justify-items: center;
+  width: 48px;
+}
+
+.zip-highlight-mark .event-icon {
+  background: transparent;
+  border: 0;
+  height: 38px;
+  overflow: visible;
+  width: 38px;
+}
+
+.zip-highlight-mark .event-icon img {
+  filter: grayscale(1) brightness(0) invert(68%) sepia(18%) saturate(1370%) hue-rotate(207deg) brightness(90%) contrast(92%);
   height: 34px;
-  place-items: center;
+  opacity: 1;
   width: 34px;
 }
 
@@ -3006,6 +3021,10 @@ h4 {
   display: grid;
   gap: 18px;
   grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+}
+
+.zip-gallery-hint {
+  display: none;
 }
 
 .zip-experience-grid figure {
@@ -3597,6 +3616,36 @@ h4 {
   .zip-proof div:last-child { grid-column: 1 / -1; }
   .zip-section-heading { align-items: flex-start; flex-direction: column; }
   .zip-section-heading .zip-button-outline { width: 100%; }
+  .zip-gallery-hint {
+    align-items: center;
+    color: var(--muted);
+    display: flex;
+    font-size: 12px;
+    gap: 8px;
+    letter-spacing: 0.08em;
+    margin: -10px 0 14px;
+    text-transform: uppercase;
+  }
+  .zip-gallery-hint span {
+    color: var(--accent-light);
+    font-size: 17px;
+    line-height: 1;
+  }
+  .zip-experience-grid {
+    grid-auto-columns: min(82vw, 320px);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    margin-inline: -20px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 1px 20px 10px;
+    scroll-padding-inline: 20px;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+  }
+  .zip-experience-grid::-webkit-scrollbar { display: none; }
+  .zip-experience-grid figure { scroll-snap-align: start; }
   .zip-parent-teaser .zip-button-accent { width: 100%; }
   .zip-split-cta .zip-button-fill,
   .zip-soft-cta .zip-button-fill,
