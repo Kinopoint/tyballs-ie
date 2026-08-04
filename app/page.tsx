@@ -1,35 +1,28 @@
 import Link from "next/link";
-import { EditorialImage } from "@/components/editorial-image";
-import { EventIcon } from "@/components/event-icon";
+import { DesignPlaceholder } from "@/components/design-placeholder";
 import { HomeHero } from "@/components/home-hero";
 import { StructuredData } from "@/components/structured-data";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
 const highlights = [
-  ["venue", "Venue search", "Matched to your county, date and guest estimate"],
-  ["contact", "One coordinator", "One contact from first conversation to the night"],
-  ["shield", "A managed event", "Arrival, timings and key contacts clearly planned"],
+  ["◎", "Venue search", "Matched to your county, date and guest estimate"],
+  ["◍", "One coordinator", "One contact from first conversation to the night"],
+  ["◈", "A managed event", "Arrival, timings and key contacts clearly planned"],
 ] as const;
 
 const experiences = [
-  ["drive-garden", "venue", "A venue that fits", "Date, location, capacity and travel considered together."],
-  ["drive-dinner", "dining", "A proper occasion", "Dinner, service and dietary requirements coordinated."],
-  ["drive-dance", "music", "A dancefloor ready", "DJ, lighting and the running order brought together."],
-  ["drive-photobooth", "camera", "Moments to keep", "Photography, photobooth and awards can be included."],
+  ["A venue that fits · portrait", "A venue that fits", "Date, location, capacity and travel considered together."],
+  ["A proper occasion · portrait", "A proper occasion", "Dinner, service and dietary requirements coordinated."],
+  ["A dancefloor ready · portrait", "A dancefloor ready", "DJ, lighting and the running order brought together."],
+  ["Moments to keep · portrait", "Moments to keep", "Photography, photobooth and awards can be included."],
 ] as const;
 
 const steps = [
-  ["calendar", "Share the basics", "School, county, date and estimated attendance."],
-  ["venue", "Review the plan", "See the venue, inclusions and pricing together."],
-  ["spark", "Enjoy the night", "Your coordinator keeps the agreed plan moving."],
+  ["Share the basics", "School, county, date and estimated attendance."],
+  ["Review the plan", "See the venue, inclusions and pricing together."],
+  ["Enjoy the night", "Your coordinator keeps the agreed plan moving."],
 ] as const;
 
-const safety = [
-  ["shield", "Guest list and venue entry plan"],
-  ["contact", "Named adult contacts"],
-  ["route", "Clear arrival and collection"],
-] as const;
+const safety = ["Guest list and venue entry plan", "Named adult contacts", "Clear arrival and collection"] as const;
 
 const questions = [
   ["Do we need final guest numbers?", "No. Start with a realistic estimate and confirm the final number later."],
@@ -66,67 +59,65 @@ export default function Home() {
       <StructuredData data={homeSchema} />
       <HomeHero />
 
-      <section className="visual-highlights shell" aria-label="Why plan with DebsGuru">
-        {highlights.map(([icon, title, text]) => <article key={title}><EventIcon name={icon} /><div><h2>{title}</h2><p>{text}</p></div></article>)}
+      <section className="zip-section zip-highlights zip-shell" aria-label="Why plan with DebsGuru">
+        {highlights.map(([mark, title, text]) => (
+          <article key={title}><span className="zip-highlight-mark">{mark}</span><h2>{title}</h2><p>{text}</p></article>
+        ))}
       </section>
 
-      <section className="visual-experience shell" id="experience">
-        <div className="visual-section-heading">
-          <div><p className="eyebrow">Your night</p><h2>Everything in its place.</h2></div>
-          <Link className="button button-dark" href="/enquire">Booking Enquiry Form</Link>
+      <section className="zip-section zip-shell" id="experience">
+        <div className="zip-section-heading">
+          <div><p className="zip-eyebrow">Your night</p><h2>Everything in its place.</h2></div>
+          <Link className="zip-button-outline" href="/enquire">Booking Enquiry Form</Link>
         </div>
-        <div className="experience-gallery">
-          {experiences.map(([image, icon, title, text]) => (
-            <article key={title}>
-              <EditorialImage alt={`Guests at a real DebsGuru event: ${title.toLowerCase()}`} height={1500} name={image} priority width={1000} />
-              <div className="experience-caption"><EventIcon name={icon} /><div><h3>{title}</h3><p>{text}</p></div></div>
-            </article>
+        <div className="zip-experience-grid">
+          {experiences.map(([placeholder, title, text]) => (
+            <figure key={title}>
+              <div className="zip-experience-media"><DesignPlaceholder label={placeholder} /></div>
+              <figcaption><span aria-hidden="true" /><h3>{title}</h3><p>{text}</p></figcaption>
+            </figure>
           ))}
         </div>
       </section>
 
-      <section className="visual-story">
-        <div className="shell visual-story-grid">
-          <figure><EditorialImage alt="Guests enjoying a real DebsGuru event at an Irish venue" height={1500} name="drive-arrival" width={1000} /></figure>
-          <div className="visual-story-copy">
-            <p className="eyebrow light">DebsGuru</p>
+      <section className="zip-section zip-shell">
+        <div className="zip-coordinator">
+          <div className="zip-coordinator-copy">
+            <p className="zip-eyebrow">DebsGuru</p>
             <h2>One coordinator.</h2>
             <p>Your coordinator connects the committee, venue and event team, so decisions and updates stay in one place.</p>
-            <div className="visual-facts"><strong>10+ years</strong><span>Across Ireland</span></div>
-            <Link className="button" href="/how-it-works">How it works</Link>
+            <div className="zip-tags"><span>10+ years</span><span>Across Ireland</span></div>
+            <Link className="zip-button-accent" href="/how-it-works">How it works</Link>
           </div>
+          <div className="zip-coordinator-media"><DesignPlaceholder label="Coordinator / dinner service · portrait" /></div>
         </div>
       </section>
 
-      <section className="visual-process shell">
-        <div className="visual-section-heading"><div><p className="eyebrow">A simple start</p><h2>Three steps. One plan.</h2></div></div>
-        <div className="visual-step-grid">
-          {steps.map(([icon, title, text]) => <article key={title}><EventIcon name={icon} /><h3>{title}</h3><p>{text}</p></article>)}
+      <section className="zip-section zip-shell">
+        <div className="zip-section-heading"><div><p className="zip-eyebrow">A simple start</p><h2>Three steps. One plan.</h2></div></div>
+        <div className="zip-step-grid">
+          {steps.map(([title, text]) => <article key={title}><span aria-hidden="true" /><h3>{title}</h3><p>{text}</p></article>)}
         </div>
-        <Link className="button button-dark" href="/enquire">Booking Enquiry Form</Link>
+        <Link className="zip-button-outline zip-section-button" href="/enquire">Booking Enquiry Form</Link>
       </section>
 
-      <section className="visual-safety shell">
-        <div className="visual-safety-copy">
-          <p className="eyebrow">For parents and schools</p>
-          <h2>Clear for everyone.</h2>
-          <div className="safety-icon-list">{safety.map(([icon, title]) => <div key={title}><EventIcon name={icon} /><strong>{title}</strong></div>)}</div>
-          <Link className="button button-dark" href="/parents-schools">See the event guidance</Link>
-        </div>
-        <figure className="vertical-event-video"><video aria-label="A real DebsGuru event and its guests" autoPlay loop muted playsInline poster={`${basePath}/images/tyballs-jenga-poster.jpg`} preload="metadata"><source src={`${basePath}/video/tyballs-jenga-vertical.mp4`} type="video/mp4" /></video></figure>
+      <section className="zip-section zip-shell zip-parent-teaser">
+        <div><p className="zip-eyebrow">For parents and schools</p><h2>Clear for everyone.</h2><Link className="zip-button-accent" href="/parents-schools">See the event guidance</Link></div>
+        <div className="zip-simple-list">{safety.map((item) => <p key={item}><span aria-hidden="true" />{item}</p>)}</div>
       </section>
 
-      <section className="visual-faq">
-        <div className="shell faq-grid">
-          <div className="section-heading"><p className="eyebrow light">Quick answers</p><h2>Good to know.</h2></div>
-          <div className="faq-list">{questions.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
-        </div>
+      <section className="zip-section zip-shell zip-faq">
+        <div><p className="zip-eyebrow">Quick answers</p><h2>Good to know.</h2></div>
+        <div className="zip-faq-list">{questions.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
       </section>
 
-      <section className="visual-final-cta shell">
-        <EventIcon name="calendar" />
-        <div><p className="eyebrow">Start with the basics</p><h2>Booking Enquiry Form</h2></div>
-        <Link className="button button-dark" href="/enquire">Open the form</Link>
+      <section className="zip-section zip-shell">
+        <div className="zip-final-cta">
+          <p className="zip-eyebrow">Start with the basics</p>
+          <h2>Booking Enquiry Form</h2>
+          <p>Sending an enquiry does not reserve a date or create a booking.</p>
+          <Link className="zip-button-fill" href="/enquire">Open the form</Link>
+        </div>
       </section>
     </main>
   );

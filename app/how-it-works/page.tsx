@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EditorialImage } from "@/components/editorial-image";
+import { DesignPlaceholder } from "@/components/design-placeholder";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
@@ -51,23 +51,19 @@ export default function HowItWorksPage() {
   return (
     <main id="main-content">
       <StructuredData data={howItWorksSchema} />
-      <section className="page-hero page-hero-with-media shell">
-        <div className="page-hero-title"><p className="eyebrow">How it works</p><h1>From enquiry to event</h1></div>
-        <p className="page-hero-description">Start with a date, location and guest estimate. DebsGuru turns them into a plan the committee can review with confidence.</p>
-        <figure className="page-hero-media"><EditorialImage alt="Guests seated for dinner at a real DebsGuru event" height={1500} name="drive-dinner" priority width={1000} /></figure>
+      <section className="zip-inner-hero zip-shell zip-media-hero">
+        <div className="zip-inner-copy"><p className="zip-eyebrow">How it works</p><h1>From enquiry to event</h1><p>Start with a date, location and guest estimate. DebsGuru turns them into a plan the committee can review with confidence.</p></div>
+        <div className="zip-wide-placeholder"><DesignPlaceholder label="Dinner · art-directed crop" /></div>
       </section>
-      <section className="stage-list shell">
+      <section className="zip-section zip-shell zip-stage-list">
         {stages.map((stage, index) => (
           <article id={`step-${index + 1}`} key={stage.title}>
-            <h2>{stage.title}</h2>
+            <div><span className={index === stages.length - 1 ? "is-active" : ""} aria-hidden="true" /><h2>{stage.title}</h2></div>
             <p>{stage.text}</p>
           </article>
         ))}
       </section>
-      <section className="page-cta shell">
-        <div><p className="eyebrow">Ready to begin</p><h2>Booking Enquiry Form</h2></div>
-        <Link className="button button-dark" href="/enquire">Open the form</Link>
-      </section>
+      <section className="zip-section zip-shell"><div className="zip-split-cta"><div><p className="zip-eyebrow">Ready to begin</p><h2>Booking Enquiry Form</h2></div><Link className="zip-button-fill" href="/enquire">Open the form</Link></div></section>
     </main>
   );
 }

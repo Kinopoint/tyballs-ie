@@ -10,8 +10,6 @@ export const metadata = createPageMetadata({
   imageAlt: "Guests together at a real DebsGuru event venue",
 });
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
 const costGuideSchema = [
   breadcrumbSchema("Cost guide", "/cost-guide"),
   {
@@ -29,7 +27,7 @@ export default function CostGuidePage() {
   return (
     <main className="cost-landing" id="main-content">
       <StructuredData data={costGuideSchema} />
-      <CostGuideMotion basePath={basePath} />
+      <CostGuideMotion />
     </main>
   );
 }

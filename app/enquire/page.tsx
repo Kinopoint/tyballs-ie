@@ -1,4 +1,4 @@
-import { EditorialImage } from "@/components/editorial-image";
+import { DesignPlaceholder } from "@/components/design-placeholder";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 import { EnquiryForm } from "./enquiry-form";
@@ -41,8 +41,7 @@ export default function EnquirePage() {
             </div>
           </div>
           <figure className="enquire-hero-media">
-            <EditorialImage alt="Guests together at a real DebsGuru event" height={1500} name="drive-arrival" priority width={1000} />
-            <figcaption>Arrival · real event</figcaption>
+            <DesignPlaceholder label="Arrival · crop" />
           </figure>
         </div>
       </section>

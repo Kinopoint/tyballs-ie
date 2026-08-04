@@ -29,13 +29,17 @@ export function SiteHeader() {
       <Brand />
       <nav aria-label="Main navigation" id="main-navigation">
         {navigation.map((item) => (
-          <Link href={item.href} key={item.href} onClick={closeMenu}>
+          <Link aria-current={!item.href.startsWith("/#") && pathname.endsWith(item.href) ? "page" : undefined} href={item.href} key={item.href} onClick={closeMenu}>
             {item.label}
           </Link>
         ))}
         <Link className="mobile-nav-cta" href="/enquire" onClick={closeMenu}>
           Booking Enquiry Form
         </Link>
+        <div className="mobile-nav-contact">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={`tel:${site.whatsappHref.replace("https://wa.me/", "+")}`}>{site.whatsappDisplay}</a>
+        </div>
       </nav>
       <a className="header-phone" href={`tel:${site.whatsappHref.replace("https://wa.me/", "+")}`}>
         {site.whatsappDisplay}

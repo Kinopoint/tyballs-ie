@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EditorialImage } from "@/components/editorial-image";
+import { DesignPlaceholder } from "@/components/design-placeholder";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
@@ -25,16 +25,16 @@ export default function CommitteesPage() {
   return (
     <main id="main-content">
       <StructuredData data={committeesSchema} />
-      <section className="page-hero page-hero-with-media shell">
-        <div className="page-hero-title"><p className="eyebrow">For TY committees</p><h1>Start with the basics</h1></div>
-        <p className="page-hero-description">You do not need every answer. Five useful details give DebsGuru enough to start shaping the event.</p>
-        <figure className="page-hero-media"><EditorialImage alt="Guests talking together at a real DebsGuru event" height={1500} name="drive-garden" priority width={1000} /></figure>
+      <section className="zip-plain-hero zip-shell">
+        <p className="zip-eyebrow">For TY committees</p>
+        <h1>Start with the basics</h1>
+        <p>You do not need every answer. Five useful details give DebsGuru enough to start shaping the event.</p>
       </section>
-      <section className="editorial-page shell">
-        <div className="editorial-intro"><p className="eyebrow">Committee checklist</p><h2>Five things to share</h2><p>These basics keep the first conversation focused. DebsGuru can then check the venue, event arrangements and pricing that fit your group.</p></div>
-        <div className="editorial-list">{checklist.map(([title, text]) => <article key={title}><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+      <section className="zip-section zip-shell zip-committee-grid">
+        <div className="zip-committee-intro"><p className="zip-eyebrow">Committee checklist</p><h2>Five things to share</h2><p>These basics keep the first conversation focused. DebsGuru can then check the venue, event arrangements and pricing that fit your group.</p><div className="zip-committee-media"><DesignPlaceholder label="Venue garden · wide crop" /></div></div>
+        <div className="zip-numberless-list">{checklist.map(([title, text], index) => <article key={title}><span className={index === checklist.length - 1 ? "is-active" : ""} aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </section>
-      <section className="page-cta shell"><div><p className="eyebrow">Ready to begin</p><h2>Booking Enquiry Form</h2></div><Link className="button button-dark" href="/enquire">Open the form</Link></section>
+      <section className="zip-section zip-shell"><div className="zip-split-cta"><div><p className="zip-eyebrow">Ready to begin</p><h2>Booking Enquiry Form</h2></div><Link className="zip-button-fill" href="/enquire">Open the form</Link></div></section>
     </main>
   );
 }

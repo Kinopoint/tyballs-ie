@@ -1,56 +1,56 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { EditorialImage } from "@/components/editorial-image";
+import { useEffect, useState } from "react";
+import { DesignPlaceholder } from "@/components/design-placeholder";
 
 const scenes = [
-  { label: "The night", name: "drive-arrival", width: 1000, height: 1367 },
-  { label: "Dinner", name: "drive-dinner", width: 1000, height: 1500 },
-  { label: "Photo booth", name: "drive-photobooth", width: 1000, height: 968 },
-  { label: "Together", name: "drive-group", width: 1000, height: 1460 },
+  ["The night", "Arrival, lit and calm", "The night · portrait 9:16"],
+  ["Dinner", "Dinner, served together", "Dinner · portrait 9:16"],
+  ["Photo booth", "Photo booth, all night", "Photo booth · portrait 9:16"],
+  ["Together", "The whole year, one room", "Together · portrait 9:16"],
 ] as const;
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function HomeHero() {
   const [activeScene, setActiveScene] = useState(0);
 
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+
+    const timer = window.setInterval(() => setActiveScene((scene) => (scene + 1) % scenes.length), 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+
   return (
-    <section className="home-hero" aria-labelledby="home-hero-title">
-      <div className="home-hero-scrim" aria-hidden="true" />
-      <div className="home-hero-stage shell">
-        <div className="home-hero-copy">
-          <p className="hero-badge">TY Ball organisers across Ireland</p>
-          <h1 id="home-hero-title">Planning a TY Ball?</h1>
-          <p className="hero-lead">A memorable night for them. One clear plan for you.</p>
-          <div className="hero-actions">
-            <Link className="button" href="/enquire">Booking Enquiry Form</Link>
-            <Link className="hero-secondary-link" href="/how-it-works">See how it works <span aria-hidden="true">→</span></Link>
+    <section className="zip-hero" aria-labelledby="home-hero-title">
+      <div className="zip-hero-glow zip-hero-glow-magenta" aria-hidden="true" />
+      <div className="zip-hero-glow zip-hero-glow-blue" aria-hidden="true" />
+      <div className="zip-hero-grid zip-shell">
+        <div className="zip-hero-copy">
+          <p className="zip-pill"><span aria-hidden="true" />TY Ball organisers across Ireland</p>
+          <h1 id="home-hero-title">Planning a TY&nbsp;Ball?</h1>
+          <p className="zip-lead">A memorable night for them. One clear plan for you.</p>
+          <div className="zip-actions">
+            <Link className="zip-button-outline" href="/enquire">Booking Enquiry Form</Link>
+            <Link className="zip-button-quiet" href="/how-it-works">See how it works →</Link>
           </div>
-          <div className="hero-proof" aria-label="DebsGuru experience"><strong>10+ years</strong><span>One event coordinator</span><span>Across Ireland</span></div>
+          <div className="zip-proof" aria-label="DebsGuru experience">
+            <div><strong>10+ years</strong><span>DebsGuru experience</span></div>
+            <div><strong>One</strong><span>event coordinator</span></div>
+            <div><strong>Across Ireland</strong><span>venues and travel</span></div>
+          </div>
         </div>
-        <div className="home-hero-visual">
-          <div className="home-hero-media">
-            <video aria-label="Guests arriving at a real DebsGuru event" autoPlay className={`home-hero-video home-hero-video-portrait${activeScene === 0 ? " is-active" : ""}`} loop muted playsInline poster={`${basePath}/images/tyballs-real-event-poster.jpg`} preload="metadata">
-              <source src={`${basePath}/video/tyballs-real-event-vertical.mp4`} type="video/mp4" />
-            </video>
-            {scenes.map((scene, index) => (
-              <EditorialImage
-                alt={index === 0 ? "" : `Guests at a real DebsGuru event: ${scene.label.toLowerCase()}`}
-                className={`home-hero-image${activeScene === index && index !== 0 ? " is-active" : ""}`}
-                height={scene.height}
-                key={scene.label}
-                name={scene.name}
-                priority={index === 0}
-                width={scene.width}
-              />
-            ))}
-            <p className="home-hero-caption">{activeScene === 0 ? "Arrival, lit and calm" : scenes[activeScene].label}</p>
+        <div className="zip-hero-gallery">
+          <div className="zip-hero-frame">
+            <div className="zip-hero-track" style={{ transform: `translateX(-${activeScene * 25}%)` }}>
+              {scenes.map((scene) => <DesignPlaceholder className="zip-hero-placeholder" key={scene[0]} label={scene[2]} />)}
+            </div>
+            <p className="zip-hero-caption">{scenes[activeScene][1]}</p>
           </div>
-          <div className="scene-switcher" role="group" aria-label="Explore the event planning experience">
+          <div className="zip-scene-tabs" role="group" aria-label="Explore the event planning experience">
             {scenes.map((scene, index) => (
-              <button aria-pressed={activeScene === index} key={scene.label} onClick={() => setActiveScene(index)} type="button">{scene.label}</button>
+              <button aria-pressed={activeScene === index} key={scene[0]} onClick={() => setActiveScene(index)} type="button">{scene[0]}</button>
             ))}
           </div>
         </div>
