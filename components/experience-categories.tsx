@@ -8,12 +8,12 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const categories = [
   {
-    name: "arrival",
+    name: "venue",
     poster: "tyballs-school-arrival-poster.webp",
     video: "tyballs-school-arrival-vertical",
   },
   {
-    name: "venue",
+    name: "dinner",
     poster: "tyballs-real-event-poster.webp",
     video: "tyballs-real-event-vertical",
   },
