@@ -3918,7 +3918,6 @@ h4 {
   .zip-actions { flex-direction: column; }
   .zip-actions a { width: 100%; }
   .zip-proof { display: grid; grid-template-columns: 1fr 1fr; }
-  .zip-proof div:last-child { grid-column: 1 / -1; }
   .zip-section-heading { align-items: flex-start; flex-direction: column; }
   .zip-section-heading .zip-button-outline { width: 100%; }
   .zip-gallery-hint {

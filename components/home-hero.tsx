@@ -37,7 +37,6 @@ export function HomeHero() {
           </div>
           <div className="zip-proof" aria-label="DebsGuru experience">
             <div><strong>10+ years</strong><span>DebsGuru experience</span></div>
-            <div><strong>One</strong><span>event coordinator</span></div>
             <div><strong>Across Ireland</strong><span>venues and travel</span></div>
           </div>
         </div>
