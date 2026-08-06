@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DesignPlaceholder } from "@/components/design-placeholder";
+import { HowItWorksHero } from "@/components/how-it-works-hero";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
@@ -51,10 +51,7 @@ export default function HowItWorksPage() {
   return (
     <main id="main-content">
       <StructuredData data={howItWorksSchema} />
-      <section className="zip-inner-hero zip-shell zip-media-hero">
-        <div className="zip-inner-copy"><p className="zip-eyebrow">How it works</p><h1>From enquiry to event</h1><p>Start with a date, location and guest estimate. DebsGuru turns them into a plan the committee can review with confidence.</p></div>
-        <div className="zip-wide-placeholder"><DesignPlaceholder label="Dinner · art-directed crop" /></div>
-      </section>
+      <HowItWorksHero />
       <section className="zip-section zip-shell zip-stage-list">
         {stages.map((stage, index) => (
           <article id={`step-${index + 1}`} key={stage.title}>
