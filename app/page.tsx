@@ -65,7 +65,7 @@ export default function Home() {
       <ExperienceCategories />
 
       <section className="zip-section zip-shell">
-        <div className="zip-coordinator">
+        <div className="zip-coordinator zip-coordinator-banner">
           <div className="zip-coordinator-copy">
             <p className="zip-eyebrow">Proven experience</p>
             <h2>Over 10 years.</h2>
@@ -73,7 +73,14 @@ export default function Home() {
             <div className="zip-tags"><span>10+ years</span><span>Thousands of students</span></div>
             <Link className="zip-button-accent" href="/how-it-works">How it works</Link>
           </div>
-          <EditorialImage alt="Students enjoying dinner at a DebsGuru event" className="zip-coordinator-media" height={1500} name="drive-dinner" width={1000} />
+          <div className="zip-coordinator-gallery" aria-label="Real DebsGuru event moments">
+            <EditorialImage alt="Friends arriving together at a DebsGuru event" height={1367} name="drive-arrival" width={1000} />
+            <EditorialImage alt="Students enjoying dinner at a DebsGuru event" height={1500} name="drive-dinner" width={1000} />
+            <EditorialImage alt="Students using the photo booth" height={1500} name="drive-photobooth" width={1000} />
+            <EditorialImage alt="Friends dancing together at a DebsGuru event" height={1500} name="drive-dance" width={1000} />
+            <EditorialImage alt="Friends posing together at the photo booth" height={1500} name="drive-group" width={1000} />
+            <EditorialImage alt="Students gathering at an event venue" height={1500} name="drive-garden" width={1000} />
+          </div>
         </div>
       </section>
 
