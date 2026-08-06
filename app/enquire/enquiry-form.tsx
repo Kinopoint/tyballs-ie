@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
@@ -31,6 +32,13 @@ const referralSources = [
   ["google", "Google search"],
   ["other", "Other"],
 ] as const;
+
+const sectionMotion = {
+  initial: { opacity: 0, y: 28 },
+  transition: { duration: 0.72, ease: [0.16, 1, 0.3, 1] as const },
+  viewport: { amount: 0.12, once: true },
+  whileInView: { opacity: 1, y: 0 },
+};
 
 export function EnquiryForm() {
   const [state, setState] = useState<State>({ kind: "idle", message: "" });
@@ -123,7 +131,7 @@ export function EnquiryForm() {
     <>
       {!previewMode ? <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={renderTurnstile} /> : null}
       <form className="enquiry-form" onSubmit={submit} onFocusCapture={() => { if (!formStarted.current) { formStarted.current = true; trackEvent("form_start", { form_name: "tyballs_enquiry" }); } }}>
-        <div className="form-section" id="contact-details" aria-labelledby="contact-details-heading">
+        <motion.div {...sectionMotion} className="form-section" id="contact-details" aria-labelledby="contact-details-heading">
           <div className="form-section-heading"><div><p className="form-section-label">Committee contact</p><h2 id="contact-details-heading">Your contact details</h2><p>So a DebsGuru coordinator can respond to your committee.</p></div></div>
           <div className="field-grid">
             <label className="field"><span>First name *</span><input name="firstName" autoComplete="given-name" required maxLength={80} /></label>
@@ -131,9 +139,9 @@ export function EnquiryForm() {
             <label className="field"><span>Phone *</span><input name="phone" type="tel" autoComplete="tel" required maxLength={30} /></label>
             <label className="field"><span>Email *</span><input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="form-section" id="school-details" aria-labelledby="school-details-heading">
+        <motion.div {...sectionMotion} className="form-section" id="school-details" aria-labelledby="school-details-heading">
           <div className="form-section-heading"><div><p className="form-section-label">School profile</p><h2 id="school-details-heading">Your school</h2><p>Your year size gives the team a stronger starting point for attendance planning.</p></div></div>
           <div className="field-grid">
             <label className="field field-wide"><span>School name *</span><input name="school" autoComplete="organization" required maxLength={160} /></label>
@@ -141,9 +149,9 @@ export function EnquiryForm() {
             <label className="field"><span>How many people are in your year? *</span><input name="yearSize" type="number" inputMode="numeric" min={10} max={2000} required placeholder="Approximately" /></label>
             <label className="field field-wide"><span>Include any other school names here if you are joining with other schools for this event <em>optional</em></span><textarea name="joiningSchools" rows={3} maxLength={500} /></label>
           </div>
-        </div>
+        </motion.div>
 
-        <fieldset className="form-section" id="event-details" aria-labelledby="event-details-heading">
+        <motion.fieldset {...sectionMotion} className="form-section" id="event-details" aria-labelledby="event-details-heading">
           <legend className="form-section-heading"><div><p className="form-section-label">Your preferences</p><h2 id="event-details-heading">Event details</h2><p>Tell us what the committee is considering for the night.</p></div></legend>
           <div className="form-choice-group">
             <span className="form-group-label">Enquiring for *</span>
@@ -162,9 +170,9 @@ export function EnquiryForm() {
               {attendanceBands.map(([value, label]) => <label className="choice" key={value}><input type="radio" name="attendanceBand" value={value} required /><span>{label}</span></label>)}
             </div>
           </div>
-        </fieldset>
+        </motion.fieldset>
 
-        <fieldset className="form-section" id="final-details" aria-labelledby="final-details-heading">
+        <motion.fieldset {...sectionMotion} className="form-section" id="final-details" aria-labelledby="final-details-heading">
           <legend className="form-section-heading"><div><p className="form-section-label">Almost there</p><h2 id="final-details-heading">One last detail</h2><p>Tell us how you found DebsGuru and add anything else the team should know.</p></div></legend>
           <div className="form-choice-group">
             <span className="form-group-label">How did you hear about DebsGuru? *</span>
@@ -174,9 +182,9 @@ export function EnquiryForm() {
           </div>
           {referralSource === "other" ? <div className="field-grid form-conditional-field"><label className="field field-wide"><span>Please tell us how you heard about DebsGuru *</span><input name="referralOther" required maxLength={160} /></label></div> : <input name="referralOther" type="hidden" value="" />}
           <div className="field-grid form-message-field"><label className="field field-wide"><span>Anything else you might require or want to tell us? <em>optional</em></span><textarea name="message" rows={5} maxLength={2000} /></label></div>
-        </fieldset>
+        </motion.fieldset>
 
-        <div className="form-finish">
+        <motion.div {...sectionMotion} className="form-finish">
           <label className="trap" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
           <label className="consent"><input type="checkbox" name="privacyConsent" value="yes" required /><span>DebsGuru works directly with Debs and TY Ball committees. I have read the <Link href="/privacy" target="_blank">Privacy Policy</Link> and agree that DebsGuru Ltd may reply to this enquiry and send follow-up information related to it. *</span></label>
           <input name="marketingConsent" type="hidden" value="no" />
@@ -184,7 +192,7 @@ export function EnquiryForm() {
           <button className="button button-dark form-button" disabled={previewMode || state.kind === "submitting" || state.kind === "success"} type="submit">{previewMode ? "Preview only" : state.kind === "submitting" ? "Sending…" : "Send booking enquiry"}</button>
           <p className={`form-response ${state.kind}`} aria-live="polite">{state.message}</p>
           <p className="form-disclaimer">Sending an enquiry does not reserve a date or create a booking.</p>
-        </div>
+        </motion.div>
       </form>
     </>
   );

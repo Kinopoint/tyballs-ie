@@ -1,4 +1,4 @@
-import { DesignPlaceholder } from "@/components/design-placeholder";
+import { EnquiryHero } from "@/components/enquiry-hero";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 import { EnquiryForm } from "./enquiry-form";
@@ -27,24 +27,7 @@ export default function EnquirePage() {
   return (
     <main className="enquire-landing" id="main-content">
       <StructuredData data={enquirySchema} />
-      <section className="enquire-hero">
-        <div className="enquire-hero-scrim" />
-        <div className="enquire-hero-inner shell">
-          <div className="enquire-hero-content">
-            <p className="eyebrow">Your event starts here</p>
-            <h1>Booking Enquiry Form</h1>
-            <p>Tell us about your school, preferred date and likely attendance. A DebsGuru coordinator will review the details and come back to your committee.</p>
-            <div className="enquire-hero-points" aria-label="Details needed for your enquiry">
-              <span>Committee contact</span>
-              <span>School details</span>
-              <span>Event preferences</span>
-            </div>
-          </div>
-          <figure className="enquire-hero-media">
-            <DesignPlaceholder label="Arrival · crop" />
-          </figure>
-        </div>
-      </section>
+      <EnquiryHero />
       <div className="form-shell shell">
         <aside className="form-sidebar">
           <nav className="form-section-nav" aria-label="Enquiry form sections">

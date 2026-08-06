@@ -2679,6 +2679,341 @@ h4 {
   }
 }
 
+/* Cinematic enquiry experience */
+
+.enquiry-cinematic {
+  padding-block: 0 clamp(28px, 4vw, 48px);
+}
+
+.enquiry-cinematic-frame {
+  background: #030816;
+  border-block: 1px solid rgba(113, 137, 223, 0.2);
+  box-shadow: 0 30px 80px -55px rgba(23, 82, 255, 0.7);
+  height: clamp(390px, 32vw, 460px);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.enquiry-cinematic-video {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: 58% 50%;
+  position: absolute;
+  width: 100%;
+}
+
+.enquiry-cinematic-shade {
+  background:
+    linear-gradient(90deg, rgba(2, 6, 17, 0.96) 0%, rgba(3, 8, 22, 0.82) 38%, rgba(4, 9, 24, 0.14) 76%),
+    linear-gradient(180deg, rgba(3, 7, 17, 0.12), transparent 48%, rgba(3, 7, 17, 0.62));
+  inset: 0;
+  position: absolute;
+}
+
+.enquiry-cinematic-copy {
+  left: max(34px, calc((100vw - 1268px) / 2 + 34px));
+  max-width: min(900px, calc(100vw - 150px));
+  position: absolute;
+  right: max(70px, calc((100vw - 1268px) / 2 + 70px));
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.enquiry-cinematic-copy .zip-eyebrow {
+  color: #c8d0ff;
+  margin-bottom: clamp(18px, 2.4vw, 30px);
+}
+
+.enquiry-cinematic-copy h1 {
+  font-size: clamp(39px, 4.8vw, 66px);
+  letter-spacing: -0.062em;
+  line-height: 0.96;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.enquiry-cinematic-copy h1 > span {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: filter, opacity, transform;
+}
+
+.enquiry-cinematic-rule {
+  background: linear-gradient(180deg, var(--magenta), var(--accent) 55%, var(--blue));
+  bottom: clamp(30px, 4vw, 54px);
+  box-shadow: 0 0 20px rgba(145, 132, 217, 0.72);
+  position: absolute;
+  right: max(34px, calc((100vw - 1268px) / 2 + 34px));
+  top: clamp(30px, 4vw, 54px);
+  transform-origin: bottom;
+  width: 2px;
+  z-index: 2;
+}
+
+.enquiry-cinematic-intro {
+  border-bottom: 1px solid var(--divider);
+  display: grid;
+  gap: 18px clamp(30px, 6vw, 90px);
+  grid-template-columns: minmax(260px, 0.72fr) minmax(300px, 1fr);
+  margin-top: clamp(22px, 3vw, 34px);
+  padding: 0 clamp(2px, 1vw, 14px) clamp(24px, 3vw, 36px);
+}
+
+.enquiry-cinematic-intro p {
+  margin: 0;
+}
+
+.enquiry-cinematic-intro p:first-child {
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.4vw, 32px);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.enquiry-cinematic-intro p:last-child {
+  color: var(--text-soft);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.55;
+  max-width: 52ch;
+}
+
+.enquire-landing .form-shell {
+  gap: clamp(28px, 4vw, 54px);
+  grid-template-columns: 248px minmax(0, 1fr);
+  padding-top: clamp(18px, 3vw, 36px);
+}
+
+.enquire-landing .form-sidebar {
+  top: 96px;
+}
+
+.enquire-landing .form-section-nav,
+.enquire-landing .form-guide,
+.enquire-landing .form-section,
+.enquire-landing .form-finish {
+  background:
+    linear-gradient(145deg, rgba(145, 132, 217, 0.075), transparent 42%),
+    rgba(13, 16, 29, 0.72);
+  border: 1px solid rgba(145, 132, 217, 0.2);
+  border-radius: 18px;
+  box-shadow: 0 24px 70px -58px rgba(86, 104, 255, 0.82);
+}
+
+.enquire-landing .form-section-nav {
+  gap: 3px;
+  padding: 14px;
+}
+
+.enquire-landing .form-section-nav > p {
+  padding-inline: 8px;
+}
+
+.enquire-landing .form-guide {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 62, 200, 0.1), transparent 38%),
+    rgba(13, 16, 29, 0.78);
+}
+
+.enquire-landing .form-section {
+  margin: 0 0 16px;
+  padding: clamp(24px, 3.2vw, 38px);
+  scroll-margin-top: 100px;
+}
+
+.enquire-landing .form-section:last-of-type {
+  border-bottom-color: rgba(145, 132, 217, 0.2);
+}
+
+.enquire-landing .form-section-heading {
+  border-bottom: 1px solid rgba(233, 233, 237, 0.1);
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+}
+
+.enquire-landing .form-section-heading h2 {
+  font-size: clamp(27px, 2.8vw, 36px);
+  white-space: nowrap;
+}
+
+.enquire-landing .field {
+  gap: 9px;
+}
+
+.enquire-landing .field > span,
+.enquire-landing .form-group-label {
+  color: #d8d9e6;
+  font-size: 12px;
+}
+
+.enquire-landing .field input,
+.enquire-landing .field textarea,
+.enquire-landing .choice span {
+  background: rgba(4, 7, 18, 0.68);
+  border-color: rgba(177, 183, 218, 0.22);
+}
+
+.enquire-landing .field input,
+.enquire-landing .field textarea {
+  min-height: 52px;
+}
+
+.enquire-landing .field input:focus,
+.enquire-landing .field textarea:focus {
+  background: rgba(6, 9, 23, 0.92);
+  border-color: #a89cf0;
+  box-shadow: 0 0 0 3px rgba(145, 132, 217, 0.15), 0 12px 38px -28px rgba(86, 104, 255, 0.9);
+}
+
+.enquire-landing .choice span {
+  min-height: 52px;
+}
+
+.enquire-landing .choice input:checked + span {
+  background: linear-gradient(135deg, rgba(255, 62, 200, 0.14), rgba(86, 104, 255, 0.18));
+  border-color: #a89cf0;
+  box-shadow: inset 0 0 24px rgba(145, 132, 217, 0.08);
+}
+
+.enquire-landing .form-finish {
+  padding: clamp(24px, 3.2vw, 38px);
+}
+
+.enquire-landing .form-button {
+  min-height: 52px;
+}
+
+@media (max-width: 840px) {
+  .enquiry-cinematic-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .enquire-landing .form-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .enquire-landing .form-sidebar {
+    position: static;
+  }
+
+  .enquire-landing .form-section-nav {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding: 10px;
+    scrollbar-width: none;
+  }
+
+  .enquire-landing .form-section-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .enquire-landing .form-section-nav > p {
+    display: none;
+  }
+
+  .enquire-landing .form-section-nav a {
+    flex: 0 0 auto;
+    padding: 10px 14px;
+  }
+
+  .enquire-landing .form-section-nav a::before {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .enquiry-cinematic {
+    padding-bottom: 30px;
+  }
+
+  .enquiry-cinematic-frame {
+    height: 340px;
+  }
+
+  .enquiry-cinematic-video {
+    object-position: 62% 50%;
+  }
+
+  .enquiry-cinematic-shade {
+    background:
+      linear-gradient(180deg, rgba(2, 6, 17, 0.12) 0%, rgba(2, 6, 17, 0.3) 38%, rgba(2, 6, 17, 0.94) 100%),
+      linear-gradient(90deg, rgba(2, 6, 17, 0.82), transparent 82%);
+  }
+
+  .enquiry-cinematic-copy {
+    bottom: 38px;
+    left: 20px;
+    max-width: calc(100vw - 52px);
+    right: 32px;
+    top: auto;
+    transform: none;
+  }
+
+  .enquiry-cinematic-copy .zip-eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .enquiry-cinematic-copy h1 {
+    font-size: clamp(25px, 7.2vw, 31px);
+    letter-spacing: -0.055em;
+  }
+
+  .enquiry-cinematic-rule {
+    bottom: 28px;
+    right: 20px;
+    top: 28px;
+  }
+
+  .enquiry-cinematic-intro {
+    gap: 12px;
+    margin-top: 24px;
+    padding-bottom: 26px;
+  }
+
+  .enquiry-cinematic-intro p:first-child {
+    font-size: 23px;
+  }
+
+  .enquiry-cinematic-intro p:last-child {
+    font-size: 15px;
+  }
+
+  .enquire-landing .form-shell {
+    gap: 22px;
+    padding-top: 8px;
+  }
+
+  .enquire-landing .form-sidebar {
+    gap: 16px;
+  }
+
+  .enquire-landing .form-guide {
+    padding: 20px;
+  }
+
+  .enquire-landing .form-section,
+  .enquire-landing .form-finish {
+    border-radius: 15px;
+    padding: 23px 18px;
+  }
+
+  .enquire-landing .form-section-heading h2 {
+    font-size: clamp(25px, 7.2vw, 28px);
+  }
+
+  .enquire-landing .field-grid,
+  .enquire-landing .choice-grid,
+  .enquire-landing .choice-grid-compact,
+  .enquire-landing .choice-grid-attendance {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
