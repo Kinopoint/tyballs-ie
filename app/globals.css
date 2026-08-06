@@ -4265,6 +4265,115 @@ h4 {
   max-width: 400px;
 }
 
+.parent-hero-media-effect {
+  background: #111421;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+
+.parent-hero-image-plane {
+  height: 108%;
+  left: -4%;
+  position: absolute;
+  top: -4%;
+  width: 108%;
+  z-index: 0;
+}
+
+.parent-hero-effect-picture {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.parent-hero-effect-picture img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.parent-hero-image-shade {
+  background: linear-gradient(180deg, rgba(13, 15, 26, 0.06), transparent 55%, rgba(13, 15, 26, 0.22));
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.parent-hero-pixel-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 3;
+}
+
+.parent-hero-pixel-grid > span {
+  background: rgba(15, 18, 31, 0.82);
+  box-shadow: inset 0 0 0 0.5px rgba(145, 132, 217, 0.12);
+  transform-origin: center;
+}
+
+.parent-hero-pixel-grid > span.is-accent {
+  background: linear-gradient(145deg, rgba(255, 53, 189, 0.72), rgba(67, 200, 255, 0.64));
+}
+
+.parent-hero-neon-frame {
+  border: 1px solid rgba(200, 195, 232, 0.28);
+  border-radius: inherit;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 5;
+}
+
+.parent-hero-neon-frame::before {
+  background: linear-gradient(90deg, #ff35bd, rgba(182, 124, 255, 0.22) 48%, #43c8ff);
+  box-shadow: 0 0 14px rgba(145, 132, 217, 0.5);
+  content: "";
+  height: 1px;
+  left: 12%;
+  opacity: 0.78;
+  position: absolute;
+  right: 12%;
+  top: 0;
+}
+
+.parent-hero-floating-pixels {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 4;
+}
+
+.parent-hero-floating-pixel {
+  display: block;
+  position: absolute;
+}
+
+.parent-hero-floating-pixel > span {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.parent-hero-floating-pixel.is-magenta > span {
+  background: #ff35bd;
+  box-shadow: 0 0 12px rgba(255, 53, 189, 0.72);
+}
+
+.parent-hero-floating-pixel.is-violet > span {
+  background: #b67cff;
+  box-shadow: 0 0 12px rgba(182, 124, 255, 0.66);
+}
+
+.parent-hero-floating-pixel.is-cyan > span {
+  background: #43c8ff;
+  box-shadow: 0 0 12px rgba(67, 200, 255, 0.68);
+}
+
 .zip-committee-grid {
   align-items: start;
   display: grid;

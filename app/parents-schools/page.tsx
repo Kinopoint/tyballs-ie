@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EditorialImage } from "@/components/editorial-image";
+import { ParentHeroMedia } from "@/components/parent-hero-media";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
@@ -47,7 +47,7 @@ export default function ParentsSchoolsPage() {
           <p>TYBalls.ie is from the team at DebsGuru.ie. Over 10 years of experience and thousands of students impressed.</p>
           <Link className="zip-button-accent" href="/enquire">Booking Enquiry Form</Link>
         </div>
-        <EditorialImage alt="Students attending a real DebsGuru event" className="zip-parent-placeholder" height={1367} name="drive-arrival" priority width={1000} />
+        <ParentHeroMedia />
       </section>
 
       <section className="zip-section zip-shell">
