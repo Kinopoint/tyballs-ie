@@ -1,6 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const headlineLines = ["From enquiry to event"] as const;
@@ -20,28 +22,52 @@ const characterVariants = {
 };
 
 export function HowItWorksHero() {
-  const prefersReducedMotion = useReducedMotion();
+  const pathname = usePathname();
+  const videoRef = useRef<HTMLVideoElement>(null);
   let characterIndex = 0;
+
+  const resumeVideo = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (document.visibilityState === "visible") {
+      void video.play().catch(() => undefined);
+    }
+  }, []);
+
+  useEffect(() => {
+    resumeVideo();
+    document.addEventListener("visibilitychange", resumeVideo);
+    window.addEventListener("pageshow", resumeVideo);
+
+    return () => {
+      document.removeEventListener("visibilitychange", resumeVideo);
+      window.removeEventListener("pageshow", resumeVideo);
+    };
+  }, [pathname, resumeVideo]);
 
   return (
     <section className="how-hero" aria-labelledby="how-hero-title">
       <motion.div
         animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
         className="how-hero-frame"
-        initial={prefersReducedMotion ? false : { clipPath: "inset(7% 0% 7% 0%)", opacity: 0 }}
+        initial={{ clipPath: "inset(7% 0% 7% 0%)", opacity: 0 }}
+        key={pathname}
         transition={{ delay: 0.1, duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
       >
         <motion.video
           aria-hidden="true"
-          autoPlay={!prefersReducedMotion}
+          autoPlay
           animate={{ opacity: 1, scale: 1 }}
           className="how-hero-video"
-          initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.035 }}
+          initial={{ opacity: 0, scale: 1.035 }}
           loop
           muted
+          onCanPlay={() => resumeVideo()}
           playsInline
           poster={`${basePath}/images/tyballs-how-hero-poster.webp`}
           preload="metadata"
+          ref={videoRef}
           transition={{ delay: 0.08, duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <source src={`${basePath}/video/tyballs-how-hero.webm`} type="video/webm" />
@@ -52,7 +78,7 @@ export function HowItWorksHero() {
           <motion.p
             animate={{ opacity: 1, y: 0 }}
             className="zip-eyebrow"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 18 }}
             transition={{ delay: 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             How it works
@@ -66,7 +92,7 @@ export function HowItWorksHero() {
                     <motion.span
                       aria-hidden="true"
                       custom={index}
-                      initial={prefersReducedMotion ? false : "hidden"}
+                      initial="hidden"
                       key={`${line}-${index}`}
                       variants={characterVariants}
                       animate="visible"
@@ -83,14 +109,14 @@ export function HowItWorksHero() {
           animate={{ opacity: 1, scaleY: 1 }}
           aria-hidden="true"
           className="how-hero-rule"
-          initial={prefersReducedMotion ? false : { opacity: 0, scaleY: 0 }}
+          initial={{ opacity: 0, scaleY: 0 }}
           transition={{ delay: 1.05, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         />
       </motion.div>
       <motion.div
         animate={{ opacity: 1, y: 0 }}
         className="how-hero-intro zip-shell"
-        initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 24 }}
         transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         <p>Start with a date, location and guest estimate.</p>

@@ -3551,8 +3551,7 @@ h4 {
   padding: 20px 0;
 }
 
-.zip-numberless-list article > span,
-.zip-stage-list article span {
+.zip-numberless-list article > span {
   background: #3f424d;
   display: block;
   height: 2px;
@@ -3560,8 +3559,7 @@ h4 {
   width: 40px;
 }
 
-.zip-numberless-list article > span.is-active,
-.zip-stage-list article span.is-active { background: var(--accent); }
+.zip-numberless-list article > span.is-active { background: var(--accent); }
 
 .zip-numberless-list h3,
 .zip-action-list h3 {
@@ -3588,11 +3586,10 @@ h4 {
 }
 
 .zip-stage-list article:last-child { border-bottom: 1px solid var(--divider); }
-.zip-stage-list article span { width: 64px; }
-
 .zip-stage-list h2 {
   font-size: clamp(22px, 2.8vw, 28px);
   letter-spacing: -0.022em;
+  margin: 0;
 }
 
 .zip-stage-list article > p {
@@ -3855,7 +3852,6 @@ h4 {
   .zip-cost-hero .zip-inner-copy h1 { font-size: clamp(30px, 8.9vw, 35px); white-space: nowrap; }
   .zip-numberless-list article { grid-template-columns: 42px 1fr; }
   .zip-stage-list article { grid-template-columns: 1fr; }
-  .zip-stage-list article span { margin-top: 0; }
   .enquire-hero-media { aspect-ratio: 3 / 2; }
   .how-hero {
     padding-block: 0 34px;

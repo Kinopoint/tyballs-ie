@@ -55,7 +55,7 @@ export default function HowItWorksPage() {
       <section className="zip-section zip-shell zip-stage-list">
         {stages.map((stage, index) => (
           <article id={`step-${index + 1}`} key={stage.title}>
-            <div><span className={index === stages.length - 1 ? "is-active" : ""} aria-hidden="true" /><h2>{stage.title}</h2></div>
+            <div><h2>{stage.title}</h2></div>
             <p>{stage.text}</p>
           </article>
         ))}
