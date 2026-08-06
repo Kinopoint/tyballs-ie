@@ -24,21 +24,29 @@ export function HowItWorksHero() {
   let characterIndex = 0;
 
   return (
-    <section className="how-hero zip-shell" aria-labelledby="how-hero-title">
-      <div className="how-hero-frame">
-        <video
+    <section className="how-hero" aria-labelledby="how-hero-title">
+      <motion.div
+        animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
+        className="how-hero-frame"
+        initial={prefersReducedMotion ? false : { clipPath: "inset(7% 0% 7% 0%)", opacity: 0 }}
+        transition={{ delay: 0.1, duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <motion.video
           aria-hidden="true"
           autoPlay={!prefersReducedMotion}
+          animate={{ opacity: 1, scale: 1 }}
           className="how-hero-video"
+          initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.035 }}
           loop
           muted
           playsInline
           poster={`${basePath}/images/tyballs-how-hero-poster.webp`}
           preload="metadata"
+          transition={{ delay: 0.08, duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <source src={`${basePath}/video/tyballs-how-hero.webm`} type="video/webm" />
           <source src={`${basePath}/video/tyballs-how-hero.mp4`} type="video/mp4" />
-        </video>
+        </motion.video>
         <div className="how-hero-shade" aria-hidden="true" />
         <div className="how-hero-copy">
           <motion.p
@@ -78,10 +86,10 @@ export function HowItWorksHero() {
           initial={prefersReducedMotion ? false : { opacity: 0, scaleY: 0 }}
           transition={{ delay: 1.05, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         />
-      </div>
+      </motion.div>
       <motion.div
         animate={{ opacity: 1, y: 0 }}
-        className="how-hero-intro"
+        className="how-hero-intro zip-shell"
         initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
         transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
