@@ -23,7 +23,7 @@ const pixelVariants = {
   revealed: ({ column, row }: { column: number; row: number }) => ({
     opacity: 0,
     scale: 0,
-    transition: { delay: 0.16 + (row + column) * 0.028, duration: 0.34, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { delay: 0.2 + (row + column) * 0.075, duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
   }),
   hover: ({ column, row }: { column: number; row: number }) => ({
     opacity: 1,
