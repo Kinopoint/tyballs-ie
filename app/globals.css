@@ -4374,6 +4374,17 @@ h4 {
   box-shadow: 0 0 12px rgba(67, 200, 255, 0.68);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .parent-hero-image-plane {
+    transform: none !important;
+  }
+
+  .parent-hero-pixel-grid,
+  .parent-hero-floating-pixels {
+    display: none;
+  }
+}
+
 .zip-committee-grid {
   align-items: start;
   display: grid;

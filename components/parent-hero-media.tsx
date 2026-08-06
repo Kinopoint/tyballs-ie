@@ -46,10 +46,9 @@ type FloatingPixelProps = {
   pointerX: MotionValue<number>;
   pointerY: MotionValue<number>;
   pixel: (typeof floatingPixels)[number];
-  reduceMotion: boolean;
 };
 
-function FloatingPixel({ index, pixel, pointerX, pointerY, reduceMotion }: FloatingPixelProps) {
+function FloatingPixel({ index, pixel, pointerX, pointerY }: FloatingPixelProps) {
   const x = useTransform(pointerX, (value) => value * pixel.strength);
   const y = useTransform(pointerY, (value) => value * pixel.strength);
 
@@ -59,7 +58,7 @@ function FloatingPixel({ index, pixel, pointerX, pointerY, reduceMotion }: Float
       style={{ height: pixel.size, left: `${pixel.left}%`, top: `${pixel.top}%`, width: pixel.size, x, y }}
     >
       <motion.span
-        animate={reduceMotion ? undefined : { opacity: [0.55, 1, 0.55], y: [0, -6, 0] }}
+        animate={{ opacity: [0.55, 1, 0.55], y: [0, -6, 0] }}
         transition={{ delay: 0.9 + index * 0.18, duration: 3.4 + index * 0.24, ease: "easeInOut", repeat: Infinity }}
       />
     </motion.span>
@@ -91,37 +90,33 @@ export function ParentHeroMedia() {
     <motion.div
       animate="revealed"
       className="zip-parent-placeholder parent-hero-media-effect"
-      initial={reduceMotion ? false : "covered"}
+      initial="covered"
       onPointerLeave={resetPointer}
       onPointerMove={handlePointerMove}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       variants={mediaVariants}
-      whileHover={reduceMotion ? undefined : "hover"}
+      whileHover="hover"
     >
-      <motion.div className="parent-hero-image-plane" style={reduceMotion ? undefined : { x: imageX, y: imageY }}>
+      <motion.div className="parent-hero-image-plane" style={{ x: imageX, y: imageY }}>
         <EditorialImage alt="Students attending a real DebsGuru event" className="parent-hero-effect-picture" height={1367} name="drive-arrival" priority width={1000} />
       </motion.div>
       <div className="parent-hero-image-shade" aria-hidden="true" />
-      {!reduceMotion ? (
-        <div className="parent-hero-pixel-grid" aria-hidden="true">
-          {pixels.map(({ column, index, row }) => (
-            <motion.span
-              className={(row + column) % 13 === 0 ? "is-accent" : undefined}
-              custom={{ column, row }}
-              key={index}
-              variants={pixelVariants}
-            />
-          ))}
-        </div>
-      ) : null}
+      <div className="parent-hero-pixel-grid" aria-hidden="true">
+        {pixels.map(({ column, index, row }) => (
+          <motion.span
+            className={(row + column) % 13 === 0 ? "is-accent" : undefined}
+            custom={{ column, row }}
+            key={index}
+            variants={pixelVariants}
+          />
+        ))}
+      </div>
       <span className="parent-hero-neon-frame" aria-hidden="true" />
-      {!reduceMotion ? (
-        <div className="parent-hero-floating-pixels" aria-hidden="true">
-          {floatingPixels.map((pixel, index) => (
-            <FloatingPixel index={index} key={`${pixel.left}-${pixel.top}`} pixel={pixel} pointerX={smoothX} pointerY={smoothY} reduceMotion={reduceMotion} />
-          ))}
-        </div>
-      ) : null}
+      <div className="parent-hero-floating-pixels" aria-hidden="true">
+        {floatingPixels.map((pixel, index) => (
+          <FloatingPixel index={index} key={`${pixel.left}-${pixel.top}`} pixel={pixel} pointerX={smoothX} pointerY={smoothY} />
+        ))}
+      </div>
     </motion.div>
   );
 }
