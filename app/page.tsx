@@ -8,7 +8,7 @@ import { StructuredData } from "@/components/structured-data";
 const highlights = [
   ["venue", "Venue search", "Matched to your county, date and guest estimate"],
   ["contact", "One coordinator", "One contact from first conversation to the night"],
-  ["shield", "A managed event", "Arrival, timings and key contacts clearly planned"],
+  ["shield", "A managed event", "Security, DebsGuru staff and hotel staff included"],
 ] as const;
 
 const steps = [
@@ -17,11 +17,13 @@ const steps = [
   ["Enjoy the night", "Your coordinator keeps the agreed plan moving."],
 ] as const;
 
-const safety = ["The student committee works with our team", "Event information is shared through the committee", "Parents are welcome to attend"] as const;
+const safety = ["Security is included in every booking", "DebsGuru and hotel staff run the event", "Parents are welcome to attend"] as const;
 
 const questions = [
   ["Do we need final guest numbers?", "No. Start with a realistic estimate and confirm the final number later."],
   ["Who coordinates the event?", "A named DebsGuru coordinator works with the committee, venue and event team."],
+  ["Is security included?", "Yes. Security is included in every event booking, with DebsGuru staff and hotel staff running the event."],
+  ["Does DebsGuru arrange transport?", "No. Students book their own local transport suppliers. DebsGuru guides the committee on timings, locations and the practical arrangements to share with those suppliers."],
   ["Can dietary and access needs be planned?", "Yes. Share them early so the selected venue can confirm the arrangements."],
   ["Does an enquiry reserve the date?", "No. A date is secured only after availability, pricing and booking terms are agreed."],
 ] as const;
@@ -31,7 +33,7 @@ const homeSchema = [
     "@context": "https://schema.org",
     "@type": "Service",
     name: "TY Ball planning in Ireland",
-    description: "Venue, food, entertainment and event coordination for Transition Year balls across Ireland.",
+    description: "Venue, food, entertainment, security and staffed event coordination for Transition Year balls across Ireland.",
     provider: { "@id": "https://tyballs.ie/#organisation" },
     areaServed: { "@type": "Country", name: "Ireland" },
     serviceType: "TY Ball event planning",

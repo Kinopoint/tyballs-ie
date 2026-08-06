@@ -38,11 +38,11 @@ export function SiteHeader() {
         </Link>
         <div className="mobile-nav-contact">
           <a href={`mailto:${site.email}`}>{site.email}</a>
-          <a href={`tel:${site.whatsappHref.replace("https://wa.me/", "+")}`}>{site.whatsappDisplay}</a>
+          <a href={site.whatsappHref} rel="noreferrer" target="_blank">WhatsApp message {site.whatsappDisplay}</a>
         </div>
       </nav>
-      <a className="header-phone" href={`tel:${site.whatsappHref.replace("https://wa.me/", "+")}`}>
-        {site.whatsappDisplay}
+      <a className="header-phone" href={site.whatsappHref} rel="noreferrer" target="_blank">
+        WhatsApp message {site.whatsappDisplay}
       </a>
       <Link className="button button-compact header-cta" href="/enquire">
         Booking Enquiry Form

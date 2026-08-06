@@ -10,7 +10,7 @@ export default function PrivacyPage() {
       <article>
         <h2>1. Who controls your information</h2>
         <p>DebsGuru Ltd, trading through TYBalls.ie, is the controller of personal information submitted through this website.</p>
-        <address>{site.address.map((line) => <span key={line}>{line}<br /></span>)}Email: <a href={`mailto:${site.email}`}>{site.email}</a></address>
+        <p>Contact: <a href={`mailto:${site.email}`}>{site.email}</a></p>
         <h2>2. Information we collect</h2>
         <p>When you make an enquiry, we collect the school, county, committee contact name, email address, phone number, estimated attendance, preferred date or date flexibility, event priorities and any message you choose to provide.</p>
         <p>We may also receive technical information such as the page visited, referrer, campaign parameters, consent choices and a privacy-protected identifier used to prevent repeated spam submissions. We do not ask for student lists, dates of birth or payment-card information through this form.</p>

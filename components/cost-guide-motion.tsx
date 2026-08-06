@@ -15,8 +15,8 @@ const factors = [
   ["Guest estimate", "A realistic number sets the capacity and helps suppliers price accurately."],
   ["Dinner and service", "Menu, service style and dietary needs become part of the proposal."],
   ["Entertainment", "DJ, lighting, photography and extras follow the committee’s priorities."],
-  ["Transport", "Routes, collection points and passenger numbers shape any travel included."],
-  ["Event requirements", "Staffing, access, timings and procedures differ between venues."],
+  ["Security included", "Professional security is included in every event booking."],
+  ["Event staffing", "DebsGuru staff and hotel staff run the agreed timings and event plan."],
 ] as const;
 
 export function CostGuideMotion() {

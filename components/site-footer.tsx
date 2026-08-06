@@ -33,10 +33,10 @@ export function SiteFooter() {
               Facebook
             </a>
             <a href={`mailto:${site.email}`}>{site.email}</a>
-            <a href={`tel:${site.whatsappHref.replace("https://wa.me/", "+")}`}>{site.whatsappDisplay}</a>
+            <a href={site.whatsappHref} rel="noreferrer" target="_blank">WhatsApp message {site.whatsappDisplay}</a>
           </div>
           <div>
-            <strong>Legal</strong>
+            <strong>Privacy &amp; website</strong>
             <Link href="/privacy">Privacy</Link>
             <Link href="/cookies">Cookies</Link>
             <Link href="/terms">Website terms</Link>
@@ -46,7 +46,7 @@ export function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} DebsGuru Ltd</span>
-        <span>St Brendans, East End, Ballybunion, Co Kerry</span>
+        <span>TYBalls.ie by the team behind DebsGuru.ie</span>
       </div>
     </footer>
   );

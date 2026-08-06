@@ -4,7 +4,7 @@ import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: "TY Ball Cost Guide Ireland",
-  description: "Understand what affects TY Ball costs in Ireland, including the venue, date, attendance, dinner, entertainment, transport and event requirements.",
+  description: "Understand what affects TY Ball costs in Ireland, including the venue, date, attendance, dinner, entertainment, security and event staffing.",
   path: "/cost-guide",
   image: "/images/drive-garden.jpg",
   imageAlt: "Guests together at a real DebsGuru event venue",

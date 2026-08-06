@@ -6,12 +6,6 @@ export const site = {
   email: "info@debsguru.ie",
   whatsappDisplay: "087 343 1732",
   whatsappHref: "https://wa.me/353873431732",
-  address: [
-    "DebsGuru Ltd",
-    "St Brendans, East End",
-    "Ballybunion, Co Kerry",
-    "V31 CF61, Ireland",
-  ],
   instagram: "https://www.instagram.com/debsguru/",
   facebook: "https://www.facebook.com/DebsGuru",
   debsGuru: "https://debsguru.ie/",

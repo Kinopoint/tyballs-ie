@@ -48,15 +48,6 @@ const organisationSchema = {
   alternateName: "TYBalls.ie",
   url: "https://tyballs.ie/",
   email: site.email,
-  telephone: "+353873431732",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "St Brendans, East End",
-    addressLocality: "Ballybunion",
-    addressRegion: "Co Kerry",
-    postalCode: "V31 CF61",
-    addressCountry: "IE",
-  },
   sameAs: [site.debsGuru, site.instagram, site.facebook],
   brand: { "@type": "Brand", name: "TYBalls.ie", url: "https://tyballs.ie/" },
 };
