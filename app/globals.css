@@ -3156,7 +3156,7 @@ h4 {
 
 .experience-category-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .experience-category-card {
@@ -4067,6 +4067,23 @@ h4 {
 }
 
 @media (min-width: 641px) and (max-width: 1023px) {
+  .experience-category-grid {
+    grid-auto-columns: 52vw;
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+
+  .experience-category-grid::-webkit-scrollbar { display: none; }
+
+  .experience-category-card {
+    height: 620px;
+    scroll-snap-align: start;
+  }
+
   .how-hero-frame {
     height: 360px;
   }

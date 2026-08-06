@@ -22,6 +22,11 @@ const categories = [
     poster: "tyballs-jenga-poster.webp",
     video: "tyballs-jenga-vertical",
   },
+  {
+    name: "disco",
+    poster: "tyballs-disco-poster.webp",
+    video: "tyballs-disco-vertical",
+  },
 ] as const;
 
 export function ExperienceCategories() {
