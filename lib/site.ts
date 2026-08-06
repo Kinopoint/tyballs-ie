@@ -8,6 +8,7 @@ export const site = {
   whatsappHref: "https://wa.me/353873431732",
   instagram: "https://www.instagram.com/debsguru/",
   facebook: "https://www.facebook.com/DebsGuru",
+  tiktok: "https://www.tiktok.com/@debsguru.ie",
   debsGuru: "https://debsguru.ie/",
 } as const;
 

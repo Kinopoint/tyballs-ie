@@ -48,7 +48,7 @@ const organisationSchema = {
   alternateName: "TYBalls.ie",
   url: "https://tyballs.ie/",
   email: site.email,
-  sameAs: [site.debsGuru, site.instagram, site.facebook],
+  sameAs: [site.debsGuru, site.instagram, site.facebook, site.tiktok],
   brand: { "@type": "Brand", name: "TYBalls.ie", url: "https://tyballs.ie/" },
 };
 

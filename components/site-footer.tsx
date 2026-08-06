@@ -32,6 +32,9 @@ export function SiteFooter() {
             <a href={site.facebook} rel="noreferrer" target="_blank">
               Facebook
             </a>
+            <a href={site.tiktok} rel="noreferrer" target="_blank">
+              TikTok
+            </a>
             <a href={`mailto:${site.email}`}>{site.email}</a>
             <a href={site.whatsappHref} rel="noreferrer" target="_blank">WhatsApp message {site.whatsappDisplay}</a>
           </div>
