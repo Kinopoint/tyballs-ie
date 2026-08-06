@@ -30,21 +30,45 @@ const categories = [
 ] as const;
 
 export function ExperienceCategories() {
+  const visibleVideos = useRef(new Set<HTMLVideoElement>());
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
 
   const resumeVideos = useCallback(() => {
-    if (document.visibilityState !== "visible") return;
     videoRefs.current.forEach((video) => {
-      if (video) void video.play().catch(() => undefined);
+      if (!video) return;
+
+      if (document.visibilityState === "visible" && visibleVideos.current.has(video)) {
+        void video.play().catch(() => undefined);
+      } else {
+        video.pause();
+      }
     });
   }, []);
 
   useEffect(() => {
-    resumeVideos();
+    const visibility = visibleVideos.current;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.18) {
+          visibility.add(video);
+        } else {
+          visibility.delete(video);
+        }
+      });
+      resumeVideos();
+    }, { threshold: [0, 0.18] });
+
+    videoRefs.current.forEach((video) => {
+      if (video) observer.observe(video);
+    });
+
     document.addEventListener("visibilitychange", resumeVideos);
     window.addEventListener("pageshow", resumeVideos);
 
     return () => {
+      observer.disconnect();
+      visibility.clear();
       document.removeEventListener("visibilitychange", resumeVideos);
       window.removeEventListener("pageshow", resumeVideos);
     };
@@ -82,8 +106,8 @@ export function ExperienceCategories() {
               preload="metadata"
               ref={(video) => { videoRefs.current[index] = video; }}
             >
-              <source src={`${basePath}/video/${category.video}.webm`} type="video/webm" />
               <source src={`${basePath}/video/${category.video}.mp4`} type="video/mp4" />
+              <source src={`${basePath}/video/${category.video}.webm`} type="video/webm" />
             </video>
             <div className="experience-category-overlay" aria-hidden="true" />
             <h3>{category.name}</h3>
