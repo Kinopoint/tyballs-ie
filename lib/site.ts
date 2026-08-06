@@ -4,7 +4,6 @@ export const site = {
   description:
     "Plan a memorable TY Ball with one experienced coordinator for the venue, food, entertainment and event details. Enquire with DebsGuru across Ireland.",
   email: "info@debsguru.ie",
-  whatsappDisplay: "087 343 1732",
   whatsappHref: "https://wa.me/353873431732",
   instagram: "https://www.instagram.com/debsguru/",
   facebook: "https://www.facebook.com/DebsGuru",

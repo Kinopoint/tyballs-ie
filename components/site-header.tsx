@@ -33,16 +33,16 @@ export function SiteHeader() {
             {item.label}
           </Link>
         ))}
-        <Link className="mobile-nav-cta" href="/enquire" onClick={closeMenu}>
-          Booking Enquiry Form
-        </Link>
         <div className="mobile-nav-contact">
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-          <a href={site.whatsappHref} rel="noreferrer" target="_blank">WhatsApp message {site.whatsappDisplay}</a>
+          <span>Quick contact</span>
+          <div>
+            <a href={`mailto:${site.email}`}>Email DebsGuru</a>
+            <a href={site.whatsappHref} rel="noreferrer" target="_blank">Message on WhatsApp</a>
+          </div>
         </div>
       </nav>
       <a className="header-phone" href={site.whatsappHref} rel="noreferrer" target="_blank">
-        WhatsApp message {site.whatsappDisplay}
+        Quick contact · WhatsApp
       </a>
       <Link className="button button-compact header-cta" href="/enquire">
         Booking Enquiry Form
