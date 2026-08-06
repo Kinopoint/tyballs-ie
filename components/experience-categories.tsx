@@ -19,8 +19,8 @@ const categories = [
   },
   {
     name: "entertainment",
-    poster: "tyballs-jenga-poster.webp",
-    video: "tyballs-jenga-vertical",
+    poster: "tyballs-entertainment-poster.webp",
+    video: "tyballs-entertainment-vertical",
   },
   {
     name: "disco",
@@ -87,9 +87,11 @@ export function ExperienceCategories() {
             </video>
             <div className="experience-category-overlay" aria-hidden="true" />
             <h3>{category.name}</h3>
-            <Link className="experience-category-action" href="/enquire">
-              Include {category.name}
-            </Link>
+            <Link
+              aria-label={`Enquire about ${category.name}`}
+              className="experience-category-link"
+              href="/enquire"
+            />
           </motion.article>
         ))}
       </div>

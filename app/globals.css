@@ -3212,35 +3212,15 @@ h4 {
   transform: rotate(180deg) translateY(8px);
 }
 
-.experience-category-action {
-  background: #fff;
-  border-radius: 999px;
-  color: #080a12;
-  font-size: 13px;
-  margin-top: auto;
-  overflow: hidden;
-  padding: 13px 24px;
-  position: relative;
-  transition: box-shadow 300ms ease, transform 300ms ease;
-  z-index: 1;
-}
-
-.experience-category-action::before {
-  background: linear-gradient(120deg, transparent, rgba(0, 0, 0, 0.08), transparent);
-  content: "";
+.experience-category-link {
   inset: 0;
   position: absolute;
-  transform: translateX(-100%);
-  transition: transform 500ms ease;
+  z-index: 2;
 }
 
-.experience-category-action:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-  transform: translateY(-2px);
-}
-
-.experience-category-action:hover::before {
-  transform: translateX(100%);
+.experience-category-link:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -7px;
 }
 
 .zip-experience-grid figure {

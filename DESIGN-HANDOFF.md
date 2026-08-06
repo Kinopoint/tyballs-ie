@@ -1014,8 +1014,10 @@ https://drive.google.com/drive/folders/1mxb42F8KVXqRovD6DgPBx2mHh-O5MvQg
 | drive-dance | IMG_1341.jpg / 1n4F0He7ncIanelbb1ryc6dSTpeJlZOi6 | dancefloor |
 | drive-group | IMG_1349.jpg / 1a1KIUWVLambeulu6WgxG763RsI_yhcI1 | photo booth group |
 | drive-garden | IMG_1066.jpg / 1d0-ps_x7gjtyVA2qr6dVpfjd6Rawu_vi | venue, committees, cost guide |
-| tyballs-real-event-vertical.mp4 | Promo5.MOV / 1ft0Vc44wkRYNquBrLeE8BKgsqj6WEVfI | home and Parents hero motion |
-| tyballs-jenga-vertical.mp4 | Promo 1 Jenga with logo.MOV / 1m_NsM99hJU8ZjDl6KUEb7GEjfdFCRDxt | home activity motion |
+| tyballs-school-arrival-vertical.mp4 | DJI_20260715191628_0412_D.mov / client-supplied file | home arrival card |
+| tyballs-real-event-vertical.mp4 | Promo5.MOV / 1ft0Vc44wkRYNquBrLeE8BKgsqj6WEVfI | home dinner card; buses and DebsGuru end card removed |
+| tyballs-entertainment-vertical.mp4 | copy_CE64CA84-DAA0-4819-9599-838F1B55D5F2 2.MOV / client-supplied file | home entertainment card |
+| tyballs-disco-vertical.mp4 | A_0006D005A260715_233316BD_CANON.MP4 + MVI_1424.MP4 / client-supplied files | home disco montage |
 
 Файлы сайта:
 
@@ -1025,10 +1027,14 @@ https://drive.google.com/drive/folders/1mxb42F8KVXqRovD6DgPBx2mHh-O5MvQg
 - public/images/drive-dance.jpg and .webp
 - public/images/drive-group.jpg and .webp
 - public/images/drive-garden.jpg and .webp
-- public/images/tyballs-real-event-poster.jpg
-- public/images/tyballs-jenga-poster.jpg
+- public/images/tyballs-school-arrival-poster.webp
+- public/images/tyballs-real-event-poster.webp
+- public/images/tyballs-entertainment-poster.webp
+- public/images/tyballs-disco-poster.webp
+- public/video/tyballs-school-arrival-vertical.mp4
 - public/video/tyballs-real-event-vertical.mp4
-- public/video/tyballs-jenga-vertical.mp4
+- public/video/tyballs-entertainment-vertical.mp4
+- public/video/tyballs-disco-vertical.mp4
 
 Selection rule: prioritise portrait media, identifiable event activity and
 natural guest interaction. Не публиковать beer-pong, poker, visible alcohol,

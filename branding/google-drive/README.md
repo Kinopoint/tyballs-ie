@@ -13,7 +13,9 @@ The site uses optimised derivatives only. Source originals remain in Google Driv
 | `drive-dance.*` | `IMG_1341.jpg` — `1n4F0He7ncIanelbb1ryc6dSTpeJlZOi6` | dancing and friends |
 | `drive-group.*` | `IMG_1349.jpg` — `1a1KIUWVLambeulu6WgxG763RsI_yhcI1` | photo booth group |
 | `drive-garden.*` | `IMG_1066.jpg` — `1d0-ps_x7gjtyVA2qr6dVpfjd6Rawu_vi` | venue garden gathering |
-| `tyballs-real-event-vertical.mp4` | `Promo5.MOV` — `1ft0Vc44wkRYNquBrLeE8BKgsqj6WEVfI` | mobile-first hero motion |
-| `tyballs-jenga-vertical.mp4` | `Promo 1 Jenga with logo.MOV` — `1m_NsM99hJU8ZjDl6KUEb7GEjfdFCRDxt` | activity card motion |
+| `tyballs-school-arrival-vertical.mp4` | `DJI_20260715191628_0412_D.mov` — client-supplied file | arrival card motion |
+| `tyballs-real-event-vertical.mp4` | `Promo5.MOV` — `1ft0Vc44wkRYNquBrLeE8BKgsqj6WEVfI` | dinner card; trimmed to remove buses and the DebsGuru end card |
+| `tyballs-entertainment-vertical.mp4` | `copy_CE64CA84-DAA0-4819-9599-838F1B55D5F2 2.MOV` — client-supplied file | entertainment card motion |
+| `tyballs-disco-vertical.mp4` | `A_0006D005A260715_233316BD_CANON.MP4` + `MVI_1424.MP4` — client-supplied files | disco card montage |
 
 Selection rules: prioritise portrait media, identifiable event activity and natural guest interaction. Beer-pong, poker, visible alcoholic drinks and bar-led frames are not published on the TY-focused site.
