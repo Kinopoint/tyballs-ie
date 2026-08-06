@@ -2,7 +2,7 @@ export const site = {
   name: "TYBalls.ie",
   domain: "TYBalls.ie",
   description:
-    "Plan a memorable TY Ball with one experienced coordinator for the venue, food, entertainment and event details. Enquire with DebsGuru across Ireland.",
+    "Plan a TY Ball in Ireland with the DebsGuru team. Explore venues, dinner, professional DJs, photo booths, security and staffed event coordination.",
   email: "info@debsguru.ie",
   whatsappHref: "https://wa.me/353873431732",
   instagram: "https://www.instagram.com/debsguru/",

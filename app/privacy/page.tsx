@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
 import { site } from "@/lib/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Privacy Policy", alternates: { canonical: "/privacy" } };
+export const metadata = createPageMetadata({
+  title: "Privacy Policy",
+  description: "How TYBalls.ie and DebsGuru collect, use, retain and protect information submitted through the TY Ball booking enquiry form.",
+  path: "/privacy",
+  imageAlt: "TYBalls.ie privacy information",
+});
 
 export default function PrivacyPage() {
   return (

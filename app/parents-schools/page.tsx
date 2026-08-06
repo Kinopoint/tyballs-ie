@@ -4,11 +4,11 @@ import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "TY Ball Information for Parents & Schools",
-  description: "How TYBalls.ie and DebsGuru work directly with student committees, including ticket sales, guest lists, event information and enquiries.",
+  title: "TY Ball Information for Parents and Schools",
+  description: "How TYBalls.ie and DebsGuru work with student committees on ticket sales, guest lists, event information, security, staffing and transport guidance.",
   path: "/parents-schools",
-  image: "/images/drive-arrival.jpg",
-  imageAlt: "Students attending a real DebsGuru event in Ireland",
+  image: "/og/parents-schools.jpg",
+  imageAlt: "TY Ball information for parents and schools in Ireland",
 });
 
 const committeeInformation = [
@@ -31,6 +31,8 @@ const parentsSchema = [
     description: "TYBalls.ie and DebsGuru work directly with student committees to coordinate ticketing information, guest lists, timings, security, staffing and event communications.",
     provider: { "@id": "https://tyballs.ie/#organisation" },
     areaServed: { "@type": "Country", name: "Ireland" },
+    url: "https://tyballs.ie/parents-schools",
+    mainEntityOfPage: "https://tyballs.ie/parents-schools",
   },
 ];
 

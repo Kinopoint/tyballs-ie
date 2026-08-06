@@ -4,11 +4,11 @@ import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "How TY Ball Planning Works",
-  description: "See how DebsGuru turns a date, location and guest estimate into a coordinated TY Ball plan, from the first enquiry to the confirmed event.",
+  title: "How to Plan a TY Ball in Ireland",
+  description: "See the four steps from a TY Ball enquiry to a confirmed event: share your school and date, review suitable arrangements, check the proposal and confirm.",
   path: "/how-it-works",
-  image: "/images/drive-dinner.jpg",
-  imageAlt: "Guests seated for dinner at a real DebsGuru event",
+  image: "/og/how-it-works.jpg",
+  imageAlt: "How TY Ball planning works with TYBalls.ie and DebsGuru",
 });
 
 const stages = [

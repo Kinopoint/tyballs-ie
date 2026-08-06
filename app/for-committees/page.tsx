@@ -4,11 +4,11 @@ import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "TY Ball Planning for School Committees",
-  description: "A practical TY Ball planning checklist for school committees: the date, county, guest estimate, priorities and contact needed to start an enquiry.",
+  title: "TY Ball Planning for Student Committees",
+  description: "A practical TY Ball planning checklist for student committees: the preferred date, county, guest estimate, priorities and committee contact needed to begin.",
   path: "/for-committees",
-  image: "/images/drive-garden.jpg",
-  imageAlt: "Guests talking together at a real DebsGuru event",
+  image: "/og/for-committees.jpg",
+  imageAlt: "TY Ball planning information for student committees",
 });
 
 const checklist = [
@@ -19,7 +19,18 @@ const checklist = [
   ["One committee contact", "One named contact keeps decisions, questions and updates clear for everyone involved."],
 ] as const;
 
-const committeesSchema = breadcrumbSchema("For committees", "/for-committees");
+const committeesSchema = [
+  breadcrumbSchema("For committees", "/for-committees"),
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "TY Ball Planning for Student Committees",
+    url: "https://tyballs.ie/for-committees",
+    description: "The details a student committee needs to share when starting a TY Ball enquiry in Ireland.",
+    isPartOf: { "@id": "https://tyballs.ie/#website" },
+    about: { "@type": "Service", name: "TY Ball event planning" },
+  },
+];
 
 export default function CommitteesPage() {
   return (

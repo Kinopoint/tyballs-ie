@@ -27,6 +27,15 @@ export const metadata: Metadata = {
     template: "%s | TYBalls.ie",
   },
   description: site.description,
+  applicationName: "TYBalls.ie",
+  authors: [{ name: "TYBalls.ie by DebsGuru", url: "https://debsguru.ie/" }],
+  creator: "TYBalls.ie by DebsGuru",
+  publisher: "DebsGuru Ltd",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
   openGraph: {
     title: "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru",
     description: site.description,
@@ -34,9 +43,9 @@ export const metadata: Metadata = {
     siteName: site.domain,
     locale: "en_IE",
     type: "website",
-    images: [{ url: "/images/drive-arrival.jpg", width: 1000, height: 1367, alt: "Guests at a real DebsGuru event in Ireland" }],
+    images: [{ url: "/og/home.jpg", width: 1200, height: 630, alt: "TYBalls.ie event planning by the DebsGuru team" }],
   },
-  twitter: { card: "summary_large_image", title: "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru", description: site.description, images: ["/images/drive-arrival.jpg"] },
+  twitter: { card: "summary_large_image", title: "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru", description: site.description, images: ["/og/home.jpg"] },
   alternates: { canonical: "/" },
 };
 
@@ -49,6 +58,7 @@ const organisationSchema = {
   url: "https://tyballs.ie/",
   email: site.email,
   sameAs: [site.debsGuru, site.instagram, site.facebook, site.tiktok],
+  logo: { "@type": "ImageObject", url: "https://tyballs.ie/brand/tyballs-client-logo-sign.jpg", width: 1390, height: 640 },
   brand: { "@type": "Brand", name: "TYBalls.ie", url: "https://tyballs.ie/" },
 };
 
@@ -59,6 +69,7 @@ const websiteSchema = {
   name: "TYBalls.ie",
   url: "https://tyballs.ie/",
   publisher: { "@id": "https://tyballs.ie/#organisation" },
+  inLanguage: "en-IE",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

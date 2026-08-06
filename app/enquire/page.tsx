@@ -4,11 +4,11 @@ import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 import { EnquiryForm } from "./enquiry-form";
 
 export const metadata = createPageMetadata({
-  title: "Booking Enquiry Form",
-  description: "Send a TY Ball booking enquiry with your school, year size, preferred date, location and estimated attendance. The DebsGuru team will review the details.",
+  title: "TY Ball Booking Enquiry Form",
+  description: "Send a TY Ball booking enquiry with your school, year size, preferred date, county and estimated attendance. The DebsGuru team will review the details.",
   path: "/enquire",
-  image: "/images/drive-arrival.jpg",
-  imageAlt: "Guests together at a real DebsGuru event",
+  image: "/og/enquire.jpg",
+  imageAlt: "Start a TY Ball booking enquiry with TYBalls.ie",
 });
 
 const enquirySchema = [

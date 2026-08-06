@@ -1,6 +1,11 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Cookie Policy", alternates: { canonical: "/cookies" } };
+export const metadata = createPageMetadata({
+  title: "Cookie Policy",
+  description: "How TYBalls.ie uses necessary website technologies, form security and optional analytics, including how visitors can manage consent.",
+  path: "/cookies",
+  imageAlt: "TYBalls.ie cookie information",
+});
 
 export default function CookiesPage() {
   return (

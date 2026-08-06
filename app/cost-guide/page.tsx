@@ -4,10 +4,10 @@ import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: "TY Ball Cost Guide Ireland",
-  description: "Understand what affects TY Ball costs in Ireland, including the venue, date, attendance, dinner, entertainment, security and event staffing.",
+  description: "Understand what shapes TY Ball costs in Ireland, including the venue, date, attendance, dinner, entertainment, security and event staffing.",
   path: "/cost-guide",
-  image: "/images/drive-garden.jpg",
-  imageAlt: "Guests together at a real DebsGuru event venue",
+  image: "/og/cost-guide.jpg",
+  imageAlt: "TY Ball cost guide for events in Ireland",
 });
 
 const costGuideSchema = [

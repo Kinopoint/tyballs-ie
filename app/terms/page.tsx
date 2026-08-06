@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
 import { site } from "@/lib/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Website Terms", alternates: { canonical: "/terms" } };
+export const metadata = createPageMetadata({
+  title: "Website Terms",
+  description: "Terms for using TYBalls.ie, submitting a TY Ball enquiry and reviewing venue availability, services and tailored event proposals.",
+  path: "/terms",
+  imageAlt: "TYBalls.ie website terms",
+});
 
 export default function TermsPage() {
   return (
