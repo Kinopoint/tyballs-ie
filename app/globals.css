@@ -3481,10 +3481,11 @@ h4 {
 }
 
 .zip-proof {
+  align-items: stretch;
   border-top: 1px solid rgba(233, 233, 237, 0.1);
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(16px, 3vw, 28px);
+  display: grid;
+  gap: clamp(12px, 2vw, 22px);
+  grid-template-columns: minmax(112px, 0.8fr) repeat(2, minmax(0, 1fr));
   margin-top: 14px;
   padding-top: 20px;
 }
@@ -3492,6 +3493,28 @@ h4 {
 .zip-proof div {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.zip-proof-brand {
+  background: linear-gradient(135deg, rgba(255, 62, 200, 0.08), rgba(86, 104, 255, 0.1));
+  border: 1px solid rgba(145, 132, 217, 0.22);
+  border-radius: 12px;
+  min-height: 58px;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.zip-proof-brand picture,
+.zip-proof-brand img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.zip-proof-brand img {
+  object-fit: cover;
 }
 
 .zip-proof strong {
@@ -4507,7 +4530,8 @@ h4 {
   .zip-hero h1 { font-size: clamp(36px, 10.4vw, 42px); white-space: nowrap; }
   .zip-actions { flex-direction: column; }
   .zip-actions a { width: 100%; }
-  .zip-proof { display: grid; grid-template-columns: 1fr 1fr; }
+  .zip-proof { grid-template-columns: 1fr 1fr; }
+  .zip-proof-brand { grid-column: 1 / -1; height: 66px; }
   .zip-section-heading { align-items: flex-start; flex-direction: column; }
   .zip-section-heading .zip-button-outline { width: 100%; }
   .zip-gallery-hint {

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { DesignPlaceholder } from "@/components/design-placeholder";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const scenes = [
   ["The night", "Arrival, lit and calm", "The night · portrait 9:16"],
   ["Dinner", "Dinner, served together", "Dinner · portrait 9:16"],
@@ -30,14 +32,20 @@ export function HomeHero() {
         <div className="zip-hero-copy">
           <p className="zip-pill"><span aria-hidden="true" />TY Ball organisers across Ireland</p>
           <h1 id="home-hero-title">Planning a TY&nbsp;Ball?</h1>
-          <p className="zip-lead">A memorable night for them. One clear plan for you.</p>
+          <p className="zip-lead">A memorable night for your guests. One clear plan for you.</p>
           <div className="zip-actions">
             <Link className="zip-button-outline" href="/enquire">Booking Enquiry Form</Link>
             <Link className="zip-button-quiet" href="/how-it-works">See how it works →</Link>
           </div>
           <div className="zip-proof" aria-label="DebsGuru experience">
-            <div><strong>10+ years</strong><span>DebsGuru experience</span></div>
-            <div><strong>Across Ireland</strong><span>venues and travel</span></div>
+            <div className="zip-proof-brand">
+              <picture>
+                <source srcSet={`${basePath}/brand/tyballs-client-logo-sign.webp`} type="image/webp" />
+                <img alt="TYBalls.ie" height={640} src={`${basePath}/brand/tyballs-client-logo-sign.jpg`} width={1390} />
+              </picture>
+            </div>
+            <div><strong>10+ years</strong><span>Experience across Ireland</span></div>
+            <div><strong>Thousands</strong><span>Of students enjoying our events</span></div>
           </div>
         </div>
         <div className="zip-hero-gallery">
