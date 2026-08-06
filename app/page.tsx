@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DesignPlaceholder } from "@/components/design-placeholder";
 import { EventIcon } from "@/components/event-icon";
+import { ExperienceCategories } from "@/components/experience-categories";
 import { HomeHero } from "@/components/home-hero";
 import { StructuredData } from "@/components/structured-data";
 
@@ -8,13 +9,6 @@ const highlights = [
   ["venue", "Venue search", "Matched to your county, date and guest estimate"],
   ["contact", "One coordinator", "One contact from first conversation to the night"],
   ["shield", "A managed event", "Arrival, timings and key contacts clearly planned"],
-] as const;
-
-const experiences = [
-  ["A venue that fits · portrait", "A venue that fits", "Date, location, capacity and travel considered together."],
-  ["A proper occasion · portrait", "A proper occasion", "Dinner, service and dietary requirements coordinated."],
-  ["A dancefloor ready · portrait", "A dancefloor ready", "DJ, lighting and the running order brought together."],
-  ["Moments to keep · portrait", "Moments to keep", "Photography, photobooth and awards can be included."],
 ] as const;
 
 const steps = [
@@ -66,21 +60,7 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="zip-section zip-shell" id="experience">
-        <div className="zip-section-heading">
-          <div><p className="zip-eyebrow">Your night</p><h2>Everything in its place.</h2></div>
-          <Link className="zip-button-outline" href="/enquire">Booking Enquiry Form</Link>
-        </div>
-        <p className="zip-gallery-hint" aria-hidden="true">Swipe to explore <span>→</span></p>
-        <div className="zip-experience-grid" aria-label="TY Ball experience gallery">
-          {experiences.map(([placeholder, title, text]) => (
-            <figure key={title}>
-              <div className="zip-experience-media"><DesignPlaceholder label={placeholder} /></div>
-              <figcaption><span aria-hidden="true" /><h3>{title}</h3><p>{text}</p></figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
+      <ExperienceCategories />
 
       <section className="zip-section zip-shell">
         <div className="zip-coordinator">
