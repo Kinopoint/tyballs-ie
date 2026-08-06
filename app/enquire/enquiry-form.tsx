@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { DatePicker } from "./date-picker";
 
 declare global {
   interface Window {
@@ -161,7 +162,7 @@ export function EnquiryForm() {
             </div>
           </div>
           <div className="field-grid">
-            <label className="field"><span>Preferred date for the event? *</span><input name="preferredDate" type="date" required /></label>
+            <div className="field"><label htmlFor="preferred-date">Preferred date for the event? *</label><DatePicker id="preferred-date" name="preferredDate" required /></div>
             <label className="field"><span>Preferred location for your event? *</span><input name="preferredLocation" required maxLength={160} /></label>
           </div>
           <div className="form-choice-group">
