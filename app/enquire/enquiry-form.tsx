@@ -151,8 +151,8 @@ export function EnquiryForm() {
           </div>
         </motion.div>
 
-        <motion.fieldset {...sectionMotion} className="form-section" id="event-details" aria-labelledby="event-details-heading">
-          <legend className="form-section-heading"><div><p className="form-section-label">Your preferences</p><h2 id="event-details-heading">Event details</h2><p>Tell us what the committee is considering for the night.</p></div></legend>
+        <motion.section {...sectionMotion} className="form-section" id="event-details" aria-labelledby="event-details-heading">
+          <div className="form-section-heading"><div><p className="form-section-label">Your preferences</p><h2 id="event-details-heading">Event details</h2><p>Tell us what the committee is considering for the night.</p></div></div>
           <div className="form-choice-group">
             <span className="form-group-label">Enquiring for *</span>
             <div className="choice-grid choice-grid-compact">
@@ -170,10 +170,10 @@ export function EnquiryForm() {
               {attendanceBands.map(([value, label]) => <label className="choice" key={value}><input type="radio" name="attendanceBand" value={value} required /><span>{label}</span></label>)}
             </div>
           </div>
-        </motion.fieldset>
+        </motion.section>
 
-        <motion.fieldset {...sectionMotion} className="form-section" id="final-details" aria-labelledby="final-details-heading">
-          <legend className="form-section-heading"><div><p className="form-section-label">Almost there</p><h2 id="final-details-heading">One last detail</h2><p>Tell us how you found DebsGuru and add anything else the team should know.</p></div></legend>
+        <motion.section {...sectionMotion} className="form-section" id="final-details" aria-labelledby="final-details-heading">
+          <div className="form-section-heading"><div><p className="form-section-label">Almost there</p><h2 id="final-details-heading">One last detail</h2><p>Tell us how you found DebsGuru and add anything else the team should know.</p></div></div>
           <div className="form-choice-group">
             <span className="form-group-label">How did you hear about DebsGuru? *</span>
             <div className="choice-grid">
@@ -182,7 +182,7 @@ export function EnquiryForm() {
           </div>
           {referralSource === "other" ? <div className="field-grid form-conditional-field"><label className="field field-wide"><span>Please tell us how you heard about DebsGuru *</span><input name="referralOther" required maxLength={160} /></label></div> : <input name="referralOther" type="hidden" value="" />}
           <div className="field-grid form-message-field"><label className="field field-wide"><span>Anything else you might require or want to tell us? <em>optional</em></span><textarea name="message" rows={5} maxLength={2000} /></label></div>
-        </motion.fieldset>
+        </motion.section>
 
         <motion.div {...sectionMotion} className="form-finish">
           <label className="trap" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
