@@ -3728,6 +3728,13 @@ h4 {
   width: 100%;
 }
 
+.zip-coordinator-media img,
+.zip-parent-placeholder img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
 .zip-step-grid {
   border-top: 1px solid var(--divider);
   display: grid;
@@ -4281,6 +4288,44 @@ h4 {
 .zip-factor-grid article { gap: 9px; }
 .zip-factor-grid h3 { font-size: clamp(19px, 2.2vw, 21px); font-weight: 500; margin: 0; }
 
+.zip-parent-information-grid article {
+  min-height: 190px;
+}
+
+.zip-parent-contact-guidance {
+  align-items: start;
+  border-top: 1px solid var(--divider);
+  display: grid;
+  gap: clamp(26px, 5vw, 80px);
+  grid-template-columns: minmax(260px, 0.75fr) minmax(300px, 1fr);
+}
+
+.zip-parent-contact-guidance > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zip-parent-guidance-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.zip-parent-guidance-copy > p {
+  color: var(--text-soft);
+  font-size: clamp(15px, 1.7vw, 17px);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.zip-parent-guidance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 8px;
+}
+
 .zip-request-cta {
   display: grid;
   gap: clamp(24px, 4vw, 56px);
@@ -4662,5 +4707,13 @@ h4 {
 
   .legal-page article h2 {
     font-size: 19px;
+  }
+
+  .zip-parent-contact-guidance {
+    grid-template-columns: 1fr;
+  }
+
+  .zip-parent-guidance-actions a {
+    width: 100%;
   }
 }

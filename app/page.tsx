@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DesignPlaceholder } from "@/components/design-placeholder";
+import { EditorialImage } from "@/components/editorial-image";
 import { EventIcon } from "@/components/event-icon";
 import { ExperienceCategories } from "@/components/experience-categories";
 import { HomeHero } from "@/components/home-hero";
@@ -17,7 +17,7 @@ const steps = [
   ["Enjoy the night", "Your coordinator keeps the agreed plan moving."],
 ] as const;
 
-const safety = ["Guest list and venue entry plan", "Named adult contacts", "Clear arrival and collection"] as const;
+const safety = ["The student committee works with our team", "Event information is shared through the committee", "Parents are welcome to attend"] as const;
 
 const questions = [
   ["Do we need final guest numbers?", "No. Start with a realistic estimate and confirm the final number later."],
@@ -65,13 +65,13 @@ export default function Home() {
       <section className="zip-section zip-shell">
         <div className="zip-coordinator">
           <div className="zip-coordinator-copy">
-            <p className="zip-eyebrow">DebsGuru</p>
-            <h2>One coordinator.</h2>
-            <p>Your coordinator connects the committee, venue and event team, so decisions and updates stay in one place.</p>
-            <div className="zip-tags"><span>10+ years</span><span>Across Ireland</span></div>
+            <p className="zip-eyebrow">Proven experience</p>
+            <h2>Over 10 years.</h2>
+            <p>TYBalls.ie is brought to you by the team behind DebsGuru.ie, with thousands of students enjoying our events across Ireland.</p>
+            <div className="zip-tags"><span>10+ years</span><span>Thousands of students</span></div>
             <Link className="zip-button-accent" href="/how-it-works">How it works</Link>
           </div>
-          <div className="zip-coordinator-media"><DesignPlaceholder label="Coordinator / dinner service · portrait" /></div>
+          <EditorialImage alt="Students enjoying dinner at a DebsGuru event" className="zip-coordinator-media" height={1500} name="drive-dinner" width={1000} />
         </div>
       </section>
 

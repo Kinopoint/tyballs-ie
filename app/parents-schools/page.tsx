@@ -1,30 +1,23 @@
 import Link from "next/link";
-import { DesignPlaceholder } from "@/components/design-placeholder";
+import { EditorialImage } from "@/components/editorial-image";
 import { StructuredData } from "@/components/structured-data";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "TY Ball Guidance for Parents & Schools",
-  description: "Clear TY Ball guidance for parents and schools covering venue entry, timings, named contacts, transport, dietary needs and accessibility.",
+  title: "TY Ball Information for Parents & Schools",
+  description: "How TYBalls.ie and DebsGuru work directly with student committees, including ticket sales, guest lists, event information and enquiries.",
   path: "/parents-schools",
-  image: "/images/tyballs-real-event-poster.jpg",
-  imageAlt: "Guests arriving at a real DebsGuru event",
+  image: "/images/drive-arrival.jpg",
+  imageAlt: "Students attending a real DebsGuru event in Ireland",
 });
 
-const confirmations = [
-  ["Guest list and entry", "How check-in, venue rules and re-entry will work."],
-  ["Event format", "Who attends, what is included and how spaces are used."],
-  ["Venue timings", "The agreed arrival, finish and collection windows."],
-  ["Named contacts", "The DebsGuru coordinator, venue contact and responsible adults."],
-  ["Transport home", "Travel arrangements, collection points and contact details."],
-  ["Food and access", "Dietary, allergy, mobility and accessibility requirements."],
-] as const;
-
-const beforeEvent = [
-  ["Save the contacts", "Keep the coordinator, venue and responsible adult details close."],
-  ["Share the journey", "Send the confirmed arrival and collection plan to guests."],
-  ["Confirm requirements", "Submit dietary, allergy and access needs by the stated date."],
-  ["Check photography", "Understand the photography arrangements for the selected event."],
+const committeeInformation = [
+  ["Direct committee contact", "The student committee works directly with our team."],
+  ["Tickets and guest list", "The student committee manages ticket sales and sends us the guest list for entry."],
+  ["Event information", "We provide the committee with the event timings and all other necessary information, which they share with everyone attending."],
+  ["Parents are welcome", "Parents are welcome to attend the event."],
+  ["New enquiries", "Please complete the Booking Enquiry Form on this website."],
+  ["Other enquiries", "Please email info@debsguru.ie."],
 ] as const;
 
 const parentsSchema = [
@@ -33,7 +26,7 @@ const parentsSchema = [
     "@context": "https://schema.org",
     "@type": "Service",
     name: "TY Ball event coordination",
-    description: "Coordinated venue entry, timings, contacts, transport information and event requirements for TY Balls in Ireland.",
+    description: "TYBalls.ie and DebsGuru work directly with student committees to coordinate ticketing information, guest lists, timings and event communications.",
     provider: { "@id": "https://tyballs.ie/#organisation" },
     areaServed: { "@type": "Country", name: "Ireland" },
   },
@@ -46,32 +39,39 @@ export default function ParentsSchoolsPage() {
       <section className="zip-inner-hero zip-shell zip-media-hero zip-parent-hero">
         <div className="zip-inner-copy">
           <p className="zip-eyebrow">For parents and schools</p>
-          <h1>Know the plan</h1>
-          <p>See what should be clear before the event, then follow the confirmed information for the selected venue.</p>
-          <Link className="zip-button-accent" href="/enquire">Ask a question</Link>
+          <h1>Trusted experience</h1>
+          <p>TYBalls.ie is from the team at DebsGuru.ie. Over 10 years of experience and thousands of students impressed.</p>
+          <Link className="zip-button-accent" href="/enquire">Booking Enquiry Form</Link>
         </div>
-        <div className="zip-parent-placeholder"><DesignPlaceholder label="Arrival · portrait 9:16" /></div>
+        <EditorialImage alt="Students attending a real DebsGuru event" className="zip-parent-placeholder" height={1367} name="drive-arrival" priority width={1000} />
       </section>
 
       <section className="zip-section zip-shell">
-        <div className="zip-section-heading"><div><p className="zip-eyebrow">For the selected venue</p><h2>What to confirm</h2></div></div>
-        <div className="zip-factor-grid">
-          {confirmations.map(([title, text]) => (
+        <div className="zip-section-heading">
+          <div><p className="zip-eyebrow">How communication works</p><h2>Committee-led</h2></div>
+          <p>DebsGuru works directly with Debs and TY Ball committees and provides them with all the information required for each event.</p>
+        </div>
+        <div className="zip-factor-grid zip-parent-information-grid">
+          {committeeInformation.map(([title, text]) => (
             <article key={title}><span aria-hidden="true" /><h3>{title}</h3><p>{text}</p></article>
           ))}
         </div>
       </section>
 
-      <section className="zip-section zip-shell zip-before-grid">
-          <div><p className="zip-eyebrow">Before the event</p><h2>Keep it close</h2><p>Share the confirmed venue information with guests and responsible contacts before the night.</p></div>
-          <div className="zip-action-list">
-            {beforeEvent.map(([title, text]) => (
-              <article key={title}><span aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></article>
-            ))}
+      <section className="zip-section zip-shell zip-parent-contact-guidance">
+        <div>
+          <p className="zip-eyebrow">Questions about an existing event</p>
+          <h2>Your committee contact</h2>
+        </div>
+        <div className="zip-parent-guidance-copy">
+          <p>For any questions relating to your specific event, please contact your committee representative.</p>
+          <p>In line with GDPR (General Data Protection Regulation), we can only discuss individual event details with the account holder, which is the committee.</p>
+          <div className="zip-parent-guidance-actions">
+            <Link className="zip-button-fill" href="/enquire">New booking enquiry</Link>
+            <a className="zip-button-outline" href="mailto:info@debsguru.ie">Email info@debsguru.ie</a>
           </div>
+        </div>
       </section>
-
-      <section className="zip-section zip-shell"><div className="zip-soft-cta"><div><p className="zip-eyebrow">Need something clarified</p><h2>Ask DebsGuru</h2></div><Link className="zip-button-fill" href="/enquire">Send your question</Link></div></section>
     </main>
   );
 }

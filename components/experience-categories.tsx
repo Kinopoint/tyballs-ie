@@ -8,9 +8,9 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const categories = [
   {
-    name: "arrival",
-    poster: "tyballs-school-arrival-poster.webp",
-    video: "tyballs-school-arrival-vertical",
+    name: "beautiful venues",
+    poster: "tyballs-beautiful-venues-poster.webp",
+    video: "tyballs-beautiful-venues-vertical",
   },
   {
     name: "dinner",
@@ -18,12 +18,12 @@ const categories = [
     video: "tyballs-real-event-vertical",
   },
   {
-    name: "entertainment",
-    poster: "tyballs-entertainment-poster.webp",
-    video: "tyballs-entertainment-vertical",
+    name: "photobooth",
+    poster: "tyballs-photobooth-poster.webp",
+    video: "tyballs-photobooth-vertical",
   },
   {
-    name: "disco",
+    name: "professional DJs",
     poster: "tyballs-disco-poster.webp",
     video: "tyballs-disco-vertical",
   },
