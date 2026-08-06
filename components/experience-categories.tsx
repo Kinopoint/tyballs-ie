@@ -9,8 +9,8 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const categories = [
   {
     name: "beautiful venues",
-    poster: "tyballs-beautiful-venues-poster.webp",
-    video: "tyballs-beautiful-venues-vertical",
+    poster: "tyballs-school-arrival-poster.webp",
+    video: "tyballs-school-arrival-vertical",
   },
   {
     name: "dinner",
