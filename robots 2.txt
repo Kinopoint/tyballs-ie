@@ -1,0 +1,16 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+User-Agent: GPTBot
+User-Agent: ChatGPT-User
+User-Agent: PerplexityBot
+User-Agent: ClaudeBot
+User-Agent: anthropic-ai
+User-Agent: Google-Extended
+User-Agent: bingbot
+Allow: /
+Disallow: /api/
+
+Host: https://tyballs.ie
+Sitemap: https://tyballs.ie/sitemap.xml
