@@ -4600,7 +4600,15 @@ h4 {
   .zip-actions { flex-direction: column; }
   .zip-actions a { width: 100%; }
   .zip-proof { grid-template-columns: 1fr 1fr; }
-  .zip-proof-brand { grid-column: 1 / -1; height: 66px; }
+  .zip-proof-brand {
+    grid-column: 1 / -1;
+    height: 82px;
+    padding: 7px 10px 5px;
+  }
+  .zip-proof-brand img {
+    object-fit: contain;
+    object-position: center 56%;
+  }
   .zip-coordinator-banner {
     display: block;
     min-height: 0;
