@@ -2686,7 +2686,7 @@ h4 {
 }
 
 .enquiry-cinematic-frame {
-  background: #030816;
+  background: #e8dfcf;
   border-block: 1px solid rgba(113, 137, 223, 0.2);
   box-shadow: 0 30px 80px -55px rgba(23, 82, 255, 0.7);
   height: clamp(390px, 32vw, 460px);
@@ -2704,10 +2704,63 @@ h4 {
   width: 100%;
 }
 
+.enquiry-cinematic-check {
+  filter: drop-shadow(0 0 18px rgba(118, 82, 255, 0.28));
+  height: 58%;
+  position: absolute;
+  right: clamp(92px, 11vw, 180px);
+  top: 20%;
+  transform-origin: 50% 60%;
+  width: clamp(230px, 28vw, 410px);
+  z-index: 1;
+}
+
+.enquiry-cinematic-check path {
+  fill: none;
+  stroke: url(#enquiry-check-gradient);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-origin: center;
+  animation: enquiry-check-draw 10s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.enquiry-cinematic-check-line {
+  stroke-width: 6;
+}
+
+.enquiry-cinematic-check-glow {
+  filter: blur(7px);
+  opacity: 0.72;
+  stroke-width: 12;
+}
+
+@keyframes enquiry-check-draw {
+  0%, 10% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  14% {
+    opacity: 1;
+  }
+
+  35%, 72% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+
+  90%, 100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
 .enquiry-cinematic-shade {
   background:
-    linear-gradient(90deg, rgba(2, 6, 17, 0.96) 0%, rgba(3, 8, 22, 0.82) 38%, rgba(4, 9, 24, 0.14) 76%),
-    linear-gradient(180deg, rgba(3, 7, 17, 0.12), transparent 48%, rgba(3, 7, 17, 0.62));
+    linear-gradient(90deg, rgba(247, 241, 229, 0.12) 0%, rgba(247, 241, 229, 0.04) 46%, rgba(9, 13, 27, 0.08) 100%),
+    linear-gradient(180deg, rgba(255, 252, 244, 0.04), transparent 55%, rgba(9, 13, 27, 0.12));
   inset: 0;
   position: absolute;
 }
@@ -2723,15 +2776,17 @@ h4 {
 }
 
 .enquiry-cinematic-copy .zip-eyebrow {
-  color: #c8d0ff;
+  color: #554b79;
   margin-bottom: clamp(18px, 2.4vw, 30px);
 }
 
 .enquiry-cinematic-copy h1 {
+  color: #111522;
   font-size: clamp(39px, 4.8vw, 66px);
   letter-spacing: -0.062em;
   line-height: 0.96;
   margin: 0;
+  text-shadow: 0 1px 18px rgba(255, 252, 244, 0.42);
   white-space: nowrap;
 }
 
@@ -2935,13 +2990,20 @@ h4 {
   }
 
   .enquiry-cinematic-video {
-    object-position: 62% 50%;
+    object-position: 54% 50%;
+  }
+
+  .enquiry-cinematic-check {
+    height: 44%;
+    right: 34px;
+    top: 9%;
+    width: min(48vw, 210px);
   }
 
   .enquiry-cinematic-shade {
     background:
-      linear-gradient(180deg, rgba(2, 6, 17, 0.12) 0%, rgba(2, 6, 17, 0.3) 38%, rgba(2, 6, 17, 0.94) 100%),
-      linear-gradient(90deg, rgba(2, 6, 17, 0.82), transparent 82%);
+      linear-gradient(180deg, rgba(255, 252, 244, 0.03) 0%, rgba(255, 252, 244, 0.02) 46%, rgba(9, 13, 27, 0.14) 100%),
+      linear-gradient(90deg, rgba(247, 241, 229, 0.08), transparent 82%);
   }
 
   .enquiry-cinematic-copy {
@@ -3010,6 +3072,14 @@ h4 {
   .enquire-landing .choice-grid-compact,
   .enquire-landing .choice-grid-attendance {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enquiry-cinematic-check path {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
   }
 }
 

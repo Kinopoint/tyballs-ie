@@ -71,6 +71,24 @@ export function EnquiryHero() {
           <source src={`${basePath}/video/tyballs-enquire-hero.mp4`} type="video/mp4" />
           <source src={`${basePath}/video/tyballs-enquire-hero.webm`} type="video/webm" />
         </motion.video>
+        <motion.svg
+          animate={{ opacity: 1, scale: 1 }}
+          aria-hidden="true"
+          className="enquiry-cinematic-check"
+          initial={{ opacity: 0, scale: 0.92 }}
+          transition={{ delay: 0.72, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewBox="0 0 110 100"
+        >
+          <defs>
+            <linearGradient id="enquiry-check-gradient" x1="10" x2="92" y1="58" y2="18" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="#ff20c8" />
+              <stop offset="0.52" stopColor="#8c42ff" />
+              <stop offset="1" stopColor="#178cff" />
+            </linearGradient>
+          </defs>
+          <path className="enquiry-cinematic-check-glow" d="M 10 58 L 38 84 L 92 18" pathLength="1" />
+          <path className="enquiry-cinematic-check-line" d="M 10 58 L 38 84 L 92 18" pathLength="1" />
+        </motion.svg>
         <div className="enquiry-cinematic-shade" aria-hidden="true" />
         <div className="enquiry-cinematic-copy">
           <motion.p
