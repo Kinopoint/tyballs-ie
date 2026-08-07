@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { DesignPlaceholder } from "@/components/design-placeholder";
+import { EditorialImage } from "@/components/editorial-image";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const scenes = [
-  ["The night", "Arrival, lit and calm", "The night · portrait 9:16"],
-  ["Dinner", "Dinner, served together", "Dinner · portrait 9:16"],
-  ["Photo booth", "Photo booth, all night", "Photo booth · portrait 9:16"],
-  ["Together", "The whole year, one room", "Together · portrait 9:16"],
+  ["The night", "Arrival, lit and calm", "drive-arrival", 1000, 1367],
+  ["Dinner", "Dinner, served together", "drive-dinner", 1000, 1500],
+  ["Photo booth", "Photo booth, all night", "drive-photobooth", 1000, 1500],
+  ["Together", "The whole year, one room", "drive-group", 1000, 1500],
 ] as const;
 
 export function HomeHero() {
@@ -51,7 +51,17 @@ export function HomeHero() {
         <div className="zip-hero-gallery">
           <div className="zip-hero-frame">
             <div className="zip-hero-track" style={{ transform: `translateX(-${activeScene * 25}%)` }}>
-              {scenes.map((scene) => <DesignPlaceholder className="zip-hero-placeholder" key={scene[0]} label={scene[2]} />)}
+              {scenes.map((scene, index) => (
+                <EditorialImage
+                  alt=""
+                  className="zip-hero-scene"
+                  height={scene[4]}
+                  key={scene[0]}
+                  name={scene[2]}
+                  priority={index === 0}
+                  width={scene[3]}
+                />
+              ))}
             </div>
             <p className="zip-hero-caption">{scenes[activeScene][1]}</p>
           </div>

@@ -63,11 +63,12 @@ experienced coordinator.
 - Название всегда пишется точно: TYBalls.ie.
 - TYBalls.ie is brought to you by the team behind DebsGuru.ie.
 - Контактный email: info@debsguru.ie.
-- Телефон / WhatsApp: 087 343 1732.
+- WhatsApp: secondary direct-message button for 087 343 1732; do not present it as a call-first contact.
 - Компания: DebsGuru Ltd.
-- Адрес: St Brendans, East End, Ballybunion, Co Kerry, V31 CF61, Ireland.
+- Почтовый адрес не отображается на публичном сайте или legal-страницах.
 - Instagram: https://www.instagram.com/debsguru/
 - Facebook: https://www.facebook.com/DebsGuru
+- TikTok: https://www.tiktok.com/@debsguru.ie
 - Основной сайт DebsGuru: https://debsguru.ie/
 
 ## 5. Логотип и визуальная история
@@ -204,6 +205,7 @@ Follow DebsGuru:
 
 - Instagram
 - Facebook
+- TikTok
 
 Legal:
 
@@ -215,7 +217,7 @@ Legal:
 Нижняя строка:
 
 - © current year DebsGuru Ltd
-- St Brendans, East End, Ballybunion, Co Kerry
+- TYBalls.ie by the team behind DebsGuru.ie
 
 ## 8. Sitemap
 
@@ -846,12 +848,9 @@ Status: Draft for client review · Last updated 2 August 2026
 > DebsGuru Ltd, trading through TYBalls.ie, is the controller of personal
 > information submitted through this website.
 
-Displayed address:
+Displayed controller contact:
 
 > DebsGuru Ltd  
-> St Brendans, East End  
-> Ballybunion, Co Kerry  
-> V31 CF61, Ireland  
 > Email: info@debsguru.ie
 
 #### 2. Information we collect
@@ -953,8 +952,7 @@ Status: Draft for client review · Last updated 2 August 2026
 
 #### 1. About this website
 
-> TYBalls.ie is operated by DebsGuru Ltd from St Brendans, East End,
-> Ballybunion, Co Kerry, V31 CF61, Ireland. It provides information and an
+> TYBalls.ie is operated by DebsGuru Ltd. It provides information and an
 > enquiry route for Transition Year ball planning.
 
 #### 2. An enquiry is not a booking
@@ -1248,7 +1246,7 @@ GitHub Pages — только статическое preview. Оно:
 - Production Turnstile, SMTP и GTM credentials ещё должны быть настроены.
 - Нужны Contabo VPS, backups, monitoring, certificate и restore test.
 - Требуется DNS change в LetsHost после approval.
-- WhatsApp trial пока не финализирован.
+- WhatsApp direct-message button согласован как secondary contact route; booking form остаётся primary CTA.
 - Старый Editorial Rhythm brief конфликтует с текущим client neon logo; новый
   дизайнер должен показать осознанное решение этого конфликта, а не смешивать
   две системы случайно.

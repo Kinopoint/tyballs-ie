@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+const staticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "true";
+
 type PageMetadata = {
   title: string;
   description: string;
@@ -26,15 +28,17 @@ export function createPageMetadata({
     creator: "TYBalls.ie by DebsGuru",
     publisher: "DebsGuru Ltd",
     robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
-      },
+      index: !staticPreview,
+      follow: !staticPreview,
+      googleBot: staticPreview
+        ? { index: false, follow: false }
+        : {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
     },
     openGraph: {
       title: pageTitle,

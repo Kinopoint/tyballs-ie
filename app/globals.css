@@ -3545,9 +3545,18 @@ h4 {
   width: 400%;
 }
 
-.zip-hero-placeholder {
+.zip-hero-scene {
+  display: block;
   flex: 0 0 25%;
+  height: 100%;
+  overflow: hidden;
   position: relative;
+}
+
+.zip-hero-scene img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .zip-hero-caption {

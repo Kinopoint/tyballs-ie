@@ -8,6 +8,8 @@ import { StructuredData } from "@/components/structured-data";
 import { site } from "@/lib/site";
 import "./globals.css";
 
+const staticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "true";
+
 const brandDisplay = Space_Grotesk({
   display: "swap",
   subsets: ["latin"],
@@ -32,9 +34,11 @@ export const metadata: Metadata = {
   creator: "TYBalls.ie by DebsGuru",
   publisher: "DebsGuru Ltd",
   robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+    index: !staticPreview,
+    follow: !staticPreview,
+    googleBot: staticPreview
+      ? { index: false, follow: false }
+      : { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
   openGraph: {
     title: "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru",
@@ -74,7 +78,7 @@ const websiteSchema = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en-IE">
       <body className={`${brandDisplay.variable} ${brandBody.variable}`}>
         <StructuredData data={[organisationSchema, websiteSchema]} />
         <Script id="consent-default" strategy="beforeInteractive">

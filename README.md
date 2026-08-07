@@ -75,6 +75,5 @@ The domain password must never be sent by ordinary email. Either provide Declan 
 - Final safety and supervision wording.
 - Written approval or replacement of media assets.
 - Production Turnstile, SMTP and GTM credentials.
-- Decision on the WhatsApp trial.
 - LetsHost DNS change.
 - Contabo VPS, backups, monitoring, certificate and restore test.

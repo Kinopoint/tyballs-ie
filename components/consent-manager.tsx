@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import { analyticsConsentStorageKey } from "@/lib/analytics";
 
 type Consent = "accepted" | "rejected" | null;
-const storageKey = "tyballs-analytics-consent";
 
 declare global {
   interface Window {
@@ -31,7 +31,12 @@ export function ConsentManager() {
 
   useEffect(() => {
     const initialise = () => {
-      const stored = window.localStorage.getItem(storageKey);
+      if (!gtmId) {
+        setConsent("rejected");
+        return;
+      }
+
+      const stored = window.localStorage.getItem(analyticsConsentStorageKey);
       if (stored === "accepted" || stored === "rejected") {
         setConsent(stored);
         sendConsent(stored);
@@ -44,10 +49,10 @@ export function ConsentManager() {
     return () => {
       window.clearTimeout(initialiseTimer);
     };
-  }, []);
+  }, [gtmId]);
 
   function choose(value: Exclude<Consent, null>) {
-    window.localStorage.setItem(storageKey, value);
+    window.localStorage.setItem(analyticsConsentStorageKey, value);
     setConsent(value);
     setOpen(false);
     sendConsent(value);
@@ -75,5 +80,5 @@ export function ConsentManager() {
 }
 
 export function CookieSettingsButton() {
-  return <button className="footer-cookie-button" type="button" onClick={() => { window.localStorage.removeItem(storageKey); window.location.reload(); }}>Cookie settings</button>;
+  return <button className="footer-cookie-button" type="button" onClick={() => { window.localStorage.removeItem(analyticsConsentStorageKey); window.location.reload(); }}>Cookie settings</button>;
 }
