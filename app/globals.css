@@ -3703,6 +3703,25 @@ h4 {
   padding-top: clamp(40px, 5vw, 72px);
 }
 
+@media (min-width: 900px) {
+  .zip-highlights {
+    padding-bottom: clamp(48px, 4.5vw, 64px);
+  }
+
+  .experience-categories {
+    padding-top: clamp(48px, 4.5vw, 58px);
+    scroll-margin-top: 84px;
+  }
+
+  .experience-categories > .experience-categories-header {
+    padding-bottom: clamp(26px, 2.5vw, 34px);
+  }
+
+  .experience-categories + .zip-section {
+    padding-top: clamp(30px, 3vw, 40px);
+  }
+}
+
 .experience-categories-header {
   align-items: end;
   display: flex;
