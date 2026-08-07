@@ -36,13 +36,18 @@ export default function CommitteesPage() {
   return (
     <main id="main-content">
       <StructuredData data={committeesSchema} />
-      <section className="zip-plain-hero zip-shell">
-        <p className="zip-eyebrow">For TY committees</p>
-        <h1>Start with the basics</h1>
-        <p>You do not need every answer. Five useful details give DebsGuru enough to start shaping the event.</p>
-      </section>
-      <section className="zip-section zip-shell zip-committee-grid">
-        <div className="zip-committee-intro"><p className="zip-eyebrow">Committee checklist</p><h2>Five things to share</h2><p>These basics keep the first conversation focused. DebsGuru can then check the venue, event arrangements and pricing that fit your group. Students book their own local transport suppliers; our team guides the committee on timings and locations.</p><div className="zip-committee-media"><CommitteeVisual /></div></div>
+      <section className="zip-section zip-shell zip-committee-layout">
+        <div className="zip-committee-start">
+          <p className="zip-eyebrow">For TY committees</p>
+          <h1>Start with the basics</h1>
+          <p>You do not need every answer. Five useful details give DebsGuru enough to start shaping the event.</p>
+        </div>
+        <div className="zip-committee-intro">
+          <p className="zip-eyebrow">Committee checklist</p>
+          <h2>Five things to share</h2>
+          <p>These basics keep the first conversation focused. DebsGuru can then check the venue, event arrangements and pricing that fit your group. Students book their own local transport suppliers; our team guides the committee on timings and locations.</p>
+        </div>
+        <div className="zip-committee-media"><CommitteeVisual /></div>
         <div className="zip-numberless-list" id="committee-checklist">{checklist.map(([title, text], index) => <article key={title}><span className={index === checklist.length - 1 ? "is-active" : ""} aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </section>
       <section className="zip-section zip-shell"><div className="zip-split-cta"><div><p className="zip-eyebrow">Ready to begin</p><h2>Booking Enquiry Form</h2></div><Link className="zip-button-fill" href="/enquire">Open the form</Link></div></section>
