@@ -2,6 +2,8 @@
 
 Independent TY Ball website and enquiry system for DebsGuru Ltd.
 
+Project decisions and research implications are recorded in [CLIENT_DECISIONS.md](./CLIENT_DECISIONS.md), [RESEARCH_IMPLICATIONS.md](./RESEARCH_IMPLICATIONS.md) and [LEGAL_PRIVACY_MEMORY.md](./LEGAL_PRIVACY_MEMORY.md).
+
 ## Current implementation
 
 - Mobile-first Next.js website with dedicated TY Balls positioning.
