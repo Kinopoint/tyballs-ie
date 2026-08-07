@@ -4411,6 +4411,187 @@ h4 {
   margin-top: 8px;
 }
 
+.committee-visual {
+  background: #10131f;
+  color: #fff;
+  inset: 0;
+  isolation: isolate;
+  overflow: hidden;
+  position: absolute;
+}
+
+.committee-visual-image-plane {
+  height: 108%;
+  left: -4%;
+  position: absolute;
+  top: -4%;
+  width: 108%;
+  z-index: 0;
+}
+
+.committee-visual-picture {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.committee-visual-picture img {
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 44%;
+  width: 100%;
+}
+
+.committee-visual-shade {
+  background:
+    radial-gradient(circle at 22% 18%, rgba(101, 56, 255, 0.34), transparent 40%),
+    radial-gradient(circle at 88% 82%, rgba(67, 200, 255, 0.2), transparent 38%),
+    linear-gradient(90deg, rgba(13, 16, 29, 0.97) 0%, rgba(15, 18, 32, 0.76) 54%, rgba(15, 18, 32, 0.22) 100%),
+    linear-gradient(180deg, transparent 45%, rgba(12, 15, 26, 0.72) 100%);
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.committee-visual-grid {
+  background-image:
+    linear-gradient(rgba(197, 191, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197, 191, 255, 0.07) 1px, transparent 1px);
+  background-size: 34px 34px;
+  inset: 0;
+  mask-image: linear-gradient(90deg, #000, rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.committee-visual::after {
+  border: 1px solid rgba(198, 193, 226, 0.32);
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 6;
+}
+
+.committee-visual-brand {
+  font-size: clamp(12px, 1.4vw, 15px);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  position: absolute;
+  right: clamp(18px, 3vw, 28px);
+  top: clamp(17px, 3vw, 26px);
+  z-index: 4;
+}
+
+.committee-visual-copy {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(18px, 3.2vw, 34px);
+  position: relative;
+  width: min(76%, 410px);
+  z-index: 4;
+}
+
+.committee-visual-eyebrow {
+  color: #c8c1ef;
+  font-size: clamp(9px, 1.2vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.19em;
+  margin: 0;
+  padding-top: clamp(22px, 4vw, 46px);
+  text-transform: uppercase;
+}
+
+.committee-visual h3 {
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  margin: clamp(13px, 2.3vw, 22px) 0 0;
+}
+
+.committee-visual h3 span {
+  color: #d3ceff;
+  display: block;
+}
+
+.committee-visual-description {
+  color: rgba(245, 244, 249, 0.76);
+  font-size: clamp(12px, 1.55vw, 16px);
+  line-height: 1.45;
+  margin: clamp(13px, 2vw, 20px) 0 0;
+  max-width: 27ch;
+}
+
+.committee-visual-link {
+  align-items: center;
+  background: #f7f6fb;
+  border-radius: 999px;
+  color: #121527;
+  display: inline-flex;
+  font-size: clamp(11px, 1.3vw, 14px);
+  font-weight: 650;
+  gap: 10px;
+  margin-top: auto;
+  min-height: clamp(38px, 4.4vw, 46px);
+  padding: 5px 6px 5px clamp(15px, 2vw, 21px);
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.committee-visual-link i {
+  align-items: center;
+  background: #9184d9;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  font-size: 16px;
+  font-style: normal;
+  height: clamp(28px, 3.4vw, 36px);
+  justify-content: center;
+  width: clamp(28px, 3.4vw, 36px);
+}
+
+.committee-visual-link:hover {
+  box-shadow: 0 0 22px rgba(226, 222, 255, 0.28);
+  color: #121527;
+  transform: translateY(-2px);
+}
+
+.committee-visual-dots {
+  bottom: clamp(18px, 3vw, 28px);
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: clamp(18px, 3vw, 28px);
+  z-index: 4;
+}
+
+.committee-visual-dots i {
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+}
+
+.committee-visual-dots i:nth-child(1) { background: #ff35bd; }
+.committee-visual-dots i:nth-child(2) { background: #b67cff; }
+.committee-visual-dots i:nth-child(3) { background: #43c8ff; }
+
+#committee-checklist {
+  scroll-margin-top: 100px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .committee-visual-image-plane,
+  .committee-visual-copy > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 .zip-numberless-list {
   border-top: 1px solid var(--divider);
 }
