@@ -19,10 +19,12 @@ function escapeHtml(value: string) {
 
 export async function sendEnquiryNotification(id: string, enquiry: EnquiryInput) {
   const port = Number(required("SMTP_PORT"));
+  const secure = port === 465;
   const transporter = nodemailer.createTransport({
     host: required("SMTP_HOST"),
     port,
-    secure: port === 465,
+    secure,
+    requireTLS: !secure && process.env.SMTP_REQUIRE_TLS !== "false",
     auth: {
       user: required("SMTP_USER"),
       pass: required("SMTP_PASSWORD"),

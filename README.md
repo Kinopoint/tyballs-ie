@@ -12,9 +12,9 @@ Project decisions and research implications are recorded in [CLIENT_DECISIONS.md
 - Cloudflare Turnstile verification.
 - SMTP notification to DebsGuru after the lead is stored.
 - Consent-gated Google Tag Manager and non-PII form events.
-- Privacy, Cookie and Website Terms drafts for client review.
+- Published Privacy Notice, Cookie Notice and Website Terms for final client/legal review.
 - Sitemap, robots directives, canonical metadata and social metadata.
-- Standalone Docker build and Contabo-ready Compose configuration.
+- Standalone hardened Docker build, automated retention, health checks and scheduled PostgreSQL backups.
 - Nginx reverse-proxy configuration for HTTPS after certificate issuance.
 
 ## Local development
@@ -36,7 +36,7 @@ npm run build
 npm run test:integration
 ```
 
-The integration test creates an isolated temporary PostgreSQL database, starts the production Next.js server and a real local SMTP listener, verifies a Cloudflare Turnstile test token, submits the HTTP form, checks the persisted lead and delivered email, checks duplicate suppression, and removes the temporary database.
+The integration test creates isolated PostgreSQL databases, starts the production Next.js server and a real local SMTP listener, verifies a Cloudflare Turnstile test token, submits the HTTP form, checks the persisted lead and delivered email, checks duplicate suppression, creates and restores a real PostgreSQL dump, runs retention cleanup, and removes all temporary data.
 
 ## Visual rollback points
 
@@ -61,21 +61,12 @@ npm run build:pages
 
 ## Production deployment
 
-1. Create a dedicated Contabo VPS and restrict SSH to keys.
-2. Install Docker Engine, Docker Compose, Nginx and Certbot.
-3. Copy `.env.example` to `.env` and replace every descriptive value with the production credential.
-4. Set `POSTGRES_PASSWORD` in the deployment environment.
-5. Run `docker compose up -d --build`.
-6. Install `infra/nginx/tyballs.ie.conf` on the host after obtaining the initial certificate.
-7. Point `tyballs.ie` and `www.tyballs.ie` DNS records to the server only after client approval.
-
-The domain password must never be sent by ordinary email. Either provide Declan with the final DNS records to enter in LetsHost or use a secure delegated-access method if LetsHost supports it.
+Follow [PRODUCTION_RUNBOOK.md](./PRODUCTION_RUNBOOK.md) for the exact VPS, DNS, TLS, backup, monitoring, validation and rollback sequence. The domain password must never be sent by ordinary email. Either provide Declan with the final DNS records to enter in LetsHost or use secure delegated access if LetsHost supports it.
 
 ## Required before public launch
 
-- Client approval of the visual direction, copy and legal drafts.
-- Final safety and supervision wording.
-- Written approval or replacement of media assets.
+- Final client/legal review of the Privacy Notice, Cookie Notice and Website Terms.
 - Production Turnstile, SMTP and GTM credentials.
 - LetsHost DNS change.
-- Contabo VPS, backups, monitoring, certificate and restore test.
+- VPS access, off-site backup destination, external monitoring, certificate and production restore test.
+- Instagram Business/Creator confirmation and one-time authorisation only if the feed is approved for a later phase.

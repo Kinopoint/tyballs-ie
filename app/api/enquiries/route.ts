@@ -108,7 +108,7 @@ export async function POST(request: NextRequest) {
         id, school, county, contact_name, first_name, last_name, email, phone,
         event_type, year_size, estimated_attendance, preferred_date, date_flexibility,
         preferred_location, attendance_band, referral_source, referral_other,
-        joining_schools, priorities, message, privacy_consent_at, marketing_consent,
+        joining_schools, priorities, message, privacy_notice_acknowledged_at, marketing_consent,
         landing_page, referrer, utm_source, utm_medium, utm_campaign, utm_content,
         utm_term, gclid, fbclid, request_hash
       ) VALUES (

@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS enquiries (
   date_flexibility text NOT NULL,
   priorities text[] NOT NULL DEFAULT '{}',
   message text,
-  privacy_consent_at timestamptz NOT NULL,
+  privacy_notice_acknowledged_at timestamptz NOT NULL,
   marketing_consent boolean NOT NULL DEFAULT false,
   landing_page text,
   referrer text,
@@ -25,12 +25,14 @@ CREATE TABLE IF NOT EXISTS enquiries (
   lead_status text NOT NULL DEFAULT 'new' CHECK (lead_status IN ('new', 'contacted', 'qualified', 'quote_sent', 'booked', 'lost')),
   notification_status text NOT NULL DEFAULT 'pending' CHECK (notification_status IN ('pending', 'sent', 'failed')),
   notification_error text,
-  request_hash text NOT NULL
+  request_hash text NOT NULL,
+  last_activity_at timestamptz NOT NULL DEFAULT now()
 );
 
 CREATE INDEX IF NOT EXISTS enquiries_created_at_idx ON enquiries (created_at DESC);
 CREATE INDEX IF NOT EXISTS enquiries_email_idx ON enquiries (lower(email));
 CREATE INDEX IF NOT EXISTS enquiries_request_hash_idx ON enquiries (request_hash, created_at DESC);
+CREATE INDEX IF NOT EXISTS enquiries_retention_idx ON enquiries (lead_status, last_activity_at);
 
 CREATE TABLE IF NOT EXISTS submission_windows (
   request_hash text NOT NULL,

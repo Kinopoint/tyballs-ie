@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useAnimate } from "motion/react";
 import { useEffect, useState } from "react";
 import { Brand } from "@/components/brand";
+import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import { navigation, site } from "@/lib/site";
 
 export function SiteHeader() {
@@ -37,13 +38,13 @@ export function SiteHeader() {
           <span>Quick contact</span>
           <div>
             <a href={`mailto:${site.email}`}>Email DebsGuru</a>
-            <a href={site.whatsappHref} rel="noreferrer" target="_blank">Message on WhatsApp</a>
+            <TrackedWhatsAppLink href={site.whatsappHref} location="mobile_navigation" rel="noreferrer" target="_blank">Message on WhatsApp</TrackedWhatsAppLink>
           </div>
         </div>
       </nav>
-      <a className="header-phone" href={site.whatsappHref} rel="noreferrer" target="_blank">
+      <TrackedWhatsAppLink className="header-phone" href={site.whatsappHref} location="header" rel="noreferrer" target="_blank">
         Quick contact · WhatsApp
-      </a>
+      </TrackedWhatsAppLink>
       <Link className="button button-compact header-cta" href="/enquire">
         Booking Enquiry Form
       </Link>

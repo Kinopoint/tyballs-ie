@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Brand } from "@/components/brand";
 import { CookieSettingsButton } from "@/components/consent-manager";
+import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import { site } from "@/lib/site";
 
 export function SiteFooter() {
@@ -36,7 +37,7 @@ export function SiteFooter() {
               TikTok
             </a>
             <a href={`mailto:${site.email}`}>{site.email}</a>
-            <a href={site.whatsappHref} rel="noreferrer" target="_blank">Message on WhatsApp</a>
+            <TrackedWhatsAppLink href={site.whatsappHref} location="footer" rel="noreferrer" target="_blank">Message on WhatsApp</TrackedWhatsAppLink>
           </div>
           <div>
             <strong>Privacy &amp; website</strong>

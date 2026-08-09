@@ -187,7 +187,7 @@ export function EnquiryForm() {
 
         <motion.div {...sectionMotion} className="form-finish">
           <label className="trap" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
-          <label className="consent"><input type="checkbox" name="privacyConsent" value="yes" required /><span>By ticking this box, I agree to allow DebsGuru to reply to the enquiry and send any follow-up messages or updates related to it. <Link href="/privacy" target="_blank">Privacy Policy</Link> *</span></label>
+          <label className="consent"><input type="checkbox" name="privacyConsent" value="yes" required /><span>I confirm that I have read the <Link href="/privacy" target="_blank">Privacy Notice</Link>. DebsGuru will use the information submitted to review and respond to this booking enquiry. *</span></label>
           <input name="marketingConsent" type="hidden" value="no" />
           {previewMode ? <p className="preview-notice">Preview website: enquiry sending will be enabled on the secure TYBalls.ie server.</p> : siteKey ? <div className="turnstile" ref={widgetRef} /> : <p className="configuration-error">The enquiry form security key is not configured.</p>}
           <button className="button button-dark form-button" disabled={previewMode || state.kind === "submitting" || state.kind === "success"} type="submit">{previewMode ? "Preview only" : state.kind === "submitting" ? "Sending…" : "Send booking enquiry"}</button>

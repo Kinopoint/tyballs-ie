@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+.git
+.github
+.codegraph
+.next
+.pages-build
+backups
+branding
+node_modules
+out
+npm-debug.log*
+*.pem
+*.tsbuildinfo

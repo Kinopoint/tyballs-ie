@@ -14,10 +14,26 @@ services:
     volumes:
       - tyballs_database:/var/lib/postgresql
     networks: [internal]
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   website:
-    build: .
+    image: tyballs-website:local
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:?NEXT_PUBLIC_TURNSTILE_SITE_KEY is required}
+        NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID:-}
     restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
     depends_on:
       database:
         condition: service_healthy
@@ -29,6 +45,66 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     networks: [internal]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/api/health >/dev/null"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  retention:
+    image: tyballs-website:local
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    depends_on:
+      database:
+        condition: service_healthy
+      website:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://tyballs:${POSTGRES_PASSWORD}@database:5432/tyballs
+    command: ["node", "scripts/retention.mjs"]
+    networks: [internal]
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  backup:
+    image: postgres:18.4-alpine
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://tyballs:${POSTGRES_PASSWORD}@database:5432/tyballs
+    command: ["sh", "/usr/local/bin/backup.sh"]
+    volumes:
+      - ./backups:/backups
+      - ./scripts/backup.sh:/usr/local/bin/backup.sh:ro
+    networks: [internal]
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   tyballs_database:
