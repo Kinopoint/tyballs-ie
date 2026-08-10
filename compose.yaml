@@ -98,7 +98,7 @@ services:
       DATABASE_URL: postgresql://tyballs:${POSTGRES_PASSWORD}@database:5432/tyballs
     command: ["sh", "/usr/local/bin/backup.sh"]
     volumes:
-      - ./backups:/backups
+      - ${BACKUP_HOST_DIRECTORY:-./backups}:/backups
       - ./scripts/backup.sh:/usr/local/bin/backup.sh:ro
     networks: [internal]
     logging:

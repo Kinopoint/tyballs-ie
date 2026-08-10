@@ -9,7 +9,7 @@ This runbook covers the first VPS release and normal operations. GitHub Pages re
 - Production Cloudflare Turnstile site and secret keys restricted to `tyballs.ie` and `www.tyballs.ie`.
 - Transactional SMTP credentials and the confirmed notification mailbox.
 - Optional production GTM container ID. The website works without analytics.
-- A destination outside the VPS for encrypted database backups.
+- A local backup directory outside the source checkout, configured with `BACKUP_HOST_DIRECTORY`, plus a destination outside the VPS for encrypted database backups.
 
 Instagram is not part of the launch-critical path. Its official connection can be added only after Declan confirms that the account is Business or Creator and authorises it.
 
