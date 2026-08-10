@@ -40,8 +40,11 @@ services:
     env_file: .env
     environment:
       DATABASE_URL: postgresql://tyballs:${POSTGRES_PASSWORD}@database:5432/tyballs
+      CMS_MEDIA_DIRECTORY: /app/media
       HOSTNAME: 0.0.0.0
       PORT: 3000
+    volumes:
+      - ${CMS_MEDIA_HOST_DIRECTORY:-./cms-media}:/app/media
     ports:
       - "127.0.0.1:3000:3000"
     networks: [internal]
@@ -81,6 +84,23 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  cms-tools:
+    profiles: [tools]
+    build:
+      context: .
+      target: tools
+    init: true
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://tyballs:${POSTGRES_PASSWORD}@database:5432/tyballs
+      CMS_MEDIA_DIRECTORY: /app/media
+    volumes:
+      - ${CMS_MEDIA_HOST_DIRECTORY:-./cms-media}:/app/media
+    networks: [internal]
+
   backup:
     image: postgres:18.4-alpine
     restart: unless-stopped
@@ -96,9 +116,11 @@ services:
     env_file: .env
     environment:
       DATABASE_URL: postgresql://tyballs:${POSTGRES_PASSWORD}@database:5432/tyballs
+      CMS_MEDIA_DIRECTORY: /media
     command: ["sh", "/usr/local/bin/backup.sh"]
     volumes:
       - ${BACKUP_HOST_DIRECTORY:-./backups}:/backups
+      - ${CMS_MEDIA_HOST_DIRECTORY:-./cms-media}:/media:ro
       - ./scripts/backup.sh:/usr/local/bin/backup.sh:ro
     networks: [internal]
     logging:

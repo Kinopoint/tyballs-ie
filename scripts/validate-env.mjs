@@ -1,3 +1,5 @@
+import path from "node:path";
+
 const placeholderFragments = ["change-this", "use-the-", "replace-me", "example.com", "xxxxxxx"];
 
 function required(name) {
@@ -19,6 +21,11 @@ const databaseUrl = new URL(required("DATABASE_URL"));
 if (!databaseUrl.protocol.startsWith("postgres")) throw new Error("DATABASE_URL must use PostgreSQL.");
 
 if (required("RATE_LIMIT_SALT").length < 32) throw new Error("RATE_LIMIT_SALT must contain at least 32 characters.");
+if (required("PAYLOAD_SECRET").length < 32) throw new Error("PAYLOAD_SECRET must contain at least 32 characters.");
+if (required("PREVIEW_SECRET").length < 32) throw new Error("PREVIEW_SECRET must contain at least 32 characters.");
+const serverUrl = new URL(required("NEXT_PUBLIC_SERVER_URL"));
+if (serverUrl.protocol !== "https:" && serverUrl.protocol !== "http:") throw new Error("NEXT_PUBLIC_SERVER_URL must use HTTP or HTTPS.");
+if (!path.isAbsolute(required("CMS_MEDIA_DIRECTORY"))) throw new Error("CMS_MEDIA_DIRECTORY must be an absolute path.");
 if (required("TURNSTILE_SECRET_KEY").length < 20) throw new Error("TURNSTILE_SECRET_KEY is not valid.");
 if (required("NEXT_PUBLIC_TURNSTILE_SITE_KEY").length < 20) throw new Error("NEXT_PUBLIC_TURNSTILE_SITE_KEY is not valid.");
 

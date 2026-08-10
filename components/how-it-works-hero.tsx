@@ -3,10 +3,9 @@
 import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
+import type { Page } from "@/payload-types";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const headlineLines = ["From enquiry to event"] as const;
-
 const characterVariants = {
   hidden: { filter: "blur(8px)", opacity: 0, y: "0.9em" },
   visible: (index: number) => ({
@@ -21,9 +20,10 @@ const characterVariants = {
   }),
 };
 
-export function HowItWorksHero() {
+export function HowItWorksHero({ content }: { content?: Page["hero"] }) {
   const pathname = usePathname();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const headline = content?.title ?? "From enquiry to event";
   let characterIndex = 0;
 
   const resumeVideo = useCallback(() => {
@@ -81,10 +81,10 @@ export function HowItWorksHero() {
             initial={{ opacity: 0, y: 18 }}
             transition={{ delay: 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            How it works
+            {content?.eyebrow ?? "How it works"}
           </motion.p>
-          <h1 aria-label="From enquiry to event" id="how-hero-title">
-            {headlineLines.map((line) => (
+          <h1 aria-label={headline} id="how-hero-title">
+            {[headline].map((line) => (
               <span className="how-hero-line" key={line}>
                 {Array.from(line).map((character) => {
                   const index = characterIndex++;
@@ -119,8 +119,9 @@ export function HowItWorksHero() {
         initial={{ opacity: 0, y: 24 }}
         transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <p>Start with a date, location and guest estimate.</p>
-        <p>DebsGuru turns them into a plan the committee can review with confidence.</p>
+        {content?.intro
+          ? content.intro.split(/\n+/).map((line) => <p key={line}>{line}</p>)
+          : <><p>Start with a date, location and guest estimate.</p><p>DebsGuru turns them into a plan the committee can review with confidence.</p></>}
       </motion.div>
     </section>
   );

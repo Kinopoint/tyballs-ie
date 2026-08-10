@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useRef } from "react";
+import type { HomePage, Media } from "@/payload-types";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -29,9 +30,14 @@ const categories = [
   },
 ] as const;
 
-export function ExperienceCategories() {
+function mediaUrl(media: string | Media | null | undefined) {
+  return typeof media === "object" && media?.url ? media.url : null;
+}
+
+export function ExperienceCategories({ content }: { content?: HomePage["experience"] }) {
   const visibleVideos = useRef(new Set<HTMLVideoElement>());
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+  const displayCategories = content?.categories?.length ? content.categories : categories;
 
   const resumeVideos = useCallback(() => {
     videoRefs.current.forEach((video) => {
@@ -85,7 +91,12 @@ export function ExperienceCategories() {
       </div>
       <p className="experience-categories-hint zip-shell" aria-hidden="true">Swipe to explore <span>→</span></p>
       <div className="experience-category-grid" aria-label="TY Ball experience gallery">
-        {categories.map((category, index) => (
+        {displayCategories.map((category, index) => {
+          const cmsVideo = "video" in category ? mediaUrl(category.video) : null;
+          const cmsPoster = "poster" in category ? mediaUrl(category.poster) : null;
+          const fallbackVideo = "video" in category && typeof category.video === "string" ? category.video : "";
+          const fallbackPoster = "poster" in category && typeof category.poster === "string" ? category.poster : "";
+          return (
           <motion.article
             className="experience-category-card"
             initial={{ opacity: 0, y: 48 }}
@@ -102,12 +113,11 @@ export function ExperienceCategories() {
               muted
               onCanPlay={resumeVideos}
               playsInline
-              poster={`${basePath}/images/${category.poster}`}
+              poster={cmsPoster ?? `${basePath}/images/${fallbackPoster}`}
               preload="metadata"
               ref={(video) => { videoRefs.current[index] = video; }}
             >
-              <source src={`${basePath}/video/${category.video}.mp4`} type="video/mp4" />
-              <source src={`${basePath}/video/${category.video}.webm`} type="video/webm" />
+              {cmsVideo ? <source src={cmsVideo} /> : <><source src={`${basePath}/video/${fallbackVideo}.mp4`} type="video/mp4" /><source src={`${basePath}/video/${fallbackVideo}.webm`} type="video/webm" /></>}
             </video>
             <div className="experience-category-overlay" aria-hidden="true" />
             <h3>{category.name}</h3>
@@ -117,7 +127,8 @@ export function ExperienceCategories() {
               href="/enquire"
             />
           </motion.article>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

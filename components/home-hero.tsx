@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { EditorialImage } from "@/components/editorial-image";
+import type { HomePage } from "@/payload-types";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -13,7 +14,11 @@ const scenes = [
   ["Together", "The whole year, one room", "drive-group", 1000, 1500],
 ] as const;
 
-export function HomeHero() {
+type HomeHeroProps = {
+  content?: HomePage["hero"];
+};
+
+export function HomeHero({ content }: HomeHeroProps) {
   const [activeScene, setActiveScene] = useState(0);
 
   useEffect(() => {
@@ -30,12 +35,12 @@ export function HomeHero() {
       <div className="zip-hero-glow zip-hero-glow-blue" aria-hidden="true" />
       <div className="zip-hero-grid zip-shell">
         <div className="zip-hero-copy">
-          <p className="zip-pill"><span aria-hidden="true" />TY Ball organisers across Ireland</p>
-          <h1 id="home-hero-title">Planning a TY&nbsp;Ball?</h1>
-          <p className="zip-lead">A memorable night for your guests. One clear plan for you.</p>
+          <p className="zip-pill"><span aria-hidden="true" />{content?.eyebrow ?? "TY Ball organisers across Ireland"}</p>
+          <h1 id="home-hero-title">{(content?.title ?? "Planning a TY Ball?").replace("TY Ball", "TY\u00a0Ball")}</h1>
+          <p className="zip-lead">{content?.intro ?? "A memorable night for your guests. One clear plan for you."}</p>
           <div className="zip-actions">
-            <Link className="zip-button-outline" href="/enquire">Booking Enquiry Form</Link>
-            <Link className="zip-button-quiet" href="/how-it-works">See how it works →</Link>
+            <Link className="zip-button-outline" href={content?.primaryButtonLink ?? "/enquire"}>{content?.primaryButtonLabel ?? "Booking Enquiry Form"}</Link>
+            <Link className="zip-button-quiet" href={content?.secondaryButtonLink ?? "/how-it-works"}>{content?.secondaryButtonLabel ?? "See how it works"} →</Link>
           </div>
           <div className="zip-proof" aria-label="DebsGuru experience">
             <div className="zip-proof-brand">

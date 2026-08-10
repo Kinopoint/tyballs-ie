@@ -3,6 +3,13 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
+FROM dependencies AS tools
+WORKDIR /app
+ENV NODE_ENV=production
+COPY . .
+RUN addgroup --system --gid 1001 cms && adduser --system --uid 1001 --ingroup cms cms
+USER cms
+
 FROM node:24.14.1-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1

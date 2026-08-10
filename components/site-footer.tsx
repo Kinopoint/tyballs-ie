@@ -3,16 +3,21 @@ import { Brand } from "@/components/brand";
 import { CookieSettingsButton } from "@/components/consent-manager";
 import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import { site } from "@/lib/site";
+import type { SiteSetting } from "@/payload-types";
 
-export function SiteFooter() {
+export function SiteFooter({ settings }: { settings?: SiteSetting | null }) {
+  const email = settings?.contactEmail ?? site.email;
+  const social = settings?.socialLinks;
+  const debsGuru = social?.debsGuru ?? site.debsGuru;
+  const whatsappHref = settings?.whatsappNumber ? `https://wa.me/${settings.whatsappNumber.replace(/\D/g, "")}` : site.whatsappHref;
+
   return (
     <footer className="site-footer">
       <div className="footer-top">
         <div>
           <Brand full />
           <p>
-            TYBalls.ie is brought to you by the team behind <a href={site.debsGuru} rel="noreferrer" target="_blank">DebsGuru.ie</a>.
-            Every enquiry is reviewed before a date or venue is confirmed.
+            {settings?.footerStatement ?? "TYBalls.ie is brought to you by the team behind DebsGuru.ie."} Every enquiry is reviewed before a date or venue is confirmed. <a href={debsGuru} rel="noreferrer" target="_blank">Visit DebsGuru.ie</a>.
           </p>
         </div>
         <div className="footer-links">
@@ -23,21 +28,23 @@ export function SiteFooter() {
             <Link href="/for-committees">For committees</Link>
             <Link href="/parents-schools">Parents &amp; schools</Link>
             <Link href="/cost-guide">Cost guide</Link>
+            <Link href="/venues">Venues</Link>
+            <Link href="/events">Event stories</Link>
             <Link href="/enquire">Booking Enquiry Form</Link>
           </div>
           <div>
             <strong>Follow DebsGuru</strong>
-            <a href={site.instagram} rel="noreferrer" target="_blank">
+            <a href={social?.instagram ?? site.instagram} rel="noreferrer" target="_blank">
               Instagram
             </a>
-            <a href={site.facebook} rel="noreferrer" target="_blank">
+            <a href={social?.facebook ?? site.facebook} rel="noreferrer" target="_blank">
               Facebook
             </a>
-            <a href={site.tiktok} rel="noreferrer" target="_blank">
+            <a href={social?.tiktok ?? site.tiktok} rel="noreferrer" target="_blank">
               TikTok
             </a>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-            <TrackedWhatsAppLink href={site.whatsappHref} location="footer" rel="noreferrer" target="_blank">Message on WhatsApp</TrackedWhatsAppLink>
+            <a href={`mailto:${email}`}>{email}</a>
+            <TrackedWhatsAppLink href={whatsappHref} location="footer" rel="noreferrer" target="_blank">{settings?.whatsappLabel ?? "Message on WhatsApp"}</TrackedWhatsAppLink>
           </div>
           <div>
             <strong>Privacy &amp; website</strong>

@@ -14,6 +14,8 @@ Project decisions and research implications are recorded in [CLIENT_DECISIONS.md
 - Consent-gated Google Tag Manager and non-PII form events.
 - Published Privacy Notice, Cookie Notice and Website Terms for final client/legal review.
 - Sitemap, robots directives, canonical metadata and social metadata.
+- Self-hosted Payload CMS at `/admin` with administrator/editor roles, drafts, versions and protected preview links.
+- CMS-managed page copy, SEO fields, FAQ, approved event galleries, venues, event stories and enquiry workflow.
 - Standalone hardened Docker build, automated retention, health checks and scheduled PostgreSQL backups.
 - Nginx reverse-proxy configuration for HTTPS after certificate issuance.
 
@@ -36,7 +38,7 @@ npm run build
 npm run test:integration
 ```
 
-The integration test creates isolated PostgreSQL databases, starts the production Next.js server and a real local SMTP listener, verifies a Cloudflare Turnstile test token, submits the HTTP form, checks the persisted lead and delivered email, checks duplicate suppression, creates and restores a real PostgreSQL dump, runs retention cleanup, and removes all temporary data.
+The integration test creates isolated PostgreSQL databases, applies both public and CMS migrations, starts the production Next.js server and a real local SMTP listener, verifies a Cloudflare Turnstile test token, submits the HTTP form, checks both persisted lead records and delivered email, checks duplicate suppression, creates and restores a real PostgreSQL and media backup, runs retention cleanup, and removes all temporary data.
 
 ## Visual rollback points
 
@@ -51,7 +53,7 @@ Revert the neon redesign commit to keep the current content, real event media an
 
 The static preview is published from the existing `gh-pages` branch at `https://kinopoint.github.io/tyballs-ie/`. The repository’s **Settings → Pages** must keep that branch as its publishing source.
 
-`npm run build:pages` exports the site to `out/` at the repository base path `/tyballs-ie`. It temporarily excludes the server-only enquiry API from the export. Consequently, the Pages preview never loads Turnstile, does not submit enquiries, and displays a clear preview-only notice on the form. Real enquiries remain available only from the secure server deployment.
+`npm run build:pages` exports the site to `out/` at the repository base path `/tyballs-ie`. It temporarily excludes the server-only enquiry and CMS routes and uses the approved built-in content. Consequently, the Pages preview never loads Turnstile, does not submit enquiries, and displays a clear preview-only notice on the form. Real enquiries and CMS editing remain available only from the secure server deployment.
 
 To reproduce the preview build locally:
 

@@ -7,6 +7,8 @@
 .next
 .pages-build
 backups
+cms-media
+media
 branding
 node_modules
 out

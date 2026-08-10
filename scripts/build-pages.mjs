@@ -4,8 +4,12 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const apiDirectory = join(root, "app/api");
-const holdingDirectory = join(root, ".pages-build/server-api");
+const serverDirectories = [
+  [join(root, "app/(frontend)/api"), join(root, ".pages-build/frontend-api")],
+  [join(root, "app/(frontend)/events/[slug]"), join(root, ".pages-build/event-detail")],
+  [join(root, "app/(frontend)/venues/[slug]"), join(root, ".pages-build/venue-detail")],
+  [join(root, "app/(payload)"), join(root, ".pages-build/payload")],
+];
 
 async function removeConflictCopies(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -31,8 +35,11 @@ async function removeConflictCopies(directory) {
 
 await rm(join(root, ".pages-build"), { recursive: true, force: true });
 await rm(join(root, "out"), { recursive: true, force: true });
-await mkdir(dirname(holdingDirectory), { recursive: true });
-await rename(apiDirectory, holdingDirectory);
+await mkdir(join(root, ".pages-build"), { recursive: true });
+
+for (const [source, holding] of serverDirectories) {
+  await rename(source, holding);
+}
 
 try {
   const exitCode = await new Promise((resolve, reject) => {
@@ -56,6 +63,8 @@ try {
 
   await removeConflictCopies(join(root, "out"));
 } finally {
-  await rename(holdingDirectory, apiDirectory);
+  for (const [source, holding] of serverDirectories) {
+    await rename(holding, source);
+  }
   await rm(join(root, ".pages-build"), { recursive: true, force: true });
 }

@@ -7,11 +7,15 @@ import { useEffect, useState } from "react";
 import { Brand } from "@/components/brand";
 import { TrackedWhatsAppLink } from "@/components/tracked-whatsapp-link";
 import { navigation, site } from "@/lib/site";
+import type { SiteSetting } from "@/payload-types";
 
-export function SiteHeader() {
+export function SiteHeader({ settings }: { settings?: SiteSetting | null }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const [headerScope, animate] = useAnimate();
+  const email = settings?.contactEmail ?? site.email;
+  const whatsappHref = settings?.whatsappNumber ? `https://wa.me/${settings.whatsappNumber.replace(/\D/g, "")}` : site.whatsappHref;
+  const whatsappLabel = settings?.whatsappLabel ?? "Message on WhatsApp";
 
   useEffect(() => {
     if (!pathname.endsWith("/cost-guide")) return;
@@ -37,12 +41,12 @@ export function SiteHeader() {
         <div className="mobile-nav-contact">
           <span>Quick contact</span>
           <div>
-            <a href={`mailto:${site.email}`}>Email DebsGuru</a>
-            <TrackedWhatsAppLink href={site.whatsappHref} location="mobile_navigation" rel="noreferrer" target="_blank">Message on WhatsApp</TrackedWhatsAppLink>
+            <a href={`mailto:${email}`}>Email DebsGuru</a>
+            <TrackedWhatsAppLink href={whatsappHref} location="mobile_navigation" rel="noreferrer" target="_blank">{whatsappLabel}</TrackedWhatsAppLink>
           </div>
         </div>
       </nav>
-      <TrackedWhatsAppLink className="header-phone" href={site.whatsappHref} location="header" rel="noreferrer" target="_blank">
+      <TrackedWhatsAppLink className="header-phone" href={whatsappHref} location="header" rel="noreferrer" target="_blank">
         Quick contact · WhatsApp
       </TrackedWhatsAppLink>
       <Link className="button button-compact header-cta" href="/enquire">

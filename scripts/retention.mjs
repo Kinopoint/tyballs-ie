@@ -35,6 +35,19 @@ async function cleanup(database) {
        WHERE lead_status <> 'booked'
          AND last_activity_at < now() - make_interval(months => $1::int)
        RETURNING 1
+     ), deleted_cms_versions AS (
+       DELETE FROM cms._enquiries_v
+       WHERE parent_id IN (
+         SELECT id FROM cms.enquiries
+         WHERE status <> 'confirmed'
+           AND coalesce(legacy_created_at, created_at) < now() - make_interval(months => $1::int)
+       )
+       RETURNING 1
+     ), deleted_cms_enquiries AS (
+       DELETE FROM cms.enquiries
+       WHERE status <> 'confirmed'
+         AND coalesce(legacy_created_at, created_at) < now() - make_interval(months => $1::int)
+       RETURNING 1
      ), deleted_windows AS (
        DELETE FROM submission_windows
        WHERE window_started_at < now() - make_interval(hours => $2::int)
@@ -42,6 +55,8 @@ async function cleanup(database) {
      )
      SELECT
        (SELECT count(*)::int FROM deleted_enquiries) AS enquiries,
+       (SELECT count(*)::int FROM deleted_cms_enquiries) AS cms_enquiries,
+       (SELECT count(*)::int FROM deleted_cms_versions) AS cms_enquiry_versions,
        (SELECT count(*)::int FROM deleted_windows) AS submission_windows`,
     [enquiryMonths, windowHours],
   );

@@ -8,6 +8,7 @@ type PageMetadata = {
   path: string;
   image?: string;
   imageAlt?: string;
+  noIndex?: boolean;
 };
 
 export function createPageMetadata({
@@ -16,8 +17,10 @@ export function createPageMetadata({
   path,
   image = "/og/home.jpg",
   imageAlt = "Guests arriving for a TY Ball in Ireland",
+  noIndex = false,
 }: PageMetadata): Metadata {
-  const pageTitle = `${title} | TYBalls.ie`;
+  const pageTitle = title.includes("TYBalls.ie") ? title : `${title} | TYBalls.ie`;
+  const shouldIndex = !staticPreview && !noIndex;
 
   return {
     title,
@@ -28,17 +31,17 @@ export function createPageMetadata({
     creator: "TYBalls.ie by DebsGuru",
     publisher: "DebsGuru Ltd",
     robots: {
-      index: !staticPreview,
-      follow: !staticPreview,
-      googleBot: staticPreview
-        ? { index: false, follow: false }
-        : {
+      index: shouldIndex,
+      follow: shouldIndex,
+      googleBot: shouldIndex
+        ? {
             index: true,
             follow: true,
             "max-image-preview": "large",
             "max-snippet": -1,
             "max-video-preview": -1,
-          },
+          }
+        : { index: false, follow: false },
     },
     openGraph: {
       title: pageTitle,

@@ -3,10 +3,9 @@
 import { motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
+import type { Page } from "@/payload-types";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const headline = "Booking Enquiry Form";
-
 const characterVariants = {
   hidden: { filter: "blur(8px)", opacity: 0, y: "0.85em" },
   visible: (index: number) => ({
@@ -21,10 +20,11 @@ const characterVariants = {
   }),
 };
 
-export function EnquiryHero() {
+export function EnquiryHero({ content }: { content?: Page["hero"] }) {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const headline = content?.title ?? "Booking Enquiry Form";
 
   const resumeVideo = useCallback(() => {
     const video = videoRef.current;
@@ -97,7 +97,7 @@ export function EnquiryHero() {
             initial={{ opacity: 0, y: 16 }}
             transition={{ delay: 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            Your event starts here
+            {content?.eyebrow ?? "Your event starts here"}
           </motion.p>
           <h1 aria-label={headline} id="enquiry-hero-title">
             {Array.from(headline).map((character, index) => (
@@ -128,8 +128,9 @@ export function EnquiryHero() {
         initial={{ opacity: 0, y: 22 }}
         transition={{ delay: 1.04, duration: 0.78, ease: [0.16, 1, 0.3, 1] }}
       >
-        <p>Share the school, preferred date and likely attendance.</p>
-        <p>A DebsGuru coordinator reviews every enquiry before any date or venue is confirmed.</p>
+        {content?.intro
+          ? content.intro.split(/\n+/).map((line) => <p key={line}>{line}</p>)
+          : <><p>Share the school, preferred date and likely attendance.</p><p>A DebsGuru coordinator reviews every enquiry before any date or venue is confirmed.</p></>}
       </motion.div>
     </section>
   );

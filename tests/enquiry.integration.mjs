@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { randomBytes } from "node:crypto";
-import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:net";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -24,6 +24,7 @@ let restoredDb;
 let upgradeDb;
 let appOutput = "";
 let backupDirectory;
+let mediaDirectory;
 
 function openPort() {
   return new Promise((resolve, reject) => {
@@ -122,11 +123,16 @@ try {
   });
 
   const appPort = await openPort();
+  mediaDirectory = await mkdtemp(join(tmpdir(), "tyballs-media-"));
   app = spawn(process.execPath, [join(root, ".next/standalone/server.js")], {
     cwd: root,
     env: {
       ...process.env,
       DATABASE_URL: databaseUrl,
+      PAYLOAD_SECRET: "integration-payload-secret-with-sufficient-length",
+      PREVIEW_SECRET: "integration-preview-secret-with-sufficient-length",
+      NEXT_PUBLIC_SERVER_URL: `http://127.0.0.1:${appPort}`,
+      CMS_MEDIA_DIRECTORY: mediaDirectory,
       RATE_LIMIT_SALT: "integration-test-rate-limit-salt-with-sufficient-length",
       TURNSTILE_SECRET_KEY: "1x0000000000000000000000000000000AA",
       SMTP_HOST: "127.0.0.1",
@@ -150,6 +156,13 @@ try {
   const healthBody = await health.json();
   assert.equal(healthBody.status, "ok");
   assert.ok(Number.isFinite(Date.parse(healthBody.checkedAt)));
+
+  const adminPage = await fetch(`http://127.0.0.1:${appPort}/admin`);
+  assert.equal(adminPage.status, 200);
+  const protectedEnquiries = await fetch(`http://127.0.0.1:${appPort}/cms-api/enquiries`);
+  assert.ok([401, 403].includes(protectedEnquiries.status));
+  const formGet = await fetch(`http://127.0.0.1:${appPort}/api/enquiries`);
+  assert.equal(formGet.status, 405);
 
   const endpoint = `http://127.0.0.1:${appPort}/api/enquiries`;
   const invalid = await fetch(endpoint, {
@@ -211,6 +224,15 @@ try {
     lead_status: "new",
     privacy_notice_acknowledged: true,
   });
+  const cmsStored = await db.query("SELECT school, county, status, contact_email, notification_status FROM cms.enquiries WHERE id = $1", [acceptedBody.id]);
+  assert.equal(cmsStored.rowCount, 1);
+  assert.deepEqual(cmsStored.rows[0], {
+    school: "Integration Test School",
+    county: "Kerry",
+    status: "new",
+    contact_email: "committee@example.ie",
+    notification_status: "sent",
+  });
   assert.equal(messages.length, 1);
   const deliveredMessage = messages[0].replace(/=\r\n/g, "");
   assert.match(deliveredMessage, /New TYBalls\.ie enquiry/);
@@ -227,16 +249,22 @@ try {
   assert.equal(duplicate.status, 200);
   const afterDuplicate = await db.query("SELECT count(*)::int AS count FROM enquiries");
   assert.equal(afterDuplicate.rows[0].count, 1);
+  const cmsAfterDuplicate = await db.query("SELECT count(*)::int AS count FROM cms.enquiries");
+  assert.equal(cmsAfterDuplicate.rows[0].count, 1);
 
   backupDirectory = await mkdtemp(join(tmpdir(), "tyballs-backup-"));
+  await writeFile(join(mediaDirectory, "integration-media.txt"), "real media backup integration check\n", "utf8");
   await runCommand("sh", [join(root, "scripts/backup.sh"), "--once"], {
     ...process.env,
     DATABASE_URL: databaseUrl,
     BACKUP_DIRECTORY: backupDirectory,
     BACKUP_RETENTION_DAYS: "30",
+    CMS_MEDIA_DIRECTORY: mediaDirectory,
   });
   const backupFiles = (await readdir(backupDirectory)).filter((file) => file.endsWith(".dump"));
   assert.equal(backupFiles.length, 1);
+  const mediaBackupFiles = (await readdir(backupDirectory)).filter((file) => file.endsWith(".tar.gz"));
+  assert.equal(mediaBackupFiles.length, 1);
   await admin.query(`CREATE DATABASE ${restoreDatabaseName}`);
   const restoreDatabaseUrl = `postgresql:///${restoreDatabaseName}?host=%2Ftmp`;
   await runCommand("pg_restore", ["--no-owner", "--no-privileges", `--dbname=${restoreDatabaseUrl}`, join(backupDirectory, backupFiles[0])], process.env);
@@ -244,11 +272,14 @@ try {
   await restoredDb.connect();
   const restored = await restoredDb.query("SELECT count(*)::int AS count FROM enquiries");
   assert.equal(restored.rows[0].count, 1);
+  const restoredCms = await restoredDb.query("SELECT count(*)::int AS count FROM cms.enquiries");
+  assert.equal(restoredCms.rows[0].count, 1);
   await restoredDb.end();
   restoredDb = undefined;
   await admin.query(`DROP DATABASE ${restoreDatabaseName}`);
 
   await db.query("UPDATE enquiries SET last_activity_at = now() - interval '19 months' WHERE id = $1", [acceptedBody.id]);
+  await db.query("UPDATE cms.enquiries SET created_at = now() - interval '19 months' WHERE id = $1", [acceptedBody.id]);
   await db.query("INSERT INTO submission_windows (request_hash, window_started_at, submissions) VALUES ('expired-window', now() - interval '72 hours', 1)");
   const retentionOutput = await runCommand(process.execPath, [join(root, "scripts/retention.mjs"), "--once"], {
     ...process.env,
@@ -260,6 +291,8 @@ try {
   assert.match(retentionOutput, /"submission_windows":1/);
   const afterRetention = await db.query("SELECT count(*)::int AS count FROM enquiries");
   assert.equal(afterRetention.rows[0].count, 0);
+  const cmsAfterRetention = await db.query("SELECT count(*)::int AS count FROM cms.enquiries");
+  assert.equal(cmsAfterRetention.rows[0].count, 0);
 
   await db.end();
   db = undefined;
@@ -281,4 +314,5 @@ try {
   await admin.query(`DROP DATABASE IF EXISTS ${databaseName}`);
   await admin.end();
   if (backupDirectory) await rm(backupDirectory, { recursive: true, force: true });
+  if (mediaDirectory) await rm(mediaDirectory, { recursive: true, force: true });
 }

@@ -2,6 +2,7 @@
   "name": "tyballs-ie",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=22.13.0"
   },
@@ -14,16 +15,28 @@
     "typecheck": "tsc --noEmit",
     "db:migrate": "node scripts/migrate.mjs",
     "db:retention": "node scripts/retention.mjs --once",
+    "cms:seed": "payload run scripts/seed-cms.ts",
+    "cms:create-admin": "payload run scripts/create-cms-admin.ts",
+    "cms:migrate-enquiries": "payload run scripts/migrate-enquiries-to-cms.ts",
+    "cms:generate:types": "payload generate:types",
+    "cms:generate:importmap": "payload generate:importmap",
     "env:validate": "node scripts/validate-env.mjs",
     "test:integration": "node tests/enquiry.integration.mjs"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "3.87.1",
+    "@payloadcms/email-nodemailer": "3.87.1",
+    "@payloadcms/next": "3.87.1",
+    "@payloadcms/richtext-lexical": "3.87.1",
+    "graphql": "16.11.0",
     "motion": "12.43.0",
     "next": "16.2.12",
     "nodemailer": "9.0.3",
+    "payload": "3.87.1",
     "pg": "8.16.3",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "sharp": "0.35.3",
     "zod": "4.3.6"
   },
   "devDependencies": {
@@ -39,6 +52,8 @@
     "typescript": "5.9.3"
   },
   "overrides": {
+    "dompurify": "3.4.13",
+    "esbuild": "0.28.2",
     "nanoid": "3.3.17",
     "postcss": "8.5.24",
     "sharp": "0.35.3"
