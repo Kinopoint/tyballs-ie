@@ -44,7 +44,7 @@ export default buildConfig({
     schemaName: "cms",
   }),
   editor: lexicalEditor(),
-  email: process.env.SMTP_HOST
+  email: process.env.SMTP_ENABLED === "true"
     ? nodemailerAdapter({
         defaultFromAddress: process.env.SMTP_USER || "info@debsguru.ie",
         defaultFromName: "TYBalls.ie",

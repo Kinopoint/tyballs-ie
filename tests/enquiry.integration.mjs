@@ -350,6 +350,7 @@ try {
 
   await stopApp(app);
   app = undefined;
+  appOutput = "";
 
   const dataCapturePort = await openPort();
   app = spawn(process.execPath, [join(root, ".next/standalone/server.js")], {
@@ -409,6 +410,7 @@ try {
     status: "new",
   });
   assert.equal(messages.length, smtpMessagesBeforeDataCapture);
+  assert.doesNotMatch(appOutput, /Error verifying Nodemailer transport/);
 
   await db.end();
   db = undefined;
