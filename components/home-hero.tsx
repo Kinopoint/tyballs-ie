@@ -29,13 +29,27 @@ export function HomeHero({ content }: HomeHeroProps) {
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let isVisible = false;
+    let isActivated = false;
     let timer: number | undefined;
 
     const updateTimer = () => {
       if (timer !== undefined) window.clearInterval(timer);
       timer = undefined;
-      if (!isVisible || document.visibilityState !== "visible" || reducedMotion.matches) return;
+      if (!isActivated || !isVisible || document.visibilityState !== "visible" || reducedMotion.matches) return;
       timer = window.setInterval(() => setActiveScene((scene) => (scene + 1) % scenes.length), 5000);
+    };
+
+    const removeActivationListeners = () => {
+      window.removeEventListener("pointerdown", activate);
+      window.removeEventListener("keydown", activate);
+      window.removeEventListener("scroll", activate);
+    };
+
+    const activate = () => {
+      if (isActivated) return;
+      isActivated = true;
+      removeActivationListeners();
+      updateTimer();
     };
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -44,11 +58,15 @@ export function HomeHero({ content }: HomeHeroProps) {
     }, { threshold: 0.1 });
 
     observer.observe(hero);
+    window.addEventListener("pointerdown", activate, { passive: true });
+    window.addEventListener("keydown", activate);
+    window.addEventListener("scroll", activate, { passive: true });
     document.addEventListener("visibilitychange", updateTimer);
     reducedMotion.addEventListener("change", updateTimer);
 
     return () => {
       observer.disconnect();
+      removeActivationListeners();
       if (timer !== undefined) window.clearInterval(timer);
       document.removeEventListener("visibilitychange", updateTimer);
       reducedMotion.removeEventListener("change", updateTimer);

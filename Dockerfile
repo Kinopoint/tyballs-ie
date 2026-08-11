@@ -34,6 +34,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
 COPY --from=builder --chown=nextjs:nodejs /app/db ./db
+RUN mkdir -p .next/cache && chown nextjs:nodejs .next/cache
 USER nextjs
 EXPOSE 3000
 CMD ["sh", "-c", "node scripts/validate-env.mjs && node scripts/migrate.mjs && exec node server.js"]
