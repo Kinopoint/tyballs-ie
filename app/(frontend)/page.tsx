@@ -6,7 +6,7 @@ import { ExperienceCategories } from "@/components/experience-categories";
 import { HomeHero } from "@/components/home-hero";
 import { StructuredData } from "@/components/structured-data";
 import { getHomePageContent, getPublishedFaqs } from "@/cms/frontend";
-import { createPageMetadata } from "@/lib/seo";
+import { createPageMetadata, socialImageOrFallback } from "@/lib/seo";
 import { CmsMedia } from "@/components/cms-media";
 
 const highlights = [
@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: content?.seo.title ?? "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru",
     description: content?.seo.description ?? "Plan a TY Ball in Ireland with venue sourcing, food, entertainment, security and staffed event coordination from the team behind DebsGuru.ie.",
     path: content?.seo.canonicalPath ?? "/",
-    image: typeof content?.seo.image === "object" && content.seo.image?.url ? content.seo.image.url : "/og/home.jpg",
+    image: socialImageOrFallback(content?.seo.image, "/og/home.jpg"),
     imageAlt: "TYBalls.ie event planning by the DebsGuru team",
     noIndex: content?.seo.noIndex ?? false,
   });
@@ -118,12 +118,12 @@ export default async function Home() {
             {typeof content?.proof.gallery === "object" && content.proof.gallery?.items?.length
               ? content.proof.gallery.items.map((item) => <picture key={typeof item.media === "object" ? item.media.id : item.media}><CmsMedia media={item.media} /></picture>)
               : <>
-                  <EditorialImage alt="Friends arriving together at a DebsGuru event" height={1367} name="drive-arrival" width={1000} />
-                  <EditorialImage alt="Students enjoying dinner at a DebsGuru event" height={1500} name="drive-dinner" width={1000} />
-                  <EditorialImage alt="Students using the photo booth" height={1500} name="drive-photobooth" width={1000} />
-                  <EditorialImage alt="Friends dancing together at a DebsGuru event" height={1500} name="drive-dance" width={1000} />
-                  <EditorialImage alt="Friends posing together at the photo booth" height={1500} name="drive-group" width={1000} />
-                  <EditorialImage alt="Students gathering at an event venue" height={1500} name="drive-garden" width={1000} />
+                  <EditorialImage alt="Friends arriving together at a DebsGuru event" height={1367} name="drive-arrival" sizes="(max-width: 640px) 72vw, 25vw" width={1000} />
+                  <EditorialImage alt="Students enjoying dinner at a DebsGuru event" height={1500} name="drive-dinner" sizes="(max-width: 640px) 72vw, 25vw" width={1000} />
+                  <EditorialImage alt="Students using the photo booth" height={1500} name="drive-photobooth" sizes="(max-width: 640px) 72vw, 25vw" width={1000} />
+                  <EditorialImage alt="Friends dancing together at a DebsGuru event" height={1500} name="drive-dance" sizes="(max-width: 640px) 72vw, 25vw" width={1000} />
+                  <EditorialImage alt="Friends posing together at the photo booth" height={1500} name="drive-group" sizes="(max-width: 640px) 72vw, 25vw" width={1000} />
+                  <EditorialImage alt="Students gathering at an event venue" height={1500} name="drive-garden" sizes="(max-width: 640px) 72vw, 25vw" width={1000} />
                 </>}
           </div>
         </div>

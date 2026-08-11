@@ -5,5 +5,5 @@ export type EventIconName = "calendar" | "camera" | "contact" | "dining" | "gues
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function EventIcon({ name }: { name: EventIconName }) {
-  return <span aria-hidden="true" className="event-icon"><Image alt="" height={44} src={`${basePath}/icons/${name}.png`} unoptimized width={44} /></span>;
+  return <span aria-hidden="true" className="event-icon"><Image alt="" height={44} sizes="44px" src={`${basePath}/icons/${name}.png`} width={44} /></span>;
 }

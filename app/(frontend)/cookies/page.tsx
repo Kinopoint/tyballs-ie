@@ -5,12 +5,13 @@ export const metadata = createPageMetadata({
   description: "How TYBalls.ie uses necessary website technologies, form security and optional analytics, including how visitors can manage consent.",
   path: "/cookies",
   imageAlt: "TYBalls.ie cookie information",
+  noIndex: true,
 });
 
 export default function CookiesPage() {
   return (
     <main className="legal-page shell" id="main-content">
-      <header><p className="eyebrow">Legal</p><h1>Cookie Policy</h1><p>Draft for client review · Last updated 2 August 2026</p></header>
+      <header><p className="eyebrow">Legal</p><h1>Cookie Policy</h1><p>Last updated 11 August 2026</p></header>
       <article>
         <h2>What cookies are</h2><p>Cookies and similar browser storage help a website remember information or perform a requested function. Some are necessary for the site to work; others require your permission.</p>
         <h2>Necessary technologies</h2><p>The website may use a consent preference and Cloudflare Turnstile security data to protect the enquiry form from automated abuse. These functions are necessary for security and form operation and are not used to build an advertising profile.</p>

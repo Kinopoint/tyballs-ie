@@ -20,7 +20,7 @@ export const enquirySchema = z.object({
   message: z.string().trim().max(2_000).optional().default(""),
   privacyConsent: z.literal(true),
   marketingConsent: z.boolean().optional().default(false),
-  turnstileToken: z.string().min(1).max(2_048),
+  turnstileToken: z.string().max(2_048).optional().default(""),
   landingPage: optionalTrackingValue,
   referrer: optionalTrackingValue,
   utmSource: optionalTrackingValue,

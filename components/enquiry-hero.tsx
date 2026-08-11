@@ -68,8 +68,8 @@ export function EnquiryHero({ content }: { content?: Page["hero"] }) {
           ref={videoRef}
           transition={{ delay: 0.08, duration: 1.25, ease: [0.16, 1, 0.3, 1] }}
         >
-          <source src={`${basePath}/video/tyballs-enquire-hero.mp4`} type="video/mp4" />
           <source src={`${basePath}/video/tyballs-enquire-hero.webm`} type="video/webm" />
+          <source src={`${basePath}/video/tyballs-enquire-hero.mp4`} type="video/mp4" />
         </motion.video>
         <motion.svg
           animate={{ opacity: 1, scale: 1 }}

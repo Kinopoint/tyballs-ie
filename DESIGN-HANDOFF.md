@@ -833,15 +833,14 @@ consent. Advertising storage remains denied.
 
 ## 16. Legal pages
 
-Все три страницы сейчас имеют статус Draft for client review и дату Last
-updated 2 August 2026. До production launch требуется юридическое и клиентское
-подтверждение.
+Все три страницы доступны в разделе Legal. Их тексты необходимо пересматривать
+при изменении формы, аналитики, сроков хранения или используемых провайдеров.
 
 ### Privacy Policy
 
 Eyebrow: Legal  
 H1: Privacy Policy  
-Status: Draft for client review · Last updated 2 August 2026
+Status: Last updated 9 August 2026
 
 #### 1. Who controls your information
 
@@ -910,7 +909,7 @@ Displayed controller contact:
 
 Eyebrow: Legal  
 H1: Cookie Policy  
-Status: Draft for client review · Last updated 2 August 2026
+Status: Last updated 11 August 2026
 
 #### What cookies are
 
@@ -948,7 +947,7 @@ Status: Draft for client review · Last updated 2 August 2026
 
 Eyebrow: Legal  
 H1: Website Terms  
-Status: Draft for client review · Last updated 2 August 2026
+Status: Last updated 11 August 2026
 
 #### 1. About this website
 

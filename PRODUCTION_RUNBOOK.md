@@ -33,6 +33,10 @@ openssl rand -hex 32
 
 Use independent values for `POSTGRES_PASSWORD`, `RATE_LIMIT_SALT`, `PAYLOAD_SECRET` and `PREVIEW_SECRET`. Set `NEXT_PUBLIC_SERVER_URL` to the canonical production origin and `CMS_MEDIA_DIRECTORY=/app/media`. Never commit `.env`, copy it to GitHub, or send it in WhatsApp/email.
 
+`TURNSTILE_ENABLED` and `NEXT_PUBLIC_TURNSTILE_ENABLED` must have the same explicit boolean value. When both are `true`, production Turnstile keys are mandatory. When both are `false`, enquiries are accepted without the Cloudflare challenge but still pass the honeypot, schema validation, duplicate protection and two rate-limit layers. This data-capture mode is temporary and requires daily CMS review because it has weaker automated spam protection.
+
+`SMTP_ENABLED` is also explicit. When it is `false`, accepted enquiries remain in PostgreSQL and Payload with notification status `pending`; no email attempt is made. When it is `true`, every SMTP setting is mandatory. Enabling either integration requires an image rebuild because the public Turnstile flag and key are compiled into the browser bundle.
+
 Create the persistent media and backup directories before the first start:
 
 ```bash

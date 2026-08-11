@@ -2,7 +2,7 @@ import { CostGuideMotion } from "@/components/cost-guide-motion";
 import type { Metadata } from "next";
 import { getPublishedPage } from "@/cms/frontend";
 import { StructuredData } from "@/components/structured-data";
-import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, createPageMetadata, socialImageOrFallback } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await getPublishedPage("cost-guide");
@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: content?.seo.title ?? "TY Ball Cost Guide Ireland",
     description: content?.seo.description ?? "Understand what shapes TY Ball costs in Ireland, including the venue, date, attendance, dinner, entertainment, security and event staffing.",
     path: content?.seo.canonicalPath ?? "/cost-guide",
-    image: typeof content?.seo.image === "object" && content.seo.image?.url ? content.seo.image.url : "/og/cost-guide.jpg",
+    image: socialImageOrFallback(content?.seo.image, "/og/cost-guide.jpg"),
     imageAlt: "TY Ball cost guide for events in Ireland",
     noIndex: content?.seo.noIndex ?? false,
   });

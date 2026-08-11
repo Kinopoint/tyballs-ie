@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { randomBytes } from "node:crypto";
-import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:net";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -57,6 +57,19 @@ function waitForReady(child) {
   });
 }
 
+async function stopApp(child) {
+  if (!child || child.exitCode !== null) return;
+  child.kill("SIGTERM");
+  const exited = await Promise.race([
+    once(child, "exit").then(() => true),
+    new Promise((resolve) => setTimeout(() => resolve(false), 5_000)),
+  ]);
+  if (!exited && child.exitCode === null) {
+    child.kill("SIGKILL");
+    await once(child, "exit");
+  }
+}
+
 function runCommand(command, args, environment) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { cwd: root, env: environment, stdio: ["ignore", "pipe", "pipe"] });
@@ -71,6 +84,9 @@ function runCommand(command, args, environment) {
 await admin.connect();
 
 try {
+  await cp(join(root, "public"), join(root, ".next/standalone/public"), { recursive: true, force: true });
+  await cp(join(root, ".next/static"), join(root, ".next/standalone/.next/static"), { recursive: true, force: true });
+
   await admin.query(`CREATE DATABASE ${databaseName}`);
   db = new pg.Client({ connectionString: databaseUrl });
   await db.connect();
@@ -124,25 +140,32 @@ try {
 
   const appPort = await openPort();
   mediaDirectory = await mkdtemp(join(tmpdir(), "tyballs-media-"));
+  const commonAppEnvironment = {
+    ...process.env,
+    DATABASE_URL: databaseUrl,
+    PAYLOAD_SECRET: "integration-payload-secret-with-sufficient-length",
+    PREVIEW_SECRET: "integration-preview-secret-with-sufficient-length",
+    CMS_MEDIA_DIRECTORY: mediaDirectory,
+    RATE_LIMIT_SALT: "integration-test-rate-limit-salt-with-sufficient-length",
+    TURNSTILE_SECRET_KEY: "1x0000000000000000000000000000000AA",
+    SMTP_HOST: "127.0.0.1",
+    SMTP_PORT: String(smtpPort),
+    SMTP_USER: "integration",
+    SMTP_PASSWORD: "integration",
+    SMTP_FROM: "TYBalls.ie <noreply@tyballs.ie>",
+    SMTP_REQUIRE_TLS: "false",
+    ENQUIRY_NOTIFICATION_EMAIL: "info@debsguru.ie",
+    HOSTNAME: "127.0.0.1",
+  };
   app = spawn(process.execPath, [join(root, ".next/standalone/server.js")], {
     cwd: root,
     env: {
-      ...process.env,
-      DATABASE_URL: databaseUrl,
-      PAYLOAD_SECRET: "integration-payload-secret-with-sufficient-length",
-      PREVIEW_SECRET: "integration-preview-secret-with-sufficient-length",
+      ...commonAppEnvironment,
       NEXT_PUBLIC_SERVER_URL: `http://127.0.0.1:${appPort}`,
-      CMS_MEDIA_DIRECTORY: mediaDirectory,
-      RATE_LIMIT_SALT: "integration-test-rate-limit-salt-with-sufficient-length",
-      TURNSTILE_SECRET_KEY: "1x0000000000000000000000000000000AA",
-      SMTP_HOST: "127.0.0.1",
-      SMTP_PORT: String(smtpPort),
-      SMTP_USER: "integration",
-      SMTP_PASSWORD: "integration",
-      SMTP_FROM: "TYBalls.ie <noreply@tyballs.ie>",
-      SMTP_REQUIRE_TLS: "false",
-      ENQUIRY_NOTIFICATION_EMAIL: "info@debsguru.ie",
-      HOSTNAME: "127.0.0.1",
+      TURNSTILE_ENABLED: "true",
+      NEXT_PUBLIC_TURNSTILE_ENABLED: "true",
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: "1x00000000000000000000AA",
+      SMTP_ENABLED: "true",
       PORT: String(appPort),
     },
     stdio: ["ignore", "pipe", "pipe"],
@@ -156,6 +179,37 @@ try {
   const healthBody = await health.json();
   assert.equal(healthBody.status, "ok");
   assert.ok(Number.isFinite(Date.parse(healthBody.checkedAt)));
+
+  const home = await fetch(`http://127.0.0.1:${appPort}/`);
+  assert.equal(home.status, 200);
+  const homeHtml = await home.text();
+  assert.doesNotMatch(homeHtml, /noindex/i);
+  assert.match(homeHtml, /<link[^>]*rel="canonical"[^>]*href="https:\/\/tyballs\.ie\/?"/i);
+
+  const robots = await fetch(`http://127.0.0.1:${appPort}/robots.txt`);
+  assert.equal(robots.status, 200);
+  const robotsBody = await robots.text();
+  assert.match(robotsBody, /^Sitemap:\s*https:\/\/tyballs\.ie\/sitemap\.xml\s*$/im);
+
+  const sitemap = await fetch(`http://127.0.0.1:${appPort}/sitemap.xml`);
+  assert.equal(sitemap.status, 200);
+  assert.match(sitemap.headers.get("content-type") || "", /xml/i);
+  const sitemapBody = await sitemap.text();
+  assert.match(sitemapBody, /<loc>https:\/\/tyballs\.ie\/<\/loc>/);
+  assert.doesNotMatch(sitemapBody, /https:\/\/tyballs\.ie\/tyballs-ie\//);
+
+  const llms = await fetch(`http://127.0.0.1:${appPort}/llms.txt`);
+  assert.equal(llms.status, 200);
+  assert.match(llms.headers.get("content-type") || "", /text\/plain/i);
+  assert.match(await llms.text(), /TYBalls\.ie/);
+
+  const ogImage = await fetch(`http://127.0.0.1:${appPort}/og/home.jpg`);
+  assert.equal(ogImage.status, 200);
+  assert.match(ogImage.headers.get("content-type") || "", /image\/jpeg/i);
+  assert.ok((await ogImage.arrayBuffer()).byteLength > 1_024);
+
+  const missingPage = await fetch(`http://127.0.0.1:${appPort}/integration-route-that-must-not-exist-${databaseName}`);
+  assert.equal(missingPage.status, 404);
 
   const adminPage = await fetch(`http://127.0.0.1:${appPort}/admin`);
   assert.equal(adminPage.status, 200);
@@ -294,17 +348,76 @@ try {
   const cmsAfterRetention = await db.query("SELECT count(*)::int AS count FROM cms.enquiries");
   assert.equal(cmsAfterRetention.rows[0].count, 0);
 
+  await stopApp(app);
+  app = undefined;
+
+  const dataCapturePort = await openPort();
+  app = spawn(process.execPath, [join(root, ".next/standalone/server.js")], {
+    cwd: root,
+    env: {
+      ...commonAppEnvironment,
+      NEXT_PUBLIC_SERVER_URL: `http://127.0.0.1:${dataCapturePort}`,
+      TURNSTILE_ENABLED: "false",
+      NEXT_PUBLIC_TURNSTILE_ENABLED: "false",
+      SMTP_ENABLED: "false",
+      PORT: String(dataCapturePort),
+    },
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+  app.stdout.on("data", (chunk) => { appOutput += chunk.toString(); });
+  app.stderr.on("data", (chunk) => { appOutput += chunk.toString(); });
+  await waitForReady(app);
+
+  const dataCaptureEndpoint = `http://127.0.0.1:${dataCapturePort}/api/enquiries`;
+  const smtpMessagesBeforeDataCapture = messages.length;
+  const dataCapturePayload = {
+    ...payload,
+    school: "Data Capture Mode School",
+    email: "data-capture@example.ie",
+    turnstileToken: "",
+    message: "Integration test enquiry without external integrations",
+  };
+  const dataCaptureAccepted = await fetch(dataCaptureEndpoint, {
+    method: "POST",
+    headers: { "content-type": "application/json", "x-forwarded-for": "203.0.113.20" },
+    body: JSON.stringify(dataCapturePayload),
+  });
+  const dataCaptureBody = await dataCaptureAccepted.json();
+  assert.equal(dataCaptureAccepted.status, 201, JSON.stringify(dataCaptureBody));
+  assert.equal(dataCaptureBody.accepted, true);
+
+  const dataCaptureStored = await db.query(
+    "SELECT school, email, notification_status, lead_status FROM enquiries WHERE id = $1",
+    [dataCaptureBody.id],
+  );
+  assert.equal(dataCaptureStored.rowCount, 1);
+  assert.deepEqual(dataCaptureStored.rows[0], {
+    school: "Data Capture Mode School",
+    email: "data-capture@example.ie",
+    notification_status: "pending",
+    lead_status: "new",
+  });
+  const dataCaptureCmsStored = await db.query(
+    "SELECT school, contact_email, notification_status, status FROM cms.enquiries WHERE id = $1",
+    [dataCaptureBody.id],
+  );
+  assert.equal(dataCaptureCmsStored.rowCount, 1);
+  assert.deepEqual(dataCaptureCmsStored.rows[0], {
+    school: "Data Capture Mode School",
+    contact_email: "data-capture@example.ie",
+    notification_status: "pending",
+    status: "new",
+  });
+  assert.equal(messages.length, smtpMessagesBeforeDataCapture);
+
   await db.end();
   db = undefined;
-  console.info("Enquiry integration test passed with real PostgreSQL, HTTP health and form routes, Turnstile verification, SMTP delivery, backup/restore and retention cleanup.");
+  console.info("Enquiry integration test passed with real PostgreSQL, SEO routes, enabled Turnstile/SMTP delivery, disabled data-capture persistence, backup/restore and retention cleanup.");
 } catch (error) {
   if (appOutput) console.error(appOutput);
   throw error;
 } finally {
-  if (app && app.exitCode === null) {
-    app.kill("SIGTERM");
-    await Promise.race([once(app, "exit"), new Promise((resolve) => setTimeout(resolve, 5_000))]);
-  }
+  await stopApp(app);
   if (db) await db.end();
   if (restoredDb) await restoredDb.end();
   if (upgradeDb) await upgradeDb.end();

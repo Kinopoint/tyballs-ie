@@ -4,7 +4,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { CmsMedia } from "@/components/cms-media";
 import { StructuredData } from "@/components/structured-data";
 import { getPublishedEvent } from "@/cms/frontend";
-import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, createPageMetadata, getCmsSocialImage } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -12,11 +12,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const event = await getPublishedEvent(slug);
   if (!event) return {};
+  const image = getCmsSocialImage(event.seo.image) ?? getCmsSocialImage(event.heroMedia);
   return createPageMetadata({
     title: event.seo.title,
     description: event.seo.description,
     path: event.seo.canonicalPath,
-    image: typeof event.seo.image === "object" && event.seo.image?.url ? event.seo.image.url : undefined,
+    image,
     imageAlt: event.title,
     noIndex: event.seo.noIndex ?? false,
   });

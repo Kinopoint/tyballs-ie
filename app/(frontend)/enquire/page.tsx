@@ -2,7 +2,7 @@ import { EnquiryHero } from "@/components/enquiry-hero";
 import type { Metadata } from "next";
 import { getPublishedPage } from "@/cms/frontend";
 import { StructuredData } from "@/components/structured-data";
-import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, createPageMetadata, socialImageOrFallback } from "@/lib/seo";
 import { EnquiryForm } from "./enquiry-form";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: content?.seo.title ?? "TY Ball Booking Enquiry Form",
     description: content?.seo.description ?? "Send a TY Ball booking enquiry with your school, year size, preferred date, county and estimated attendance. The DebsGuru team will review the details.",
     path: content?.seo.canonicalPath ?? "/enquire",
-    image: typeof content?.seo.image === "object" && content.seo.image?.url ? content.seo.image.url : "/og/enquire.jpg",
+    image: socialImageOrFallback(content?.seo.image, "/og/enquire.jpg"),
     imageAlt: "Start a TY Ball booking enquiry with TYBalls.ie",
     noIndex: content?.seo.noIndex ?? false,
   });

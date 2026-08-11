@@ -49,14 +49,16 @@ export async function POST(request: NextRequest) {
 
   const ip = clientIp(request);
 
-  try {
-    const verified = await verifyTurnstile(parsed.data.turnstileToken, ip === "unknown" ? "" : ip);
-    if (!verified) {
-      return NextResponse.json({ message: "The security check was not completed. Please try again." }, { status: 403 });
+  if (process.env.TURNSTILE_ENABLED === "true") {
+    try {
+      const verified = await verifyTurnstile(parsed.data.turnstileToken, ip === "unknown" ? "" : ip);
+      if (!verified) {
+        return NextResponse.json({ message: "The security check was not completed. Please try again." }, { status: 403 });
+      }
+    } catch (error) {
+      console.error("Turnstile verification error", error);
+      return NextResponse.json({ message: "The security check is temporarily unavailable. Please try again shortly." }, { status: 503 });
     }
-  } catch (error) {
-    console.error("Turnstile verification error", error);
-    return NextResponse.json({ message: "The security check is temporarily unavailable. Please try again shortly." }, { status: 503 });
   }
 
   const hash = requestHash(ip);
@@ -231,22 +233,24 @@ export async function POST(request: NextRequest) {
     client.release();
   }
 
-  try {
-    await sendEnquiryNotification(id, enquiry);
-    await database.query("UPDATE enquiries SET notification_status = 'sent' WHERE id = $1", [id]);
-    await cms.update({ collection: "enquiries", id, data: { notification: { status: "sent" } }, overrideAccess: true });
-  } catch (error) {
-    console.error("Enquiry notification error", { enquiryId: id, error });
-    await database.query(
-      "UPDATE enquiries SET notification_status = 'failed', notification_error = $2 WHERE id = $1",
-      [id, error instanceof Error ? error.message.slice(0, 500) : "Unknown notification error"],
-    );
-    await cms.update({
-      collection: "enquiries",
-      id,
-      data: { notification: { status: "failed", error: error instanceof Error ? error.message.slice(0, 500) : "Unknown notification error" } },
-      overrideAccess: true,
-    });
+  if (process.env.SMTP_ENABLED === "true") {
+    try {
+      await sendEnquiryNotification(id, enquiry);
+      await database.query("UPDATE enquiries SET notification_status = 'sent' WHERE id = $1", [id]);
+      await cms.update({ collection: "enquiries", id, data: { notification: { status: "sent" } }, overrideAccess: true });
+    } catch (error) {
+      console.error("Enquiry notification error", { enquiryId: id, error });
+      await database.query(
+        "UPDATE enquiries SET notification_status = 'failed', notification_error = $2 WHERE id = $1",
+        [id, error instanceof Error ? error.message.slice(0, 500) : "Unknown notification error"],
+      );
+      await cms.update({
+        collection: "enquiries",
+        id,
+        data: { notification: { status: "failed", error: error instanceof Error ? error.message.slice(0, 500) : "Unknown notification error" } },
+        overrideAccess: true,
+      });
+    }
   }
 
   return NextResponse.json(

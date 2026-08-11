@@ -17,6 +17,12 @@ function positiveInteger(name, fallback) {
   return value;
 }
 
+function booleanFlag(name) {
+  const value = required(name);
+  if (value !== "true" && value !== "false") throw new Error(`${name} must be true or false.`);
+  return value === "true";
+}
+
 const databaseUrl = new URL(required("DATABASE_URL"));
 if (!databaseUrl.protocol.startsWith("postgres")) throw new Error("DATABASE_URL must use PostgreSQL.");
 
@@ -26,20 +32,29 @@ if (required("PREVIEW_SECRET").length < 32) throw new Error("PREVIEW_SECRET must
 const serverUrl = new URL(required("NEXT_PUBLIC_SERVER_URL"));
 if (serverUrl.protocol !== "https:" && serverUrl.protocol !== "http:") throw new Error("NEXT_PUBLIC_SERVER_URL must use HTTP or HTTPS.");
 if (!path.isAbsolute(required("CMS_MEDIA_DIRECTORY"))) throw new Error("CMS_MEDIA_DIRECTORY must be an absolute path.");
-if (required("TURNSTILE_SECRET_KEY").length < 20) throw new Error("TURNSTILE_SECRET_KEY is not valid.");
-if (required("NEXT_PUBLIC_TURNSTILE_SITE_KEY").length < 20) throw new Error("NEXT_PUBLIC_TURNSTILE_SITE_KEY is not valid.");
+const turnstileEnabled = booleanFlag("TURNSTILE_ENABLED");
+const publicTurnstileEnabled = booleanFlag("NEXT_PUBLIC_TURNSTILE_ENABLED");
+if (turnstileEnabled !== publicTurnstileEnabled) {
+  throw new Error("TURNSTILE_ENABLED and NEXT_PUBLIC_TURNSTILE_ENABLED must match.");
+}
+if (turnstileEnabled) {
+  if (required("TURNSTILE_SECRET_KEY").length < 20) throw new Error("TURNSTILE_SECRET_KEY is not valid.");
+  if (required("NEXT_PUBLIC_TURNSTILE_SITE_KEY").length < 20) throw new Error("NEXT_PUBLIC_TURNSTILE_SITE_KEY is not valid.");
+}
 
-const smtpPort = positiveInteger("SMTP_PORT", 587);
-if (smtpPort > 65_535) throw new Error("SMTP_PORT is outside the valid port range.");
-required("SMTP_HOST");
-required("SMTP_USER");
-required("SMTP_PASSWORD");
-if (!required("SMTP_FROM").includes("@")) throw new Error("SMTP_FROM must contain an email address.");
-if (!required("ENQUIRY_NOTIFICATION_EMAIL").includes("@")) throw new Error("ENQUIRY_NOTIFICATION_EMAIL must be an email address.");
+if (booleanFlag("SMTP_ENABLED")) {
+  const smtpPort = positiveInteger("SMTP_PORT", 587);
+  if (smtpPort > 65_535) throw new Error("SMTP_PORT is outside the valid port range.");
+  required("SMTP_HOST");
+  required("SMTP_USER");
+  required("SMTP_PASSWORD");
+  if (!required("SMTP_FROM").includes("@")) throw new Error("SMTP_FROM must contain an email address.");
+  if (!required("ENQUIRY_NOTIFICATION_EMAIL").includes("@")) throw new Error("ENQUIRY_NOTIFICATION_EMAIL must be an email address.");
 
-const requireTls = required("SMTP_REQUIRE_TLS");
-if (requireTls !== "true" && requireTls !== "false") throw new Error("SMTP_REQUIRE_TLS must be true or false.");
-if (smtpPort !== 465 && requireTls !== "true") throw new Error("SMTP_REQUIRE_TLS must be true unless SMTP uses implicit TLS on port 465.");
+  const requireTls = required("SMTP_REQUIRE_TLS");
+  if (requireTls !== "true" && requireTls !== "false") throw new Error("SMTP_REQUIRE_TLS must be true or false.");
+  if (smtpPort !== 465 && requireTls !== "true") throw new Error("SMTP_REQUIRE_TLS must be true unless SMTP uses implicit TLS on port 465.");
+}
 
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim();
 if (gtmId && !/^GTM-[A-Z0-9]+$/.test(gtmId)) throw new Error("NEXT_PUBLIC_GTM_ID must use the GTM-XXXX format.");

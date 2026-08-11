@@ -6,6 +6,7 @@ export const metadata = createPageMetadata({
   description: "How TYBalls.ie and DebsGuru collect, use, retain and protect information submitted through the TY Ball booking enquiry form.",
   path: "/privacy",
   imageAlt: "TYBalls.ie privacy information",
+  noIndex: true,
 });
 
 export default function PrivacyPage() {

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getPublishedPage } from "@/cms/frontend";
 import { CommitteeVisual } from "@/components/committee-visual";
 import { StructuredData } from "@/components/structured-data";
-import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, createPageMetadata, socialImageOrFallback } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await getPublishedPage("for-committees");
@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: content?.seo.title ?? "TY Ball Planning for Student Committees",
     description: content?.seo.description ?? "A practical TY Ball planning checklist for student committees: the preferred date, county, guest estimate, priorities and committee contact needed to begin.",
     path: content?.seo.canonicalPath ?? "/for-committees",
-    image: typeof content?.seo.image === "object" && content.seo.image?.url ? content.seo.image.url : "/og/for-committees.jpg",
+    image: socialImageOrFallback(content?.seo.image, "/og/for-committees.jpg"),
     imageAlt: "TY Ball planning information for student committees",
     noIndex: content?.seo.noIndex ?? false,
   });

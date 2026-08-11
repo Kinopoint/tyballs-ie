@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -9,8 +10,7 @@ export function Brand({ full = false }: { full?: boolean }) {
     <Link className={`brand${full ? " brand-full" : ""}`} href="/" aria-label="TYBalls.ie home">
       {full ? (
         <picture className="brand-picture">
-          <source srcSet={`${basePath}/brand/${asset}.webp`} type="image/webp" />
-          <img alt="" height={640} src={`${basePath}/brand/${asset}.jpg`} width={1390} />
+          <Image alt="" height={640} sizes="250px" src={`${basePath}/brand/${asset}.webp`} width={1390} />
         </picture>
       ) : (
         <span className="brand-lockup" aria-hidden="true">

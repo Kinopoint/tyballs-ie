@@ -7,12 +7,18 @@ export default function robots(): MetadataRoute.Robots {
     return { rules: { userAgent: "*", disallow: "/" } };
   }
 
+  const privatePaths = ["/admin", "/api", "/cms-api"];
+
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/admin/", "/api/", "/cms-api/"] },
-      { userAgent: ["GPTBot", "ChatGPT-User", "PerplexityBot", "ClaudeBot", "anthropic-ai", "Google-Extended", "bingbot"], allow: "/", disallow: ["/admin/", "/api/", "/cms-api/"] },
+      { userAgent: "*", allow: "/", disallow: privatePaths },
+      {
+        userAgent: ["GPTBot", "ChatGPT-User", "PerplexityBot", "ClaudeBot", "anthropic-ai", "Google-Extended"],
+        allow: "/",
+        disallow: privatePaths,
+      },
     ],
     sitemap: "https://tyballs.ie/sitemap.xml",
-    host: "https://tyballs.ie",
+    host: "tyballs.ie",
   };
 }

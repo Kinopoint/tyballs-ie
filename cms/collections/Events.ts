@@ -30,7 +30,7 @@ export const Events: CollectionConfig = {
     { name: "gallery", type: "relationship", relationTo: "galleries", required: true },
     { name: "featured", type: "checkbox", defaultValue: false, index: true },
     { name: "photoConsentConfirmed", type: "checkbox", required: true, defaultValue: false, admin: { description: "Confirm that all public media is approved for website use." } },
-    ...createSeoFields(),
+    ...createSeoFields({}, { canonicalPathPrefix: "/events" }),
   ],
   hooks: {
     beforeChange: [({ data, originalDoc, req }) => {

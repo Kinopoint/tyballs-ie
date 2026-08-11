@@ -77,7 +77,7 @@ export const Pages: CollectionConfig = {
         { name: "buttonLink", type: "text", required: true, maxLength: 240 },
       ],
     },
-    ...createSeoFields(),
+    ...createSeoFields({}, { canonicalPathPrefix: "" }),
   ],
   versions: { drafts: { autosave: false }, maxPerDoc: 25 },
   timestamps: true,

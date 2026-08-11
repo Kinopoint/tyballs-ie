@@ -6,12 +6,13 @@ export const metadata = createPageMetadata({
   description: "Terms for using TYBalls.ie, submitting a TY Ball enquiry and reviewing venue availability, services and tailored event proposals.",
   path: "/terms",
   imageAlt: "TYBalls.ie website terms",
+  noIndex: true,
 });
 
 export default function TermsPage() {
   return (
     <main className="legal-page shell" id="main-content">
-      <header><p className="eyebrow">Legal</p><h1>Website Terms</h1><p>Draft for client review · Last updated 2 August 2026</p></header>
+      <header><p className="eyebrow">Legal</p><h1>Website Terms</h1><p>Last updated 11 August 2026</p></header>
       <article>
         <h2>1. About this website</h2><p>TYBalls.ie is operated by DebsGuru Ltd. It provides information and an enquiry route for Transition Year ball planning.</p>
         <h2>2. An enquiry is not a booking</h2><p>Submitting the website form does not reserve a venue or date, create a booking, or oblige either party to proceed. Availability, services, pricing, deposits, cancellation and date-change terms are confirmed separately in writing by DebsGuru.</p>

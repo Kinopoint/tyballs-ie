@@ -52,9 +52,14 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName,
       locale: "en_IE",
       type: "website",
-      images: [{ url: "/og/home.jpg", width: 1200, height: 630, alt: "TYBalls.ie event planning by the DebsGuru team" }],
+      images: [{ url: "/og/home.jpg", width: 1200, height: 630, alt: "TYBalls.ie event planning by the DebsGuru team", type: "image/jpeg" }],
     },
-    twitter: { card: "summary_large_image", title: "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru", description, images: ["/og/home.jpg"] },
+    twitter: {
+      card: "summary_large_image",
+      title: "TY Ball Organisers Ireland | TYBalls.ie by DebsGuru",
+      description,
+      images: [{ url: "/og/home.jpg", alt: "TYBalls.ie event planning by the DebsGuru team" }],
+    },
     alternates: { canonical: "/" },
   };
 }

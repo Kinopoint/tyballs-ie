@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getPublishedPage } from "@/cms/frontend";
 import { HowItWorksHero } from "@/components/how-it-works-hero";
 import { StructuredData } from "@/components/structured-data";
-import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, createPageMetadata, socialImageOrFallback } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await getPublishedPage("how-it-works");
@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: content?.seo.title ?? "How to Plan a TY Ball in Ireland",
     description: content?.seo.description ?? "See the four steps from a TY Ball enquiry to a confirmed event: share your school and date, review suitable arrangements, check the proposal and confirm.",
     path: content?.seo.canonicalPath ?? "/how-it-works",
-    image: typeof content?.seo.image === "object" && content.seo.image?.url ? content.seo.image.url : "/og/how-it-works.jpg",
+    image: socialImageOrFallback(content?.seo.image, "/og/how-it-works.jpg"),
     imageAlt: "How TY Ball planning works with TYBalls.ie and DebsGuru",
     noIndex: content?.seo.noIndex ?? false,
   });

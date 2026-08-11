@@ -23,7 +23,7 @@ export const Venues: CollectionConfig = {
     { name: "heroMedia", type: "upload", relationTo: "media", required: true },
     { name: "gallery", type: "relationship", relationTo: "galleries" },
     { name: "features", type: "array", maxRows: 12, fields: [{ name: "text", type: "text", required: true, maxLength: 180 }] },
-    ...createSeoFields(),
+    ...createSeoFields({}, { canonicalPathPrefix: "/venues" }),
   ],
   versions: { drafts: { autosave: false }, maxPerDoc: 25 },
   timestamps: true,

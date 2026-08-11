@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EditorialImage } from "@/components/editorial-image";
 import type { HomePage } from "@/payload-types";
 
@@ -20,17 +21,42 @@ type HomeHeroProps = {
 
 export function HomeHero({ content }: HomeHeroProps) {
   const [activeScene, setActiveScene] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) return;
+    const hero = heroRef.current;
+    if (!hero) return;
 
-    const timer = window.setInterval(() => setActiveScene((scene) => (scene + 1) % scenes.length), 5000);
-    return () => window.clearInterval(timer);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let isVisible = false;
+    let timer: number | undefined;
+
+    const updateTimer = () => {
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
+      if (!isVisible || document.visibilityState !== "visible" || reducedMotion.matches) return;
+      timer = window.setInterval(() => setActiveScene((scene) => (scene + 1) % scenes.length), 5000);
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      updateTimer();
+    }, { threshold: 0.1 });
+
+    observer.observe(hero);
+    document.addEventListener("visibilitychange", updateTimer);
+    reducedMotion.addEventListener("change", updateTimer);
+
+    return () => {
+      observer.disconnect();
+      if (timer !== undefined) window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", updateTimer);
+      reducedMotion.removeEventListener("change", updateTimer);
+    };
   }, []);
 
   return (
-    <section className="zip-hero" aria-labelledby="home-hero-title">
+    <section className="zip-hero" aria-labelledby="home-hero-title" ref={heroRef}>
       <div className="zip-hero-glow zip-hero-glow-magenta" aria-hidden="true" />
       <div className="zip-hero-glow zip-hero-glow-blue" aria-hidden="true" />
       <div className="zip-hero-grid zip-shell">
@@ -45,8 +71,7 @@ export function HomeHero({ content }: HomeHeroProps) {
           <div className="zip-proof" aria-label="DebsGuru experience">
             <div className="zip-proof-brand">
               <picture>
-                <source srcSet={`${basePath}/brand/tyballs-client-logo-sign.webp`} type="image/webp" />
-                <img alt="TYBalls.ie" height={640} src={`${basePath}/brand/tyballs-client-logo-sign.jpg`} width={1390} />
+                <Image alt="TYBalls.ie" height={640} sizes="200px" src={`${basePath}/brand/tyballs-client-logo-sign.webp`} width={1390} />
               </picture>
             </div>
             <div><strong>10+ years</strong><span>Experience across Ireland</span></div>
@@ -64,6 +89,7 @@ export function HomeHero({ content }: HomeHeroProps) {
                   key={scene[0]}
                   name={scene[2]}
                   priority={index === 0}
+                  sizes="(max-width: 640px) calc(100vw - 40px), 420px"
                   width={scene[3]}
                 />
               ))}

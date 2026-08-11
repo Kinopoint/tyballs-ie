@@ -49,10 +49,11 @@ export function EnquiryForm() {
   const widgetId = useRef("");
   const formStarted = useRef(false);
   const previewMode = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "true";
+  const turnstileEnabled = process.env.NEXT_PUBLIC_TURNSTILE_ENABLED === "true";
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
   const renderTurnstile = () => {
-    if (!siteKey || !widgetRef.current || !window.turnstile || widgetId.current) return;
+    if (!turnstileEnabled || !siteKey || !widgetRef.current || !window.turnstile || widgetId.current) return;
     widgetId.current = window.turnstile.render(widgetRef.current, {
       sitekey: siteKey,
       callback: setToken,
@@ -69,7 +70,7 @@ export function EnquiryForm() {
     event.preventDefault();
     const form = event.currentTarget;
 
-    if (!token) {
+    if (turnstileEnabled && !token) {
       setState({ kind: "error", message: "Please complete the security check." });
       return;
     }
@@ -96,7 +97,7 @@ export function EnquiryForm() {
       privacyConsent: data.get("privacyConsent") === "yes",
       marketingConsent: data.get("marketingConsent") === "yes",
       website: data.get("website"),
-      turnstileToken: token,
+      turnstileToken: turnstileEnabled ? token : "",
       landingPage: window.location.href,
       referrer: document.referrer,
       utmSource: params.get("utm_source") || "",
@@ -130,7 +131,7 @@ export function EnquiryForm() {
 
   return (
     <>
-      {!previewMode ? <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={renderTurnstile} /> : null}
+      {!previewMode && turnstileEnabled ? <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onLoad={renderTurnstile} /> : null}
       <form className="enquiry-form" onSubmit={submit} onFocusCapture={() => { if (!formStarted.current) { formStarted.current = true; trackEvent("form_start", { form_name: "tyballs_enquiry" }); } }}>
         <motion.div {...sectionMotion} className="form-section" id="contact-details" aria-labelledby="contact-details-heading">
           <div className="form-section-heading"><div><p className="form-section-label">Committee contact</p><h2 id="contact-details-heading">Your contact details</h2><p>So a DebsGuru coordinator can respond to your committee.</p></div></div>
@@ -189,7 +190,7 @@ export function EnquiryForm() {
           <label className="trap" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
           <label className="consent"><input type="checkbox" name="privacyConsent" value="yes" required /><span>I confirm that I have read the <Link href="/privacy" target="_blank">Privacy Notice</Link>. DebsGuru will use the information submitted to review and respond to this booking enquiry. *</span></label>
           <input name="marketingConsent" type="hidden" value="no" />
-          {previewMode ? <p className="preview-notice">Preview website: enquiry sending will be enabled on the secure TYBalls.ie server.</p> : siteKey ? <div className="turnstile" ref={widgetRef} /> : <p className="configuration-error">The enquiry form security key is not configured.</p>}
+          {previewMode ? <p className="preview-notice">Preview website: enquiry sending will be enabled on the secure TYBalls.ie server.</p> : turnstileEnabled && siteKey ? <div className="turnstile" ref={widgetRef} /> : turnstileEnabled ? <p className="configuration-error">The enquiry form security key is not configured.</p> : null}
           <button className="button button-dark form-button" disabled={previewMode || state.kind === "submitting" || state.kind === "success"} type="submit">{previewMode ? "Preview only" : state.kind === "submitting" ? "Sending…" : "Send booking enquiry"}</button>
           <p className={`form-response ${state.kind}`} aria-live="polite">{state.message}</p>
           <p className="form-disclaimer">Sending an enquiry does not reserve a date or create a booking.</p>

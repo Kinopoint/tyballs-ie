@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getPublishedPage } from "@/cms/frontend";
 import { ParentHeroMedia } from "@/components/parent-hero-media";
 import { StructuredData } from "@/components/structured-data";
-import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, createPageMetadata, socialImageOrFallback } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await getPublishedPage("parents-schools");
@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: content?.seo.title ?? "TY Ball Information for Parents and Schools",
     description: content?.seo.description ?? "How TYBalls.ie and DebsGuru work with student committees on ticket sales, guest lists, event information, security, staffing and transport guidance.",
     path: content?.seo.canonicalPath ?? "/parents-schools",
-    image: typeof content?.seo.image === "object" && content.seo.image?.url ? content.seo.image.url : "/og/parents-schools.jpg",
+    image: socialImageOrFallback(content?.seo.image, "/og/parents-schools.jpg"),
     imageAlt: "TY Ball information for parents and schools in Ireland",
     noIndex: content?.seo.noIndex ?? false,
   });

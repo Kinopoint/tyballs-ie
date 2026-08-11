@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { HomePage, Media } from "@/payload-types";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -34,51 +34,102 @@ function mediaUrl(media: string | Media | null | undefined) {
   return typeof media === "object" && media?.url ? media.url : null;
 }
 
-export function ExperienceCategories({ content }: { content?: HomePage["experience"] }) {
-  const visibleVideos = useRef(new Set<HTMLVideoElement>());
-  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
-  const displayCategories = content?.categories?.length ? content.categories : categories;
+type ViewportVideoProps = {
+  cmsVideo: string | null;
+  fallbackVideo: string;
+  poster: string;
+};
 
-  const resumeVideos = useCallback(() => {
-    videoRefs.current.forEach((video) => {
-      if (!video) return;
+function ViewportVideo({ cmsVideo, fallbackVideo, poster }: ViewportVideoProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const shouldPlay = useRef(false);
+  const [sourcesReady, setSourcesReady] = useState(false);
 
-      if (document.visibilityState === "visible" && visibleVideos.current.has(video)) {
-        void video.play().catch(() => undefined);
-      } else {
-        video.pause();
-      }
-    });
+  const syncPlayback = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (sourcesReady && shouldPlay.current && document.visibilityState === "visible" && !reducedMotion) {
+      void video.play().catch(() => undefined);
+      return;
+    }
+
+    video.pause();
+  }, [sourcesReady]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const sourceObserver = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setSourcesReady(true);
+      sourceObserver.disconnect();
+    }, { rootMargin: "240px 20%", threshold: 0 });
+
+    sourceObserver.observe(video);
+    return () => sourceObserver.disconnect();
   }, []);
 
   useEffect(() => {
-    const visibility = visibleVideos.current;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const video = entry.target as HTMLVideoElement;
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.18) {
-          visibility.add(video);
-        } else {
-          visibility.delete(video);
-        }
-      });
-      resumeVideos();
-    }, { threshold: [0, 0.18] });
+    const video = videoRef.current;
+    if (!video) return;
 
-    videoRefs.current.forEach((video) => {
-      if (video) observer.observe(video);
-    });
+    const playbackObserver = new IntersectionObserver(([entry]) => {
+      shouldPlay.current = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+      syncPlayback();
+    }, { threshold: [0, 0.35] });
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const pause = () => video.pause();
 
-    document.addEventListener("visibilitychange", resumeVideos);
-    window.addEventListener("pageshow", resumeVideos);
+    playbackObserver.observe(video);
+    document.addEventListener("visibilitychange", syncPlayback);
+    window.addEventListener("pageshow", syncPlayback);
+    window.addEventListener("pagehide", pause);
+    reducedMotion.addEventListener("change", syncPlayback);
 
     return () => {
-      observer.disconnect();
-      visibility.clear();
-      document.removeEventListener("visibilitychange", resumeVideos);
-      window.removeEventListener("pageshow", resumeVideos);
+      playbackObserver.disconnect();
+      video.pause();
+      document.removeEventListener("visibilitychange", syncPlayback);
+      window.removeEventListener("pageshow", syncPlayback);
+      window.removeEventListener("pagehide", pause);
+      reducedMotion.removeEventListener("change", syncPlayback);
     };
-  }, [resumeVideos]);
+  }, [syncPlayback]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !sourcesReady) return;
+    video.load();
+    syncPlayback();
+  }, [sourcesReady, syncPlayback]);
+
+  return (
+    <video
+      aria-hidden="true"
+      className="experience-category-video"
+      loop
+      muted
+      onCanPlay={syncPlayback}
+      playsInline
+      poster={poster}
+      preload="none"
+      ref={videoRef}
+    >
+      {sourcesReady && (cmsVideo
+        ? <source src={cmsVideo} />
+        : <>
+            <source src={`${basePath}/video/${fallbackVideo}.mp4`} type="video/mp4" />
+            <source src={`${basePath}/video/${fallbackVideo}.webm`} type="video/webm" />
+          </>)}
+    </video>
+  );
+}
+
+export function ExperienceCategories({ content }: { content?: HomePage["experience"] }) {
+  const displayCategories = content?.categories?.length ? content.categories : categories;
 
   return (
     <section className="experience-categories" id="experience" aria-labelledby="experience-title">
@@ -105,20 +156,11 @@ export function ExperienceCategories({ content }: { content?: HomePage["experien
             viewport={{ amount: 0.1, once: true }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            <video
-              aria-hidden="true"
-              autoPlay
-              className="experience-category-video"
-              loop
-              muted
-              onCanPlay={resumeVideos}
-              playsInline
+            <ViewportVideo
+              cmsVideo={cmsVideo}
+              fallbackVideo={fallbackVideo}
               poster={cmsPoster ?? `${basePath}/images/${fallbackPoster}`}
-              preload="metadata"
-              ref={(video) => { videoRefs.current[index] = video; }}
-            >
-              {cmsVideo ? <source src={cmsVideo} /> : <><source src={`${basePath}/video/${fallbackVideo}.mp4`} type="video/mp4" /><source src={`${basePath}/video/${fallbackVideo}.webm`} type="video/webm" /></>}
-            </video>
+            />
             <div className="experience-category-overlay" aria-hidden="true" />
             <h3>{category.name}</h3>
             <Link

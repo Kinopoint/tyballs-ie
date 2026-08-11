@@ -9,7 +9,15 @@ const nextConfig: NextConfig = {
   trailingSlash: isPagesBuild,
   images: {
     unoptimized: isPagesBuild,
-    localPatterns: [{ pathname: "/cms-api/media/file/**" }],
+    localPatterns: [
+      { pathname: "/cms-api/media/file/**" },
+      { pathname: "/images/**" },
+      { pathname: "/brand/**" },
+      { pathname: "/icons/**" },
+      { pathname: "/tyballs-ie/images/**" },
+      { pathname: "/tyballs-ie/brand/**" },
+      { pathname: "/tyballs-ie/icons/**" },
+    ],
   },
   poweredByHeader: false,
   reactStrictMode: true,
