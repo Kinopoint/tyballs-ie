@@ -505,6 +505,9 @@ h4 {
 
 .footer-top > div:first-child > p a {
   color: var(--accent-light);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 .footer-links {
@@ -1752,7 +1755,7 @@ h4 {
   border-radius: var(--radius);
   color: var(--muted);
   font-size: 13px;
-  min-height: 42px;
+  min-height: 44px;
   padding: 12px 14px 12px 37px;
   position: relative;
 }

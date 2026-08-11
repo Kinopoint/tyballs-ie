@@ -42,7 +42,6 @@ export function HomeHero({ content }: HomeHeroProps) {
     const removeActivationListeners = () => {
       window.removeEventListener("pointerdown", activate);
       window.removeEventListener("keydown", activate);
-      window.removeEventListener("scroll", activate);
     };
 
     const activate = () => {
@@ -60,7 +59,6 @@ export function HomeHero({ content }: HomeHeroProps) {
     observer.observe(hero);
     window.addEventListener("pointerdown", activate, { passive: true });
     window.addEventListener("keydown", activate);
-    window.addEventListener("scroll", activate, { passive: true });
     document.addEventListener("visibilitychange", updateTimer);
     reducedMotion.addEventListener("change", updateTimer);
 
