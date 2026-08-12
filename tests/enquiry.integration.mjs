@@ -289,10 +289,13 @@ try {
   });
   assert.equal(messages.length, 1);
   const deliveredMessage = messages[0].replace(/=\r\n/g, "");
-  assert.match(deliveredMessage, /New TYBalls\.ie enquiry/);
+  assert.match(deliveredMessage, /New booking enquiry from Integration Test School/);
   assert.match(deliveredMessage, /Integration Test School/);
   assert.match(deliveredMessage, /Partner School/);
   assert.match(deliveredMessage, /Estimated total attendance: 80=E2=80=93120/);
+  assert.match(deliveredMessage, /Booking enquiry form/);
+  assert.match(deliveredMessage, /Reply to Test/);
+  assert.match(deliveredMessage, /background:#080a14/);
   assert.match(deliveredMessage, /No date has been reserved/);
 
   const duplicate = await fetch(endpoint, {
