@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { analyticsConsentStorageKey } from "@/lib/analytics";
 
 type Consent = "accepted" | "rejected" | null;
@@ -27,6 +27,7 @@ function sendConsent(value: Exclude<Consent, null>) {
 export function ConsentManager() {
   const [consent, setConsent] = useState<Consent>(null);
   const [open, setOpen] = useState(false);
+  const configuredMeasurementId = useRef<string | null>(null);
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "";
   const analyticsConfigured = Boolean(measurementId || gtmId);
@@ -53,6 +54,16 @@ export function ConsentManager() {
     };
   }, [analyticsConfigured]);
 
+  useEffect(() => {
+    if (consent !== "accepted" || !measurementId || configuredMeasurementId.current === measurementId) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag(...args: unknown[]) { window.dataLayer?.push(args); };
+    window.gtag("js", new Date());
+    window.gtag("config", measurementId, { anonymize_ip: true });
+    configuredMeasurementId.current = measurementId;
+  }, [consent, measurementId]);
+
   function choose(value: Exclude<Consent, null>) {
     window.localStorage.setItem(analyticsConsentStorageKey, value);
     setConsent(value);
@@ -63,15 +74,7 @@ export function ConsentManager() {
   return (
     <>
       {consent === "accepted" && measurementId ? (
-        <>
-          <Script id="google-analytics-loader" src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`} strategy="afterInteractive" />
-          <Script id="google-analytics-config" strategy="afterInteractive">{`
-            window.dataLayer=window.dataLayer||[];
-            window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
-            window.gtag('js',new Date());
-            window.gtag('config','${measurementId}',{anonymize_ip:true});
-          `}</Script>
-        </>
+        <Script id="google-analytics-loader" src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`} strategy="afterInteractive" />
       ) : consent === "accepted" && gtmId ? (
         <Script id="google-tag-manager" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
