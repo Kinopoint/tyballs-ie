@@ -4,6 +4,7 @@ import { EditorialImage } from "@/components/editorial-image";
 import { EventIcon } from "@/components/event-icon";
 import { ExperienceCategories } from "@/components/experience-categories";
 import { HomeHero } from "@/components/home-hero";
+import { PressCoverage } from "@/components/press-coverage";
 import { StructuredData } from "@/components/structured-data";
 import { getHomePageContent, getPublishedFaqs } from "@/cms/frontend";
 import { createPageMetadata, socialImageOrFallback } from "@/lib/seo";
@@ -128,6 +129,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <PressCoverage />
 
       <section className="zip-section zip-shell">
         <div className="zip-section-heading"><div><p className="zip-eyebrow">A simple start</p><h2>Three steps. One plan.</h2></div></div>
