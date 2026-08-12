@@ -27,11 +27,13 @@ function sendConsent(value: Exclude<Consent, null>) {
 export function ConsentManager() {
   const [consent, setConsent] = useState<Consent>(null);
   const [open, setOpen] = useState(false);
+  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "";
+  const analyticsConfigured = Boolean(measurementId || gtmId);
 
   useEffect(() => {
     const initialise = () => {
-      if (!gtmId) {
+      if (!analyticsConfigured) {
         setConsent("rejected");
         return;
       }
@@ -49,7 +51,7 @@ export function ConsentManager() {
     return () => {
       window.clearTimeout(initialiseTimer);
     };
-  }, [gtmId]);
+  }, [analyticsConfigured]);
 
   function choose(value: Exclude<Consent, null>) {
     window.localStorage.setItem(analyticsConsentStorageKey, value);
@@ -60,7 +62,17 @@ export function ConsentManager() {
 
   return (
     <>
-      {consent === "accepted" && gtmId ? (
+      {consent === "accepted" && measurementId ? (
+        <>
+          <Script id="google-analytics-loader" src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`} strategy="afterInteractive" />
+          <Script id="google-analytics-config" strategy="afterInteractive">{`
+            window.dataLayer=window.dataLayer||[];
+            window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+            window.gtag('js',new Date());
+            window.gtag('config','${measurementId}',{anonymize_ip:true});
+          `}</Script>
+        </>
+      ) : consent === "accepted" && gtmId ? (
         <Script id="google-tag-manager" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

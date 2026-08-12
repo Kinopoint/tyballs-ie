@@ -59,6 +59,9 @@ if (booleanFlag("SMTP_ENABLED")) {
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim();
 if (gtmId && !/^GTM-[A-Z0-9]+$/.test(gtmId)) throw new Error("NEXT_PUBLIC_GTM_ID must use the GTM-XXXX format.");
 if (gtmId && /^GTM-X+$/.test(gtmId)) throw new Error("NEXT_PUBLIC_GTM_ID still contains a placeholder value.");
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+if (gaMeasurementId && !/^G-[A-Z0-9]+$/.test(gaMeasurementId)) throw new Error("NEXT_PUBLIC_GA_MEASUREMENT_ID must use the G-XXXXXXXXXX format.");
+if (gaMeasurementId && /^G-X+$/.test(gaMeasurementId)) throw new Error("NEXT_PUBLIC_GA_MEASUREMENT_ID still contains a placeholder value.");
 
 positiveInteger("ENQUIRY_RETENTION_MONTHS", 18);
 positiveInteger("SUBMISSION_WINDOW_RETENTION_HOURS", 48);
