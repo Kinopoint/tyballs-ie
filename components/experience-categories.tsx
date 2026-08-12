@@ -49,8 +49,7 @@ function ViewportVideo({ cmsVideo, fallbackVideo, poster }: ViewportVideoProps) 
     const video = videoRef.current;
     if (!video) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (sourcesReady && shouldPlay.current && document.visibilityState === "visible" && !reducedMotion) {
+    if (sourcesReady && shouldPlay.current && document.visibilityState === "visible") {
       void video.play().catch(() => undefined);
       return;
     }
@@ -80,14 +79,12 @@ function ViewportVideo({ cmsVideo, fallbackVideo, poster }: ViewportVideoProps) 
       shouldPlay.current = entry.isIntersecting && entry.intersectionRatio >= 0.35;
       syncPlayback();
     }, { threshold: [0, 0.35] });
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pause = () => video.pause();
 
     playbackObserver.observe(video);
     document.addEventListener("visibilitychange", syncPlayback);
     window.addEventListener("pageshow", syncPlayback);
     window.addEventListener("pagehide", pause);
-    reducedMotion.addEventListener("change", syncPlayback);
 
     return () => {
       playbackObserver.disconnect();
@@ -95,7 +92,6 @@ function ViewportVideo({ cmsVideo, fallbackVideo, poster }: ViewportVideoProps) 
       document.removeEventListener("visibilitychange", syncPlayback);
       window.removeEventListener("pageshow", syncPlayback);
       window.removeEventListener("pagehide", pause);
-      reducedMotion.removeEventListener("change", syncPlayback);
     };
   }, [syncPlayback]);
 
