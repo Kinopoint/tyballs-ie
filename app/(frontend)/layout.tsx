@@ -38,6 +38,9 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: "TYBalls.ie by DebsGuru", url: "https://debsguru.ie/" }],
     creator: "TYBalls.ie by DebsGuru",
     publisher: "DebsGuru Ltd",
+    verification: {
+      google: "_BcZ2g4P6FkqiCC5eNRpWfwwNrh8EnzE3-2OpGLzY9E",
+    },
     robots: {
       index: !staticPreview,
       follow: !staticPreview,
