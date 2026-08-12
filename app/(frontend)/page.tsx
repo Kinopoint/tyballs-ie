@@ -134,7 +134,6 @@ export default async function Home() {
         <div className="zip-step-grid">
           {displaySteps.map(([title, text]) => <article key={title}><span aria-hidden="true" /><h3>{title}</h3><p>{text}</p></article>)}
         </div>
-        <Link className="zip-button-outline zip-section-button" href="/enquire">Booking Enquiry Form</Link>
       </section>
 
       <section className="zip-section zip-shell zip-parent-teaser">

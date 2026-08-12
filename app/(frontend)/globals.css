@@ -4157,10 +4157,6 @@ h4 {
   margin: 0;
 }
 
-.zip-section-button {
-  margin-top: clamp(22px, 3vw, 34px);
-}
-
 .zip-parent-teaser,
 .zip-faq,
 .zip-before-grid {
@@ -5185,7 +5181,6 @@ h4 {
     scroll-snap-align: start;
   }
   .experience-categories-header > .zip-button-outline,
-  .zip-section-button,
   .zip-cost-hero .zip-inner-copy > .zip-button-outline,
   .zip-parent-hero .zip-inner-copy > .zip-button-accent {
     display: none;
