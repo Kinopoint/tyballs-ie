@@ -14,6 +14,15 @@ esac
 
 mkdir -p "$backup_directory"
 
+temporary=""
+media_temporary=""
+
+cleanup() {
+  [ -z "$temporary" ] || rm -f -- "$temporary"
+  [ -z "$media_temporary" ] || rm -f -- "$media_temporary"
+}
+trap cleanup EXIT INT TERM
+
 create_backup() {
   timestamp=$(date -u +%Y%m%dT%H%M%SZ)
   temporary="$backup_directory/.tyballs-$timestamp.dump.tmp"
@@ -22,7 +31,9 @@ create_backup() {
   media_destination="$backup_directory/tyballs-media-$timestamp.tar.gz"
 
   pg_dump --format=custom --no-owner --no-privileges --file="$temporary" "$DATABASE_URL"
+  pg_restore --list "$temporary" >/dev/null
   tar -czf "$media_temporary" -C "$media_directory" .
+  tar -tzf "$media_temporary" >/dev/null
   mv "$temporary" "$destination"
   mv "$media_temporary" "$media_destination"
   find "$backup_directory" -type f -name 'tyballs-*.dump' -mtime "+$retention_days" -delete

@@ -318,9 +318,11 @@ try {
     BACKUP_RETENTION_DAYS: "30",
     CMS_MEDIA_DIRECTORY: mediaDirectory,
   });
-  const backupFiles = (await readdir(backupDirectory)).filter((file) => file.endsWith(".dump"));
+  const backupEntries = await readdir(backupDirectory);
+  assert.equal(backupEntries.some((file) => file.endsWith(".tmp")), false);
+  const backupFiles = backupEntries.filter((file) => file.endsWith(".dump"));
   assert.equal(backupFiles.length, 1);
-  const mediaBackupFiles = (await readdir(backupDirectory)).filter((file) => file.endsWith(".tar.gz"));
+  const mediaBackupFiles = backupEntries.filter((file) => file.endsWith(".tar.gz"));
   assert.equal(mediaBackupFiles.length, 1);
   await admin.query(`CREATE DATABASE ${restoreDatabaseName}`);
   const restoreDatabaseUrl = `postgresql:///${restoreDatabaseName}?host=%2Ftmp`;
