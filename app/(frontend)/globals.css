@@ -3339,6 +3339,11 @@ h4 {
   .enquire-landing .choice-grid-attendance {
     grid-template-columns: 1fr;
   }
+
+  .enquire-landing .field input,
+  .enquire-landing .field textarea {
+    font-size: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
