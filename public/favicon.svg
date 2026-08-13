@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TYBalls.ie">
+  <defs>
+    <linearGradient id="frame" x1="6" y1="32" x2="58" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff2bc2"/>
+      <stop offset="0.52" stop-color="#ae35ff"/>
+      <stop offset="1" stop-color="#35c9ff"/>
+    </linearGradient>
+    <radialGradient id="surface" cx="0" cy="0" r="1" gradientTransform="translate(20 12) rotate(45) scale(67)">
+      <stop stop-color="#281039"/>
+      <stop offset="0.5" stop-color="#10091f"/>
+      <stop offset="1" stop-color="#06050d"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#surface)"/>
+  <rect x="4.5" y="4.5" width="55" height="55" rx="11" fill="none" stroke="url(#frame)" stroke-width="3"/>
+  <g fill="#d86cff" opacity=".45">
+    <circle cx="14" cy="13" r="1"/>
+    <circle cx="21" cy="13" r="1.4"/>
+    <circle cx="29" cy="13" r="1.8"/>
+    <circle cx="37" cy="13" r="1.4"/>
+    <circle cx="45" cy="13" r="1"/>
+    <circle cx="50" cy="18" r=".8"/>
+  </g>
+  <path d="M11 18h22v8h-7v23h-8V26h-7V18Z" fill="#fff"/>
+  <path d="M31 18h8l7 11 6-11h5l-7 18v13h-8V36L31 18Z" fill="#fff"/>
+  <path d="M12 53h40" fill="none" stroke="url(#frame)" stroke-linecap="round" stroke-width="2"/>
+</svg>

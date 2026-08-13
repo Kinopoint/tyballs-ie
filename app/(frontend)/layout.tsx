@@ -38,6 +38,14 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: "TYBalls.ie by DebsGuru", url: "https://debsguru.ie/" }],
     creator: "TYBalls.ie by DebsGuru",
     publisher: "DebsGuru Ltd",
+    icons: {
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
+      shortcut: "/favicon.svg",
+    },
     verification: {
       google: "_BcZ2g4P6FkqiCC5eNRpWfwwNrh8EnzE3-2OpGLzY9E",
     },
@@ -76,7 +84,7 @@ const organisationSchema = {
   url: "https://tyballs.ie/",
   email: site.email,
   sameAs: [site.debsGuru, site.instagram, site.facebook, site.tiktok],
-  logo: { "@type": "ImageObject", url: "https://tyballs.ie/brand/tyballs-client-logo-sign.jpg", width: 1390, height: 640 },
+  logo: { "@type": "ImageObject", url: "https://tyballs.ie/brand/tyballs-mark-512.png", width: 512, height: 512 },
   brand: { "@type": "Brand", name: "TYBalls.ie", url: "https://tyballs.ie/" },
 };
 
