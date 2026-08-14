@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TYBalls.ie project delivery report</title>
+  <script>
+    document.documentElement.dataset.report = new URLSearchParams(window.location.search).get("lang") || "both";
+  </script>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    :root {
+      --bg: #161826;
+      --surface: #202235;
+      --surface-soft: #1b1d2c;
+      --text: #f1f0f5;
+      --soft: #cfd3e5;
+      --muted: #9599ad;
+      --accent: #b5abfc;
+      --magenta: #ff3ec8;
+      --blue: #51c7ff;
+      --line: rgba(233, 233, 237, 0.16);
+    }
+    html, body { margin: 0; padding: 0; background: #0f111b; color: var(--text); }
+    body { font-family: "Helvetica Neue", Arial, sans-serif; }
+    .page {
+      background:
+        radial-gradient(circle at 4% 4%, rgba(255, 62, 200, 0.11), transparent 28%),
+        radial-gradient(circle at 96% 96%, rgba(81, 199, 255, 0.11), transparent 30%),
+        var(--bg);
+      height: 297mm;
+      overflow: hidden;
+      padding: 17mm 18mm 15mm;
+      position: relative;
+      width: 210mm;
+      break-after: page;
+    }
+    .page:last-child { break-after: auto; }
+    .page::before {
+      background: linear-gradient(90deg, var(--magenta), var(--blue));
+      content: "";
+      height: 2px;
+      inset: 0 0 auto;
+      position: absolute;
+    }
+    .cover { display: flex; flex-direction: column; justify-content: space-between; padding: 20mm; }
+    .cover-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 24px 24px;
+      inset: 0;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+      pointer-events: none;
+      position: absolute;
+    }
+    .brand-sign {
+      align-items: center;
+      background: rgba(11, 12, 24, 0.68);
+      border: 1px solid rgba(181, 171, 252, 0.25);
+      border-radius: 7mm;
+      display: flex;
+      height: 45mm;
+      justify-content: center;
+      overflow: hidden;
+      padding: 5mm 10mm;
+      position: relative;
+      width: 100%;
+    }
+    .brand-sign img { height: 100%; object-fit: contain; width: 100%; }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: .18em;
+      margin: 0 0 4mm;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 34pt; font-weight: 500; letter-spacing: -.045em; line-height: 1; margin-bottom: 7mm; }
+    h2 { font-size: 21pt; font-weight: 500; letter-spacing: -.035em; line-height: 1.05; margin-bottom: 5mm; }
+    h3 { font-size: 12pt; font-weight: 600; line-height: 1.2; margin-bottom: 2mm; }
+    p, li { color: var(--soft); font-size: 9.6pt; line-height: 1.5; }
+    .cover-copy { max-width: 148mm; position: relative; }
+    .cover-copy > p:not(.eyebrow) { font-size: 15pt; line-height: 1.45; max-width: 30em; }
+    .cover-meta {
+      align-items: end;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      padding-top: 6mm;
+      position: relative;
+    }
+    .cover-meta p { font-size: 9pt; margin: 0; }
+    .cover-meta strong { color: var(--text); display: block; font-size: 11pt; margin-bottom: 1mm; }
+    .cover-meta a { color: var(--accent); font-size: 10pt; text-decoration: none; }
+    .language-bar { align-items: center; display: flex; justify-content: space-between; margin-bottom: 8mm; }
+    .language-bar span {
+      border: 1px solid rgba(181, 171, 252, .3);
+      border-radius: 99px;
+      color: var(--accent);
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: .12em;
+      padding: 2.4mm 4mm;
+      text-transform: uppercase;
+    }
+    .language-bar small { color: var(--muted); font-size: 8.5pt; }
+    .intro { color: var(--soft); font-size: 11.5pt; line-height: 1.55; margin-bottom: 7mm; max-width: 46em; }
+    .cards { display: grid; gap: 3.5mm; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 7mm; }
+    .card {
+      background:
+        radial-gradient(circle at 100% 100%, rgba(81, 199, 255, .08), transparent 45%),
+        rgba(31, 33, 51, .82);
+      border: 1px solid var(--line);
+      border-radius: 4mm;
+      min-height: 29mm;
+      padding: 4.2mm 4.5mm;
+    }
+    .card-mark {
+      background: linear-gradient(90deg, var(--magenta), var(--blue));
+      border-radius: 99px;
+      display: block;
+      height: 1.2mm;
+      margin-bottom: 3mm;
+      width: 8mm;
+    }
+    .card p { font-size: 8.7pt; line-height: 1.45; margin: 0; }
+    .flow {
+      border-bottom: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 2.5mm;
+      grid-template-columns: repeat(5, 1fr);
+      margin-bottom: 7mm;
+      padding: 4.5mm 0;
+    }
+    .flow-item { min-width: 0; position: relative; }
+    .flow-item:not(:last-child)::after { color: var(--accent); content: "→"; position: absolute; right: -1mm; top: 1mm; }
+    .flow-item strong { color: var(--text); display: block; font-size: 8.2pt; line-height: 1.25; margin-bottom: 1.5mm; padding-right: 4mm; }
+    .flow-item p { color: var(--muted); font-size: 7.4pt; line-height: 1.35; margin: 0; padding-right: 3mm; }
+    .bottom-grid { display: grid; gap: 5mm; grid-template-columns: 1.05fr .95fr; }
+    .keyword-list { display: flex; flex-wrap: wrap; gap: 2mm; }
+    .keyword-list span {
+      background: rgba(145, 132, 217, .11);
+      border: 1px solid rgba(181, 171, 252, .3);
+      border-radius: 99px;
+      color: var(--accent);
+      font-size: 7.8pt;
+      padding: 2mm 3mm;
+    }
+    .status {
+      background: linear-gradient(135deg, rgba(255, 62, 200, .09), rgba(81, 199, 255, .09));
+      border: 1px solid rgba(181, 171, 252, .28);
+      border-radius: 4mm;
+      padding: 4.5mm;
+    }
+    .status-line { align-items: center; display: flex; gap: 2mm; margin-bottom: 2.5mm; }
+    .status-line i { background: #46d28c; border-radius: 50%; box-shadow: 0 0 8px rgba(70, 210, 140, .6); height: 2mm; width: 2mm; }
+    .status-line strong { font-size: 10pt; }
+    .status p { font-size: 8.4pt; margin: 0; }
+    .footer {
+      align-items: center;
+      bottom: 8mm;
+      color: var(--muted);
+      display: flex;
+      font-size: 7.5pt;
+      justify-content: space-between;
+      left: 18mm;
+      position: absolute;
+      right: 18mm;
+    }
+    .footer strong { color: var(--soft); font-weight: 500; }
+    html[data-report="en"] .page[lang="ru"],
+    html[data-report="ru"] .page[lang="en"] { display: none; }
+  </style>
+</head>
+<body>
+  <section class="page cover" lang="en">
+    <div class="cover-grid"></div>
+    <div class="brand-sign"><img src="../public/brand/tyballs-client-logo-sign.jpg" alt="TYBalls.ie from the team behind DebsGuru.ie"></div>
+    <div class="cover-copy">
+      <p class="eyebrow">Project delivery report</p>
+      <h1>TYBalls.ie<br>Built, connected and live.</h1>
+      <p>A concise summary of the website, enquiry journey, search setup and day-to-day operation.</p>
+    </div>
+    <div class="cover-meta">
+      <p><strong>Prepared for Declan</strong>DebsGuru team · 12 August 2026</p>
+      <a href="https://tyballs.ie/">tyballs.ie ↗</a>
+    </div>
+  </section>
+
+  <section class="page" lang="en">
+    <div class="language-bar"><span>English</span><small>TYBalls.ie project delivery</small></div>
+    <p class="eyebrow">Project summary</p>
+    <h2>A clear route from first visit to a useful enquiry.</h2>
+    <p class="intro">TYBalls.ie is now a complete, mobile-first website for Transition Year Ball enquiries in Ireland. Student committees, parents and schools can understand the service, see how the planning process works and send DebsGuru the information needed to prepare a proposal.</p>
+
+    <div class="cards">
+      <article class="card"><span class="card-mark"></span><h3>Brand and website</h3><p>A new visual system based on the supplied logo, with consistent colour, typography, motion and responsive layouts.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Useful content</h3><p>Eight core pages explain the event, planning process, costs, venues, committee role, parent guidance and enquiry route.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Real event media</h3><p>Photography and video are presented in mobile-friendly galleries and swipeable sections.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Enquiry handling</h3><p>Completed forms are saved in the admin area and sent to the DebsGuru email address.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Search and measurement</h3><p>Google Analytics, Search Console, sitemap, page descriptions, social cards and structured data are connected.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Day-to-day operation</h3><p>The site has bot protection, HTTPS, privacy controls, daily backups, monitoring and an area for publishing venues and event stories.</p></article>
+    </div>
+
+    <p class="eyebrow">How an enquiry moves</p>
+    <div class="flow">
+      <div class="flow-item"><strong>Find the site</strong><p>Google, social or direct link</p></div>
+      <div class="flow-item"><strong>Review the service</strong><p>Format, planning and guidance</p></div>
+      <div class="flow-item"><strong>Send the form</strong><p>School, date and guest estimate</p></div>
+      <div class="flow-item"><strong>Save and notify</strong><p>Admin record and email</p></div>
+      <div class="flow-item"><strong>DebsGuru follows up</strong><p>Review and proposal</p></div>
+    </div>
+
+    <div class="bottom-grid">
+      <div><p class="eyebrow">Search focus</p><div class="keyword-list"><span>TY Ball organisers</span><span>Transition Year Ball Ireland</span><span>TY Ball venues Ireland</span><span>TY Ball planning</span></div></div>
+      <div class="status"><div class="status-line"><i></i><strong>Live and ready for enquiries</strong></div><p>The main website, mobile experience, forms, email delivery, analytics, search setup, security and backups are working. The next step is regular venue and event content from DebsGuru.</p></div>
+    </div>
+    <div class="footer"><strong>TYBalls.ie · DebsGuru</strong><span>Project delivery report · 02</span></div>
+  </section>
+
+  <section class="page cover" lang="ru">
+    <div class="cover-grid"></div>
+    <div class="brand-sign"><img src="../public/brand/tyballs-client-logo-sign.jpg" alt="TYBalls.ie — проект команды DebsGuru.ie"></div>
+    <div class="cover-copy">
+      <p class="eyebrow">Отчёт по проекту</p>
+      <h1>TYBalls.ie<br>Создан, подключён и работает.</h1>
+      <p>Краткий итог по сайту, обработке заявок, поисковому продвижению и ежедневной работе.</p>
+    </div>
+    <div class="cover-meta">
+      <p><strong>Подготовлено для Declan</strong>Команда DebsGuru · 12 августа 2026</p>
+      <a href="https://tyballs.ie/">tyballs.ie ↗</a>
+    </div>
+  </section>
+
+  <section class="page" lang="ru">
+    <div class="language-bar"><span>Русский</span><small>Итог проекта TYBalls.ie</small></div>
+    <p class="eyebrow">Итог проекта</p>
+    <h2>Понятный путь от первого посещения до полезной заявки.</h2>
+    <p class="intro">TYBalls.ie теперь является полноценным сайтом для заявок на организацию Transition Year Ball в Ирландии. Ученические комитеты, родители и школы могут понять формат услуги, ознакомиться с процессом организации и отправить DebsGuru данные для подготовки предложения.</p>
+
+    <div class="cards">
+      <article class="card"><span class="card-mark"></span><h3>Бренд и сайт</h3><p>Новая визуальная система на основе логотипа клиента: единая палитра, типографика, анимация и адаптивная разметка.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Полезный контент</h3><p>Восемь основных страниц объясняют формат мероприятия, процесс, стоимость, площадки, роль комитета и работу с родителями.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Реальные материалы</h3><p>Фото и видео мероприятий оформлены в мобильные галереи и блоки с горизонтальным листанием.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Работа с заявками</h3><p>Заполненные формы сохраняются в административной панели и отправляются на email DebsGuru.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Поиск и аналитика</h3><p>Подключены Google Analytics, Search Console, sitemap, описания страниц, социальные карточки и структурированные данные.</p></article>
+      <article class="card"><span class="card-mark"></span><h3>Ежедневная работа</h3><p>Работают защита от ботов, HTTPS, privacy-настройки, ежедневные копии, мониторинг и публикация площадок и историй.</p></article>
+    </div>
+
+    <p class="eyebrow">Как проходит заявка</p>
+    <div class="flow">
+      <div class="flow-item"><strong>Поиск сайта</strong><p>Google, соцсети или ссылка</p></div>
+      <div class="flow-item"><strong>Знакомство</strong><p>Формат, процесс и условия</p></div>
+      <div class="flow-item"><strong>Отправка формы</strong><p>Школа, дата и гости</p></div>
+      <div class="flow-item"><strong>Сохранение</strong><p>Панель и email</p></div>
+      <div class="flow-item"><strong>Ответ DebsGuru</strong><p>Проверка и предложение</p></div>
+    </div>
+
+    <div class="bottom-grid">
+      <div><p class="eyebrow">Направления SEO</p><div class="keyword-list"><span>TY Ball organisers</span><span>Transition Year Ball Ireland</span><span>TY Ball venues Ireland</span><span>TY Ball planning</span></div></div>
+      <div class="status"><div class="status-line"><i></i><strong>Сайт опубликован и готов</strong></div><p>Основной сайт, мобильная версия, формы, письма, аналитика, SEO, защита и резервное копирование работают. Следующий этап: регулярно добавлять площадки и реальные истории DebsGuru.</p></div>
+    </div>
+    <div class="footer"><strong>TYBalls.ie · DebsGuru</strong><span>Отчёт по проекту · 02</span></div>
+  </section>
+</body>
+</html>
