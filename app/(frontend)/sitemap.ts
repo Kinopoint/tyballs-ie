@@ -2,8 +2,7 @@ import type { MetadataRoute } from "next";
 import { getSitemapContent } from "@/cms/frontend";
 import { getCmsSocialImage } from "@/lib/seo";
 
-export const dynamic = "force-static";
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 const siteUrl = new URL("https://tyballs.ie");
 
