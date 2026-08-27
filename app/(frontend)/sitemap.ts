@@ -14,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     { path: "", priority: 1, image: "/og/home.jpg" },
     { path: "/how-it-works", priority: 0.9, image: "/og/how-it-works.jpg" },
+    { path: "/what-is-a-ty-ball", priority: 0.9, image: "/og/home.jpg" },
     { path: "/for-committees", priority: 0.85, image: "/og/for-committees.jpg" },
     { path: "/parents-schools", priority: 0.85, image: "/og/parents-schools.jpg" },
     { path: "/cost-guide", priority: 0.8, image: "/og/cost-guide.jpg" },

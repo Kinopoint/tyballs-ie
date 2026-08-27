@@ -24,6 +24,7 @@ export function SiteFooter({ settings }: { settings?: SiteSetting | null }) {
           <div>
             <strong>Explore</strong>
             <Link href="/#experience">What’s included</Link>
+            <Link href="/what-is-a-ty-ball">What is a TY Ball?</Link>
             <Link href="/how-it-works">How it works</Link>
             <Link href="/for-committees">For committees</Link>
             <Link href="/parents-schools">Parents &amp; schools</Link>

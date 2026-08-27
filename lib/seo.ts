@@ -11,6 +11,9 @@ type PageMetadata = {
   imageAlt?: string;
   noIndex?: boolean;
   follow?: boolean;
+  type?: "article" | "website";
+  publishedTime?: string;
+  modifiedTime?: string;
 };
 
 type SocialImage = {
@@ -54,6 +57,9 @@ export function createPageMetadata({
   imageAlt = "Guests arriving for a TY Ball in Ireland",
   noIndex = false,
   follow = true,
+  type = "website",
+  publishedTime,
+  modifiedTime,
 }: PageMetadata): Metadata {
   const pageTitle = title.includes("TYBalls.ie") ? title : `${title} | TYBalls.ie`;
   const shouldIndex = !staticPreview && !noIndex;
@@ -61,6 +67,28 @@ export function createPageMetadata({
   const socialImage = typeof image === "string"
     ? { url: image, width: 1200, height: 630, type: image.endsWith(".jpg") || image.endsWith(".jpeg") ? "image/jpeg" : undefined }
     : image;
+
+  const openGraph = type === "article"
+    ? {
+        title: pageTitle,
+        description,
+        url: path,
+        siteName: "TYBalls.ie",
+        locale: "en_IE",
+        type: "article" as const,
+        publishedTime,
+        modifiedTime,
+        images: [{ ...socialImage, alt: imageAlt }],
+      }
+    : {
+        title: pageTitle,
+        description,
+        url: path,
+        siteName: "TYBalls.ie",
+        locale: "en_IE",
+        type: "website" as const,
+        images: [{ ...socialImage, alt: imageAlt }],
+      };
 
   return {
     title,
@@ -85,15 +113,7 @@ export function createPageMetadata({
           : {}),
       },
     },
-    openGraph: {
-      title: pageTitle,
-      description,
-      url: path,
-      siteName: "TYBalls.ie",
-      locale: "en_IE",
-      type: "website",
-      images: [{ ...socialImage, alt: imageAlt }],
-    },
+    openGraph,
     twitter: {
       card: "summary_large_image",
       title: pageTitle,

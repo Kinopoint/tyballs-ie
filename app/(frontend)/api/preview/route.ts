@@ -2,7 +2,7 @@ import { timingSafeEqual } from "node:crypto";
 import { draftMode } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-const allowedPaths = /^\/(?:$|how-it-works$|cost-guide$|parents-schools$|for-committees$|enquire$|events\/[a-z0-9-]+$|venues\/[a-z0-9-]+$)/;
+const allowedPaths = /^\/(?:$|how-it-works$|what-is-a-ty-ball$|cost-guide$|parents-schools$|for-committees$|enquire$|events\/[a-z0-9-]+$|venues\/[a-z0-9-]+$)/;
 
 function secretsMatch(received: string, expected: string) {
   const receivedBuffer = Buffer.from(received);

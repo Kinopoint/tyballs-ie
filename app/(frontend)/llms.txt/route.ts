@@ -11,6 +11,7 @@ The service covers venue matching, dinner, professional DJs, photo booths, secur
 ## Main pages
 
 - [Home](https://tyballs.ie/): Service overview and the TY Ball experience.
+- [What is a TY Ball?](https://tyballs.ie/what-is-a-ty-ball/): A sourced guide to Transition Year Balls in Ireland, what happens on the night and how a TY Ball differs from a Debs.
 - [How it works](https://tyballs.ie/how-it-works): The enquiry, proposal and confirmation process.
 - [For committees](https://tyballs.ie/for-committees): Information and a practical checklist for student committees.
 - [Parents and schools](https://tyballs.ie/parents-schools): Responsibilities, event staffing, security and contact guidance.
